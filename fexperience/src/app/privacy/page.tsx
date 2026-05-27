@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             <h2 className="text-xl md:text-2xl font-medium text-white mb-4">1. Общие положения</h2>
             <p>
               Настоящая Политика конфиденциальности (далее — «Политика») определяет порядок обработки и защиты персональных данных пользователей сайта{' '}
-              <Link href="/" className="text-[#F7931A] hover:underline transition-colors">fexperience.ru</Link> (далее — «Сайт»), осуществляемой оператором — ООО «ФЭкспириенс» (ИНН: 7700000000, ОГРН: 1107700000000), далее — «Оператор».
+              <Link href="/" className="text-[#F7931A] hover:underline transition-colors">fexperience.forbes.ru</Link> (далее — «Сайт»), осуществляемой оператором — АО «АС РУС МЕДИА» (ИНН: 7716236112, ОГРН: 1037716027777), далее — «Оператор».
             </p>
             <p className="mt-2">
               Политика разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» и действует в отношении всех персональных данных, которые Оператор может получить от пользователя во время использования Сайта.
@@ -94,10 +94,10 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl md:text-2xl font-medium text-white mb-4">7. Контактные данные оператора</h2>
             <div className="bg-[#110F0D] border border-[#2A2A2A] rounded-lg p-6 mt-2">
-              <p className="text-white font-medium mb-2">ООО «ФЭкспириенс»</p>
-              <p>Юридический адрес: г. Москва, Пресненская наб., 10</p>
+              <p className="text-white font-medium mb-2">АО «АС РУС МЕДИА»</p>
+              <p>Юридический адрес: 123022, город Москва, 2-я Звенигородская ул., д. 13 стр 15, эт 4 пом X ком 1 </p>
               <p>Email: <a href="mailto:FExperience@forbes.ru" className="text-[#F7931A] hover:underline">FExperience@forbes.ru</a></p>
-              <p>Телефон: <a href="tel:+79001909003" className="text-[#F7931A] hover:underline">+7 (900) 190-90-03</a></p>
+              <p>Телефон: <a href="tel:+79201949003" className="text-[#F7931A] hover:underline">+7 (920) 194-90-03</a></p>
               <p className="mt-2 text-sm text-[#666666]">Дата вступления в силу: 25.04.2026</p>
             </div>
           </section>

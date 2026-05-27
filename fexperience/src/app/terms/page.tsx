@@ -22,7 +22,7 @@ export default function TermsPage() {
             <h2 className="text-xl md:text-2xl font-medium text-white mb-4">1. Общие положения</h2>
             <p>
               Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует порядок использования сайта{' '}
-              <Link href="/" className="text-[#F7931A] hover:underline transition-colors">fexperience.ru</Link> (далее — «Сайт»).
+              <Link href="/" className="text-[#F7931A] hover:underline transition-colors">fexperience.forbes.ru</Link> (далее — «Сайт»).
               Пользуясь Сайтом, вы автоматически принимаете условия данного Соглашения. Администрация оставляет за собой право вносить изменения в Соглашение без предварительного уведомления.
             </p>
           </section>
@@ -43,7 +43,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl md:text-2xl font-medium text-white mb-4">3. Интеллектуальная собственность</h2>
             <p>
-              Все материалы, размещённые на Сайте (тексты, изображения, логотипы, видео, дизайн, программный код, названия экспедиций), являются объектами интеллектуальной собственности ООО «ФЭкспириенс» или третьих лиц, предоставивших права на использование. Копирование, распространение, модификация или иное использование материалов без предварительного письменного разрешения запрещено.
+              Все материалы, размещённые на Сайте (тексты, изображения, логотипы, видео, дизайн, программный код, названия экспедиций), являются объектами интеллектуальной собственности АО «АС РУС МЕДИА» или третьих лиц, предоставивших права на использование. Копирование, распространение, модификация или иное использование материалов без предварительного письменного разрешения запрещено.
             </p>
           </section>
 
@@ -67,9 +67,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl md:text-2xl font-medium text-white mb-4">6. Контактные данные</h2>
             <div className="bg-[#110F0D] border border-[#2A2A2A] rounded-lg p-6 mt-2">
-              <p className="text-white font-medium mb-2">ООО «ФЭкспириенс»</p>
+              <p className="text-white font-medium mb-2">АО «АС РУС МЕДИА»</p>
               <p>Email: <a href="mailto:FExperience@forbes.ru" className="text-[#F7931A] hover:underline transition-colors">FExperience@forbes.ru</a></p>
-              <p>Телефон: <a href="tel:+79001909003" className="text-[#F7931A] hover:underline transition-colors">+7 (900) 190-90-03</a></p>
+              <p>Телефон: <a href="tel:+79201949003" className="text-[#F7931A] hover:underline transition-colors">+7 (920) 194-90-03</a></p>
               <p className="mt-2 text-sm text-[#666666]">Дата вступления в силу: 25.04.2026</p>
             </div>
           </section>

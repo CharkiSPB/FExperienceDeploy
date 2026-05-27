@@ -79,16 +79,16 @@ export const speakers: Speaker[] = [
   {
     id: 13, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
-    expeditionSlugs: ['south-africa', 'vietnam'], category: 'other'
+    expeditionSlugs: ['south-africa']
   },
   {
     id: 14, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD.jpg', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
-    expeditionSlugs: ['south-africa', 'vietnam'], category: 'other'
+    expeditionSlugs: ['south-africa']
   },
   {
     id: 15, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
     bio: '', isTop: true, topic: '', achievement: '',
-    expeditionSlugs: ['south-africa', 'vietnam'], category: 'other'
+    expeditionSlugs: ['south-africa']
   },
 ] as const;

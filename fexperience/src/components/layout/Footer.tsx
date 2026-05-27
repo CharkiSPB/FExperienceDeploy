@@ -24,7 +24,7 @@ export function Footer() {
             className="bg-[#FF8800] text-white rounded-full py-6 px-10 md:px-16 flex flex-col items-center shadow-lg hover:shadow-[#FF8800]/20 transition-all group w-fit cursor-pointer"
           >
             <span className="text-xl md:text-2xl font-bold tracking-wide uppercase leading-none mb-2 group-hover:text-white transition-colors">
-              УЗНАЙТЕ ПЕРВЫМ
+              УЗНАЙТЕ ПЕРВЫМИ
             </span>
             <span className="text-sm md:text-base text-white/90 font-medium leading-none">
               о предстоящих мероприятиях
@@ -43,7 +43,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-3 text-[#A0A0A0]">
               <a href="tel:+79001909003" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
-                <Phone className="w-4 h-4" /> +7 (900) 190-90-03
+                <Phone className="w-4 h-4" /> +7 (920) 194-90-03
               </a>
               <a href="mailto:FExperience@forbes.ru" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
                 <Mail className="w-4 h-4" /> FExperience@forbes.ru

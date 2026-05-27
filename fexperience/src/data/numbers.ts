@@ -31,14 +31,14 @@ export const numbers: NumberCard[] = [
       { 
         value: 70, 
         suffix: '%', 
-        textLine1: 'лояльный', 
+        textLine1: 'локальный', 
         textLine2: 'бизнес-истеблишмент' 
       },
       { 
         value: 20, 
         suffix: '%', 
         textLine1: 'представительства', 
-        textLine2: 'Российских компаний' 
+        textLine2: 'российских компаний' 
       },
       { 
         value: 10, 
