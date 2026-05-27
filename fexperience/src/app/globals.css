@@ -11,8 +11,8 @@
   --color-border: #2A2A2A;
   --color-divider: #FDF2E4;
   
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-serif: "HelveticaNeueCyr", sans-serif;
+  --font-sans: "HelveticaNeueCyr", sans-serif;
   
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
