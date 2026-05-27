@@ -1,0 +1,395 @@
+'use client';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import Link from 'next/link';
+
+type MapPoint = {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  status: 'active' | 'completed' | 'soon';
+  dates?: string;
+  slug: string;
+};
+
+const MAP_POINTS: MapPoint[] = [
+  { id: 'ru', name: 'Россия', x: 579.18, y: 143.04, status: 'active', slug: 'russia' },
+  { id: 'vietnam', name: 'Вьетнам', x: 772, y: 283, status: 'active', dates: '16.10.2026 – 22.10.2026', slug: 'vietnam' },
+  { id: 'south-africa', name: 'ЮАР', x: 528.50, y: 407, status: 'active', dates: '19.11.2026 – 25.11.2026', slug: 'south-africa' },
+  { id: 'morocco', name: 'Марокко', x: 452, y: 232, status: 'completed', dates: '12-18 мар 2024', slug: 'morocco' },
+  { id: 'india', name: 'Индия', x: 685.09, y: 255, status: 'soon', slug: 'india' },
+  { id: 'thailand', name: 'Таиланд', x: 760, y: 280, status: 'soon', slug: 'thailand' },
+  { id: 'indonesia', name: 'Индонезия', x: 810, y: 332, status: 'soon', slug: 'indonesia' },
+  { id: 'brazil', name: 'Бразилия', x: 318.70, y: 347, status: 'soon', slug: 'brazil' },
+  { id: 'kenya', name: 'Кения', x: 575, y: 321.80, status: 'soon', slug: 'kenya' },
+  { id: 'sakhalin', name: 'Сахалин', x: 870, y: 166, status: 'soon', slug: 'sakhalin' },
+];
+
+const ROUTES = MAP_POINTS.filter(p => ['vietnam', 'south-africa', 'morocco'].includes(p.id))
+  .map(p => ({ 
+    from: { x: 579, y: 143 }, 
+    to: { x: p.x, y: p.y }, 
+    status: p.status, 
+    curveFactor: p.id === 'morocco' ? 0.25 : p.id === 'vietnam' ? -0.22 : 0.22, 
+  }));
+
+const STATUS_COLORS = {
+  active: '#F7931A',
+  completed: '#666666',
+  soon: '#999999',
+} as const;
+
+export function InteractiveMap() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [activePopup, setActivePopup] = useState<MapPoint | null>(null);
+  const [selectedPoint, setSelectedPoint] = useState<MapPoint | null>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
+  // Закрытие попапа при клике вне его
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        const svg = event.target as SVGElement;
+        if (!svg.closest('svg')) {
+          setActivePopup(null);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handlePointClick = useCallback((point: MapPoint) => {
+    if (point.status === 'soon') {
+      setSelectedPoint(prev => prev?.id === point.id ? null : point);
+    }
+  }, []);
+
+  const handleLeaveRequest = useCallback(() => {
+    setSelectedPoint(null);
+    const contactSection = document.getElementById('contact');
+    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  return (
+    <section 
+      ref={ref} 
+      className="relative w-full min-h-[60vh] md:min-h-[100vh] bg-[#0D0805] overflow-hidden flex items-center justify-center py-12 md:py-0"
+      aria-label="Интерактивная карта экспедиций"
+    >
+      {/* 🔹 Текстовая карточка (слева) — glassmorphism */}
+      <div className="hidden md:block absolute left-6 md:left-12 lg:left-20 top-1/2 -translate-y-1/2 z-20 w-72 md:w-80 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
+        <p className="text-white/70 text-sm md:text-sm leading-relaxed font-light">
+          Эксклюзивные программы бизнес-экспедиций FExperience разрабатываются с учетом специфики каждого региона.
+          <br /><br />
+          Благодаря участию в деловых мероприятиях, встречам с органами власти и местными предпринимателями, вы сможете оценить не только потенциал развития бизнеса, но и скрытые угрозы нового рынка - в России и за рубежом.
+        </p>
+      </div>
+
+      {/* 🗺️ Карта (десктоп) */}
+      <div className="hidden md:block absolute inset-0 w-full h-full">
+        {/* Фоновое изображение карты */}
+        <motion.img
+          src="/images/map/world-map.svg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="absolute inset-0 w-full h-full pointer-events-none object-contain opacity-40" 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+
+        {/* SVG слой для анимаций (точки и маршруты) */}
+        <svg
+          viewBox="0 0 1000 500"
+          preserveAspectRatio="xMidYMid meet"
+          className="absolute inset-0 w-full h-full pointer-events-auto"
+          aria-hidden="true"
+        >
+          {/* Маршруты */}
+          {ROUTES.map((route, i) => {
+            const dx = route.to.x - route.from.x;
+            const dy = route.to.y - route.from.y;
+            const mx = (route.from.x + route.to.x) / 2;
+            const my = (route.from.y + route.to.y) / 2;
+            const factor = route.curveFactor ?? 0.22;
+            const cx = mx - dy * factor;
+            const cy = my + dx * factor;
+            const pathD = `M ${route.from.x} ${route.from.y} Q ${cx} ${cy} ${route.to.x} ${route.to.y}`;
+
+            return (
+              <motion.path
+                key={`route-${i}`}
+                d={pathD}
+                fill="none"
+                stroke={STATUS_COLORS[route.status]}
+                strokeWidth="0.8"
+                strokeDasharray={route.status === 'active' ? "0" : "3 3"}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.3 + i * 0.2, ease: "easeInOut" }}
+              />
+            );
+          })}
+
+          {/* Точки */}
+          {MAP_POINTS.map((point) => {
+            const isActive = point.status === 'active';
+            const color = STATUS_COLORS[point.status];
+            const isPopupOpen = activePopup?.id === point.id;
+            
+            return (
+              <g 
+                key={point.id} 
+                className="cursor-pointer pointer-events-auto" 
+                onClick={() => {
+                  if (isActive) {
+                    setActivePopup(point);
+                  } else if (point.status === 'soon') {
+                    handlePointClick(point);
+                  }
+                }}
+                role={point.status === 'soon' ? "button" : undefined}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (point.status === 'soon' && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    handlePointClick(point);
+                  }
+                }}
+              >
+                {(point.status === 'active' || point.status === 'soon') && !reducedMotion && (
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r="8"
+                    fill={color}
+                    opacity={point.status === 'active' ? "0.4" : "0.2"}
+                  >
+                    <animate
+                      attributeName="r"
+                      from="8"
+                      to={point.status === 'active' ? "24" : "18"}
+                      dur={point.status === 'active' ? "2s" : "3s"}
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      from={point.status === 'active' ? "0.6" : "0.3"}
+                      to="0"
+                      dur={point.status === 'active' ? "2s" : "3s"}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                )}
+                <circle 
+                  cx={point.x} 
+                  cy={point.y} 
+                  r={isActive ? 4 : 4} 
+                  fill={color} 
+                  className="transition-all duration-200"
+                  style={{ 
+                    filter: isPopupOpen && isActive ? 'drop-shadow(0 0 8px rgba(247,147,26,0.8))' : 'none' 
+                  }} 
+                />
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* 🔹 Попап для АКТИВНЫХ экспедиций — glassmorphism (более прозрачный) */}
+      <AnimatePresence>
+        {activePopup && (
+          <motion.div
+            ref={popupRef}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:block absolute z-30 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-72 shadow-2xl"
+            style={{
+              left: `${(activePopup.x / 1000) * 100}%`,
+              top: `${(activePopup.y / 500) * 100}%`,
+              transform: 'translate(-50%, calc(100% + 16px))',
+            }}
+          >
+            {/* Кнопка закрытия */}
+            <button 
+              onClick={() => setActivePopup(null)} 
+              className="absolute top-3 right-3 text-white/40 hover:text-white transition-colors"
+              aria-label="Закрыть"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Название */}
+            <h3 className="text-[#F7931A] text-xl font-bold font-serif mb-2 uppercase">
+              {activePopup.name}
+            </h3>
+            
+            {/* Даты */}
+            {activePopup.dates && (
+              <p className="text-white/80 text-sm font-medium mb-4">
+                {activePopup.dates}
+              </p>
+            )}
+            
+            {/* Кнопка */}
+            <Link
+              href={`/expeditions/${activePopup.slug}`}
+              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-white hover:text-[#F7931A] transition-all duration-300 shadow-lg"
+            >
+              СТАТЬ УЧАСТНИКОМ
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ✅ Попап для "скоро" — glassmorphism */}
+      <AnimatePresence>
+        {selectedPoint && (
+          <motion.div
+            initial={{ opacity: 0, y: 14, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:flex absolute z-30 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-80 shadow-2xl flex-col gap-4"
+            style={{
+              left: `${(selectedPoint.x / 1000) * 100}%`,
+              top: `${(selectedPoint.y / 500) * 100}%`,
+              transform: 'translate(-50%, 16px)',
+            }}
+            role="dialog"
+            aria-modal="true"
+          >
+            <button 
+              onClick={() => setSelectedPoint(null)} 
+              className="absolute top-3 right-3 text-white/40 hover:text-white transition-colors"
+              aria-label="Закрыть"
+            >
+              <X className="w-4 h-4" />
+            </button>
+            <p className="text-white/70 text-sm leading-relaxed pt-2">
+              Вам интересна локация? Оставьте заявку – и эта точка может стать следующей на карте FExperience
+            </p>
+            <button 
+              onClick={handleLeaveRequest}
+              className="w-full py-3 rounded-xl font-medium bg-[#F7931A] text-white hover:bg-white hover:text-[#F7931A] transition-all duration-300"
+            >
+              Оставить заявку
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 📱 Мобильная адаптация */}
+      <div className="md:hidden w-full px-4 flex flex-col gap-6 py-8">
+        {/* Текстовая карточка */}
+        <div className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
+          <p className="text-white/70 text-sm leading-relaxed font-light">
+            Эксклюзивные программы бизнес-экспедиций FExperience разрабатываются с учетом специфики каждого региона.
+            <br /><br />
+            Благодаря участию в деловых мероприятиях, встречам с органами власти и местными предпринимателями, вы сможете оценить не только потенциал развития бизнеса, но и скрытые угрозы нового рынка.
+          </p>
+        </div>
+
+        {/* Уменьшенная карта */}
+        <div className="relative w-full aspect-[2/1] bg-[#0D0805] rounded-2xl overflow-hidden border border-white/10">
+          <img
+            src="/images/map/world-map.svg"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full pointer-events-none object-contain opacity-60"
+          />
+          <svg
+            viewBox="0 0 1000 500"
+            preserveAspectRatio="xMidYMid meet"
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            aria-hidden="true"
+          >
+            {ROUTES.map((route, i) => {
+              const dx = route.to.x - route.from.x;
+              const dy = route.to.y - route.from.y;
+              const mx = (route.from.x + route.to.x) / 2;
+              const my = (route.from.y + route.to.y) / 2;
+              const factor = route.curveFactor ?? 0.22;
+              const cx = mx - dy * factor;
+              const cy = my + dx * factor;
+              const pathD = `M ${route.from.x} ${route.from.y} Q ${cx} ${cy} ${route.to.x} ${route.to.y}`;
+
+              return (
+                <path
+                  key={`route-${i}`}
+                  d={pathD}
+                  fill="none"
+                  stroke={STATUS_COLORS[route.status]}
+                  strokeWidth="0.8"
+                  strokeDasharray={route.status === 'active' ? "0" : "3 3"}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  opacity="0.5"
+                />
+              );
+            })}
+
+            {MAP_POINTS.map((point) => {
+              const isActive = point.status === 'active';
+              const color = STATUS_COLORS[point.status];
+              
+              return (
+                <g key={point.id}>
+                  {(point.status === 'active' || point.status === 'soon') && !reducedMotion && (
+                    <circle
+                      cx={point.x}
+                      cy={point.y}
+                      r="8"
+                      fill={color}
+                      opacity={point.status === 'active' ? "0.4" : "0.2"}
+                    >
+                      <animate
+                        attributeName="r"
+                        from="8"
+                        to={point.status === 'active' ? "24" : "18"}
+                        dur={point.status === 'active' ? "2s" : "3s"}
+                        repeatCount="indefinite"
+                      />
+                      <animate
+                        attributeName="opacity"
+                        from={point.status === 'active' ? "0.6" : "0.3"}
+                        to="0"
+                        dur={point.status === 'active' ? "2s" : "3s"}
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  )}
+                  <circle 
+                    cx={point.x} 
+                    cy={point.y} 
+                    r={isActive ? 4 : 4} 
+                    fill={color} 
+                  />
+                </g>
+              );
+            })}
+          </svg>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg-primary: #000004;
+  --color-bg-card: #110F0D;
+  --color-accent: #FF8800;
+  --color-accent-hover: #FF9900;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
+  --color-border: #2A2A2A;
+  --color-divider: #FDF2E4;
+  
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+@layer base {
+  * {
+    @apply border-[#2A2A2A];
+  }
+  body {
+    @apply bg-bg-primary text-text-primary font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-bold;
+  }
+}
