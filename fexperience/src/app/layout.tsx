@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { RootClientLayout } from '@/components/layout/RootClientLayout';
+import { YandexMetrika } from '@/components/shared/YandexMetrika';
 
 const helveticaSans = localFont({
   src: [
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru" className={`${helveticaSans.variable} ${helveticaSerif.variable}`}>
       <body className="antialiased bg-[#0D0805] text-white" suppressHydrationWarning>
         <RootClientLayout>{children}</RootClientLayout>
+        <YandexMetrika />
       </body>
     </html>
   );
