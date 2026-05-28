@@ -57,9 +57,9 @@ export function Header() {
         : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between relative">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center relative">
         {/* 🔹 ЛЕВАЯ ЧАСТЬ: Навигация */}
-        <nav className="hidden xl:flex items-center gap-6">
+        <nav className="hidden xl:flex items-center gap-6" style={{ marginLeft: '8rem' }}>
           <Link href="/about" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
             О нас
           </Link>
@@ -130,7 +130,7 @@ export function Header() {
         </Link>
 
         {/* 🔹 ПРАВАЯ ЧАСТЬ: Навигация + Telegram + Кнопка */}
-        <div className="hidden xl:flex items-center gap-6">
+        <div className="hidden xl:flex items-center gap-6 ml-auto">
           <Link href="/articles" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Статьи</Link>
           <Link href="/#reviews" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Отзывы</Link>
           <Link href="/#contacts" className="text-sm text-white/80 hover:text-white transition-colors">Контакты</Link>
