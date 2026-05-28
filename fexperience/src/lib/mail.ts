@@ -56,27 +56,49 @@ function buildHtml(data: LeadData): string {
   `;
 }
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.yandex.ru',
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
-
 export async function sendLeadEmail(data: LeadData): Promise<void> {
-  const mailTo = process.env.MAIL_TO;
-  if (!mailTo) {
-    console.warn('MAIL_TO not configured, skipping email');
+  const { SMTP_USER, SMTP_PASS, MAIL_TO } = process.env;
+
+  console.log('[mail] sendLeadEmail called', {
+    to: MAIL_TO,
+    hasUser: !!SMTP_USER,
+    hasPass: !!SMTP_PASS,
+    formType: data.formType,
+  });
+
+  if (!MAIL_TO) {
+    console.warn('[mail] MAIL_TO not configured, skipping email');
     return;
   }
 
-  await transporter.sendMail({
-    from: process.env.SMTP_USER,
-    to: mailTo,
-    subject: buildSubject(data),
-    html: buildHtml(data),
+  if (!SMTP_USER || !SMTP_PASS) {
+    console.warn('[mail] SMTP credentials not configured, skipping email');
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.yandex.ru',
+    port: 465,
+    secure: true,
+    auth: {
+      user: SMTP_USER,
+      pass: SMTP_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
+
+  try {
+    const info = await transporter.sendMail({
+      from: SMTP_USER,
+      to: MAIL_TO,
+      subject: buildSubject(data),
+      html: buildHtml(data),
+    });
+    console.log('[mail] Email sent successfully:', info.messageId);
+  } catch (error) {
+    console.error('[mail] Failed to send email:', error);
+    throw error;
+  }
 }
