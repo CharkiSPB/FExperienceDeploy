@@ -75,7 +75,7 @@ export async function POST(request: Request) {
 
     const webhookUrl = process.env.AMOCRM_WEBHOOK_URL;
 
-    if (webhookUrl) {
+    if (webhookUrl && webhookUrl.startsWith('http')) {
       const payload = buildAmoPayload(data);
       const response = await fetch(webhookUrl, {
         method: 'POST',
