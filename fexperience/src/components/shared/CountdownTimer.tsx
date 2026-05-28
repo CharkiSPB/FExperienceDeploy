@@ -31,11 +31,11 @@ function TimerUnit({ value, label }: { value: number; label: string }) {
   const declinedLabel = declension(value, labelSets[label as keyof typeof labelSets]);
 
   return (
-    <div className="flex flex-col items-center justify-center px-6 md:px-10">
-      <div className="text-5xl md:text-6xl lg:text-5xl font-bold text-white tabular-nums leading-none">
+    <div className="flex flex-col items-center justify-center px-2 md:px-10">
+      <div className="text-3xl md:text-6xl lg:text-5xl font-bold text-white tabular-nums leading-none">
         {String(value).padStart(2, '0')}
       </div>
-      <div className="mt-3 text-sm md:text-base text-[#000004] font-medium uppercase tracking-wide">
+      <div className="mt-1 md:mt-3 text-[10px] md:text-base text-[#000004] font-medium uppercase tracking-wide">
         {declinedLabel}
       </div>
     </div>
@@ -93,9 +93,9 @@ export function CountdownTimer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative w-full h-[409px] bg-[#FF8800] rounded-[44px] p-8 md:p-12 flex flex-col items-center justify-center overflow-hidden"
+          className="relative w-full md:h-[409px] bg-[#FF8800] rounded-[44px] p-6 md:p-12 flex flex-col items-center justify-center overflow-hidden"
         >
-          <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#000004] mb-3 text-center">
+          <div className="text-xl md:text-3xl lg:text-4xl font-bold text-[#000004] mb-3 text-center">
             ДО СТАРТА ЭКСПЕДИЦИИ
           </div>
           
@@ -104,13 +104,13 @@ export function CountdownTimer() {
           </div>
 
           {/* 🔹 Динамическое количество мест */}
-          <div className="bg-white backdrop-blur-sm px-6 py-2 rounded-full mb-10 md:mb-5">
+          <div className="bg-white backdrop-blur-sm px-4 md:px-6 py-2 rounded-full mb-6 md:mb-5">
             <span className="text-[#000004] text-sm md:text-base font-bold">
               Осталось мест: {remainingSpots}
             </span>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 lg:gap-2 mb-12">
+          <div className="flex flex-wrap justify-center items-center gap-1 md:gap-4 lg:gap-2 mb-8 md:mb-12">
             <TimerUnit value={timeLeft.days} label="days" />
             <div className="hidden md:block w-0.5 h-18 bg-[#000004]/30" />
             <TimerUnit value={timeLeft.hours} label="hours" />

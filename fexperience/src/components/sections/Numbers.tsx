@@ -69,16 +69,16 @@ function StatItem({ row, inView, onAnimationComplete }: {
   if (row.isTextOnly && row.textOnlyContent) {
     return (
       <div className="flex flex-col items-center justify-center min-w-[140px]">
-        <span className="text-[32px] md:text-[36px] font-bold text-[#FF8800] uppercase leading-none mb-1 mt-6">
+        <span className="text-[14px] md:text-[36px] font-bold text-[#FF8800] uppercase leading-none mb-1 mt-6">
           {row.textOnlyContent}
         </span>
         {row.textLine1 && (
-          <span className="text-[#000004] text-xs md:text-sm mt-1 text-center font-bold">
+          <span className="text-[#000004] text-[10px] md:text-sm mt-1 text-center font-bold">
             {row.textLine1}
           </span>
         )}
         {row.textLine2 && (
-          <span className="text-[#000004] text-xs md:text-sm text-center font-bold">
+          <span className="text-[#000004] text-[10px] md:text-sm text-center font-bold">
             {row.textLine2}
           </span>
         )}
@@ -90,24 +90,24 @@ function StatItem({ row, inView, onAnimationComplete }: {
     <div className="flex flex-col items-center justify-center min-w-[100px]">
       <div className="flex items-baseline">
         {row.prefix && (
-          <span className="text-[40px] md:text-[48px] font-bold font-serif text-[#FF8800]">
+          <span className="text-[20px] md:text-[48px] font-bold font-serif text-[#FF8800]">
             {row.prefix}
           </span>
         )}
-        <span className="text-[40px] md:text-[56px] font-bold font-serif text-[#FF8800] tabular-nums">
+        <span className="text-[20px] md:text-[56px] font-bold font-serif text-[#FF8800] tabular-nums">
           {value}
         </span>
         
         {row.suffix && (
-          <span className="text-[40px] md:text-[48px] font-bold font-serif text-[#FF8800]">
+          <span className="text-[20px] md:text-[48px] font-bold font-serif text-[#FF8800]">
             {row.suffix}
           </span>
         )}
         
         {row.suffixLines && (
-          <div className="flex flex-col ml-1 leading-none" style={{ transform: 'translateY(-17px)' }}>
+          <div className="flex flex-col ml-1 leading-none -translate-y-[10px] md:-translate-y-[17px]">
             {row.suffixLines.map((line, i) => (
-              <span key={`suffix-${i}`} className="text-[14px] md:text-[18px] font-bold text-[#FF8800] uppercase">
+              <span key={`suffix-${i}`} className="text-[10px] md:text-[18px] font-bold text-[#FF8800] uppercase">
                 {line}
               </span>
             ))}
@@ -118,12 +118,12 @@ function StatItem({ row, inView, onAnimationComplete }: {
       {(row.textLine1 || row.textLine2) && (
         <div className="flex flex-col -mt-2 text-center leading-tight font-bold max-w-[200px]">
           {row.textLine1 && (
-            <span className="text-[#000004] text-xs md:text-sm">
+            <span className="text-[#000004] text-[10px] md:text-sm">
               {row.textLine1}
             </span>
           )}
           {row.textLine2 && (
-            <span className="text-[#000004] text-xs md:text-sm">
+            <span className="text-[#000004] text-[10px] md:text-sm">
               {row.textLine2}
             </span>
           )}
@@ -154,11 +154,11 @@ function SlideCard({ card, inView, onAnimationComplete }: {
   }, [inView]);
 
   return (
-    <div className="flex items-center justify-between w-full h-full px-8 md:px-16">
-      <h3 className="text-[24px] md:text-[32px] font-bold text-[#000004] uppercase tracking-wide whitespace-nowrap">
+    <div className="flex items-center justify-between w-full h-full px-2 md:px-16">
+      <h3 className="text-[12px] md:text-[32px] font-bold text-[#000004] uppercase tracking-wide whitespace-nowrap">
         {card.title}
       </h3>
-      <div className="flex items-center gap-4 md:gap-8">
+      <div className="flex items-center gap-1 md:gap-8">
         {card.rows.map((row, index) => (
           <div key={`row-${index}`} className="flex items-center">
             <StatItem 
@@ -169,7 +169,7 @@ function SlideCard({ card, inView, onAnimationComplete }: {
             {index < card.rows.length - 1 && (
               <div 
                 key={`divider-${index}`} 
-                className="w-[2px] h-[60px] md:h-[100px] bg-[#000004] transform rotate-[15deg] flex-shrink-0 opacity-80 mx-4 md:mx-8" 
+                className="w-[2px] h-[40px] md:h-[100px] bg-[#000004] transform rotate-[15deg] flex-shrink-0 opacity-80 mx-0.2 md:mx-8" 
               />
             )}
           </div>
@@ -237,9 +237,9 @@ export function Numbers() {
   }, [emblaApi]);
 
   return (
-    <section className="relative w-full max-w-[1124px] mx-auto h-[176px] overflow-visible pb-12">
+    <section className="relative w-full max-w-[1124px] mx-auto h-[200px] md:h-[176px] overflow-visible pb-12">
       {/* 🔹 Слайдер с исправленным наложением */}
-      <div className="h-full mx-12 overflow-hidden rounded-[28px]" ref={emblaRef}>
+      <div className="h-full mx-2 md:mx-12 overflow-hidden rounded-[28px]" ref={emblaRef}>
         <div className="flex h-full">
           {numbers.map((card, index) => (
             <div 

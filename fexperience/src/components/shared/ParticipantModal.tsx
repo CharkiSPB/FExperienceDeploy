@@ -48,7 +48,12 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, formType: 'participant' }),
+      });
+      if (!response.ok) throw new Error('Ошибка отправки');
       setIsSuccess(true);
       reset();
       setTimeout(() => {

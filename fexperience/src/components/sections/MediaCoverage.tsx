@@ -69,7 +69,7 @@ export function MediaCoverage() {
                   alt="Forbes media"
                   width={400}
                   height={320}
-                  className="w-full h-auto object-contain"
+                  className="w-[80%] md:w-full h-auto object-contain mx-auto md:mx-0"
                   priority
                 />
 
@@ -78,7 +78,7 @@ export function MediaCoverage() {
                   alt="FExperience Forbes Magazine"
                   width={200}
                   height={120}
-                  className="absolute right-0 md:right-[-5px] bottom-0 md:bottom-[-20px] w-[95%] md:w-[45%] h-auto object-contain drop-shadow-2xl"
+                  className="absolute left-[10%] md:right-[-5px] bottom-0 md:bottom-[-20px] w-[30%] md:w-[45%] h-auto object-contain drop-shadow-2xl"
                   priority
                 />
               </motion.div>
@@ -198,7 +198,7 @@ export function MediaCoverage() {
                     alt="Forbes video"
                     width={300}
                     height={180}
-                    className="w-full h-auto object-contain"
+                  className="w-[80%] md:w-full h-auto object-contain mx-auto md:mx-0"
                   />
                 </motion.div>
               </motion.div>

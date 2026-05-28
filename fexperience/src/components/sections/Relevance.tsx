@@ -52,7 +52,7 @@ export function Relevance() {
       {/* 🔹 Контент слайдера */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="embla overflow-hidden relative" ref={emblaRef}>
-          <div className="embla__container flex h-[350px] md:h-[450px]">
+          <div className="embla__container flex h-[550px] md:h-[450px]">
             
             {/*  СЛАЙД 1: НОВЫЕ ТОЧКИ */}
             <div className="embla__slide flex-[0_0_100%] min-w-0 h-full flex flex-col items-center justify-start pt-[26px] md:pt-[26px] px-4 md:px-12">
@@ -128,17 +128,17 @@ export function Relevance() {
 
           </div>
 
-          {/* 🔹 Кнопки управления - по центру вертикально */}
-          <button onClick={scrollPrev} className="absolute left-2 md:left-4 top-[40%] -translate-y-1/2 z-20 p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Предыдущий слайд">
+          {/* 🔹 Кнопки управления - скрыты на мобильных */}
+          <button onClick={scrollPrev} className="hidden md:block absolute left-2 md:left-4 top-[40%] -translate-y-1/2 z-20 p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Предыдущий слайд">
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <button onClick={scrollNext} className="absolute right-2 md:right-4 top-[40%] -translate-y-1/2 z-20 p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Следующий слайд">
+          <button onClick={scrollNext} className="hidden md:block absolute right-2 md:right-4 top-[40%] -translate-y-1/2 z-20 p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Следующий слайд">
             <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Точки-индикаторы */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <div className="absolute bottom-2 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-2">
             {[0, 1].map((index) => (
               <button key={index} onClick={() => emblaApi?.scrollTo(index)} className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30 hover:bg-[#0D0805]/60'}`} aria-label={`Перейти к слайду ${index + 1}`} />
             ))}

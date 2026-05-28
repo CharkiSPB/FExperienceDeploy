@@ -53,7 +53,7 @@ export function WhyFExperience() {
   return (
     <section id="why" className="w-full py-24 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
       {/* 🔹 Основная карточка с фоном */}
-      <div className="relative rounded-[44px] p-8 md:p-12 lg:p-16 overflow-hidden border-b-4 border-[#F7931A] h-[755px] w-[1353px]">
+      <div className="relative rounded-[44px] p-4 md:p-8 lg:p-16 overflow-hidden border-b-4 border-[#F7931A] md:h-[755px] w-full md:w-[1353px] max-w-full">
         
         {/* Фоновое изображение */}
         <div className="absolute inset-0">
@@ -83,7 +83,7 @@ export function WhyFExperience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-[#000004] leading-tight mb-4 text-center relative z-10"
+          className="text-2xl md:text-4xl lg:text-5xl font-serif font-bold text-[#000004] leading-tight mb-4 text-center relative z-10"
         >
           ПОЧЕМУ{' '}
           <span className="text-[#FF8800]">F</span>
@@ -91,7 +91,7 @@ export function WhyFExperience() {
         </motion.h2>
 
         {/* 🔹 Грид-сетка 3×2 с цифрами позади */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-12 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-y-12 relative z-10">
           {whyUsItems.map((item, index) => {
             const isLastRow = index >= 3;
             const isLastCol = (index + 1) % 3 === 0;
@@ -112,9 +112,9 @@ export function WhyFExperience() {
                 className="relative group"
               >
                 {/* 🔹 Фоновая цифра позади карточки */}
-                <div className="absolute -left-4 md:left-4 top-0 z-0 pointer-events-none select-none">
+                <div className="absolute -left-2 md:left-4 -top-1 md:top-0 z-0 pointer-events-none select-none">
                   <span 
-                    className="text-[80px] md:text-[120px] lg:text-[250px] font-bold text-[#FFC17B] leading-none"
+                    className="text-[48px] md:text-[120px] lg:text-[250px] font-bold text-[#FFC17B] leading-none"
                     style={{ opacity: 0.2 }}
                   >
                     {cardNumber}
@@ -122,19 +122,19 @@ export function WhyFExperience() {
                 </div>
 
                 {/* Карточка с контентом */}
-                <div className="relative z-10 p-6 md:p-5 pl-16 md:pl-20 h-full">
+                <div className="relative z-10 p-3 md:p-5 pl-[52px] md:pl-20 h-full">
                   {/* Заголовок с оранжевым первым словом */}
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-medium leading-tight mb-2">
+                  <h3 className="text-sm md:text-xl lg:text-2xl font-medium leading-tight mb-2">
                     <span className="text-[#FF8800]">{firstWord}</span>
                     <br />
                     {restOfTitle && <span className="text-[#000004]"> {restOfTitle}</span>}
                   </h3>
 
                   {/* Горизонтальная линия под заголовком */}
-                  <div className="w-full h-px bg-gradient-to-r from-[#000004]/40 via-[#000004]/60 to-transparent mb-4" />
+                  <div className="w-full h-px bg-gradient-to-r from-[#000004]/40 via-[#000004]/60 to-transparent mb-2 md:mb-4" />
 
                   {/* Текст */}
-                  <p className="text-sm md:text-base text-[#000004] leading-relaxed">
+                  <p className="text-[10px] md:text-base text-[#000004] leading-relaxed">
                     {item.text}
                   </p>
                 </div>
