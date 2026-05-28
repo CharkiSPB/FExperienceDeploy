@@ -234,11 +234,11 @@ export function AboutContent() {
           </p>
           <p className="flex items-center justify-center gap-2">
             <MapPin className="w-4 h-4 text-[#F7931A]" />
-            <span>г. Москва, Пресненская наб., 10</span>
+            <span>123022, город Москва, 2-я Звенигородская ул., д. 13 стр 15, эт 4 пом X ком 1 </span>
           </p>
         </address>
         <p className="text-sm text-[#666666] leading-relaxed">
-          Оператор персональных данных: ООО «ФЭкспириенс» | ИНН: 7700000000 | ОГРН: 1107700000000
+          Оператор персональных данных: АО «АС РУС МЕДИА» | ИНН: 7716236112 | ОГРН: 1037716027777
           <br />
           Обработка данных ведётся в строгом соответствии с{' '}
           <Link href="/privacy" className="text-[#F7931A] hover:underline transition-colors">

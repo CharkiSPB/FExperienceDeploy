@@ -115,7 +115,7 @@ export function Hero() {
                       </motion.div>
                     )}
 
-                    {/* 🔸 Заголовок: ДВЕ строки */}
+                    {/* 🔸 Заголовок */}
                     <AnimatePresence mode="wait">
                       <motion.h1
                         key={`h1-${index}`}
@@ -125,12 +125,16 @@ export function Hero() {
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
                       >
-                        {/* Строка 1: Крупно */}
-                        <span className="block whitespace-nowrap">
+                        <span className="hidden md:block whitespace-nowrap">
                           {expedition.title}
                         </span>
-                        {/* Строка 2: Мельче */}
-                        <span className="block text-2xl md:text-3xl lg:text-4xl font-normal mt-2">
+                        <span className="block md:hidden whitespace-nowrap">
+                          {expedition.title.split(' ')[0]}
+                        </span>
+                        <span className="block md:hidden mt-2">
+                          {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
+                        </span>
+                        <span className="block text-2xl lg:text-3xl font-normal mt-2">
                           вместе с FExperience
                         </span>
                       </motion.h1>
