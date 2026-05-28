@@ -7,7 +7,7 @@ export const expeditions: Expedition[] = [
     country: 'Вьетнам',
     dates: '11-16 октября 2026',
     status: 'active',
-    description: 'Всего За шесть дней вы сможете открыть новые бизнес-возможности для себя и своего бизнеса в Юго-Восточной Азии и получите практическое понимание выхода на новые рынки',
+    description: 'Всего за шесть дней вы сможете открыть новые бизнес-возможности для себя и своего бизнеса в Юго-Восточной Азии и получите практическое понимание выхода на новые рынки',
     image: '/images/expeditions/vietnam.webp',
     videoUrl: 'https://www.youtube.com/watch?v=example1',
     // speakersCount: 8,
