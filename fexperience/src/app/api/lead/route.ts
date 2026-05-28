@@ -76,22 +76,26 @@ export async function POST(request: Request) {
     const webhookUrl = process.env.AMOCRM_WEBHOOK_URL;
 
     if (webhookUrl && webhookUrl.startsWith('http')) {
-      const payload = buildAmoPayload(data);
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      try {
+        const payload = buildAmoPayload(data);
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
 
-      if (!response.ok) {
+        if (response.ok) {
+          return NextResponse.json({ success: true }, { status: 200 });
+        }
+
         const errorText = await response.text();
         console.error('AmoCRM API Error:', errorText);
-        return NextResponse.json({ error: 'Failed to send to AmoCRM' }, { status: 502 });
+      } catch (e) {
+        console.warn('AmoCRM unavailable, falling back to email:', e);
       }
-    } else {
-      await sendLeadEmail(data);
     }
 
+    await sendLeadEmail(data);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Lead API Error:', error);
