@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { declension } from '@/lib/utils';
-import { RequestModal } from '@/components/shared/RequestModal';
+import { ParticipantModal } from '@/components/shared/ParticipantModal';
 import { expeditions } from '@/data/expeditions';
 
 type TimeLeft = { days: number; hours: number; minutes: number; seconds: number };
@@ -131,7 +131,7 @@ export function CountdownTimer() {
         </motion.div>
       </div>
 
-      <RequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ParticipantModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

@@ -5,16 +5,18 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown, Send } from 'lucide-react';
 import { expeditions } from '@/data/expeditions';
 import { Dropdown } from '@/components/ui/Dropdown';
-import { RequestModal } from '@/components/shared/RequestModal';
+import { PartnerModal } from '@/components/shared/PartnerModal';
+import { ParticipantModal } from '@/components/shared/ParticipantModal';
 import { config } from '@/data/config';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isParticipantModalOpen, setIsParticipantModalOpen] = useState(false);
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCta, setShowCta] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -145,7 +147,7 @@ export function Header() {
           </Link>
 
           <motion.button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setIsPartnerModalOpen(true)}
             className="cursor-pointer px-3 py-1.5 text-sm font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
           >
             Стать партнёром
@@ -184,11 +186,14 @@ export function Header() {
         </div>
       )}
 
-      {/* 🔹 Модалка "Стать партнером" */}
-      <RequestModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        defaultLeadType="consultation"
+      {/* 🔹 Модалки */}
+      <ParticipantModal
+        isOpen={isParticipantModalOpen}
+        onClose={() => setIsParticipantModalOpen(false)}
+      />
+      <PartnerModal
+        isOpen={isPartnerModalOpen}
+        onClose={() => setIsPartnerModalOpen(false)}
       />
     </header>
   );

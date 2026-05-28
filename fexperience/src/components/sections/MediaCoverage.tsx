@@ -65,7 +65,7 @@ export function MediaCoverage() {
                 className="relative"
               >
                 <Image
-                  src="/images/media/zhyrnal.png"
+                  src="/images/media/nout.webp"
                   alt="Forbes media"
                   width={400}
                   height={320}
@@ -74,11 +74,11 @@ export function MediaCoverage() {
                 />
 
                 <Image
-                  src="/images/media/laptop.png"
+                  src="/images/media/zhyrnal1.webp"
                   alt="FExperience Forbes Magazine"
-                  width={400}
-                  height={320}
-                  className="absolute right-0 md:right-[-20px] bottom-0 md:bottom-[-10px] w-[95%] md:w-[75%] h-auto object-contain drop-shadow-2xl"
+                  width={200}
+                  height={120}
+                  className="absolute right-0 md:right-[-5px] bottom-0 md:bottom-[-20px] w-[95%] md:w-[45%] h-auto object-contain drop-shadow-2xl"
                   priority
                 />
               </motion.div>

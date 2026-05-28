@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { RequestModal } from '@/components/shared/RequestModal';
+import { ParticipantModal } from '@/components/shared/ParticipantModal';
 
 export function Relevance() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -38,7 +38,9 @@ export function Relevance() {
       {/* 🔹 Двойной фон (эффект колоды) */}
       <div className="absolute inset-0 max-w-7xl mx-auto">
         {/* Нижний слой — тёмно-серый фон */}
-        <div className="absolute inset-0 bg-[#2A2A2A] rounded-[48px]" />
+        <div className="absolute inset-0 bg-[#2A2A2A] rounded-[48px] overflow-hidden">
+          <Image src="/images/relevance/relevance-bg-1.webp" alt="" fill className="object-cover" priority />
+          </div>
         
         {/* Верхний слой — изображение с картой */}
         <div className="absolute top-[-2rem] md:top-[-4rem] bottom-[2rem] md:bottom-[4rem] left-4 md:left-8 right-4 md:right-8 rounded-[48px] overflow-hidden shadow-2xl">
@@ -68,17 +70,17 @@ export function Relevance() {
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12 mb-6">
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }} className="text-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-light font-serif text-[#0D0805] leading-none mb-2">&gt;60%</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-[#0D0805] leading-none mb-2">&gt;60%</div>
                     <p className="text-xs md:text-sm text-[#0D0805]/70 max-w-[180px]">неудачных экспансий — из-за недостаточно глубокого анализа рынка</p>
                   </motion.div>
 
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.3 }} className="text-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-light font-serif text-[#0D0805] leading-none mb-2">50+</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-[#0D0805] leading-none mb-2">50+</div>
                     <p className="text-xs md:text-sm text-[#0D0805]/70 max-w-[180px]">лояльных контактов — минимум для понимания специфики и принятия решения о старте</p>
                   </motion.div>
 
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.4 }} className="text-center">
-                    <div className="text-3xl md:text-4xl lg:text-5xl font-light font-serif text-[#0D0805] leading-none mb-2">&gt;40%</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-serif text-[#0D0805] leading-none mb-2">&gt;40%</div>
                     <p className="text-xs md:text-sm text-[#0D0805]/70 max-w-[180px]">стартапов терпят провал из-за невостребованности продукта на рынке</p>
                   </motion.div>
                 </div>
@@ -156,7 +158,7 @@ export function Relevance() {
         </div>
       </div>
 
-      <RequestModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ParticipantModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

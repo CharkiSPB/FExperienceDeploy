@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HeroVideo } from '@/components/sections/HeroVideo';
 import { config } from '@/data/config';
 import { expeditions } from '@/data/expeditions';
-import { RequestModal } from '@/components/shared/RequestModal';
+import { ParticipantModal } from '@/components/shared/ParticipantModal';
 import { useExpedition } from '@/components/providers/ExpeditionContext';
 
 export function Hero() {
@@ -250,7 +250,7 @@ export function Hero() {
         </div>
       )}
 
-      <RequestModal 
+      <ParticipantModal 
         isOpen={isRequestModalOpen} 
         onClose={() => setIsRequestModalOpen(false)} 
       />

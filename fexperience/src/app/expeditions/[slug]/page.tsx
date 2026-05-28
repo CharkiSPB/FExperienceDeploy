@@ -65,19 +65,18 @@ export default async function ExpeditionDetailPage({ params }: Props) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0D0805] via-[#0D0805]/60 to-transparent" />
         
-        {/* Навигация "Назад" */}
+        {/* Навигация "Назад" — отключено. Включить: заменить false на true */}
+        {false && (
           <div className="absolute top-0 left-0 w-full z-[60] pt-24 md:pt-28 px-4 md:px-8">
         <Link
           href="/expeditions"
           className="inline-flex items-center gap-2 text-[#A0A0A0] hover:text-white transition-colors mb-8 mt-24 md:mt-28 ml-4 md:ml-8 lg:ml-12"
         >
-          {/* <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg> */}
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="text-sm font-medium"> Назад к экспедициям</span>
         </Link>
           </div>
+        )}
         </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Phone, Mail, Send, MessageCircle, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { RequestModal } from '@/components/shared/RequestModal';
+import { ParticipantModal } from '@/components/shared/ParticipantModal';
+import { PartnerModal } from '@/components/shared/PartnerModal';
 import { TeamProject } from '@/components/shared/TeamProject';
 
 export function Footer() {
@@ -41,7 +42,7 @@ export function Footer() {
               <span className="text-white">Experience</span>
             </Link>
 
-            <div className="flex flex-col gap-3 text-[#A0A0A0]">
+            <div id="contacts" className="flex flex-col gap-3 text-[#A0A0A0] scroll-mt-32">
               <a href="tel:+79001909003" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
                 <Phone className="w-4 h-4" /> +7 (920) 194-90-03
               </a>
@@ -99,16 +100,14 @@ export function Footer() {
         </div>
       </div>
 
-      <RequestModal
+      <ParticipantModal
         isOpen={isParticipantModalOpen}
         onClose={() => setIsParticipantModalOpen(false)}
-        defaultLeadType="expedition"
       />
 
-      <RequestModal
+      <PartnerModal
         isOpen={isPartnerModalOpen}
         onClose={() => setIsPartnerModalOpen(false)}
-        defaultLeadType="consultation"
       />
     </footer>
   );

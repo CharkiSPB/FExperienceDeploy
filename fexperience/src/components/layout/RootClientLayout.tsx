@@ -22,7 +22,7 @@ export function RootClientLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <ExpeditionProvider>
-      <Preloader />
+      {/* <Preloader />  ← раскомментировать чтобы включить */}
       <LenisProvider>
         <Header />
         

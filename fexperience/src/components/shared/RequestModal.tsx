@@ -109,13 +109,13 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition' }
               <>
                 {/* 🔹 Заголовок меняется в зависимости от типа */}
                 <h3 className="text-2xl font-serif font-bold text-white mb-2">
-                  {defaultLeadType === 'consultation' ? 'Запрос на диагностику' : 'Стать участником'}
+                  {defaultLeadType === 'consultation' ? 'Стать партнером' : 'Стать участником'}
                 </h3>
                 
                 {/* 🔹 Бейдж типа заявки */}
                 <div className="mb-4">
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F7931A]/10 text-[#F7931A]">
-                    {currentType === 'consultation' ? 'Диагностика' : 'Экспедиция'}
+                    {currentType === 'consultation' ? 'Партнерство' : 'Экспедиция'}
                   </span>
                 </div>
 
@@ -151,7 +151,7 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition' }
                   <div className="flex items-start gap-2 pt-2">
                     <input id="consent" type="checkbox" {...register('consent')} className="mt-1 w-4 h-4 accent-[#F7931A] rounded border-[#2A2A2A] bg-[#1A1A1A] cursor-pointer" />
                     <label htmlFor="consent" className="text-xs text-[#A0A0A0] leading-tight cursor-pointer">
-                      Я согласен на <a href="/privacy" target="_blank" className="text-[#F7931A] hover:underline">обработку персональных данных</a>
+                      Я согласен с политикой <a href="/privacy" target="_blank" className="text-[#F7931A] hover:underline">обработки персональных данных</a>
                     </label>
                   </div>
                   {errors.consent && <p className="text-red-500 text-xs mt-1">{errors.consent.message}</p>}
