@@ -188,7 +188,7 @@ export function Hero() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 20, transition: { duration: 0.3 } }}
                           transition={{ delay: 0.8, duration: 0.4 }}
-                          className="flex flex-wrap items-center justify-center gap-3 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full text-white/80 text-xs max-w-2xl mx-auto"
+                          className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full text-white/80 text-[10px] md:text-xs max-w-2xl mx-auto"
                         >
                           <button 
                             onClick={handleAcceptCookies}
@@ -218,29 +218,29 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ◀️ ▶️ Стрелки */}
+      {/* ◀️ ▶️ Стрелки (мобильные) */}
       {visibleExpeditions.length > 1 && (
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="md:hidden absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
           <button
             onClick={scrollPrev}
-            className="p-2 md:p-3 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
             aria-label="Предыдущий слайд"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={scrollNext}
-            className="p-2 md:p-3 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
             aria-label="Следующий слайд"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+            <ChevronRight className="w-5 h-5" />
           </button>
         </div>
       )}
 
-      {/* ⚫ Точки-индикаторы */}
+      {/* ⚫ Точки (мобильные) */}
       {visibleExpeditions.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2 md:bottom-10">
+        <div className="md:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
           {visibleExpeditions.map((_, index) => (
             <button
               key={index}
@@ -251,6 +251,38 @@ export function Hero() {
               aria-label={`Перейти к слайду ${index + 1}`}
             />
           ))}
+        </div>
+      )}
+
+      {/* ◀️ Точки ▶️ (десктоп: стрелки по бокам точек) */}
+      {visibleExpeditions.length > 1 && (
+        <div className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20 items-center gap-4">
+          <button
+            onClick={scrollPrev}
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            aria-label="Предыдущий слайд"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <div className="flex gap-2">
+            {visibleExpeditions.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-white/30 hover:bg-white/60'
+                }`}
+                aria-label={`Перейти к слайду ${index + 1}`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={scrollNext}
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            aria-label="Следующий слайд"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       )}
 
