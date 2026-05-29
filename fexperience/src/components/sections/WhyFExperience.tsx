@@ -112,9 +112,9 @@ export function WhyFExperience() {
                 className="relative group"
               >
                 {/* 🔹 Фоновая цифра позади карточки */}
-                <div className="absolute -left-2 md:left-4 -top-1 md:top-0 z-0 pointer-events-none select-none">
+                <div className="absolute -left-1 md:left-4 -top-1 md:top-0 z-0 pointer-events-none select-none">
                   <span 
-                    className="text-[48px] md:text-[120px] lg:text-[250px] font-bold text-[#FFC17B] leading-none"
+                    className="text-[130px] md:text-[120px] lg:text-[250px] font-bold text-[#FFC17B] leading-none"
                     style={{ opacity: 0.2 }}
                   >
                     {cardNumber}
@@ -122,7 +122,7 @@ export function WhyFExperience() {
                 </div>
 
                 {/* Карточка с контентом */}
-                <div className="relative z-10 p-3 md:p-5 pl-[52px] md:pl-20 h-full">
+                <div className="relative z-10 p-3 md:p-5 pl-[22px] md:pl-20 h-full">
                   {/* Заголовок с оранжевым первым словом */}
                   <h3 className="text-sm md:text-xl lg:text-2xl font-medium leading-tight mb-2">
                     <span className="text-[#FF8800]">{firstWord}</span>
