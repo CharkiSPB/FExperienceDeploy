@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   title: { template: '%s | FExperience', default: 'Бизнес-экспедиции с Forbes | FExperience' },
   description: 'Бизнес-экспедиции для российских предпринимателей на перспективные зарубежные рынки',
   metadataBase: new URL('https://fexperience.ru'),
+  verification: {
+    yandex: '4facb07931b3fd31',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
