@@ -65,7 +65,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {/* ========================================== */}
       {/*  FULL-WIDTH HERO */}
       {/* ========================================== */}
-      <div className="relative h-[60vh] md:h-[70vh] bg-[#1A1A1A]">
+      <div className="relative h-[70vh] bg-[#1A1A1A]">
         <Image
           src={expedition.image}
           alt={expedition.title}
@@ -75,7 +75,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
         />
         <div className="absolute inset-0 bg-black/30" />
         
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-20 md:pb-24">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 md:pb-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {expedition.spots && expedition.spots > 0 && (
               <div className="flex justify-center mb-3 md:mb-6">
@@ -95,7 +95,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-4 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8">
               <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
                 <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
                 <p className="text-base md:text-3xl font-serif font-bold text-[#F7931A]">{expedition.duration || '5'} дней</p>
@@ -112,7 +112,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="flex justify-center md:justify-end">
+            <div className="hidden md:flex justify-center md:justify-end">
               <a href="#footer" className="px-5 py-2 text-sm bg-[#F7931A] text-[#0D0805] font-bold rounded-full hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
                 СВЯЗАТЬСЯ С НАМИ
               </a>
