@@ -96,7 +96,7 @@ export function CountdownTimer({ expeditionSlug = 'vietnam' }: CountdownTimerPro
   }
 
   return (
-    <section className="py-12 md:py-16 -mx-4 md:mx-0">
+    <section className="py-12 md:py-16">
       <div className="max-w-[883px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

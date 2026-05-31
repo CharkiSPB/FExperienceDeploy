@@ -128,7 +128,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
         {/* Таймер */}
         {hasExactDates && expedition.timer?.enabled && (
-          <div className="relative z-30 -mt-16 md:-mt-20 lg:-mt-24 px-4">
+          <div className="relative z-30 -mt-16 md:-mt-20 lg:-mt-24">
             <CountdownTimer expeditionSlug={expedition.slug} />
           </div>
         )}
