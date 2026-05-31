@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://fexperience.ru'),
   verification: {
     yandex: '4facb07931b3fd31',
+    google: 'TTyyANnmVGkerAJNk4ZQOK5xdvLODbXOLkfKjSnNByA',
   },
 };
 
