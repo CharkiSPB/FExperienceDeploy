@@ -64,7 +64,7 @@ export function Preloader() {
               }}
               className="overflow-hidden flex-shrink-0"
             >
-              <div className="w-[574px] -ml-3 mt-5">
+              <div className="w-[574px] -ml-5 mt-3">
                 <Image
                   src="/images/logo/preloaderExper.svg"
                   alt=""
