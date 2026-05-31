@@ -94,7 +94,23 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
   return (
     <article className="min-h-screen bg-[#0D0805]">
-      {/* JSON-LD структурированные данные */}
+      {/* JSON-LD — хлебные крошки */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Главная', item: config.site.url },
+              { '@type': 'ListItem', position: 2, name: 'Экспедиции', item: `${config.site.url}/expeditions` },
+              { '@type': 'ListItem', position: 3, name: expedition.title, item: `${config.site.url}/expeditions/${slug}` },
+            ],
+          }),
+        }}
+      />
+
+      {/* JSON-LD структурированные данные (Event) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

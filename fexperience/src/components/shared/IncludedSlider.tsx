@@ -9,6 +9,11 @@ type IncludedSliderProps = {
   items: string[];
 };
 
+// Очищает текст от форматирования для alt-тегов
+const cleanAltText = (text: string) => {
+  return text.replace(/~/g, '').replace(/\|/g, ', ');
+};
+
 const renderFormattedText = (text: string) => {
   if (!text.includes('~')) {
     // Если нет раскраски, но есть перенос строки
@@ -96,7 +101,7 @@ export function IncludedSlider({ items }: IncludedSliderProps) {
                 <div className="absolute bottom-0 left-0 w-full h-[200px] md:h-[254px] bg-[#2A2A2A] rounded-[17px] md:rounded-[23px] overflow-hidden">
                   <Image
                     src={`/images/expeditions/included-bg-${index + 1}.webp`}
-                    alt={item}
+                    alt={cleanAltText(item)}
                     width={361}
                     height={254}
                     className="object-cover w-full h-full opacity-80"
@@ -108,7 +113,7 @@ export function IncludedSlider({ items }: IncludedSliderProps) {
                 <div className="absolute -top-4 md:-top-6 right-[-16px] md:right-[-20] w-[85%] h-[150px] md:h-[190px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl z-10 bg-[#1A1A1A]">
                   <Image
                     src={`/images/expeditions/included-top-${index + 1}.jpg`}
-                    alt={item}
+                    alt={cleanAltText(item)}
                     width={339}
                     height={227}
                     className="object-cover w-full h-full"
