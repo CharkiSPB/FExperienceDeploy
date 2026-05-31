@@ -77,14 +77,14 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 13, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
+    id: 13, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
-    expeditionSlugs: ['south-africa']
+    expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
     id: 14, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD.jpg', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
-    expeditionSlugs: ['south-africa']
+    expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
     id: 15, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',

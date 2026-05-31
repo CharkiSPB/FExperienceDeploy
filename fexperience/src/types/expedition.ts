@@ -25,4 +25,10 @@ export type Expedition = {
     targetDate: string;
     label: string;     
   };
+
+  generalPartner?: {
+    name: string;
+    logo: string;
+    description?: string;
+  };
 };

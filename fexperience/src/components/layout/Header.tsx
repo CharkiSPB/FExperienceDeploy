@@ -118,14 +118,15 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* 🔹 ЛОГОТИП — строго по центру */}
-        <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        {/* 🔹 ЛОГОТИП — по центру на десктопе, слева на мобилке */}
+        <Link href="/" className="absolute left-4 md:left-1/2 top-1/2 -translate-y-1/2 md:-translate-x-1/2">
           <Image
             src="/images/logo/logoFExperience2.svg"
             alt="FExperience Logo"
             width={197}
             height={34}
-            priority 
+            priority
+            className="w-[120px] md:w-[197px] h-auto"
           />
         </Link>
 
@@ -146,12 +147,31 @@ export function Header() {
             <Send className="w-5 h-5" />
           </Link>
 
+          
+
+          {/* Кнопка "Стать партнёром" (раскомментировать если НЕТ партнёра) */}
           <motion.button 
             onClick={() => setIsPartnerModalOpen(true)}
             className="cursor-pointer px-3 py-1.5 text-sm font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
           >
             Стать партнёром
           </motion.button>
+
+          {/*  Генеральный партнёр (раскомментировать если ЕСТЬ партнёр) */}
+          {/* 
+          <div className="flex flex-col items-end">
+            <span className="text-xs text-[#A0A0A0] uppercase tracking-wide mb-1">
+              Генеральный партнер
+            </span>
+            <Image
+              src="/images/partners/partner-logo.svg" //  Замени на логотип партнёра
+              alt="Генеральный партнер"
+              width={120}
+              height={40}
+              className="object-contain"
+            />
+          </div>
+          */}
         </div>
 
         {/* 🔹 МОБИЛЬНОЕ МЕНЮ: Бургер */}

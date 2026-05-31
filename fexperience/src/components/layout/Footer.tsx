@@ -13,7 +13,7 @@ export function Footer() {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
 
   return (
-    <footer className="relative bg-[#0D0D0D] border-t border-[#2A2A2A] pt-12 pb-32 overflow-hidden">
+    <footer id="footer" className="relative bg-[#0D0D0D] border-t border-[#2A2A2A] pt-12 pb-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 🔹 НОВАЯ ОРАНЖЕВАЯ КНОПКА (CTA) */}
@@ -65,7 +65,7 @@ export function Footer() {
           </nav>
 
           {/* Правая часть: Кнопки */}
-          <div className="md:col-span-4 flex flex-col items-end justify-center gap-4">
+          <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center gap-4">
             <motion.button
               onClick={() => setIsParticipantModalOpen(true)}
               className="cursor-pointer px-5 py-2.5 text-sm font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
@@ -82,8 +82,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Нижняя строка */}
-        <div className="text-xs text-[#666666] mb-8">
+      </div>
+
+      {/* Нижняя строка — ниже контейнера, ближе к водяному знаку */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <div className="text-xs text-[#666666] text-center md:text-left">
           <span>© Forbes FExperience 2024-2026. Права защищены.</span>
         </div>
       </div>
@@ -95,7 +98,7 @@ export function Footer() {
 
       {/* Водяной знак */}
       <div className="absolute bottom-0 left-0 right-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
-        <div className="text-center translate-y-[25%] text-[20vw] md:text-[18vw] lg:text-[16vw] font-serif font-bold text-white/[0.03] whitespace-nowrap">
+        <div className="text-center translate-y-[25%] text-[16vw] md:text-[18vw] lg:text-[16vw] font-serif font-bold text-white/[0.03] whitespace-nowrap">
           FExperience
         </div>
       </div>
