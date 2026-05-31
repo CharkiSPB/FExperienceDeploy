@@ -59,8 +59,46 @@ export default async function ExpeditionDetailPage({ params }: Props) {
     s.expeditionSlugs?.includes(slug) || s.category === 'other'
   );
 
+  // JSON-LD разметка для поисковиков
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: expedition.title,
+    description: expedition.description,
+    url: `${config.site.url}/expeditions/${slug}`,
+    image: `${config.site.url}${expedition.image}`,
+    organizer: {
+      '@type': 'Organization',
+      name: 'FExperience',
+      url: config.site.url,
+    },
+    eventStatus: isCompleted
+      ? 'https://schema.org/EventCancelled'
+      : 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: expedition.country,
+    },
+    offers: expedition.price
+      ? {
+          '@type': 'Offer',
+          price: expedition.price,
+          priceCurrency: 'RUB',
+          availability: expedition.spots && expedition.spots > 0
+            ? 'https://schema.org/InStock'
+            : 'https://schema.org/LimitedAvailability',
+        }
+      : undefined,
+  };
+
   return (
     <article className="min-h-screen bg-[#0D0805]">
+      {/* JSON-LD структурированные данные */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       
       {/* ========================================== */}
       {/*  FULL-WIDTH HERO */}
