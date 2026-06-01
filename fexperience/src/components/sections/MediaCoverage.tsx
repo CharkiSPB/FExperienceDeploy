@@ -180,8 +180,11 @@ export function MediaCoverage() {
                     &gt;100
                   </span>
                   <div className="flex flex-col leading-tight">
+                    <span className="text-[#0D0805] text-sm md:text-base font-medium">
+                      просмотров
+                    </span>
                     <span className="text-2xl md:text-3xl font-bold text-[#F7931A] leading-none mt-0.5">
-                      ТЫС
+                      ТЫС.
                     </span>
                   </div>
                 </div>
