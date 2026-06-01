@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
@@ -44,7 +44,6 @@ const STATUS_COLORS = {
 export function InteractiveMap() {
   const ref = useRef<HTMLDivElement>(null);
   const [activePopup, setActivePopup] = useState<MapPoint | null>(null);
-  const [selectedPoint, setSelectedPoint] = useState<MapPoint | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -69,18 +68,6 @@ export function InteractiveMap() {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handlePointClick = useCallback((point: MapPoint) => {
-    if (point.status === 'soon') {
-      setSelectedPoint(prev => prev?.id === point.id ? null : point);
-    }
-  }, []);
-
-  const handleLeaveRequest = useCallback(() => {
-    setSelectedPoint(null);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   return (
@@ -156,12 +143,13 @@ export function InteractiveMap() {
             return (
               <g 
                 key={point.id} 
-                className="cursor-pointer pointer-events-auto" 
+                className={point.id === 'ru' ? 'pointer-events-auto' : 'cursor-pointer pointer-events-auto'} 
                 onClick={() => {
+                  if (point.id === 'ru') return;
                   if (isActive) {
                     setActivePopup(point);
                   } else if (point.status === 'soon') {
-                    handlePointClick(point);
+                    window.location.href = '/404';
                   }
                 }}
                 role={point.status === 'soon' ? "button" : undefined}
@@ -169,7 +157,7 @@ export function InteractiveMap() {
                 onKeyDown={(e) => {
                   if (point.status === 'soon' && (e.key === 'Enter' || e.key === ' ')) {
                     e.preventDefault();
-                    handlePointClick(point);
+                    window.location.href = '/404';
                   }
                 }}
               >
@@ -261,42 +249,7 @@ export function InteractiveMap() {
         )}
       </AnimatePresence>
 
-      {/* ✅ Попап для "скоро" — glassmorphism */}
-      <AnimatePresence>
-        {selectedPoint && (
-          <motion.div
-            initial={{ opacity: 0, y: 14, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.96 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:flex absolute z-30 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-80 shadow-2xl flex-col gap-4"
-            style={{
-              left: `${(selectedPoint.x / 1000) * 100}%`,
-              top: `${(selectedPoint.y / 500) * 100}%`,
-              transform: 'translate(-50%, 16px)',
-            }}
-            role="dialog"
-            aria-modal="true"
-          >
-            <button 
-              onClick={() => setSelectedPoint(null)} 
-              className="absolute top-3 right-3 text-white/40 hover:text-white transition-colors"
-              aria-label="Закрыть"
-            >
-              <X className="w-4 h-4" />
-            </button>
-            <p className="text-white/70 text-sm leading-relaxed pt-2">
-              Вам интересна локация? Оставьте заявку – и эта точка может стать следующей на карте FExperience
-            </p>
-            <button 
-              onClick={handleLeaveRequest}
-              className="w-full py-3 rounded-xl font-medium bg-[#F7931A] text-white hover:bg-white hover:text-[#F7931A] transition-all duration-300"
-            >
-              Оставить заявку
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* 📱 Мобильная адаптация */}
       <div className="md:hidden w-full px-4 flex flex-col gap-6 py-8">

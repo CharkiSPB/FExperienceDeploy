@@ -51,7 +51,7 @@ import { whyUsItems } from '@/data/whyUs';
 
 export function WhyFExperience() {
   return (
-    <section id="why" className="w-full py-24 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+    <section id="why" className="relative z-10 w-full py-24 px-4 sm:px-6 lg:px-8 flex justify-center items-center -mb-34">
       {/* 🔹 Основная карточка с фоном */}
       <div className="relative rounded-[44px] p-4 md:p-8 lg:p-16 overflow-hidden border-b-4 border-[#F7931A] md:h-[755px] w-full md:w-[1353px] max-w-full">
         

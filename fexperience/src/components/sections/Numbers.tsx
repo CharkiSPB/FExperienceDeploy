@@ -237,7 +237,7 @@ export function Numbers() {
   }, [emblaApi]);
 
   return (
-    <section className="relative w-full max-w-[1124px] mx-auto h-[200px] md:h-[176px] overflow-visible pb-12">
+    <section className="relative w-full max-w-[1124px] mx-auto h-[200px] md:h-[176px] overflow-visible pb-12 mt-7 md:mt-9">
       {/* 🔹 Слайдер с исправленным наложением */}
       <div className="h-full mx-2 md:mx-12 overflow-hidden rounded-[28px]" ref={emblaRef}>
         <div className="flex h-full">

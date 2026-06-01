@@ -19,7 +19,7 @@ export function Relevance() {
 
   useEffect(() => {
     if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 6000);
+    const interval = setInterval(() => emblaApi.scrollNext(), 10000);
     return () => clearInterval(interval);
   }, [emblaApi]);
 

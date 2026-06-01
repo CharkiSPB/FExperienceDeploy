@@ -17,7 +17,7 @@ export function MediaCoverage() {
   }, []);
 
   return (
-    <section ref={ref} className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section ref={ref} className="pt-28 md:pt-36 pb-0 px-4 sm:px-6 lg:px-8 relative">
       {/* 🔹 Фоновое изображение секции */}
       <div className="absolute inset-0">
         <Image
@@ -191,14 +191,14 @@ export function MediaCoverage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: reducedMotion ? 0.1 : 0.5, delay: reducedMotion ? 0 : 0.4 }}
-                  className="mt-8 relative max-w-[250px] md:max-w-[300px]"
+                  className="relative max-w-[250px] md:max-w-[300px]"
                 >
                   <Image
                     src="/images/media/videoPlay.png"
                     alt="Forbes video"
                     width={300}
                     height={180}
-                  className="w-[80%] md:w-full h-auto object-contain mx-auto md:mx-0"
+                  className="w-[80%] md:w-full h-auto object-contain mx-auto md:mx-0 translate-y-12 md:translate-y-30 translate-x-4 md:translate-x-9"
                   />
                 </motion.div>
               </motion.div>

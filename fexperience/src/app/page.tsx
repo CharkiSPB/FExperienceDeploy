@@ -58,7 +58,7 @@ export default function HomePage() {
       <WhyFExperience />
 
       <MediaCoverage />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-22 md:-mt-30 relative z-10">
         <CountdownTimer />
       </div>
       
