@@ -77,7 +77,7 @@ export function InteractiveMap() {
       aria-label="Интерактивная карта экспедиций"
     >
       {/* 🔹 Текстовая карточка (слева) — glassmorphism */}
-      <div className="hidden md:block absolute left-6 md:left-12 lg:left-20 top-1/2 -translate-y-1/2 z-20 w-72 md:w-80 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
+      <div className="hidden md:block absolute left-6 md:left-12 lg:left-20 top-1/2 -translate-y-1/2 z-20 w-72 md:w-98 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl">
         <p className="text-white/70 text-sm md:text-sm leading-relaxed font-light">
           Эксклюзивные программы бизнес-экспедиций FExperience разрабатываются с учетом специфики каждого региона.
           <br /><br />

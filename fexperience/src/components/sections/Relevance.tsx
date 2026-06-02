@@ -99,8 +99,9 @@ export function Relevance() {
                   </h2>
                 </motion.div>
 
-                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="text-sm md:text-base text-[#0D0805] font-medium leading-relaxed mb-3 max-w-4xl mx-auto">
-                  КОТОРЫЙ ПОМОЖЕТ ОЦЕНИТЬ ГОТОВНОСТЬ ВАШЕГО БИЗНЕСА К МАСШТАБИРОВАНИЮ, РАСКРЫВ ОСНОВНЫЕ РИСКИ И ВОЗМОЖНОСТИ ЭКСПАНСИИ.
+                <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="text-sm md:text-lg text-[#0D0805] font-medium leading-relaxed mb-3 max-w-4xl mx-auto">
+                  КОТОРЫЙ ПОМОЖЕТ ОЦЕНИТЬ ГОТОВНОСТЬ ВАШЕГО БИЗНЕСА К МАСШТАБИРОВАНИЮ,
+                  РАСКРЫВ ОСНОВНЫЕ РИСКИ И ВОЗМОЖНОСТИ ЭКСПАНСИИ.
                 </motion.p>
 
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="text-xs md:text-sm text-[#0D0805]/70 leading-relaxed mb-6 max-w-3xl mx-auto">

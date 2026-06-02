@@ -148,7 +148,7 @@ export function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto"
+                        className="text-base md:text-[15px] font-bold text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto"
                       >
                         {expedition.description}
                       </motion.p>
@@ -197,13 +197,13 @@ export function Hero() {
                             OK
                           </button>
                           <span className="text-white/60 flex-1 text-center sm:text-left">
-                            Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая использование сайта, вы соглашаетесь с обработкой сбора ваших данных.
+                            Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей
                           </span>
                           <Link 
                             href="/privacy" 
                             className="text-[#F7931A] hover:text-[#FFA733] underline hover:no-underline whitespace-nowrap font-medium"
                           >
-                            Подробнее о политике
+                            политикой конфиденциальности.
                           </Link>
                         </motion.div>
                       )}
