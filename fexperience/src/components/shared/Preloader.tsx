@@ -34,7 +34,7 @@ export function Preloader() {
           className="fixed inset-0 z-[100] bg-[#000004] flex items-center justify-center overflow-hidden"
         >
           <div className="flex items-start scale-[0.42] md:scale-100 origin-center">
-            {/* F — стартует большая по центру, уменьшается, плавно уходит влево */}
+            {/* F — стартует большая по центру, уменьшается */}
             <motion.div
               initial={{ scale: 1.66, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -53,26 +53,24 @@ export function Preloader() {
               />
             </motion.div>
 
-            {/* Experience — в DOM с самого старта, но с width: 0, плавно расширяется */}
+            {/* Experience — раскрывается и СДВИГАЕТСЯ влево одновременно */}
             <motion.div
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 574, opacity: 1 }}
+              initial={{ width: 0, x: 0, opacity: 0 }}
+              animate={{ width: 574, x: -30, opacity: 1 }}
               transition={{ 
                 delay: 0.9,
                 duration: 1.0, 
                 ease: [0.25, 0.1, 0.25, 1] 
               }}
-              className="overflow-hidden flex-shrink-0"
+              className="flex-shrink-0 overflow-hidden mt-3"
             >
-              <div className="w-[574px] -ml-5 mt-3">
-                <Image
-                  src="/images/logo/preloaderExper.svg"
-                  alt=""
-                  width={574}
-                  height={157}
-                  priority
-                />
-              </div>
+              <Image
+                src="/images/logo/preloaderExper.svg"
+                alt=""
+                width={574}
+                height={157}
+                priority
+              />
             </motion.div>
           </div>
         </motion.div>
