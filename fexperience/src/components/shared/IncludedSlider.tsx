@@ -93,24 +93,24 @@ export function IncludedSlider({ items }: IncludedSliderProps) {
       <div className="overflow-hidden py-20 pl-2" ref={emblaRef}>
         <div className="flex">
           {items.map((item, index) => (
-            <div key={index} className="flex-[0_0_300px] sm:flex-[0_0_420px] md:flex-[0_0_360px] min-w-0 pl-4 md:pl-12">
+            <div key={index} className="flex-[0_0_300px] sm:flex-[0_0_420px] md:flex-[0_0_380px] min-w-0 pl-4 md:pl-12">
               {/* Контейнер карточки с фиксированной высотой */}
-              <div className="relative w-full h-[260px] md:h-[320px]">
+              <div className="relative w-full h-[260px] md:h-[300px]">
 
                 {/* 1. Нижняя карточка-подложка (Серый фон) */}
-                <div className="absolute bottom-0 left-0 w-full h-[200px] md:h-[254px] bg-[#2A2A2A] rounded-[17px] md:rounded-[23px] overflow-hidden">
+                <div className="absolute bottom-0 left-0 w-full h-[200px] md:h-[220px] bg-[#555555] rounded-[17px] md:rounded-[23px] overflow-hidden">
                   <Image
                     src={`/images/expeditions/included-bg-${index + 1}.webp`}
                     alt={cleanAltText(item)}
                     width={361}
                     height={254}
-                    className="object-cover w-full h-full opacity-80"
+                    className="object-cover w-full h-full"
                     priority={index < 2}
                   />
                 </div>
 
                 {/* 2. Верхняя карточка (Сдвинута ВВЕРХ и ВПРАВО) */}
-                <div className="absolute -top-4 md:-top-6 right-[-16px] md:right-[-20] w-[85%] h-[150px] md:h-[190px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl z-10 bg-[#1A1A1A]">
+                <div className="absolute -top-4 md:-top-3 right-[-16px] md:right-[-20] w-[85%] h-[150px] md:h-[190px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl z-10 bg-[#1A1A1A]">
                   <Image
                     src={`/images/expeditions/included-top-${index + 1}.jpg`}
                     alt={cleanAltText(item)}

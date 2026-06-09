@@ -152,22 +152,22 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8">
               <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
                 <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
-                <p className="text-base md:text-3xl font-serif font-bold text-[#F7931A]">{expedition.duration || '5'} дней</p>
+                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.duration || '5'} дней</p>
               </div>
               <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
                 <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Кол-во участников</p>
-                <p className="text-base md:text-3xl font-serif font-bold text-[#F7931A]">{expedition.participantsCount || '15-30'} человек</p>
+                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.participantsCount || '15-30'} человек</p>
               </div>
               <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
                 <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Статус</p>
-                <p className="text-base md:text-3xl font-serif font-bold text-[#F7931A]">
+                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">
                   {expedition.status === 'active' ? 'Сбор заявок' : expedition.status === 'completed' ? 'Завершена' : 'Скоро'}
                 </p>
               </div>
             </div>
 
             <div className="hidden md:flex justify-center md:justify-end">
-              <a href="#footer" className="px-5 py-2 text-sm bg-[#F7931A] text-[#0D0805] font-bold rounded-full hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
+              <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
                 СВЯЗАТЬСЯ С НАМИ
               </a>
             </div>
@@ -192,11 +192,11 @@ export default async function ExpeditionDetailPage({ params }: Props) {
           <section className="py-16 mb-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-4">
-                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight mb-4">
+                <h2 className="text-3xl md:text-4xl font-serif font-bold text-white leading-tight mb-4 uppercase">
                   Что <span className="text-[#F7931A]">включено</span>
                 </h2>
                 <p className="text-[#A0A0A0] text-base md:text-lg leading-relaxed">
-                  Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов.
+                  Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов. Вы занимаетесь бизнесом и нетворкингом — обо всём остальном позаботится команда FExperience.
                 </p>
               </div>
               <div className="lg:col-span-8 relative">
@@ -249,8 +249,8 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                     <span className="text-[#F7931A] font-bold text-sm uppercase tracking-wide block mb-1">
                       День {day.day}
                     </span>
-                    <h3 className="text-[#0D0805] font-bold text-lg md:text-xl leading-tight">
-                      {day.title}
+                    <h3 className="text-[#000004] font-bold text-lg md:text-sm leading-tight">
+                      {day.title.toUpperCase().replace(/\.( |$)/g, ' · ').replace(/ · $/, '')}
                     </h3>
                   </div>
 
@@ -266,8 +266,13 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                   </div>
 
                   {/* 3. Описание (Под фото, прозрачное) */}
-                  <p className="text-[#555] text-sm leading-relaxed pt-1">
-                    {day.description}
+                  <p className="text-[#555] text-sm font-bold leading-relaxed pt-1">
+                    {day.description.split('|').map((part, i) => (
+                      <span key={i}>
+                        {part.trim()}
+                        {i < day.description.split('|').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               ))}
@@ -285,19 +290,22 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
       {/* 🔹 Форма на всю ширину с фоном */}
       {!isCompleted && (
-        <section id="register" className="relative w-full py-16 md:py-24 overflow-hidden bg-[#110F0D]">
+        <section id="register" className="relative w-full py-16 md:py-16 overflow-hidden min-h-[681px] mt-0 md:-mt-20">
           {/* Full-width background */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/expeditions/expeditions-form-bg.webp"
+              src="/images/expeditions/expeditions-form-bg.jpg"
               alt=""
               fill
-              className="object-cover"
+              className="object-fill opacity-40"
               priority
             />
           </div>
 
-          <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Плавное затемнение сверху и снизу */}
+          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0D0805] via-transparent to-[#0D0805]" />
+
+          <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 text-center">Стать участником экспедиции</h2>
             <p className="text-[#A0A0A0] mb-8 text-center text-sm">
               {isUpcoming 

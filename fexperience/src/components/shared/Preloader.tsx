@@ -33,7 +33,7 @@ export function Preloader() {
           exit={{ opacity: 0, transition: { duration: 0.6, delay: 0.2 } }}
           className="fixed inset-0 z-[100] bg-[#000004] flex items-center justify-center overflow-hidden"
         >
-          <div className="relative flex items-start scale-[0.42] md:scale-100 origin-center">
+          <div className="flex items-start scale-[0.42] md:scale-100 origin-center">
             {/* F — стартует большая по центру, уменьшается */}
             <motion.div
               initial={{ scale: 1.66, opacity: 0 }}
@@ -69,31 +69,6 @@ export function Preloader() {
                 alt=""
                 width={574}
                 height={157}
-                priority
-              />
-            </motion.div>
-
-            {/* Самолётик — влетает справа и зависает над CE */}
-            <motion.div
-              className="absolute"
-              style={{ right: '100px', top: '5px' }}
-              initial={{ x: 80, opacity: 0 }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                y: [0, -3, 0],
-              }}
-              transition={{
-                x: { delay: 1.9, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
-                opacity: { delay: 1.9, duration: 0.3 },
-                y: { delay: 2.6, duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-              }}
-            >
-              <Image
-                src="/images/logo/samolet1.svg"
-                alt=""
-                width={40}
-                height={40}
                 priority
               />
             </motion.div>

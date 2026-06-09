@@ -128,11 +128,16 @@ export default async function ProgramPage({ params }: Props) {
                   </div>
                   
                   <h3 className="text-xl font-serif font-bold text-white mb-3">
-                    {day.title}
+                    {day.title.toUpperCase().replace(/\.( |$)/g, ' · ').replace(/ · $/, '')}
                   </h3>
                   
                   <p className="text-[#A0A0A0] mb-6 leading-relaxed">
-                    {day.description}
+                    {day.description.split('|').map((part, i) => (
+                      <span key={i}>
+                        {part.trim()}
+                        {i < day.description.split('|').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                   
                   {/* Расписание */}
