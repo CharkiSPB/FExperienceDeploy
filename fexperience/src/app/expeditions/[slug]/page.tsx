@@ -140,27 +140,27 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             )}
 
             <div className="text-center mb-4 md:mb-8">
-              <div className="text-base md:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
-              <h1 className="text-xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
+              <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
+              <h1 className="text-xl md:text-3xl xxl:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
                 {expedition.title}
               </h1>
-              <p className="text-sm md:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm md:text-base xxl:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
                 {expedition.description}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8">
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
-                <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
-                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.duration || '5'} дней</p>
+              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
+                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.duration || '5'} дней</p>
               </div>
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
-                <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Кол-во участников</p>
-                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.participantsCount || '15-30'} человек</p>
+              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Кол-во участников</p>
+                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.participantsCount || '15-30'} человек</p>
               </div>
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-6 text-center">
-                <p className="text-[10px] md:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Статус</p>
-                <p className="text-base md:text-3xl font-serif font-bold uppercase text-[#FF8800]">
+              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Статус</p>
+                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">
                   {expedition.status === 'active' ? 'Сбор заявок' : expedition.status === 'completed' ? 'Завершена' : 'Скоро'}
                 </p>
               </div>

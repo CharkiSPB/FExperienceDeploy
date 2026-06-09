@@ -23,12 +23,12 @@ export function Footer() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsParticipantModalOpen(true)}
-            className="bg-[#FF8800] text-white rounded-full py-6 px-10 md:px-16 flex flex-col items-center shadow-lg hover:shadow-[#FF8800]/20 transition-all group w-fit cursor-pointer"
+            className="bg-[#FF8800] text-white rounded-full py-4 px-6 md:px-12 flex flex-col items-center shadow-lg hover:shadow-[#FF8800]/20 transition-all group w-fit cursor-pointer"
           >
-            <span className="text-xl md:text-2xl font-bold tracking-wide uppercase leading-none mb-2 group-hover:text-white transition-colors">
+            <span className="text-base md:text-lg font-bold tracking-wide uppercase leading-none mb-2 group-hover:text-white transition-colors">
               УЗНАЙТЕ ПЕРВЫМИ
             </span>
-            <span className="text-sm md:text-base text-white/90 font-medium leading-none">
+            <span className="text-[10px] md:text-xs text-white/90 font-medium leading-none">
               о предстоящих мероприятиях
             </span>
           </motion.button>

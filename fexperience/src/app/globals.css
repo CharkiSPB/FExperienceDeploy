@@ -18,6 +18,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1440px;
 }
 
 @layer base {
@@ -30,5 +31,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-bold;
+  }
+}
+
+/* 🔹 Масштабирование для экранов 1024–1280px (включая 1280×720) */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  html {
+    font-size: 14px !important;
   }
 }

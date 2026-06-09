@@ -59,7 +59,7 @@ export function Header() {
     >
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center relative">
         {/* 🔹 ЛЕВАЯ ЧАСТЬ: Навигация */}
-        <nav className="hidden xl:flex items-center gap-6" style={{ marginLeft: '8rem' }}>
+        <nav className="hidden xl:flex items-center gap-6 ml-32 xl:ml-16">
           <Link href="/about" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
             О нас
           </Link>
@@ -131,7 +131,7 @@ export function Header() {
         </Link>
 
         {/* 🔹 ПРАВАЯ ЧАСТЬ: Навигация + Telegram + Кнопка */}
-        <div className="hidden xl:flex items-center gap-6 ml-auto">
+        <div className="hidden xl:flex items-center gap-6 xl:gap-4 ml-auto">
           <Link href="/articles" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Статьи</Link>
           <Link href="/#reviews" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Отзывы</Link>
           <Link href="/#contacts" className="text-sm text-white/80 hover:text-white transition-colors">Контакты</Link>
@@ -152,7 +152,7 @@ export function Header() {
           {/* Кнопка "Стать партнёром" (раскомментировать если НЕТ партнёра) */}
           <motion.button 
             onClick={() => setIsPartnerModalOpen(true)}
-            className="cursor-pointer px-3 py-1.5 text-sm font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
+            className="cursor-pointer px-3 py-1.5 xl:px-2 xl:py-1 text-sm xl:text-xs font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
           >
             Стать партнёром
           </motion.button>
