@@ -36,7 +36,7 @@ export function Header() {
 
   const upcomingExpeditions = expeditions
     .filter(e => e.status === 'upcoming')
-    .sort((a, b) => new Date(a.dates).getTime() - new Date(b.dates).getTime());
+    .sort((a, b) => a.country.localeCompare(b.country, 'ru'));
 
   const completedExpeditions = expeditions
     .filter(e => e.status === 'completed')

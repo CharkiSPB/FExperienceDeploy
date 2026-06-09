@@ -54,32 +54,40 @@ export function FAQ() {
           <div className={`transition-transform duration-300 ${
             isSectionOpen ? 'rotate-180' : ''
           }`}>
-            <Image
-              src="/images/faq/faq-arrow-down.svg"
-              alt=""
-              width={18}
-              height={18}
-              className="w-[18px] h-[18px]"
-            />
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              className={`w-[18px] h-[18px] transition-colors duration-300 ${
+                isSectionOpen ? 'text-[#F7931A]' : 'text-[#0D0805]'
+              }`}
+              fill="currentColor"
+            >
+              <path d="M9 13L3 5h12L9 13Z" />
+            </svg>
           </div>
           
           {/* Текст заголовка */}
           <span className="text-base md:text-lg font-bold uppercase tracking-wide">
-            <span className="text-[#0D0805]">ЧАСТО ЗАДАВАЕМЫЕ </span>
-            <span className="text-[#F7931A]">ВОПРОСЫ</span>
+            <span className="text-[#000004]">ЧАСТО ЗАДАВАЕМЫЕ </span>
+            <span className="text-[#FF8800]">ВОПРОСЫ</span>
           </span>
           
           {/* Правая иконка-треугольник ▼ */}
           <div className={`transition-transform duration-300 ${
             isSectionOpen ? 'rotate-180' : ''
           }`}>
-            <Image
-              src="/images/faq/faq-arrow-down.svg"
-              alt=""
-              width={18}
-              height={18}
-              className="w-[18px] h-[18px]"
-            />
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              className={`w-[18px] h-[18px] transition-colors duration-300 ${
+                isSectionOpen ? 'text-[#FF8800]' : 'text-[#000004]'
+              }`}
+              fill="currentColor"
+            >
+              <path d="M9 13L3 5h12L9 13Z" />
+            </svg>
           </div>
         </div>
       </motion.button>
@@ -104,7 +112,7 @@ export function FAQ() {
             {/* Фон контента — растянут на всю ширину */}
             <div className="relative w-full">
               <Image
-                src="/images/faq/faq-content-bg.jpg"
+                src="/images/faq/faq-content-bg1.jpg"
                 alt=""
                 fill
                 className="object-cover"
@@ -124,8 +132,8 @@ export function FAQ() {
                     className="w-5 h-5"
                   />
                   <h2 className="text-2xl md:text-3xl font-serif font-bold uppercase tracking-wide text-center">
-                    <span className="text-[#0D0805]">ЧАСТО ЗАДАВАЕМЫЕ </span>
-                    <span className="text-[#F7931A]">ВОПРОСЫ</span>
+                    <span className="text-[#000004]">ЧАСТО ЗАДАВАЕМЫЕ </span>
+                    <span className="text-[#FF8800]">ВОПРОСЫ</span>
                   </h2>
                   <Image
                     src="/images/faq/faq-arrow-up.svg"
@@ -152,15 +160,15 @@ export function FAQ() {
                     >
                       <button
                         onClick={() => toggle(item.id)}
-                        className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F7931A] group"
+                        className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8800] group"
                         aria-expanded={openId === item.id}
                       >
-                        <span className="text-base md:text-lg text-[#0D0805] font-medium pr-4">
+                        <span className="text-base md:text-lg text-[#000004] font-medium pr-4">
                           {item.question}
                         </span>
                         <ChevronDown
-                          className={`w-5 h-5 text-[#0D0805] transition-transform duration-300 flex-shrink-0 ${
-                            openId === item.id ? 'rotate-180' : ''
+                          className={`w-5 h-5 transition-colors duration-300 flex-shrink-0 ${
+                            openId === item.id ? 'text-[#FF8800] rotate-180' : 'text-[#000004]'
                           }`}
                         />
                       </button>

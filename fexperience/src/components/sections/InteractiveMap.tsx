@@ -44,8 +44,10 @@ const STATUS_COLORS = {
 export function InteractiveMap() {
   const ref = useRef<HTMLDivElement>(null);
   const [activePopup, setActivePopup] = useState<MapPoint | null>(null);
+  const [interestPoint, setInterestPoint] = useState<MapPoint | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const interestRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -63,6 +65,9 @@ export function InteractiveMap() {
         if (!svg.closest('svg')) {
           setActivePopup(null);
         }
+      }
+      if (interestRef.current && !interestRef.current.contains(event.target as Node)) {
+        setInterestPoint(null);
       }
     };
 
@@ -144,22 +149,22 @@ export function InteractiveMap() {
               <g 
                 key={point.id} 
                 className={point.id === 'ru' ? 'pointer-events-auto' : 'cursor-pointer pointer-events-auto'} 
-                onClick={() => {
-                  if (point.id === 'ru') return;
-                  if (isActive) {
-                    setActivePopup(point);
-                  } else if (point.status === 'soon') {
-                    window.location.href = '/404';
-                  }
-                }}
-                role={point.status === 'soon' ? "button" : undefined}
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (point.status === 'soon' && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    window.location.href = '/404';
-                  }
-                }}
+                  onClick={() => {
+                    if (point.id === 'ru') return;
+                    if (isActive) {
+                      setActivePopup(point);
+                    } else if (point.status === 'soon') {
+                      setInterestPoint(point);
+                    }
+                  }}
+                  role={point.status === 'soon' ? "button" : undefined}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (point.status === 'soon' && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      setInterestPoint(point);
+                    }
+                  }}
               >
                 {(point.status === 'active' || point.status === 'soon') && !reducedMotion && (
                   <circle
@@ -249,6 +254,53 @@ export function InteractiveMap() {
         )}
       </AnimatePresence>
 
+      {/* 🟡 Попап для НЕАКТИВНЫХ (soon) экспедиций — интерес к локации */}
+      <AnimatePresence>
+        {interestPoint && (
+          <motion.div
+            ref={interestRef}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:block absolute z-30 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-72 shadow-2xl"
+            style={{
+              left: `${(interestPoint.x / 1000) * 100}%`,
+              top: `${(interestPoint.y / 500) * 100}%`,
+              transform: 'translate(-50%, calc(100% + 16px))',
+            }}
+          >
+            {/* Кнопка закрытия */}
+            <button 
+              onClick={() => setInterestPoint(null)} 
+              className="absolute top-3 right-3 text-white/40 hover:text-white transition-colors"
+              aria-label="Закрыть"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Название */}
+            <h3 className="text-[#F7931A] text-xl font-bold font-serif mb-2 uppercase">
+              {interestPoint.name}
+            </h3>
+            
+            {/* Текст */}
+            <p className="text-white/80 text-sm font-light mb-4 leading-relaxed">
+              Вам интересна локация? Оставьте заявку — и эта точка может стать следующей на карте FExperience
+            </p>
+            
+            {/* Кнопка */}
+            <Link
+              href={`/expeditions/${interestPoint.slug}`}
+              onClick={() => setInterestPoint(null)}
+              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-white hover:text-[#F7931A] transition-all duration-300 shadow-lg"
+            >
+              ОСТАВИТЬ ЗАЯВКУ
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
 
 
       {/* 📱 Мобильная адаптация */}
@@ -262,87 +314,148 @@ export function InteractiveMap() {
           </p>
         </div>
 
-        {/* Уменьшенная карта */}
-        <div className="relative w-full aspect-[2/1] bg-[#0D0805] rounded-2xl overflow-hidden border border-white/10">
-          <img
-            src="/images/map/world-map.svg"
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full pointer-events-none object-contain opacity-60"
-          />
-          <svg
-            viewBox="0 0 1000 500"
-            preserveAspectRatio="xMidYMid meet"
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            aria-hidden="true"
-          >
-            {ROUTES.map((route, i) => {
-              const dx = route.to.x - route.from.x;
-              const dy = route.to.y - route.from.y;
-              const mx = (route.from.x + route.to.x) / 2;
-              const my = (route.from.y + route.to.y) / 2;
-              const factor = route.curveFactor ?? 0.22;
-              const cx = mx - dy * factor;
-              const cy = my + dx * factor;
-              const pathD = `M ${route.from.x} ${route.from.y} Q ${cx} ${cy} ${route.to.x} ${route.to.y}`;
+          {/* Уменьшенная карта */}
+          <div className="relative w-full aspect-[2/1] bg-[#0D0805] rounded-2xl overflow-hidden border border-white/10">
+            <img
+              src="/images/map/world-map.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full pointer-events-none object-contain opacity-60"
+            />
+            <svg
+              viewBox="0 0 1000 500"
+              preserveAspectRatio="xMidYMid meet"
+              className="absolute inset-0 w-full h-full"
+              aria-hidden="true"
+            >
+              {ROUTES.map((route, i) => {
+                const dx = route.to.x - route.from.x;
+                const dy = route.to.y - route.from.y;
+                const mx = (route.from.x + route.to.x) / 2;
+                const my = (route.from.y + route.to.y) / 2;
+                const factor = route.curveFactor ?? 0.22;
+                const cx = mx - dy * factor;
+                const cy = my + dx * factor;
+                const pathD = `M ${route.from.x} ${route.from.y} Q ${cx} ${cy} ${route.to.x} ${route.to.y}`;
 
-              return (
-                <path
-                  key={`route-${i}`}
-                  d={pathD}
-                  fill="none"
-                  stroke={STATUS_COLORS[route.status]}
-                  strokeWidth="0.8"
-                  strokeDasharray={route.status === 'active' ? "0" : "3 3"}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.5"
-                />
-              );
-            })}
-
-            {MAP_POINTS.map((point) => {
-              const isActive = point.status === 'active';
-              const color = STATUS_COLORS[point.status];
-              
-              return (
-                <g key={point.id}>
-                  {(point.status === 'active' || point.status === 'soon') && !reducedMotion && (
-                    <circle
-                      cx={point.x}
-                      cy={point.y}
-                      r="8"
-                      fill={color}
-                      opacity={point.status === 'active' ? "0.4" : "0.2"}
-                    >
-                      <animate
-                        attributeName="r"
-                        from="8"
-                        to={point.status === 'active' ? "24" : "18"}
-                        dur={point.status === 'active' ? "2s" : "3s"}
-                        repeatCount="indefinite"
-                      />
-                      <animate
-                        attributeName="opacity"
-                        from={point.status === 'active' ? "0.6" : "0.3"}
-                        to="0"
-                        dur={point.status === 'active' ? "2s" : "3s"}
-                        repeatCount="indefinite"
-                      />
-                    </circle>
-                  )}
-                  <circle 
-                    cx={point.x} 
-                    cy={point.y} 
-                    r={isActive ? 4 : 4} 
-                    fill={color} 
+                return (
+                  <path
+                    key={`route-${i}`}
+                    d={pathD}
+                    fill="none"
+                    stroke={STATUS_COLORS[route.status]}
+                    strokeWidth="0.8"
+                    strokeDasharray={route.status === 'active' ? "0" : "3 3"}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    opacity="0.5"
                   />
-                </g>
-              );
-            })}
-          </svg>
+                );
+              })}
+
+              {MAP_POINTS.map((point) => {
+                const isActive = point.status === 'active';
+                const color = STATUS_COLORS[point.status];
+                
+                return (
+                  <g 
+                    key={point.id}
+                    className={point.id === 'ru' ? 'pointer-events-auto' : 'cursor-pointer pointer-events-auto'}
+                    onClick={() => {
+                      if (point.id === 'ru') return;
+                      if (isActive) {
+                        setActivePopup(point);
+                      } else if (point.status === 'soon') {
+                        setInterestPoint(point);
+                      }
+                    }}
+                    role={point.status === 'soon' ? "button" : undefined}
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (point.status === 'soon' && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        setInterestPoint(point);
+                      }
+                    }}
+                  >
+                    {(point.status === 'active' || point.status === 'soon') && !reducedMotion && (
+                      <circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="8"
+                        fill={color}
+                        opacity={point.status === 'active' ? "0.4" : "0.2"}
+                      >
+                        <animate
+                          attributeName="r"
+                          from="8"
+                          to={point.status === 'active' ? "24" : "18"}
+                          dur={point.status === 'active' ? "2s" : "3s"}
+                          repeatCount="indefinite"
+                        />
+                        <animate
+                          attributeName="opacity"
+                          from={point.status === 'active' ? "0.6" : "0.3"}
+                          to="0"
+                          dur={point.status === 'active' ? "2s" : "3s"}
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                    )}
+                    <circle 
+                      cx={point.x} 
+                      cy={point.y} 
+                      r={isActive ? 4 : 4} 
+                      fill={color} 
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* 📱 Мобильная модалка интереса для soon-точек */}
+            <AnimatePresence>
+              {interestPoint && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 z-40 flex items-center justify-center p-4 bg-black/60"
+                  onClick={() => setInterestPoint(null)}
+                >
+                  <div
+                    className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 w-full max-w-xs shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-[#F7931A] text-lg font-bold font-serif uppercase">
+                        {interestPoint.name}
+                      </h3>
+                      <button 
+                        onClick={() => setInterestPoint(null)} 
+                        className="text-white/40 hover:text-white transition-colors"
+                        aria-label="Закрыть"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <p className="text-white/80 text-sm font-light mb-4 leading-relaxed">
+                      Вам интересна локация? Оставьте заявку — и эта точка может стать следующей на карте FExperience
+                    </p>
+                    <Link
+                      href={`/expeditions/${interestPoint.slug}`}
+                      onClick={() => setInterestPoint(null)}
+                      className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-white hover:text-[#F7931A] transition-all duration-300 shadow-lg text-sm"
+                    >
+                      ОСТАВИТЬ ЗАЯВКУ
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
     </section>
   );
 }

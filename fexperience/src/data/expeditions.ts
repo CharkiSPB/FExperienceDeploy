@@ -5,7 +5,7 @@ export const expeditions: Expedition[] = [
     slug: 'vietnam',
     title: 'Бизнес-экспедиция во Вьетнам',
     country: 'Вьетнам',
-    dates: '11-16 октября 2026',
+    dates: 'октябрь 2026',
     status: 'active',
     description: 'Всего за шесть дней вы сможете открыть новые бизнес-возможности для себя и своего бизнеса в Юго-Восточной Азии и получите практическое понимание выхода на новые рынки',
     image: '/images/expeditions/vietnam.webp',

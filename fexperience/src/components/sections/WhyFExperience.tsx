@@ -125,7 +125,7 @@ export function WhyFExperience() {
                 <div className="relative z-10 p-3 md:p-5 pl-[22px] md:pl-20 h-full">
                   {/* Заголовок с оранжевым первым словом */}
                   <h3 className="text-sm md:text-xl lg:text-2xl font-medium leading-tight mb-2">
-                    <span className="text-[#FF8800]">{firstWord}</span>
+                    <span className="text-[#000004]">{firstWord}</span>
                     <br />
                     {restOfTitle && <span className="text-[#000004]"> {restOfTitle}</span>}
                   </h3>

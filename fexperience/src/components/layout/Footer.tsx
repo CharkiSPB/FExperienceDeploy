@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, Send, MessageCircle, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
@@ -37,9 +38,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
           {/* Левая часть: Лого + Контакты */}
           <div className="md:col-span-4 space-y-4">
-            <Link href="/" className="text-3xl font-serif font-bold block">
-              <span className="text-[#F7931A]">F</span>
-              <span className="text-white">Experience</span>
+            <Link href="/" className="block w-fit">
+              <Image
+                src="/images/logo/logoFExperience2.svg"
+                alt="FExperience"
+                width={180}
+                height={40}
+                className="h-8 md:h-10 w-auto"
+                priority
+              />
             </Link>
 
             <div id="contacts" className="flex flex-col gap-3 text-[#A0A0A0] scroll-mt-32">
@@ -50,9 +57,21 @@ export function Footer() {
                 <Mail className="w-4 h-4" /> FExperience@forbes.ru
               </a>
               <div className="flex gap-3 mt-1">
-                <Send className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
-                <MessageCircle className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
-                <MapPin className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  <Send className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
+                </a>
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
+                </a>
+                <div className="relative group">
+                  <MapPin className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-50">
+                    <div className="bg-[#1A1A1A] text-white text-xs rounded-lg px-4 py-2.5 whitespace-nowrap shadow-xl border border-white/10 min-w-[200px] text-center">
+                      123022, город Москва, 2-я Звенигородская ул., д. 13 стр 15, эт 4 пом X ком 1
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-[#1A1A1A]"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

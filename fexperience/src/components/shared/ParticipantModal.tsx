@@ -7,6 +7,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Image from 'next/image';
 import { expeditions } from '@/data/expeditions';
+import { CustomSelect } from '@/components/shared/CustomSelect';
+
+// 🔹 Извлекает месяц и год из строки даты: "11-16 октября 2026" → "октябрь 2026"
+function formatMonthYear(dateStr: string): string {
+  const match = dateStr.match(/([а-яА-ЯёЁ]+)\s+(\d{4})/);
+  if (match) return `${match[1]} ${match[2]}`;
+  return '';
+}
 
 const formSchema = z.object({
   expedition: z.string().min(1, 'Выберите экспедицию'),
@@ -34,6 +42,8 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
+    watch,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { consent: false },
@@ -111,35 +121,35 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
                 </div>
               ) : (
                 <>
-                  <h3 className="text-2xl font-serif font-bold text-white mb-1">Стать участником</h3>
-                  <div className="mb-5">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FF8800]/10 text-[#FF8800]">
-                      Экспедиция
-                    </span>
-                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-white mb-5 text-center w-full">Стать участником</h3>
 
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
                     {/* Бизнес-экспедиция */}
                     <div className="flex items-start gap-3">
                       <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF8800] flex-shrink-0 mt-0.5" />
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
                         Бизнес-экспедиция
                       </label>
                       <div className="flex-1 min-w-0">
-                        <select {...register('expedition')} className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[#FF8800] transition-colors appearance-none">
-                          <option value="">Выберите экспедицию</option>
-                          {activeExpeditions.map(exp => (
-                            <option key={exp.slug} value={exp.slug}>{exp.country} — {exp.dates}</option>
-                          ))}
-                        </select>
-                        {errors.expedition && <p className="text-red-500 text-xs mt-0.5">{errors.expedition.message}</p>}
+                        <CustomSelect
+                          options={activeExpeditions.map(exp => ({
+                            value: exp.slug,
+                            label: formatMonthYear(exp.dates)
+                              ? `${exp.country}  |  ${formatMonthYear(exp.dates)}`
+                              : exp.country,
+                          }))}
+                          value={watch('expedition') || ''}
+                          onChange={(val) => setValue('expedition', val, { shouldValidate: true })}
+                          placeholder="Выберите экспедицию"
+                          error={errors.expedition?.message}
+                        />
                       </div>
                     </div>
 
                     {/* Ваше имя */}
                     <div className="flex items-start gap-3">
                       <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF8800] flex-shrink-0" />
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
                         Ваше имя
                       </label>
                       <div className="flex-1 min-w-0">
@@ -151,7 +161,7 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
                     {/* Телефон */}
                     <div className="flex items-start gap-3">
                       <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF8800] flex-shrink-0" />
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
                         Телефон
                       </label>
                       <div className="flex-1 min-w-0">
@@ -168,7 +178,7 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
                     {/* E-mail */}
                     <div className="flex items-start gap-3">
                       <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF8800] flex-shrink-0" />
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
                         E-mail
                       </label>
                       <div className="flex-1 min-w-0">

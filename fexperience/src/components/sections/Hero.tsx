@@ -196,15 +196,15 @@ export function Hero() {
                           >
                             OK
                           </button>
-                          <span className="text-white/60 flex-1 text-center sm:text-left">
-                            Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей
+                          <span className="text-white/60 text-center sm:text-left">
+                            Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей{' '}
+                            <Link 
+                              href="/privacy" 
+                              className="text-[#F7931A] hover:text-[#FFA733] underline hover:no-underline font-medium"
+                            >
+                              политикой конфиденциальности.
+                            </Link>
                           </span>
-                          <Link 
-                            href="/privacy" 
-                            className="text-[#F7931A] hover:text-[#FFA733] underline hover:no-underline whitespace-nowrap font-medium"
-                          >
-                            политикой конфиденциальности.
-                          </Link>
                         </motion.div>
                       )}
                     </AnimatePresence>
