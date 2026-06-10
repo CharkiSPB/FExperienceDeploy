@@ -90,7 +90,7 @@ export const ExpertsSlider = forwardRef<ExpertsSliderHandle, ExpertsSliderProps>
                 </div>
 
                 {/* ЧАСТЬ 2: Описание (Темная карточка) */}
-                <div className="relative w-[230px] md:w-[275px] bg-[#1A1A1A] rounded-[20px] p-4 md:p-5 pt-12 md:pt-16 mt-[-40px] md:mt-[-50px] z-10 flex flex-col h-[340px] md:h-[400px] border border-[#FF6F00]/80">
+                <div className="relative w-[230px] md:w-[275px] bg-[#1A1A1A] rounded-[20px] p-4 md:p-5 pt-12 md:pt-16 mt-[-40px] md:mt-[-50px] z-10 flex flex-col h-[300px] md:h-[361px] border border-[#FF6F00]/80">
                   <span className="text-[#898989] text-[10px] font-roman uppercase tracking-wide mb-1">
                     Forbes Russia
                   </span>

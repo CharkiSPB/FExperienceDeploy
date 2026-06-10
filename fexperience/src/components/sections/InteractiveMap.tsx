@@ -16,8 +16,8 @@ type MapPoint = {
 
 const MAP_POINTS: MapPoint[] = [
   { id: 'ru', name: 'Россия', x: 579.18, y: 143.04, status: 'active', slug: 'russia' },
-  { id: 'vietnam', name: 'Вьетнам', x: 772, y: 283, status: 'active', dates: '16.10.2026 – 22.10.2026', slug: 'vietnam' },
-  { id: 'south-africa', name: 'ЮАР', x: 528.50, y: 407, status: 'active', dates: '19.11.2026 – 25.11.2026', slug: 'south-africa' },
+  { id: 'vietnam', name: 'Вьетнам', x: 772, y: 283, status: 'active', dates: '11.10.2026 – 16.10.2026', slug: 'vietnam' },
+  { id: 'south-africa', name: 'ЮАР', x: 528.50, y: 407, status: 'active', dates: 'ноябрь.2026', slug: 'south-africa' },
   { id: 'morocco', name: 'Марокко', x: 452, y: 232, status: 'completed', dates: '12-18 мар 2024', slug: 'morocco' },
   { id: 'india', name: 'Индия', x: 685.09, y: 255, status: 'soon', slug: 'india' },
   { id: 'thailand', name: 'Таиланд', x: 760, y: 280, status: 'soon', slug: 'thailand' },

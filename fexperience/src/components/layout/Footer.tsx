@@ -96,7 +96,7 @@ export function Footer() {
               onClick={() => setIsPartnerModalOpen(true)}
               className="cursor-pointer px-5 py-2.5 text-sm font-medium border border-[#FF8800] text-[#FF8800] rounded-[10px] hover:bg-white/5 transition-all whitespace-nowrap"
             >
-              Стать партнёром
+              Стать партнёром  
             </motion.button>
           </div>
         </div>
