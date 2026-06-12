@@ -11,6 +11,8 @@ type Speaker = {
   photo: string;
   description?: string;
   bio?: string;
+  forbesBadge?: string;
+  forbesLabel?: string;
   expeditionSlugs?: string[];
   category?: string;
 };
@@ -41,7 +43,12 @@ export function ExpertsSectionClient({ speakersList }: Props) {
     <div className="relative w-full">
       
       {/* Слой 1: Серый фон (400px, лежит внизу) */}
-      <div className="h-[400px] w-full relative -mt-18 z-0">
+      <div className="h-[441px] w-full relative -mt-18 z-0"
+        style={{
+          maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+        }}
+      >
         <Image
           src="/images/expeditions/experts-gray-bg.webp"
           alt=""
@@ -52,7 +59,7 @@ export function ExpertsSectionClient({ speakersList }: Props) {
       </div>
 
       {/* Слой 2: Оранжевый блок (ширина контейнера, подтянут вверх над серым) */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-180">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-190">
         
         {/* Оранжевый фон с закруглением */}
         <div className="relative overflow-hidden rounded-t-[44px]">
@@ -67,10 +74,10 @@ export function ExpertsSectionClient({ speakersList }: Props) {
           </div>
           
           {/* Контент поверх оранжевого фона — поднят наверх */}
-          <div className="relative z-20 px-4 sm:px-6 lg:px-8 pt-8 -mt-[400px] pb-16">
+          <div className="relative z-20 px-4 sm:px-6 lg:px-8 pt-6 -mt-[400px] pb-32">
             {/* Заголовок + кнопки навигации справа */}
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#0D0805] uppercase tracking-wide">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl md:text-2xl font-serif font-bold text-[#0D0805] uppercase tracking-wide">
                 Наши эксперты
               </h2>
               <div className="flex gap-3">

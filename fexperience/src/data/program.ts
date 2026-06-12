@@ -62,7 +62,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 1,
       title: 'Прибытие. Знакомство.',
       description: 'Встреча в Кейптауне, комфорт-трансфер. \nЗаселение, Welcome-брифинг в живописной локации. \nПервое погружение в атмосферу, неформальный ужин.',
-      image: '/images/program/day6.jpg',
+      image: '/images/program/south-africa-day1.webp',
       // schedule: [
       //   { time: '10:00', event: 'Встреча в аэропорту Ханой' },
       //   { time: '12:30', event: 'Заселение в отель, обед' },
@@ -74,7 +74,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 2,
       title: 'Африка в фокусе: Старт диалога',
       description: 'Официальное открытие от Forbes и Торгпредства РФ. \nГлубокий dive: Экспертная сессия о макроэкономике, истории и роли Африканского союза в мире. \nВаш голос: Сессия участников (TED-формат) для презентаций и нетворкинга. ',
-      image: '/images/program/vietnam-day2.jpg',
+      image: '/images/program/south-africa-day2.webp',
       schedule: [
         { time: '09:00', event: 'Завтрак' },
         { time: '10:00', event: 'Сессия: "Макроэкономика Вьетнама 2026"' },
@@ -88,7 +88,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 3,
       title: 'Встречи с бизнесом',
       description: 'Ключевая встреча: Сессия о взаимодействии бизнеса и государства в ЮАР (правила, перспективные ниши). \nКультурно-гастрономическое погружение: Экскурсия в историческое винодельческое поместье с ужином.',
-      image: '/images/program/vietnam-day3.jpg',
+      image: '/images/program/south-africa-day3.webp',
       schedule: [
         { time: '09:00', event: 'Завтрак' },
         { time: '10:00', event: 'B2B-сессии: индивидуальные встречи' },
@@ -101,7 +101,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 4,
       title: 'Мосты к партнерству.',
       description: 'Инсайды от Local: Сессия с южноафриканскими предпринимателями (реалии бизнеса, работа с иностранцами). \nВзгляд Global: Сессия с иностранными бизнесменами (адаптация, преодоление барьеров, партнерства). \nПереезд в Кейптаун, уникальный вечерний ивент с видом.',
-      image: '/images/program/vietnam-day4.jpg',
+      image: '/images/program/south-africa-day4.webp',
       schedule: [
         { time: '09:00', event: 'Завтрак' },
         { time: '10:00', event: 'Встреча с Министерством промышленности и торговли' },
@@ -115,7 +115,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 5,
       title: 'Культурный код. Символы.',
       description: 'Легендарная локация: Посещение знакового исторического места — Мыс Доброй Надежды. \nЗнакомство с местной культурой и традициями. \nЭкскурсии с опытными гидами, которые подробно и ярко расскажут о взаимодействии с местным населением в обычной и деловой жизни (быт и бизнес).',
-      image: '/images/program/vietnam-day5.jpg',
+      image: '/images/program/south-africa-day5.webp',
       schedule: [
         { time: '09:00', event: 'Завтрак' },
         { time: '10:00', event: 'Сессия: "План действий после экспедиции"' },

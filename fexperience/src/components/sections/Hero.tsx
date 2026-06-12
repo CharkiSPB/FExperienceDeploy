@@ -188,15 +188,9 @@ export function Hero() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 20, transition: { duration: 0.3 } }}
                           transition={{ delay: 0.8, duration: 0.4 }}
-                          className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full text-white/80 text-[10px] md:text-xs max-w-2xl mx-auto"
+                          className="flex flex-nowrap items-center justify-between gap-2 md:gap-3 bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full text-white/80 text-[10px] md:text-xs max-w-2xl mx-auto"
                         >
-                          <button 
-                            onClick={handleAcceptCookies}
-                            className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#E67E00] transition-all font-medium whitespace-nowrap"
-                          >
-                            OK
-                          </button>
-                          <span className="text-white/60 text-center sm:text-left">
+                          <span className="text-white/60 text-center sm:text-left flex-1">
                             Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей{' '}
                             <Link 
                               href="/privacy" 
@@ -205,6 +199,12 @@ export function Hero() {
                               политикой конфиденциальности.
                             </Link>
                           </span>
+                          <button 
+                            onClick={handleAcceptCookies}
+                            className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#E67E00] transition-all font-medium whitespace-nowrap flex-shrink-0"
+                          >
+                            OK
+                          </button>
                         </motion.div>
                       )}
                     </AnimatePresence>

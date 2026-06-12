@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 type IncludedSliderProps = {
   items: string[];
+  slug?: string; // slug экспедиции для индивидуальных изображений
 };
 
 // Очищает текст от форматирования для alt-тегов
@@ -62,7 +63,7 @@ const renderFormattedText = (text: string) => {
   );
 };
 
-export function IncludedSlider({ items }: IncludedSliderProps) {
+export function IncludedSlider({ items, slug }: IncludedSliderProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: false, 
     align: 'start', 
@@ -112,7 +113,7 @@ export function IncludedSlider({ items }: IncludedSliderProps) {
                 {/* 2. Верхняя карточка (Сдвинута ВВЕРХ и ВПРАВО) */}
                 <div className="absolute -top-4 md:-top-3 right-[-16px] md:right-[-20] w-[85%] h-[150px] md:h-[190px] rounded-[20px] md:rounded-[28px] overflow-hidden shadow-xl z-10 bg-[#1A1A1A]">
                   <Image
-                    src={`/images/expeditions/included-top-${index + 1}.jpg`}
+                    src={slug ? `/images/expeditions/included-${slug}-top-${index + 1}.webp` : `/images/expeditions/included-top-${index + 1}.webp`}
                     alt={cleanAltText(item)}
                     width={339}
                     height={227}

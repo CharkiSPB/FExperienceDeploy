@@ -11,6 +11,8 @@ type Speaker = {
   photo: string;
   description?: string;
   bio?: string;
+  forbesBadge?: string;
+  forbesLabel?: string;
   expeditionSlugs?: string[];
   category?: string;
 };
@@ -65,7 +67,7 @@ export const ExpertsSlider = forwardRef<ExpertsSliderHandle, ExpertsSliderProps>
 
   return (
     <div className="relative w-full">
-      <div className="overflow-hidden py-10 pr-[100px]" ref={emblaRef}>
+      <div className="overflow-hidden pt-2 pb-10 pr-[100px]" ref={emblaRef}>
         <div className="flex gap-3 md:gap-8">
           {speakersList.map((speaker, index) => (
             <div key={index} className="flex-[0_0_280px] md:flex-[0_0_360px] min-w-0">
@@ -82,18 +84,23 @@ export const ExpertsSlider = forwardRef<ExpertsSliderHandle, ExpertsSliderProps>
                     sizes="(max-width: 768px) 180px, 220px"
                   />
                   {/* Бейдж Forbes на фото */}
-                  <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded">
-                    <span className="text-white text-[10px] font-bold uppercase tracking-wider">
-                      Forbes
-                    </span>
-                  </div>
+                  {speaker.forbesBadge && (
+                    <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded">
+                      <span className="text-white text-[10px] font-bold uppercase tracking-wider">
+                        {speaker.forbesBadge}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* ЧАСТЬ 2: Описание (Темная карточка) */}
                 <div className="relative w-[230px] md:w-[275px] bg-[#1A1A1A] rounded-[20px] p-4 md:p-5 pt-12 md:pt-16 mt-[-40px] md:mt-[-50px] z-10 flex flex-col h-[300px] md:h-[361px] border border-[#FF6F00]/80">
-                  <span className="text-[#898989] text-[10px] font-roman uppercase tracking-wide mb-1">
-                    Forbes Russia
-                  </span>
+                  {/* Подпись Forbes в карточке */}
+                  {speaker.forbesLabel && (
+                    <span className="text-[#898989] text-[10px] font-roman uppercase tracking-wide mb-1">
+                      {speaker.forbesLabel}
+                    </span>
+                  )}
                   
                   <span className="text-[#FF6F00] text-xs font-bold uppercase tracking-wide mb-3">
                     Эксперт экспедиции

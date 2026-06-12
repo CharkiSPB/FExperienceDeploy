@@ -7,19 +7,20 @@ export type TeamMember = {
 };
 
 export const teamMembers: TeamMember[] = [
-  {
-    name: 'Анастасия Никитина',
-    photo: '/images/team/nicitinaA.jpg',
-    description: 'Директор по устойчивому развитию и международным проектам Forbes Russia',
-  },
+  
   {
     name: 'Марина Матыцина',
-    photo: '/images/team/marinaM.jpg',
+    photo: '/images/team/marinaM.jpeg',
     description: 'Генеральный директор Forbes Russia',
   },
   {
     name: 'Денис Кошкин',
-    photo: '/images/team/koshkinD.jpg',
+    photo: '/images/team/koshkinD1.webp',
     description: 'Исполнительный директор Forbes Russia',
+  },
+  {
+    name: 'Анастасия Никитина',
+    photo: '/images/team/nicitinaA.jpg',
+    description: 'Директор по устойчивому развитию и международным проектам Forbes Russia',
   },
 ];

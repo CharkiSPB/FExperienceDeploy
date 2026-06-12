@@ -11,6 +11,7 @@ import { speakers } from '@/data/speakers';
 import { CountdownTimer } from '@/components/shared/CountdownTimer';
 import { IncludedSlider } from '@/components/shared/IncludedSlider';
 import { ExpertsSectionClient } from '@/components/shared/ExpertsSectionClient';
+import { UpcomingCta } from '@/components/shared/UpcomingCta';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -119,7 +120,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {/* ========================================== */}
       {/*  FULL-WIDTH HERO */}
       {/* ========================================== */}
-      <div className="relative h-[70vh] bg-[#1A1A1A]">
+      <div className="relative h-[85vh] bg-[#1A1A1A]">
         <Image
           src={expedition.image}
           alt={expedition.title}
@@ -142,11 +143,13 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             <div className="text-center mb-4 md:mb-8">
               <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
               <h1 className="text-xl md:text-3xl xxl:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
-                {expedition.title}
+                {expedition.title}<br /><span className="text-base md:text-2xl xxl:text-3xl">вместе с FExperience</span>
               </h1>
               <p className="text-sm md:text-base xxl:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
                 {expedition.description}
               </p>
+
+              {isUpcoming && <UpcomingCta />}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8">
@@ -167,9 +170,11 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             </div>
 
             <div className="hidden md:flex justify-center md:justify-end">
-              <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
-                СВЯЗАТЬСЯ С НАМИ
-              </a>
+              {!isUpcoming && (
+                <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
+                  СВЯЗАТЬСЯ С НАМИ
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -200,7 +205,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                 </p>
               </div>
               <div className="lg:col-span-8 relative">
-                <IncludedSlider items={expedition.includes} />
+                <IncludedSlider items={expedition.includes} slug={slug} />
               </div>
             </div>
           </section>
@@ -289,7 +294,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       )}
 
       {/* 🔹 Форма на всю ширину с фоном */}
-      {!isCompleted && (
+      {!isCompleted && !isUpcoming && (
         <section id="register" className="relative w-full py-16 md:py-16 overflow-hidden min-h-[681px] mt-0 md:-mt-20">
           {/* Full-width background */}
           <div className="absolute inset-0 z-0">
@@ -297,7 +302,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               src="/images/expeditions/expeditions-form-bg.jpg"
               alt=""
               fill
-              className="object-fill opacity-40"
+              className="object-fill opacity-25"
               priority
             />
           </div>
@@ -306,13 +311,13 @@ export default async function ExpeditionDetailPage({ params }: Props) {
           <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#0D0805] via-transparent to-[#0D0805]" />
 
           <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 text-center">Стать участником экспедиции</h2>
-            <p className="text-[#A0A0A0] mb-8 text-center text-sm">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-6 text-center">Стать участником экспедиции</h2>
+            {/* <p className="text-[#A0A0A0] mb-8 text-center text-sm">
               {isUpcoming 
                 ? 'Мы свяжемся с вами, когда направление станет доступным для бронирования'
                 : 'Заполните форму, и эксперт свяжется с вами для обсуждения деталей участия'
               }
-            </p>
+            </p> */}
             <ExpeditionForm />
           </div>
         </section>

@@ -32,7 +32,7 @@ export function TeamSectionClient({ members }: Props) {
     <div className="relative w-full">
       
       {/* Слой 1: Серый фон */}
-      <div className="h-[400px] w-full relative -mt-18 z-0">
+      <div className="h-[470px] w-full relative -mt-37 z-0">
         <Image
           src="/images/expeditions/experts-gray-bg.webp"
           alt=""

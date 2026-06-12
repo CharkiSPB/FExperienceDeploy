@@ -10,6 +10,8 @@ export type Speaker = {
   // highlight?: string;
   topic?: string;
   achievement?: string;
+  forbesBadge?: string; // текст бейджа Forbes на фото (если не указан — не показывается)
+  forbesLabel?: string; // текст подписи Forbes в карточке (если не указан — не показывается)
   expeditionSlugs?: string[]; // slug экспедиций (спикер может быть на нескольких)
   category?: 'business' | 'investment' | 'government' | 'africa' | 'other' | 'pravo';
   country?: string;
@@ -79,16 +81,22 @@ export const speakers: Speaker[] = [
   {
     id: 13, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
+    forbesBadge: 'Forbes',
+    forbesLabel: 'Forbes Russia',
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 14, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD.jpg', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
+    id: 14, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD1.webp', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
+    forbesBadge: 'Forbes',
+    forbesLabel: 'Forbes Russia',
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 15, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
+    id: 15, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpeg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
     bio: '', isTop: true, topic: '', achievement: '',
+    forbesBadge: 'Forbes',
+    forbesLabel: 'Forbes Russia',
     expeditionSlugs: ['south-africa']
   },
 ] as const;

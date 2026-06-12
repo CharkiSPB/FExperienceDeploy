@@ -105,8 +105,8 @@ export function AboutContent() {
 
         {/* Контент поверх фона */}
         <div className="relative z-10 max-w-7xl mx-auto text-center">
-          <h1 className="text-2xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-8 text-white">
-            FEXPERIENCE — НОВЫЙ ПРОЕКТ<br />КОМАНДЫ FORBES RUSSIA
+          <h1 className="text-xl md:text-4xl lg:text-5xl font-serif font-bold leading-tight mb-8 text-white">
+            <span className="text-[#FF8800]">F</span>EXPERIENCE — НОВЫЙ ПРОЕКТ<br />КОМАНДЫ FORBES RUSSIA
           </h1>
 
           <div className="text-sm md:text-xl text-white/90 leading-relaxed max-w-7xl mx-auto space-y-6">
@@ -292,7 +292,7 @@ export function AboutContent() {
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-90 md:pb-114">
             {/* Заголовок */}
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-black leading-tight mb-4">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-black uppercase leading-tight mb-4">
                 Ключевое отличие{' '}
                 <span className="text-[#FF8800]">F</span>Experience
               </h2>
@@ -345,11 +345,11 @@ export function AboutContent() {
                   </div>
 
                   {/* Текст карточки (с отступом под иконку) */}
-                  <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pl-10 md:pl-12 pr-4">
-                    <span className="text-white text-xs md:text-base font-medium leading-tight text-center">
+                  <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pl-10 md:pl-12 pr-4 uppercase">
+                    <span className="text-white text-xs md:text-lg font-bold leading-tight text-center">
                       {item.text.split(' ')[0]}
                     </span>
-                    <span className="text-black text-xs md:text-base font-medium leading-tight text-center">
+                    <span className="text-black text-xs md:text-lg font-bold leading-tight text-center">
                       {item.text.split(' ').slice(1).join(' ')}
                     </span>
                   </div>
@@ -376,7 +376,7 @@ export function AboutContent() {
       </div>
 
       {/* 6. Контакты */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
         <h2 className="font-serif font-bold mb-8">
           <span className="text-[#FF8800] text-3xl md:text-4xl">Контакты</span>
           <br />
@@ -408,7 +408,7 @@ export function AboutContent() {
           </Link>{' '}
           (ФЗ-152 «О персональных данных»).
         </p>
-      </section>
+      </section> */}
     </main>
   );
 }
