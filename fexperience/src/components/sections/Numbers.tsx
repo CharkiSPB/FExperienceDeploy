@@ -69,11 +69,11 @@ function StatItem({ row, inView, onAnimationComplete }: {
   if (row.isTextOnly && row.textOnlyContent) {
     return (
       <div className="flex flex-col items-center justify-center min-w-[140px]">
-        <span className="text-[14px] md:text-[36px] font-bold text-[#FF8800] uppercase leading-none mb-1 mt-6">
+          <span className="text-[14px] md:text-[36px] font-bold text-[#FF8800] uppercase leading-none mb-0 md:mb-1 mt-2.5 md:mt-6">
           {row.textOnlyContent}
         </span>
         {row.textLine1 && (
-          <span className="text-[#000004] text-[10px] md:text-sm mt-1 text-center font-bold">
+          <span className="text-[#000004] text-[10px] md:text-sm mt-0 md:mt-1 text-center font-bold">
             {row.textLine1}
           </span>
         )}
@@ -237,7 +237,7 @@ export function Numbers() {
   }, [emblaApi]);
 
   return (
-    <section className="relative w-full max-w-[1124px] mx-auto h-[200px] md:h-[176px] overflow-visible pb-12 mt-7 md:mt-9">
+    <section className="relative w-full max-w-[1124px] mx-auto h-[170px] md:h-[176px] overflow-visible pb-12 mt-7 md:mt-9">
       {/* 🔹 Слайдер с исправленным наложением */}
       <div className="h-full mx-2 md:mx-12 overflow-hidden rounded-[28px]" ref={emblaRef}>
         <div className="flex h-full">

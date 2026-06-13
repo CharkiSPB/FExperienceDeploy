@@ -9,7 +9,7 @@ export function UpcomingCta() {
   return (
     <>
       <div className="text-center mt-6 md:mt-8">
-        <p className="text-sm md:text-base text-white/80 font-bold leading-relaxed mb-4 whitespace-nowrap">
+        <p className="text-sm md:text-base text-white/80 font-bold leading-relaxed mb-4 md:whitespace-nowrap">
           Вам интересна локация? Оставьте заявку — и эта точка может стать следующей на карте FExperience.
         </p>
         <button

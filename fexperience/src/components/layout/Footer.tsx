@@ -50,7 +50,7 @@ export function Footer() {
             </Link>
 
             <div id="contacts" className="flex flex-col gap-3 text-[#A0A0A0] scroll-mt-32">
-              <a href="tel:+79001909003" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
+              <a href="tel:+79201949003" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
                 <Phone className="w-4 h-4" /> +7 (920) 194-90-03
               </a>
               <a href="mailto:FExperience@forbes.ru" className="flex items-center gap-2 hover:text-white transition-colors w-fit">
