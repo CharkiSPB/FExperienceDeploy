@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: 'О проекте FExperience | Бизнес-экспедиции с Forbes',
   description: 'Миссия, команда и партнёрство с Forbes. Экспертиза, опыт и надёжность в организации международных бизнес-экспедиций для российских предпринимателей.',
   openGraph: {
-    title: 'О проекте FExperience',
-    description: 'Узнайте, кто стоит за созданием бизнес-экспедиций. Команда, история, партнёрство с Forbes.',
+    title: 'FExperience - новый проект команды Forbes Russia.',
+    description: 'Мы помогаем предпринимателям открывать новые горизонты на самых перспективных рынках - в России и за рубежом. Мы не организуем туристические поездки. | Мы проводим бизнес-экспедиции.',
     url: `${config.site.url}/about`,
     type: 'website',
     images: [{ url: '/images/og-about.jpg', width: 1200, height: 630, alt: 'О проекте FExperience' }],

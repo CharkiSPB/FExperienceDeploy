@@ -3,51 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { whyUsItems } from '@/data/whyUs';
 
-// 🔹 Компонент самолётика, движущегося по траектории
-// const PATH_TOP_RIGHT = "M 160 -20 Q 130 50, 50 80 T -20 110";
-// const PATH_BOTTOM_LEFT = "M -20 160 Q 50 130, 80 50 T 110 -20";
 
-// // 🔹 Компонент самолётика на маршруте
-// function CornerAirplane({ side, src }: { side: 'right' | 'left'; src: string }) {
-//   const path = side === 'right' ? PATH_TOP_RIGHT : PATH_BOTTOM_LEFT;
-//   const isRight = side === 'right';
-
-//   return (
-//     <div className={`absolute ${isRight ? 'top-0 right-0' : 'bottom-0 left-0'} w-[200px] h-[200px] overflow-visible pointer-events-none z-20`}>
-//       {/* Статичная пунктирная линия */}
-//       <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 200 200" fill="none">
-//         <path 
-//           d={path} 
-//           stroke="#1A1A1A" 
-//           strokeWidth="2.5" 
-//           strokeDasharray="8 6" 
-//           strokeLinecap="round" 
-//         />
-//       </svg>
-
-//       {/* Движущийся самолётик */}
-//       <motion.img
-//         src={src}
-//         alt="airplane"
-//         className="absolute inset-0 w-12 h-12 object-contain"
-//         style={{
-//           offsetPath: `path('${path}')`,
-//           offsetRotate: 'auto',
-//           // ⚠️ Если самолётик летит хвостом вперёд, раскомментируй строку ниже:
-//           // transform: 'rotate(180deg)'
-//         }}
-//         initial={{ offsetDistance: '0%' }}
-//         animate={{ offsetDistance: '100%' }}
-//         transition={{
-//           duration: 5,
-//           repeat: Infinity,
-//           ease: "linear", // Равномерная скорость без ускорений/торможений
-//           delay: isRight ? 0 : 2.5, // Сдвиг по времени для плавного цикла
-//         }}
-//       />
-//     </div>
-//   );
-// }
 
 export function WhyFExperience() {
   return (
@@ -144,10 +100,6 @@ export function WhyFExperience() {
             );
           })}
         </div>
-
-        {/* 🔹 Самолётики по углам */}
-        {/* <AirplaneOnPath side="right" src="/images/WhyFexperience/plane-icon.svg" />
-        <AirplaneOnPath side="left" src="/images/WhyFexperience/plane-icon.svg" /> */}
       </div>
     </section>
   );
