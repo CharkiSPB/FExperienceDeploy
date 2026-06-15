@@ -148,7 +148,7 @@ export function Header() {
           <span className="w-px h-5 bg-white/10" />
 
           <Link 
-            href={config.social.telegram} 
+            href="https://t.me/Milena_Amor" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-[#A0A0A0] hover:text-white transition-colors"
@@ -200,7 +200,7 @@ export function Header() {
           
           <div className="pt-3 border-t border-[#2A2A2A]">
              <Link 
-                href={config.social.telegram} 
+                href="https://t.me/Milena_Amor" 
                 className="flex items-center gap-2 py-2 text-white hover:text-[#F7931A]"
                 onClick={() => setIsOpen(false)}
              >

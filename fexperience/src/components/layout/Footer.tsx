@@ -57,7 +57,7 @@ export function Footer() {
                 <Mail className="w-4 h-4" /> FExperience@forbes.ru
               </a>
               <div className="flex gap-3 mt-1">
-                <a href="" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/Milena_Amor" target="_blank" rel="noopener noreferrer">
                   <Send className="w-5 h-5 hover:text-[#F7931A] cursor-pointer transition-colors" />
                 </a>
                 <a href="" target="_blank" rel="noopener noreferrer">
