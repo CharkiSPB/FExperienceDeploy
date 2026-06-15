@@ -171,7 +171,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
             <div className="hidden md:flex justify-center md:justify-end">
               {!isUpcoming && (
-                <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap">
+                <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap">
                   СВЯЗАТЬСЯ С НАМИ
                 </a>
               )}

@@ -246,7 +246,7 @@ export function InteractiveMap() {
             {/* Кнопка */}
             <Link
               href={`/expeditions/${activePopup.slug}`}
-              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-white hover:text-[#F7931A] transition-all duration-300 shadow-lg"
+              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg"
             >
               СТАТЬ УЧАСТНИКОМ
             </Link>
@@ -293,7 +293,7 @@ export function InteractiveMap() {
             <Link
               href={`/expeditions/${interestPoint.slug}`}
               onClick={() => setInterestPoint(null)}
-              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-white hover:text-[#F7931A] transition-all duration-300 shadow-lg"
+              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg"
             >
               ОСТАВИТЬ ЗАЯВКУ
             </Link>

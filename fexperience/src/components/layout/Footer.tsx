@@ -23,7 +23,7 @@ export function Footer() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsParticipantModalOpen(true)}
-            className="bg-[#FF8800] text-white rounded-full py-4 px-6 md:px-12 flex flex-col items-center shadow-lg hover:shadow-[#FF8800]/20 transition-all group w-fit cursor-pointer"
+            className="bg-[#FF8800] text-white rounded-full py-4 px-6 md:px-12 flex flex-col items-center shadow-lg hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 group w-fit cursor-pointer"
           >
             <span className="text-base md:text-lg font-bold tracking-wide uppercase leading-none mb-2 group-hover:text-white transition-colors">
               УЗНАЙТЕ ПЕРВЫМИ

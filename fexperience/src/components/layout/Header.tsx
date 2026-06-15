@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Send } from 'lucide-react';
 import { expeditions } from '@/data/expeditions';
 import { Dropdown } from '@/components/ui/Dropdown';
@@ -17,6 +18,14 @@ export function Header() {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCta, setShowCta] = useState(false);
+
+  // Определяем, на странице какой экспедиции мы находимся
+  const pathname = usePathname();
+  const expeditionSlug = pathname?.match(/^\/expeditions\/([^/]+)/)?.[1];
+  const currentExpedition = expeditionSlug
+    ? expeditions.find(e => e.slug === expeditionSlug)
+    : undefined;
+  const partner = currentExpedition?.generalPartner;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,29 +158,28 @@ export function Header() {
 
           
 
-          {/* Кнопка "Стать партнёром" (раскомментировать если НЕТ партнёра) */}
-          <motion.button 
-            onClick={() => setIsPartnerModalOpen(true)}
-            className="cursor-pointer px-3 py-1.5 xl:px-2 xl:py-1 text-sm xl:text-xs font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
-          >
-            Стать партнёром
-          </motion.button>
-
-          {/*  Генеральный партнёр (раскомментировать если ЕСТЬ партнёр) */}
-          {/* 
-          <div className="flex flex-col items-end">
-            <span className="text-xs text-[#A0A0A0] uppercase tracking-wide mb-1">
-              Генеральный партнер
-            </span>
-            <Image
-              src="/images/partners/partner-logo.svg" //  Замени на логотип партнёра
-              alt="Генеральный партнер"
-              width={120}
-              height={40}
-              className="object-contain"
-            />
-          </div>
-          */}
+          {/* Кнопка "Стать партнёром" / логотип партнёра */}
+          {partner ? (
+            <div className="flex flex-col items-end">
+              <span className="text-xs text-[#A0A0A0] uppercase tracking-wide mb-1">
+                Генеральный партнер
+              </span>
+              <Image
+                src={partner.logo}
+                alt={partner.name}
+                width={120}
+                height={40}
+                className="object-contain"
+              />
+            </div>
+          ) : (
+            <motion.button 
+              onClick={() => setIsPartnerModalOpen(true)}
+              className="cursor-pointer px-3 py-1.5 xl:px-2 xl:py-1 text-sm xl:text-xs font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
+            >
+              Стать партнёром
+            </motion.button>
+          )}
         </div>
 
         {/* 🔹 МОБИЛЬНОЕ МЕНЮ: Бургер */}

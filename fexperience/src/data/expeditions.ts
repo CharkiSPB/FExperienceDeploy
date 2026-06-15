@@ -34,6 +34,11 @@ export const expeditions: Expedition[] = [
     targetDate: '2026-10-11T00:00:00Z', // ISO-формат даты начала
     label: 'До старта экспедиции во Вьетнам',
   },
+  //  generalPartner: {
+  //   name: 'Название партнёра',
+  //   logo: '/images/partners/partner-logo.svg', // путь к картинке
+  // },
+
   },
   {
     slug: 'south-africa',

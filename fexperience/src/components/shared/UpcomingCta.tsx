@@ -14,7 +14,7 @@ export function UpcomingCta() {
         </p>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#E8850F] transition-all shadow-lg whitespace-nowrap mb-16"
+          className="px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap mb-16"
         >
           Стать участником
         </button>

@@ -158,7 +158,7 @@ export function Relevance() {
         <div className="absolute -bottom-[2rem] -md:bottom-[4rem] left-1/2 -translate-x-1/2 translate-y-1/2 z-30">
           <button 
             onClick={() => setIsModalOpen(true)} 
-            className="cursor-pointer px-10 py-3.5 rounded-full font-bold bg-[#F7931A] text-white border-2 border-transparent hover:bg-white hover:text-[#F7931A] hover:border-[#F7931A] transition-all duration-300 text-base shadow-xl shadow-black/20 whitespace-nowrap"
+            className="cursor-pointer px-10 py-3.5 rounded-full font-bold bg-[#F7931A] text-white border-2 border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 text-base shadow-xl shadow-black/20 whitespace-nowrap"
           >
             УЧАСТВОВАТЬ В ЭКСПЕДИЦИИ
           </button>

@@ -166,14 +166,14 @@ export function Hero() {
                       >
                         <button
                           onClick={() => setIsRequestModalOpen(true)}
-                          className="cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-white hover:text-[#F7931A] hover:border-[#F7931A] transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
+                          className="cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
                         >
                           СТАТЬ УЧАСТНИКОМ
                         </button>
 
                         <Link
                           href={`/expeditions/${expedition.slug}`}
-                          className="px-8 py-2.5 rounded-full font-medium bg-black text-white border border-white/20 hover:bg-white hover:text-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+                          className="px-8 py-2.5 rounded-full font-medium bg-transparent text-white/90 border-2 border-white/30 hover:bg-white/10 hover:text-white hover:border-[#F7931A] hover:scale-[1.02] transition-all duration-300"
                         >
                           ПОДРОБНЕЕ
                         </Link>
@@ -201,7 +201,7 @@ export function Hero() {
                           </span>
                           <button 
                             onClick={handleAcceptCookies}
-                            className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#E67E00] transition-all font-medium whitespace-nowrap flex-shrink-0"
+                            className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#F39200]/30 hover:scale-[1.02] transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 shadow-lg"
                           >
                             OK
                           </button>

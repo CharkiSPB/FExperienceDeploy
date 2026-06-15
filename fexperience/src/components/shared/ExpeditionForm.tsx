@@ -177,7 +177,7 @@ export function ExpeditionForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full mt-4 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] transition-all shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full mt-4 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {isSubmitting ? (
           <>
