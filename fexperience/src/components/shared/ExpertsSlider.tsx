@@ -85,10 +85,14 @@ export const ExpertsSlider = forwardRef<ExpertsSliderHandle, ExpertsSliderProps>
                   />
                   {/* Бейдж Forbes на фото */}
                   {speaker.forbesBadge && (
-                    <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded">
-                      <span className="text-white text-[10px] font-bold uppercase tracking-wider">
-                        {speaker.forbesBadge}
-                      </span>
+                    <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded flex items-center">
+                      <Image
+                        src="/images/forbes-logo-white.svg"
+                        alt="Forbes"
+                        width={50}
+                        height={12}
+                        className="h-3 w-auto"
+                      />
                     </div>
                   )}
                 </div>

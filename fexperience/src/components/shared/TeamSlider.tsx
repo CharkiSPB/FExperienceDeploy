@@ -86,10 +86,14 @@ export const TeamSlider = forwardRef<TeamSliderHandle, TeamSliderProps>(function
                     sizes="(max-width: 768px) 180px, 220px"
                   />
                   {/* Бэдж Forbes на фото */}
-                  <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded">
-                    <span className="text-white text-[10px] font-bold uppercase tracking-wider">
-                      Forbes
-                    </span>
+                  <div className="absolute top-3 left-0 bg-black/80 px-2 py-1 rounded flex items-center">
+                    <Image
+                      src="/images/forbes-logo-white.svg"
+                      alt="Forbes"
+                      width={50}
+                      height={12}
+                      className="h-3 w-auto"
+                    />
                   </div>
                 </div>
 
