@@ -98,7 +98,7 @@ export async function sendLeadEmail(data: LeadData): Promise<void> {
     });
     console.log('[mail] Email sent successfully:', info.messageId);
   } catch (error) {
-    console.error('[mail] Failed to send email:', error);
-    throw error;
+    // DNS/сетевые ошибки не должны валить деплой (например на Relax нет доступа к SMTP)
+    console.warn('[mail] Failed to send email (non-fatal):', error);
   }
 }
