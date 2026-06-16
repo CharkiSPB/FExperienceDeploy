@@ -44,7 +44,7 @@ export const expeditions: Expedition[] = [
     slug: 'south-africa',
     title: 'Бизнес-экспедиция в ЮАР ',
     country: 'ЮАР',
-    dates: 'ноябрь 2026',
+    dates: '15-21 ноября 2026',
     status: 'active',
     description: 'Откройте бизнес-возможности Африки: встречи с госструктурами, локальным бизнесом и экспертами. Нетворкинг на уровне первых лиц.',
     image: '/images/expeditions/south-africa.webp',
@@ -69,7 +69,7 @@ export const expeditions: Expedition[] = [
     showDatesInMenu: true,
     timer: {
     enabled: true,
-    targetDate: '2026-11-19T00:00:00Z', // ISO-формат даты начала
+    targetDate: '2026-11-15T00:00:00Z', // ISO-формат даты начала
     label: 'До старта экспедиции в ЮАР',
   },
   },
