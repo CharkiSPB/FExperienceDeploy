@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', 'lenis'],
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   
