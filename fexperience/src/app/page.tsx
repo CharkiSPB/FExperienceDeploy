@@ -49,7 +49,14 @@ export default function HomePage() {
       </ErrorBoundary>
 
       
-      <section className="relative -mt-16 md:-mt-38 z-10 px-4 pb-8 max-w-7xl mx-auto pointer-events-none">
+      <style>{`
+        @media (max-height: 640px) {
+          .ehc-numwrap.ehc-numwrap {
+            margin-top: -4rem;
+          }
+        }
+      `}</style>
+      <section className="relative -mt-16 md:-mt-38 z-10 px-4 pb-8 max-w-7xl mx-auto pointer-events-none ehc-numwrap">
        <div className="pointer-events-auto">
        <Numbers />
        </div>

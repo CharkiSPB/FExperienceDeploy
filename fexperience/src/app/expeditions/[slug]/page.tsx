@@ -120,6 +120,52 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {/* ========================================== */}
       {/*  FULL-WIDTH HERO */}
       {/* ========================================== */}
+      <style>{`
+        @media (max-height: 640px) {
+          .expedition-hero-content {
+            padding-bottom: 3rem;
+          }
+          .ehc-spotswrap {
+            margin-bottom: 0.25rem;
+          }
+          .ehc-titlewrap {
+            margin-bottom: 0.5rem;
+          }
+          .ehc-titlewrap > div:first-child {
+            margin-bottom: 0.125rem;
+            font-size: 1rem;
+          }
+          .ehc-titlewrap h1 {
+            font-size: 1.625rem;
+            margin-bottom: 0.125rem;
+          }
+          .ehc-titlewrap h1 span {
+            font-size: 1.125rem;
+          }
+          .ehc-titlewrap p {
+            font-size: 0.9375rem;
+          }
+          .ehc-titlewrap > :last-child {
+            margin-top: 0.5rem;
+          }
+          .ehc-gridwrap {
+            margin-bottom: 0.5rem;
+            gap: 0.375rem;
+          }
+          .ehc-gridwrap > div {
+            padding: 0.5rem;
+          }
+          .ehc-gridwrap .text-2xl {
+            font-size: 1.25rem;
+          }
+          .ehc-gridwrap .text-\[10px\] {
+            font-size: 10px;
+          }
+          .ehc-ctawrap {
+            margin-bottom: 4rem;
+          }
+        }
+      `}</style>
       <div className={`relative ${isUpcoming ? 'h-screen' : 'h-[85vh]'} bg-[#1A1A1A]`}>
         <Image
           src={expedition.image}
@@ -130,17 +176,17 @@ export default async function ExpeditionDetailPage({ params }: Props) {
         />
         <div className="absolute inset-0 bg-black/30" />
         
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 md:pb-24">
+        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 md:pb-24 expedition-hero-content">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {expedition.spots && expedition.spots > 0 && (
-              <div className="flex justify-center mb-3 md:mb-6">
+              <div className="flex justify-center mb-3 md:mb-6 ehc-spotswrap">
                 <span className="bg-[#F7931A] text-[#0D0805] px-3 md:px-4 py-1 md:py-1.5 rounded-full text-[10px] md:text-sm font-bold">
                   Осталось мест: {expedition.spots}
                 </span>
               </div>
             )}
 
-            <div className="text-center mb-4 md:mb-8">
+            <div className="text-center mb-4 md:mb-8 ehc-titlewrap">
               <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
               <h1 className="text-xl md:text-3xl xxl:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
                 {expedition.title}<br /><span className="text-base md:text-2xl xxl:text-3xl">вместе с FExperience</span>
@@ -152,7 +198,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               {isUpcoming && <UpcomingCta />}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8 ehc-gridwrap">
               <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
                 <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
                 <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.duration || '5'} дней</p>
@@ -169,7 +215,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="hidden md:flex justify-center md:justify-end">
+            <div className="hidden md:flex justify-center md:justify-end ehc-ctawrap">
               {!isUpcoming && (
                 <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap">
                   СВЯЗАТЬСЯ С НАМИ
