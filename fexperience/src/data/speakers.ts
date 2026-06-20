@@ -79,7 +79,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 13, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
+    id: 13, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpeg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
     bio: '', isTop: true, topic: '', achievement: '',
     forbesBadge: 'Forbes',
     forbesLabel: 'Forbes Russia',
@@ -93,10 +93,15 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 15, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpeg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
+    id: 15, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
     forbesBadge: 'Forbes',
     forbesLabel: 'Forbes Russia',
-    expeditionSlugs: ['south-africa']
+    expeditionSlugs: ['south-africa', 'vietnam']
+  },
+  {
+    id: 16, name: 'Фам Динь Юинь', role: 'Бизнес-консультант, предприниматель', company: '', photo: '/images/speakers/FamDin.jpg', photoAlt: 'Фам Динь Юинь — Бизнес-консультант, предприниматель',
+    bio: '', isTop: true, topic: '', achievement: '',
+    expeditionSlugs: ['vietnam']
   },
 ] as const;

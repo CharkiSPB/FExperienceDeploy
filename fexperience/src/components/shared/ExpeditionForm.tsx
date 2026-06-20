@@ -86,8 +86,8 @@ export function ExpeditionForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {/* Бизнес-экспедиция */}
       <div className="flex items-start gap-3">
-        <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-          <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+        <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+          <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
           Бизнес-экспедиция
         </label>
         <div className="flex-1 min-w-0">
@@ -107,7 +107,7 @@ export function ExpeditionForm() {
 
       {/* Ваше имя */}
       <div className="flex items-start gap-3">
-        <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
+        <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
           <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0">★</span>
           Ваше имя
         </label>
@@ -124,7 +124,7 @@ export function ExpeditionForm() {
 
       {/* Телефон */}
       <div className="flex items-start gap-3">
-        <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
+        <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
           <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0">★</span>
           Телефон
         </label>
@@ -142,7 +142,7 @@ export function ExpeditionForm() {
 
       {/* E-mail */}
       <div className="flex items-start gap-3">
-        <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
+        <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
           <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0">★</span>
           E-mail
         </label>

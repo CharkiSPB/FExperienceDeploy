@@ -125,8 +125,8 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
                     {/* Бизнес-экспедиция */}
                     <div className="flex items-start gap-3">
-                      <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+                      <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
                         Бизнес-экспедиция
                       </label>
                       <div className="flex-1 min-w-0">
@@ -147,8 +147,8 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
 
                     {/* ФИО */}
                     <div className="flex items-start gap-3">
-                      <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+                      <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
                         ФИО
                       </label>
                       <div className="flex-1 min-w-0">
@@ -159,8 +159,8 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
 
                     {/* Должность */}
                     <div className="flex items-start gap-3">
-                      <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+                      <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
                         Должность
                       </label>
                       <div className="flex-1 min-w-0">
@@ -171,8 +171,8 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
 
                     {/* Компания */}
                     <div className="flex items-start gap-3">
-                      <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+                      <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
                         Компания
                       </label>
                       <div className="flex-1 min-w-0">
@@ -183,8 +183,8 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
 
                     {/* Телефон */}
                     <div className="flex items-start gap-3">
-                      <label className="w-[180px] flex-shrink-0 flex items-center gap-1.5 text-sm text-white/80 pt-2.5">
-                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 mt-0.5">★</span>
+                      <label className="w-[180px] flex-shrink-0 flex items-start gap-1.5 text-sm text-white/80 pt-2.5">
+                        <span className="text-[#FF8800] text-[8px] leading-none flex-shrink-0 ">★</span>
                         Телефон
                       </label>
                       <div className="flex-1 min-w-0">

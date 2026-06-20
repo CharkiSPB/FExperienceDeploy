@@ -120,7 +120,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {/* ========================================== */}
       {/*  FULL-WIDTH HERO */}
       {/* ========================================== */}
-      <div className="relative h-[85vh] bg-[#1A1A1A]">
+      <div className={`relative ${isUpcoming ? 'h-screen' : 'h-[85vh]'} bg-[#1A1A1A]`}>
         <Image
           src={expedition.image}
           alt={expedition.title}
