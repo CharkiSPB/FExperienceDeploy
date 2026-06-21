@@ -132,21 +132,21 @@ export function Relevance() {
           {/* Точки-индикаторы (мобильные) */}
           <div className="md:hidden absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-2">
             {[0, 1].map((index) => (
-              <button key={index} onClick={() => emblaApi?.scrollTo(index)} className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30 hover:bg-[#0D0805]/60'}`} aria-label={`Перейти к слайду ${index + 1}`} />
+              <button key={index} onClick={() => emblaApi?.scrollTo(index)} className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30 hover:bg-[#0D0805]/60'}`} aria-label={`Перейти к слайду ${index + 1}`} />
             ))}
           </div>
 
           {/* ◀️ Точки ▶️ (десктоп: стрелки по бокам точек) */}
           <div className="hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 z-20 items-center gap-4">
-            <button onClick={scrollPrev} className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Предыдущий слайд">
+            <button onClick={scrollPrev} className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300 cursor-pointer" aria-label="Предыдущий слайд">
               <ChevronLeft className="w-5 h-5" />
             </button>
             <div className="flex gap-2">
               {[0, 1].map((index) => (
-                <button key={index} onClick={() => emblaApi?.scrollTo(index)} className={`w-2 h-2 rounded-full transition-all duration-300 ${index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30 hover:bg-[#0D0805]/60'}`} aria-label={`Перейти к слайду ${index + 1}`} />
+                <button key={index} onClick={() => emblaApi?.scrollTo(index)} className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30 hover:bg-[#0D0805]/60'}`} aria-label={`Перейти к слайду ${index + 1}`} />
               ))}
             </div>
-            <button onClick={scrollNext} className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300" aria-label="Следующий слайд">
+            <button onClick={scrollNext} className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300 cursor-pointer" aria-label="Следующий слайд">
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>

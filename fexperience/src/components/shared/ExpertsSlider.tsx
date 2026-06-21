@@ -141,14 +141,14 @@ export const ExpertsSlider = forwardRef<ExpertsSliderHandle, ExpertsSliderProps>
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-all disabled:opacity-30"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-all disabled:opacity-30 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={scrollNext}
             disabled={!canScrollNext}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-all disabled:opacity-30"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-all disabled:opacity-30 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

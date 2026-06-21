@@ -58,7 +58,7 @@ export function SpeakersSlider({ speakers }: SpeakersSliderProps) {
       <div className="flex gap-2 mb-4 justify-end">
         <button
           onClick={() => scroll('left')}
-          className={`p-2 rounded-full bg-[#110F0D]/90 border border-[#2A2A2A] text-white backdrop-blur-md transition-all duration-300 ${
+          className={`p-2 rounded-full bg-[#110F0D]/90 border border-[#2A2A2A] text-white backdrop-blur-md transition-all duration-300 cursor-pointer ${
             canScrollLeft ? 'opacity-100' : 'opacity-30 pointer-events-none'
           }`}
           aria-label="Предыдущий спикер"
@@ -68,7 +68,7 @@ export function SpeakersSlider({ speakers }: SpeakersSliderProps) {
         
         <button
           onClick={() => scroll('right')}
-          className={`p-2 rounded-full bg-[#110F0D]/90 border border-[#2A2A2A] text-white backdrop-blur-md transition-all duration-300 ${
+          className={`p-2 rounded-full bg-[#110F0D]/90 border border-[#2A2A2A] text-white backdrop-blur-md transition-all duration-300 cursor-pointer ${
             canScrollRight ? 'opacity-100' : 'opacity-30 pointer-events-none'
           }`}
           aria-label="Следующий спикер"

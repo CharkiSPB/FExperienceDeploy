@@ -81,7 +81,7 @@ export function Dropdown({ trigger, items, className = '' }: DropdownProps) {
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-50"
             style={{
-              background: 'rgba(120, 120, 128, 0.15)',
+              background: 'rgba(13, 8, 5, 0.75)',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}
           >

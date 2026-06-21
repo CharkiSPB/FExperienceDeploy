@@ -266,7 +266,7 @@ export function Numbers() {
         {/* Кнопка влево */}
         <button 
           onClick={scrollPrev} 
-          className="p-2 bg-[#1A1A1A]/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-[#F7931A] transition-all"
+          className="p-2 bg-[#1A1A1A]/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-[#F7931A] transition-all cursor-pointer"
           aria-label="Предыдущий слайд"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -284,7 +284,7 @@ export function Numbers() {
                   autoPlayRef.current = setTimeout(() => emblaApi?.scrollNext(), 5000);
                 }
               }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-[#0D0805]/30'
               }`}
               aria-label={`Перейти к слайду ${index + 1}`}
@@ -295,7 +295,7 @@ export function Numbers() {
         {/* Кнопка вправо */}
         <button 
           onClick={scrollNext} 
-          className="p-2 bg-[#1A1A1A]/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-[#F7931A] transition-all"
+          className="p-2 bg-[#1A1A1A]/60 backdrop-blur-md border border-white/10 rounded-full text-white hover:bg-[#F7931A] transition-all cursor-pointer"
           aria-label="Следующий слайд"
         >
           <ChevronRight className="w-5 h-5" />

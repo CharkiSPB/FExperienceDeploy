@@ -34,7 +34,7 @@ export function FAQ() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="relative w-full h-[70px] overflow-hidden group focus:outline-none"
+        className="relative w-full h-[70px] overflow-hidden group focus:outline-none cursor-pointer"
         aria-expanded={isSectionOpen}
         aria-controls="faq-content"
       >
@@ -160,7 +160,7 @@ export function FAQ() {
                     >
                       <button
                         onClick={() => toggle(item.id)}
-                        className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8800] group"
+                        className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8800] group cursor-pointer"
                         aria-expanded={openId === item.id}
                       >
                         <span className="text-base md:text-lg text-[#000004] font-medium pr-4">

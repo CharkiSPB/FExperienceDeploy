@@ -144,7 +144,7 @@ export function IncludedSlider({ items, slug }: IncludedSliderProps) {
         <button
           onClick={scrollPrev}
           disabled={!canScrollPrev}
-          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Предыдущий слайд"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -152,7 +152,7 @@ export function IncludedSlider({ items, slug }: IncludedSliderProps) {
         <button
           onClick={scrollNext}
           disabled={!canScrollNext}
-          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Следующий слайд"
         >
           <ChevronRight className="w-5 h-5" />

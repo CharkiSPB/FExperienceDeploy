@@ -31,9 +31,11 @@ type FormValues = z.infer<typeof formSchema>;
 type ParticipantModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  /** Если передано — этот slug будет предвыбран в поле "Бизнес-экспедиция" */
+  defaultExpeditionSlug?: string;
 };
 
-export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
+export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: ParticipantModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -77,7 +79,34 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
     }
   };
 
+  // Активные экспедиции + экспедиция по умолчанию (если она не active)
   const activeExpeditions = expeditions.filter(e => e.status === 'active');
+  const expeditionOptions = (() => {
+    const options = activeExpeditions.map(exp => ({
+      value: exp.slug,
+      label: formatMonthYear(exp.dates)
+        ? `${exp.country}  |  ${formatMonthYear(exp.dates)}`
+        : exp.country,
+    }));
+    // Если передан defaultExpeditionSlug, и его нет в списке — добавляем
+    if (defaultExpeditionSlug && !activeExpeditions.some(e => e.slug === defaultExpeditionSlug)) {
+      const defaultExp = expeditions.find(e => e.slug === defaultExpeditionSlug);
+      if (defaultExp) {
+        options.unshift({
+          value: defaultExp.slug,
+          label: defaultExp.country,
+        });
+      }
+    }
+    return options;
+  })();
+
+  // При открытии модалки с предвыбранной экспедицией — устанавливаем значение
+  useEffect(() => {
+    if (isOpen && defaultExpeditionSlug) {
+      setValue('expedition', defaultExpeditionSlug, { shouldValidate: false });
+    }
+  }, [isOpen, defaultExpeditionSlug, setValue]);
 
   return (
     <AnimatePresence>
@@ -132,12 +161,7 @@ export function ParticipantModal({ isOpen, onClose }: ParticipantModalProps) {
                       </label>
                       <div className="flex-1 min-w-0">
                         <CustomSelect
-                          options={activeExpeditions.map(exp => ({
-                            value: exp.slug,
-                            label: formatMonthYear(exp.dates)
-                              ? `${exp.country}  |  ${formatMonthYear(exp.dates)}`
-                              : exp.country,
-                          }))}
+                          options={expeditionOptions}
                           value={watch('expedition') || ''}
                           onChange={(val) => setValue('expedition', val, { shouldValidate: true })}
                           placeholder="Выберите экспедицию"

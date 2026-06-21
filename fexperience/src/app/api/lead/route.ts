@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { sendLeadEmail } from '@/lib/mail';
+import { expeditions } from '@/data/expeditions';
 
 const partnerSchema = z.object({
   formType: z.literal('partner'),
@@ -72,6 +73,12 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const data = leadSchema.parse(body);
+
+    // Преобразуем slug (vietnam, sakhalin) в читаемое название страны (Вьетнам, Сахалин)
+    const expedition = expeditions.find(e => e.slug === data.expedition);
+    if (expedition) {
+      data.expedition = expedition.country;
+    }
 
     const webhookUrl = process.env.AMOCRM_WEBHOOK_URL;
 

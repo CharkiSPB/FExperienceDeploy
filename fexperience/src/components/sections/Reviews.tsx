@@ -56,7 +56,7 @@ export function Reviews() {
         <button
           onClick={scrollPrev}
           disabled={!emblaApi || !emblaApi.canScrollPrev()}
-          className="p-2 rounded-full border border-[#2A2A2A] text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="p-2 rounded-full border border-[#2A2A2A] text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Предыдущий отзыв"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -64,7 +64,7 @@ export function Reviews() {
         <button
           onClick={scrollNext}
           disabled={!emblaApi || !emblaApi.canScrollNext()}
-          className="p-2 rounded-full border border-[#2A2A2A] text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="p-2 rounded-full border border-[#2A2A2A] text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Следующий отзыв"
         >
           <ChevronRight className="w-5 h-5" />

@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
 
-export function UpcomingCta() {
+type UpcomingCtaProps = {
+  /** slug экспедиции, на странице которой находится кнопка */
+  expeditionSlug?: string;
+};
+
+export function UpcomingCta({ expeditionSlug }: UpcomingCtaProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -23,6 +28,7 @@ export function UpcomingCta() {
       <ParticipantModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        defaultExpeditionSlug={expeditionSlug}
       />
     </>
   );

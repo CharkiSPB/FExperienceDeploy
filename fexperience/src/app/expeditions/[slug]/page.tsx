@@ -12,6 +12,7 @@ import { CountdownTimer } from '@/components/shared/CountdownTimer';
 import { IncludedSlider } from '@/components/shared/IncludedSlider';
 import { ExpertsSectionClient } from '@/components/shared/ExpertsSectionClient';
 import { UpcomingCta } from '@/components/shared/UpcomingCta';
+import { HeroImageSwitch } from '@/components/shared/HeroImageSwitch';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -54,6 +55,10 @@ export default async function ExpeditionDetailPage({ params }: Props) {
   const isCompleted = expedition.status === 'completed';
   const isUpcoming = expedition.status === 'upcoming';
   const hasExactDates = /^\d{1,2}[-–]\d{1,2}\s+[а-яА-ЯёЁ]+\s+\d{4}/.test(expedition.dates);
+
+  // Определяем, вечер ли сейчас в Москве (для переключения hero-изображения)
+  const mskHour = (new Date().getUTCHours() + 3) % 24;
+  const isEveningTime = mskHour >= 20;
 
   // Фильтр спикеров
   const expeditionSpeakers = speakers.filter(s => 
@@ -167,11 +172,11 @@ export default async function ExpeditionDetailPage({ params }: Props) {
         }
       `}</style>
       <div className={`relative ${isUpcoming ? 'h-screen' : 'h-[85vh]'} bg-[#1A1A1A]`}>
-        <Image
-          src={expedition.image}
+        <HeroImageSwitch
+          dayImage={expedition.image}
+          eveningImage={expedition.imageEvening}
           alt={expedition.title}
-          fill
-          className="object-cover"
+          initialIsEvening={isEveningTime}
           priority
         />
         <div className="absolute inset-0 bg-black/30" />
@@ -195,7 +200,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                 {expedition.description}
               </p>
 
-              {isUpcoming && <UpcomingCta />}
+              {isUpcoming && <UpcomingCta expeditionSlug={slug} />}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8 ehc-gridwrap">

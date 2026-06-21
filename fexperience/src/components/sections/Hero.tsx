@@ -223,7 +223,7 @@ export function Hero() {
         <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 md:gap-4">
           <button
             onClick={scrollPrev}
-            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300 cursor-pointer"
             aria-label="Предыдущий слайд"
           >
             <ChevronLeft className="w-4 h-4 md:w-5 md:h-5" />
@@ -233,7 +233,7 @@ export function Hero() {
               <button
                 key={index}
                 onClick={() => emblaApi?.scrollTo(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                   index === activeIndex ? 'bg-[#F7931A] scale-125' : 'bg-white/30 hover:bg-white/60'
                 }`}
                 aria-label={`Перейти к слайду ${index + 1}`}
@@ -242,7 +242,7 @@ export function Hero() {
           </div>
           <button
             onClick={scrollNext}
-            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300"
+            className="p-2 bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#2A2A2A] rounded-full text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all duration-300 cursor-pointer"
             aria-label="Следующий слайд"
           >
             <ChevronRight className="w-4 h-4 md:w-5 md:h-5" />

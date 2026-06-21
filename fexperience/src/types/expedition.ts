@@ -6,6 +6,7 @@ export type Expedition = {
   status: 'active' | 'completed' | 'upcoming';
   description: string;
   image: string;
+  imageEvening?: string;
   videoUrl?: string;
   speakersCount?: number;
   programSlug?: string;

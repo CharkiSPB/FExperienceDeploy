@@ -37,7 +37,7 @@ export function CustomSelect({ options, value, onChange, placeholder, error }: C
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between bg-[#1A1A1A]/80 border ${error ? 'border-red-500' : 'border-[#2A2A2A]'} rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#FF8800] transition-colors ${selectedOption ? 'text-white' : 'text-[#666666]'}`}
+        className={`w-full flex items-center justify-between bg-[#1A1A1A]/80 border ${error ? 'border-red-500' : 'border-[#2A2A2A]'} rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#FF8800] transition-colors cursor-pointer ${selectedOption ? 'text-white' : 'text-[#666666]'}`}
       >
         <span>{selectedOption ? selectedOption.label : placeholder || 'Выберите...'}</span>
         <ChevronDown className={`w-4 h-4 text-white/60 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
@@ -61,7 +61,7 @@ export function CustomSelect({ options, value, onChange, placeholder, error }: C
                   (e.currentTarget as HTMLElement).style.backgroundColor = '#1A1A1A';
                 }
               }}
-              className={`w-full text-left px-3 py-2 text-sm transition-colors ${
+              className={`w-full text-left px-3 py-2 text-sm transition-colors cursor-pointer ${
                 option.value === value
                   ? 'text-[#FF8800] bg-[#2A2A2A]'
                   : 'text-white'
