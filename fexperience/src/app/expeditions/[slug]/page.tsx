@@ -194,7 +194,16 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             <div className="text-center mb-4 md:mb-8 ehc-titlewrap">
               <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
               <h1 className="text-xl md:text-3xl xxl:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
-                {expedition.title}<br /><span className="text-base md:text-2xl xxl:text-3xl">вместе с FExperience</span>
+                {expedition.title}<br /><span className="inline-flex items-center justify-center gap-1.5 text-base md:text-2xl xxl:text-3xl">
+                <span>с</span>
+                <Image
+                  src="/images/forbes-logo-white.svg"
+                  alt="Forbes"
+                  width={110}
+                  height={26}
+                  className="h-5 md:h-7 xxl:h-8 w-auto"
+                />
+              </span>
               </h1>
               <p className="text-sm md:text-base xxl:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
                 {expedition.description}
@@ -221,7 +230,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
             </div>
 
             <div className="hidden md:flex justify-center md:justify-end ehc-ctawrap">
-              {!isUpcoming && (
+              {isCompleted && (
                 <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap">
                   СВЯЗАТЬСЯ С НАМИ
                 </a>

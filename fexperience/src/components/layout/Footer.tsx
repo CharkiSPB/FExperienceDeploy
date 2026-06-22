@@ -6,12 +6,10 @@ import Image from 'next/image';
 import { Phone, Mail, Send, MessageCircle, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
-import { PartnerModal } from '@/components/shared/PartnerModal';
 import { TeamProject } from '@/components/shared/TeamProject';
 
 export function Footer() {
   const [isParticipantModalOpen, setIsParticipantModalOpen] = useState(false);
-  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
 
   return (
     <footer id="footer" className="relative bg-[#0D0D0D] border-t border-[#2A2A2A] pt-12 pb-32 overflow-hidden">
@@ -83,22 +81,7 @@ export function Footer() {
             <Link href="/articles" className="hover:text-white transition-colors">Статьи</Link>
           </nav>
 
-          {/* Правая часть: Кнопки */}
-          <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center gap-4">
-            <motion.button
-              onClick={() => setIsParticipantModalOpen(true)}
-              className="cursor-pointer px-5 py-2.5 text-sm font-medium border border-[#FF8800] text-[#FF8800] rounded-[10px] hover:bg-white/5 transition-all whitespace-nowrap"
-            >
-              Стать участником
-            </motion.button>
-
-            <motion.button
-              onClick={() => setIsPartnerModalOpen(true)}
-              className="cursor-pointer px-5 py-2.5 text-sm font-medium border border-[#FF8800] text-[#FF8800] rounded-[10px] hover:bg-white/5 transition-all whitespace-nowrap"
-            >
-              Стать партнёром  
-            </motion.button>
-          </div>
+          {/* Правая часть: пусто — кнопки удалены */}
         </div>
 
       </div>
@@ -127,10 +110,6 @@ export function Footer() {
         onClose={() => setIsParticipantModalOpen(false)}
       />
 
-      <PartnerModal
-        isOpen={isPartnerModalOpen}
-        onClose={() => setIsPartnerModalOpen(false)}
-      />
     </footer>
   );
 }

@@ -2,6 +2,39 @@ import { Expedition } from '@/types/expedition';
 
 export const expeditions: Expedition[] = [
   {
+    slug: 'south-africa',
+    title: 'Бизнес-экспедиция в ЮАР ',
+    country: 'ЮАР',
+    dates: '15-21 ноября 2026',
+    status: 'active',
+    description: 'Откройте бизнес-возможности Африки: встречи с госструктурами, локальным бизнесом и экспертами. Нетворкинг на уровне первых лиц.',
+    image: '/images/expeditions/south-africa.webp',
+    videoUrl: 'https://www.youtube.com/watch?v=example2',
+    // speakersCount: 12,
+    programSlug: 'sa-program',
+    rubrics: { enabled: true },
+    duration: '6',
+    participantsCount: '15-30',
+    // price: 'По запросу',
+    // spots: 0,
+    fullDescription: 'Экспедиция в ЮАР открыла для участников двери в бизнес-сообщество Африки. Встречи с министрами, посещение промышленных зон и культурная программа создали основу для долгосрочных партнёрств.',
+    includes: [
+      'Медийное сопровождение',
+      'Бизнес-сессии, |нетворкинг',
+      'Культурные мероприятия',
+      'Проживание |в отеле 5*',
+      'Трансферы |вип-класса',
+      'Питание',
+    ],
+    // additionalInfo: 'Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов. Вы занимаетесь бизнесом и нетворкингом - обо всём остальном позаботится команда FExperience.',
+    showDatesInMenu: true,
+    timer: {
+    enabled: true,
+    targetDate: '2026-11-15T00:00:00Z', // ISO-формат даты начала
+    label: 'До старта экспедиции в ЮАР',
+  },
+  },
+  {
     slug: 'vietnam',
     title: 'Бизнес-экспедиция во Вьетнам',
     country: 'Вьетнам',
@@ -39,39 +72,6 @@ export const expeditions: Expedition[] = [
   //   logo: '/images/partners/partner-logo.svg', // путь к картинке
   // },
 
-  },
-  {
-    slug: 'south-africa',
-    title: 'Бизнес-экспедиция в ЮАР ',
-    country: 'ЮАР',
-    dates: '15-21 ноября 2026',
-    status: 'active',
-    description: 'Откройте бизнес-возможности Африки: встречи с госструктурами, локальным бизнесом и экспертами. Нетворкинг на уровне первых лиц.',
-    image: '/images/expeditions/south-africa.webp',
-    videoUrl: 'https://www.youtube.com/watch?v=example2',
-    // speakersCount: 12,
-    programSlug: 'sa-program',
-    rubrics: { enabled: true },
-    duration: '6',
-    participantsCount: '15-30',
-    // price: 'По запросу',
-    // spots: 0,
-    fullDescription: 'Экспедиция в ЮАР открыла для участников двери в бизнес-сообщество Африки. Встречи с министрами, посещение промышленных зон и культурная программа создали основу для долгосрочных партнёрств.',
-    includes: [
-      'Медийное сопровождение',
-      'Бизнес-сессии, |нетворкинг',
-      'Культурные мероприятия',
-      'Проживание |в отеле 5*',
-      'Трансферы |вип-класса',
-      'Питание',
-    ],
-    // additionalInfo: 'Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов. Вы занимаетесь бизнесом и нетворкингом - обо всём остальном позаботится команда FExperience.',
-    showDatesInMenu: true,
-    timer: {
-    enabled: true,
-    targetDate: '2026-11-15T00:00:00Z', // ISO-формат даты начала
-    label: 'До старта экспедиции в ЮАР',
-  },
   },
   {
     slug: 'morocco',

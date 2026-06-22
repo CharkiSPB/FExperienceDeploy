@@ -30,7 +30,7 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsScrolled(scrollY > window.innerHeight * 0.5);
+      setIsScrolled(scrollY > window.innerHeight * 0.1);
       setShowCta(scrollY > window.innerHeight * 0.8);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });

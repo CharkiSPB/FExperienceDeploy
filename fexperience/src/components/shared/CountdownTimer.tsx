@@ -103,7 +103,7 @@ export function CountdownTimer({ expeditionSlug = 'vietnam' }: CountdownTimerPro
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative w-full bg-[#FF8800] rounded-[44px] p-3 md:p-12 flex flex-col items-center justify-center overflow-hidden"
+          className="relative w-full bg-[#FF8800] rounded-[44px] p-3 md:p-12 flex flex-col items-center justify-center"
         >
           <div className="text-xl md:text-3xl lg:text-4xl font-bold text-[#0D0805] mb-3 text-center">
             ДО СТАРТА ЭКСПЕДИЦИИ

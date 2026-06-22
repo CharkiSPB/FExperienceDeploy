@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { HeroVideo } from '@/components/sections/HeroVideo';
 import { config } from '@/data/config';
 import { expeditions } from '@/data/expeditions';
@@ -134,8 +135,15 @@ export function Hero() {
                         <span className="block md:hidden mt-2">
                           {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
                         </span>
-                        <span className="block text-2xl lg:text-3xl font-normal mt-2">
-                          вместе с FExperience
+                        <span className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-normal mt-2">
+                          <span>с</span>
+                          <Image
+                            src="/images/forbes-logo-white.svg"
+                            alt="Forbes"
+                            width={110}
+                            height={26}
+                            className="h-6 lg:h-7 w-auto"
+                          />
                         </span>
                       </motion.h1>
                     </AnimatePresence>
