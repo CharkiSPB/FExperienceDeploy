@@ -58,7 +58,7 @@ export const dueDiligenceItems: DueDiligenceItem[] = [
     iconLeftOffset: -40,
   },
   {
-    text: 'Квалифицированные кадры',
+    text: 'Цифровизация экономики',
     icon: '/images/about/icons/staff.svg',
     iconWidth: 114,
     iconHeight: 114,
