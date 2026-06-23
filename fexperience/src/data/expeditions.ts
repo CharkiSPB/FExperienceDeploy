@@ -8,7 +8,7 @@ export const expeditions: Expedition[] = [
     dates: '15-21 ноября 2026',
     status: 'active',
     description: 'Откройте бизнес-возможности Африки: встречи с госструктурами, локальным бизнесом и экспертами. Нетворкинг на уровне первых лиц.',
-    image: '/images/expeditions/south-africa.webp',
+    image: '/images/expeditions/south-africaD.webp',
     videoUrl: 'https://www.youtube.com/watch?v=example2',
     // speakersCount: 12,
     programSlug: 'sa-program',
