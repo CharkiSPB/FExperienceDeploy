@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { FlipText } from '@/components/ui/FlipText';
 import { declension } from '@/lib/utils';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
 import { expeditions } from '@/data/expeditions';
@@ -135,9 +136,9 @@ export function CountdownTimer({ expeditionSlug = 'vietnam' }: CountdownTimerPro
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setIsModalOpen(true)}
-            className="w-full max-w-[400px] bg-[#0D0805] text-white font-bold py-4 px-8 rounded-full text-base md:text-lg hover:bg-[#1A1A1A] transition-colors duration-300 cursor-pointer"
+            className="group w-full max-w-[400px] bg-[#0D0805] text-white font-bold py-4 px-8 rounded-full text-base md:text-lg hover:bg-[#1A1A1A] transition-colors duration-300 cursor-pointer"
           >
-            УЧАСТВОВАТЬ В ЭКСПЕДИЦИИ
+            <FlipText className="flex items-center justify-center">УЧАСТВОВАТЬ В ЭКСПЕДИЦИИ</FlipText>
           </motion.button>
         </motion.div>
       </div>

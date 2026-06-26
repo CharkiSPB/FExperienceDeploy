@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { FlipText } from '@/components/ui/FlipText';
 import { TeamSectionClient } from '@/components/shared/TeamSectionClient';
 import { teamMembers } from '@/data/team';
 import { dueDiligenceItems } from '@/data/dueDiligence';
@@ -268,10 +269,9 @@ export function AboutContent() {
         <div className="flex justify-center -mt-8 relative z-20">
           <Link 
             href="/expeditions"
-            className="inline-flex items-center px-8 py-4 bg-[#FF8800] text-white font-bold text-lg rounded-full hover:bg-[#E8850F] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            className="group inline-flex items-center px-8 py-4 bg-[#FF8800] text-white font-bold text-lg rounded-full hover:bg-[#E8850F] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            СМОТРЕТЬ ВСЕ ЭКСПЕДИЦИИ
-            
+            <FlipText className="flex items-center justify-center">СМОТРЕТЬ ВСЕ ЭКСПЕДИЦИИ</FlipText>
           </Link>
         </div>
       </section>

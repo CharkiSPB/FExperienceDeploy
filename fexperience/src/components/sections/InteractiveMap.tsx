@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import Link from 'next/link';
+import { FlipText } from '@/components/ui/FlipText';
 
 type MapPoint = {
   id: string;
@@ -246,9 +247,9 @@ export function InteractiveMap() {
             {/* Кнопка */}
             <Link
               href={`/expeditions/${activePopup.slug}`}
-              className="block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg"
+              className="group block w-full py-3 px-4 rounded-xl font-medium bg-[#F7931A] text-white text-center hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg"
             >
-              СТАТЬ УЧАСТНИКОМ
+              <FlipText className="flex items-center justify-center">СТАТЬ УЧАСТНИКОМ</FlipText>
             </Link>
           </motion.div>
         )}

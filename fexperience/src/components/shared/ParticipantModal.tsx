@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Image from 'next/image';
 import { expeditions } from '@/data/expeditions';
+import { FlipText } from '@/components/ui/FlipText';
 import { CustomSelect } from '@/components/shared/CustomSelect';
 
 // 🔹 Извлекает месяц и год из строки даты: "11-16 октября 2026" → "октябрь 2026"
@@ -35,9 +36,32 @@ type ParticipantModalProps = {
   defaultExpeditionSlug?: string;
 };
 
+const SUBMITTED_EMAILS_KEY = 'fexperience_submitted_emails';
+
+function hasSubmittedEmail(email: string): boolean {
+  if (typeof window === 'undefined') return false;
+  const stored = localStorage.getItem(SUBMITTED_EMAILS_KEY);
+  if (!stored) return false;
+  try {
+    const emails: string[] = JSON.parse(stored);
+    return emails.includes(email.toLowerCase().trim());
+  } catch {
+    return false;
+  }
+}
+
+function saveSubmittedEmail(email: string): void {
+  if (typeof window === 'undefined') return;
+  const stored = localStorage.getItem(SUBMITTED_EMAILS_KEY);
+  const emails: string[] = stored ? JSON.parse(stored) : [];
+  emails.push(email.toLowerCase().trim());
+  localStorage.setItem(SUBMITTED_EMAILS_KEY, JSON.stringify(emails));
+}
+
 export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: ParticipantModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [duplicateError, setDuplicateError] = useState<string | null>(null);
 
   const {
     register,
@@ -58,6 +82,14 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
   }, [isOpen]);
 
   const onSubmit = async (data: FormValues) => {
+    setDuplicateError(null);
+
+    // Проверка на повторную отправку
+    if (hasSubmittedEmail(data.email)) {
+      setDuplicateError('Вы уже отправили заявку');
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const response = await fetch('/api/lead', {
@@ -66,6 +98,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
         body: JSON.stringify({ ...data, formType: 'participant' }),
       });
       if (!response.ok) throw new Error('Ошибка отправки');
+      saveSubmittedEmail(data.email);
       setIsSuccess(true);
       reset();
       setTimeout(() => {
@@ -213,6 +246,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                           className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm placeholder-[#666666] focus:outline-none focus:border-[#FF8800] transition-colors"
                         />
                         {errors.email && <p className="text-red-500 text-xs mt-0.5">{errors.email.message}</p>}
+                        {duplicateError && !errors.email && <p className="text-red-500 text-xs mt-0.5">{duplicateError}</p>}
                       </div>
                     </div>
 
@@ -228,9 +262,9 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full mt-2 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="group w-full mt-2 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
-                      {isSubmitting ? 'Отправка...' : 'Оставить заявку'}
+                      {isSubmitting ? 'Отправка...' : <FlipText className="flex items-center justify-center">Оставить заявку</FlipText>}
                     </button>
                   </form>
                 </>

@@ -148,7 +148,7 @@ export const TeamSlider = forwardRef<TeamSliderHandle, TeamSliderProps>(function
           <button
             onClick={scrollNext}
             disabled={!canScrollNext}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all disabled:opacity-30 cursor-pointer"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-[#F7931A] bg-[#F7931A] text-white hover:bg-[#FFA733] hover:border-[#FFA733] hover:shadow-lg hover:shadow-[#F7931A]/30 transition-all disabled:opacity-30 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

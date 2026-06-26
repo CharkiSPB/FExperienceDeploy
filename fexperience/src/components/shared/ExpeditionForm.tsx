@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Check, Loader2 } from 'lucide-react';
+import { FlipText } from '@/components/ui/FlipText';
 import { expeditions } from '@/data/expeditions';
 
 // 1. Схема валидации — как в ParticipantModal
@@ -19,6 +20,28 @@ const formSchema = z.object({
 });
 
 type FormValues = z.infer<typeof formSchema>;
+
+const SUBMITTED_EMAILS_KEY = 'fexperience_submitted_emails';
+
+function hasSubmittedEmail(email: string): boolean {
+  if (typeof window === 'undefined') return false;
+  const stored = localStorage.getItem(SUBMITTED_EMAILS_KEY);
+  if (!stored) return false;
+  try {
+    const emails: string[] = JSON.parse(stored);
+    return emails.includes(email.toLowerCase().trim());
+  } catch {
+    return false;
+  }
+}
+
+function saveSubmittedEmail(email: string): void {
+  if (typeof window === 'undefined') return;
+  const stored = localStorage.getItem(SUBMITTED_EMAILS_KEY);
+  const emails: string[] = stored ? JSON.parse(stored) : [];
+  emails.push(email.toLowerCase().trim());
+  localStorage.setItem(SUBMITTED_EMAILS_KEY, JSON.stringify(emails));
+}
 
 export function ExpeditionForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,8 +63,15 @@ export function ExpeditionForm() {
   const activeExpeditions = expeditions.filter(e => e.status === 'active');
 
   const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
     setError(null);
+
+    // Проверка на повторную отправку
+    if (hasSubmittedEmail(data.email)) {
+      setError('Вы уже отправили заявку');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       // Реальная отправка (как в ParticipantModal)
@@ -52,6 +82,7 @@ export function ExpeditionForm() {
       });
       if (!response.ok) throw new Error('Ошибка отправки');
 
+      saveSubmittedEmail(data.email);
       setIsSuccess(true);
     } catch {
       setError('Произошла ошибка. Попробуйте позже.');
@@ -177,14 +208,14 @@ export function ExpeditionForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full mt-4 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="group w-full mt-4 py-3 rounded-lg font-medium bg-gradient-to-r from-[#FF8800] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#FF8800] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg shadow-[#FF8800]/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
       >
         {isSubmitting ? (
           <>
             <Loader2 className="w-5 h-5 animate-spin" /> Отправка...
           </>
         ) : (
-          'Стать участником'
+          <FlipText className="flex items-center justify-center">Стать участником</FlipText>
         )}
       </button>
 

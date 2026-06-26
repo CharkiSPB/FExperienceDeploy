@@ -152,7 +152,7 @@ export function IncludedSlider({ items, slug }: IncludedSliderProps) {
         <button
           onClick={scrollNext}
           disabled={!canScrollNext}
-          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-[#F7931A] hover:border-[#F7931A] transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-[#F7931A] bg-[#F7931A] text-white hover:bg-[#FFA733] hover:border-[#FFA733] hover:shadow-lg hover:shadow-[#F7931A]/30 transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Следующий слайд"
         >
           <ChevronRight className="w-5 h-5" />

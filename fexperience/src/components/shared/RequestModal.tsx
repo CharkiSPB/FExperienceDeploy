@@ -5,6 +5,7 @@ import { X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { FlipText } from '@/components/ui/FlipText';
 import { expeditions } from '@/data/expeditions';
 
 // 🔹 Схема с полем leadType
@@ -156,8 +157,8 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition' }
                   </div>
                   {errors.consent && <p className="text-red-500 text-xs mt-1">{errors.consent.message}</p>}
 
-                  <button type="submit" disabled={isSubmitting} className="w-full mt-2 py-3 rounded-lg font-medium bg-gradient-to-r from-[#F7931A] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#F7931A] transition-all shadow-lg shadow-[#F7931A]/20 disabled:opacity-50 disabled:cursor-not-allowed">
-                    {isSubmitting ? 'Отправка...' : 'Оставить заявку'}
+                  <button type="submit" disabled={isSubmitting} className="group w-full mt-2 py-3 rounded-lg font-medium bg-gradient-to-r from-[#F7931A] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#F7931A] transition-all shadow-lg shadow-[#F7931A]/20 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                    {isSubmitting ? 'Отправка...' : <FlipText className="flex items-center justify-center">Оставить заявку</FlipText>}
                   </button>
                 </form>
               </>

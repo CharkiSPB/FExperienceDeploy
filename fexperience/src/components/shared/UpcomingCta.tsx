@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { FlipText } from '@/components/ui/FlipText';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
 
 type UpcomingCtaProps = {
@@ -19,9 +20,9 @@ export function UpcomingCta({ expeditionSlug }: UpcomingCtaProps) {
         </p>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap mb-16"
+          className="group px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap mb-16 cursor-pointer"
         >
-          Стать участником
+          <FlipText className="flex items-center justify-center">Стать участником</FlipText>
         </button>
       </div>
 

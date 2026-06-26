@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { FlipText } from '@/components/ui/FlipText';
 import { HeroVideo } from '@/components/sections/HeroVideo';
 import { config } from '@/data/config';
 import { expeditions } from '@/data/expeditions';
@@ -148,18 +149,23 @@ export function Hero() {
                       </motion.h1>
                     </AnimatePresence>
 
-                    {/* 🔸 Описание */}
+                    {/* 🔸 Тезисы */}
                     <AnimatePresence mode="wait">
-                      <motion.p
+                      <motion.div
                         key={`p-${index}`}
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-base md:text-[15px] font-bold text-white/90 leading-relaxed mb-8 max-w-3xl mx-auto"
+                        className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs md:text-sm font-medium text-white/90 mb-8 max-w-3xl mx-auto"
                       >
-                        {expedition.description}
-                      </motion.p>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                        <span>погружение в культуру</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                        <span>эксклюзивный нетворкинг</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                        <span>лучшие бизнес-практики</span>
+                      </motion.div>
                     </AnimatePresence>
 
                     {/* 🔸 Кнопки */}
@@ -174,16 +180,16 @@ export function Hero() {
                       >
                         <button
                           onClick={() => setIsRequestModalOpen(true)}
-                          className="cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
+                          className="group cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
                         >
-                          СТАТЬ УЧАСТНИКОМ
+                          <FlipText className="flex items-center justify-center">СТАТЬ УЧАСТНИКОМ</FlipText>
                         </button>
 
                         <Link
                           href={`/expeditions/${expedition.slug}`}
-                          className="px-8 py-2.5 rounded-full font-medium bg-transparent text-white/90 border-2 border-white/30 hover:bg-white/10 hover:text-white hover:border-[#F7931A] hover:scale-[1.02] transition-all duration-300"
+                          className="group px-8 py-2.5 rounded-full font-medium bg-transparent text-white/90 border-2 border-white/30 hover:bg-white/10 hover:text-white hover:border-[#F7931A] hover:scale-[1.02] transition-all duration-300"
                         >
-                          ПОДРОБНЕЕ
+                          <FlipText className="flex items-center justify-center">ПОДРОБНЕЕ</FlipText>
                         </Link>
                       </motion.div>
                     </AnimatePresence>

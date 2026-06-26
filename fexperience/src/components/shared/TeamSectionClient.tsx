@@ -76,8 +76,8 @@ export function TeamSectionClient({ members }: Props) {
                 <button
                   onClick={handleScrollNext}
                   disabled={!canScrollNext}
-                  className="w-10 h-10 flex items-center justify-center rounded-full border border-black/20 text-black hover:bg-black hover:text-white transition-all disabled:opacity-30 cursor-pointer"
-                  aria-label="Следующий"
+                  className="w-10 h-10 flex items-center justify-center rounded-full border border-black bg-black text-white hover:opacity-80 transition-all disabled:opacity-30 cursor-pointer"
+                  aria-label="Вправо"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>

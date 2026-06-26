@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Send, MessageCircle, MessageCircleMore } from 'lucide-react';
+import { FlipText } from '@/components/ui/FlipText';
 import { RequestModal } from '@/components/shared/RequestModal';
 
 type FloatingCTAProps = {
@@ -54,9 +55,9 @@ export function FloatingCTA({ onOpenModal }: FloatingCTAProps) {
             {/* 🔹 1. Кнопка "Стать участником" (ПЕРВОЙ) */}
             <button
               onClick={() => onOpenModal ? onOpenModal('expedition') : setIsModalOpen(true)}
-              className="cursor-pointer px-5 py-3 rounded-lg font-medium bg-gradient-to-r from-[#F7931A] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#F7931A] transition-all shadow-lg shadow-[#F7931A]/20 active:scale-[0.98] whitespace-nowrap"
+              className="group cursor-pointer px-5 py-3 rounded-lg font-medium bg-gradient-to-r from-[#F7931A] to-[#E8850F] text-white hover:from-[#FFA733] hover:to-[#F7931A] transition-all shadow-lg shadow-[#F7931A]/20 active:scale-[0.98] whitespace-nowrap"
             >
-              Стать участником
+              <FlipText className="flex items-center justify-center">Стать участником</FlipText>
             </button>
 
             {/* 🔹 2. Соцсети (ПОСЛЕ кнопки) */}

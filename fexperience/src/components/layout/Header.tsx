@@ -1,16 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, ChevronDown, Send } from 'lucide-react';
 import { expeditions } from '@/data/expeditions';
 import { Dropdown } from '@/components/ui/Dropdown';
+import { FlipText } from '@/components/ui/FlipText';
 import { PartnerModal } from '@/components/shared/PartnerModal';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
 import { config } from '@/data/config';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useLenis } from '@/components/providers/LenisProvider';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +20,28 @@ export function Header() {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCta, setShowCta] = useState(false);
+  const pathname = usePathname();
+  const lenis = useLenis();
+  const router = useRouter();
+
+  // Скролл к hash-секции через Lenis (с fallback на нативный скролл)
+  const scrollToHash = useCallback((e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    if (pathname !== '/') {
+      // На другой странице — навигация через роутер
+      router.push('/' + hash);
+      return;
+    }
+    // Уже на главной — плавный скролл через Lenis
+    window.history.pushState(null, '', hash);
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(hash);
+    } else {
+      document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [lenis, pathname, router]);
 
   // Определяем, на странице какой экспедиции мы находимся
-  const pathname = usePathname();
   const expeditionSlug = pathname?.match(/^\/expeditions\/([^/]+)/)?.[1];
   const currentExpedition = expeditionSlug
     ? expeditions.find(e => e.slug === expeditionSlug)
@@ -69,14 +90,14 @@ export function Header() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center relative">
         {/* 🔹 ЛЕВАЯ ЧАСТЬ: Навигация */}
         <nav className="hidden xl:flex items-center gap-6 ml-32 xl:ml-16">
-          <Link href="/about" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
-            О нас
+          <Link href="/about" className="group flex items-center text-sm text-white/80 whitespace-nowrap">
+            <FlipText>О нас</FlipText>
           </Link>
           
           <Dropdown
             trigger={
-              <button className="cursor-pointer flex items-center gap-1 text-sm text-white/80 hover:text-white transition-colors focus:outline-none whitespace-nowrap">
-                Экспедиции <ChevronDown className="w-3 h-3" />
+              <button className="group cursor-pointer flex items-center gap-1 text-sm text-white/80 hover:text-white transition-colors focus:outline-none whitespace-nowrap">
+                <FlipText>Экспедиции</FlipText> <ChevronDown className="w-3 h-3" />
               </button>
             }
             items={[
@@ -122,9 +143,9 @@ export function Header() {
             ]}
           />
           
-          <Link href="/#why" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">
-            Почему FExperience
-          </Link>
+          <a href="/#why" onClick={(e) => scrollToHash(e, '#why')} className="group flex items-center text-sm text-white/80 whitespace-nowrap hover:text-white transition-colors cursor-pointer">
+            <FlipText>Почему FExperience</FlipText>
+          </a>
         </nav>
 
         {/* 🔹 ЛОГОТИП — по центру на десктопе, слева на мобилке */}
@@ -141,9 +162,9 @@ export function Header() {
 
         {/* 🔹 ПРАВАЯ ЧАСТЬ: Навигация + Telegram + Кнопка */}
         <div className="hidden xl:flex items-center gap-6 xl:gap-4 ml-auto">
-          <Link href="/articles" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Статьи</Link>
-          <Link href="/#reviews" className="text-sm text-white/80 hover:text-white transition-colors whitespace-nowrap">Отзывы</Link>
-          <Link href="/#contacts" className="text-sm text-white/80 hover:text-white transition-colors">Контакты</Link>
+          <Link href="/articles" className="group flex items-center text-sm text-white/80 whitespace-nowrap"><FlipText>Статьи</FlipText></Link>
+          <a href="/#reviews" onClick={(e) => scrollToHash(e, '#reviews')} className="group flex items-center text-sm text-white/80 whitespace-nowrap hover:text-white transition-colors cursor-pointer"><FlipText>Отзывы</FlipText></a>
+          <a href="/#contacts" onClick={(e) => scrollToHash(e, '#contacts')} className="group flex items-center text-sm text-white/80 hover:text-white transition-colors cursor-pointer"><FlipText>Контакты</FlipText></a>
 
           <span className="w-px h-5 bg-white/10" />
 
@@ -175,9 +196,9 @@ export function Header() {
           ) : (
             <motion.button 
               onClick={() => setIsPartnerModalOpen(true)}
-              className="cursor-pointer px-3 py-1.5 xl:px-2 xl:py-1 text-sm xl:text-xs font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
+              className="group cursor-pointer px-3 py-1.5 xl:px-2 xl:py-1 text-sm xl:text-xs font-medium border border-[#F7931A] text-white rounded-full hover:bg-white/5 transition-all whitespace-nowrap"
             >
-              Стать партнёром
+              <FlipText>Стать партнёром</FlipText>
             </motion.button>
           )}
         </div>
@@ -193,10 +214,10 @@ export function Header() {
         <div className="xl:hidden absolute top-full left-0 right-0 bg-[#0D0805]/95 backdrop-blur-xl border-b border-white/10 p-4 space-y-4">
           <Link href="/about" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>О нас</Link>
           <Link href="/expeditions" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>Экспедиции</Link>
-          <Link href="/#why" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>Почему FExperience</Link>
+          <a href="/#why" onClick={(e) => { scrollToHash(e, '#why'); setIsOpen(false); }} className="block py-2 text-white hover:text-[#F7931A] cursor-pointer">Почему FExperience</a>
           <Link href="/articles" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>Статьи</Link>
-          <Link href="/#reviews" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>Отзывы</Link>
-          <Link href="/#contacts" className="block py-2 text-white hover:text-[#F7931A]" onClick={() => setIsOpen(false)}>Контакты</Link>
+          <a href="/#reviews" onClick={(e) => { scrollToHash(e, '#reviews'); setIsOpen(false); }} className="block py-2 text-white hover:text-[#F7931A] cursor-pointer">Отзывы</a>
+          <a href="/#contacts" onClick={(e) => { scrollToHash(e, '#contacts'); setIsOpen(false); }} className="block py-2 text-white hover:text-[#F7931A] cursor-pointer">Контакты</a>
           
           <div className="pt-3 border-t border-[#2A2A2A]">
              <Link 

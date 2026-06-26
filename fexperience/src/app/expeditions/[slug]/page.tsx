@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MapPin, CalendarDays } from 'lucide-react';
 import { expeditions } from '@/data/expeditions';
 import { programs } from '@/data/program';
+import { FlipText } from '@/components/ui/FlipText';
 import { ExpeditionForm } from '@/components/shared/ExpeditionForm';
 import { config } from '@/data/config';
 import { speakers } from '@/data/speakers';
@@ -205,9 +206,14 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                 />
               </span>
               </h1>
-              <p className="text-sm md:text-base xxl:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
-                {expedition.description}
-              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs md:text-sm xxl:text-base font-medium text-white/80 max-w-3xl mx-auto leading-relaxed mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                <span>погружение в культуру</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                <span>эксклюзивный нетворкинг</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
+                <span>лучшие бизнес-практики</span>
+              </div>
 
               {isUpcoming && <UpcomingCta expeditionSlug={slug} />}
             </div>
@@ -231,8 +237,8 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
             <div className="hidden md:flex justify-center md:justify-end ehc-ctawrap">
               {isCompleted && (
-                <a href="#register" className="px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap">
-                  СВЯЗАТЬСЯ С НАМИ
+                <a href="#register" className="group px-5 py-2 text-sm bg-[#FF8800] text-white/90 font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap">
+                  <FlipText className="flex items-center justify-center">СВЯЗАТЬСЯ С НАМИ</FlipText>
                 </a>
               )}
             </div>

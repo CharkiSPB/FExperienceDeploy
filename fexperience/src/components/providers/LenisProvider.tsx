@@ -1,5 +1,6 @@
 'use client';
 import { createContext, useContext, useEffect, useRef, ReactNode, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 
 type LenisContextType = {
@@ -10,6 +11,28 @@ type LenisContextType = {
 
 const LenisContext = createContext<LenisContextType>({ pause: () => {}, resume: () => {}, scrollTo: () => {} });
 export const useLenis = () => useContext(LenisContext);
+
+/** Подписывается на смену роута и скроллит к hash-секции если есть # */
+function HashScrollWatcher() {
+  const pathname = usePathname();
+  const lenis = useLenis();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    // Небольшая задержка чтобы DOM отрендерился
+    const timer = setTimeout(() => {
+      if (lenis?.scrollTo) {
+        lenis.scrollTo(hash, { offset: -80 });
+      } else {
+        document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [pathname, lenis]);
+
+  return null;
+}
 
 export function LenisProvider({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
@@ -64,6 +87,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
   return (
     <LenisContext.Provider value={{ pause, resume, scrollTo }}>
       {children}
+      <HashScrollWatcher />
     </LenisContext.Provider>
   );
 }

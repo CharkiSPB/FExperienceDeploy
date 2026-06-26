@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { FlipText } from '@/components/ui/FlipText';
 import { ParticipantModal } from '@/components/shared/ParticipantModal';
 
 export function Relevance() {
@@ -158,9 +159,9 @@ export function Relevance() {
         <div className="absolute -bottom-[2rem] -md:bottom-[4rem] left-1/2 -translate-x-1/2 translate-y-1/2 z-30">
           <button 
             onClick={() => setIsModalOpen(true)} 
-            className="cursor-pointer px-10 py-3.5 rounded-full font-bold bg-[#F7931A] text-white border-2 border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 text-base shadow-xl shadow-black/20 whitespace-nowrap"
+            className="group cursor-pointer px-10 py-3.5 rounded-full font-bold bg-[#F7931A] text-white border-2 border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 text-base shadow-xl shadow-black/20 whitespace-nowrap"
           >
-            УЧАСТВОВАТЬ В ЭКСПЕДИЦИИ
+            <FlipText className="flex items-center justify-center">УЧАСТВОВАТЬ В ЭКСПЕДИЦИИ</FlipText>
           </button>
         </div>
       </div>
