@@ -14,13 +14,13 @@ export function UpcomingCta({ expeditionSlug }: UpcomingCtaProps) {
 
   return (
     <>
-      <div className="text-center mt-6 md:mt-8">
-        <p className="text-sm md:text-base text-white/80 font-bold leading-relaxed mb-4 md:whitespace-nowrap">
+      <div className="text-center mt-12 md:mt-20 mb-4 flex flex-col items-center gap-8 md:gap-12 ehc-upcoming-gap">
+        <p className="text-sm md:text-base text-white/80 font-bold leading-relaxed md:whitespace-nowrap uppercase tracking-wide">
           Вам интересна локация? Оставьте заявку — и эта точка может стать следующей на карте FExperience.
         </p>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="group px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap mb-16 cursor-pointer"
+          className="group px-6 py-3 text-sm md:text-base bg-[#FF8800] text-white font-bold rounded-[10px] hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 shadow-lg whitespace-nowrap cursor-pointer"
         >
           <FlipText className="flex items-center justify-center">Стать участником</FlipText>
         </button>

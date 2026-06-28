@@ -20,7 +20,7 @@ export function FlipText({ children, className = '' }: FlipTextProps) {
         {children}
       </span>
       {/* Невидимый слой снизу — заезжает на место при hover */}
-      <span className="absolute inset-x-0 top-0 block translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0">
+      <span className="absolute inset-x-0 top-[calc(100%+1px)] block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
         {children}
       </span>
     </span>

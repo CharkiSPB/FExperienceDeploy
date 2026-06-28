@@ -85,143 +85,145 @@ export function Hero() {
               />
 
               <div className="relative z-10 h-full flex items-center">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center pt-20 md:pt-24 pb-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center                     justify-center pt-8 md:pt-10 pb-8 font-bold font-serif">
                   
                   <div className="max-w-4xl text-center w-full">
-
-                    {/* 🔸 Оранжевая плашка с количеством мест */}
-                    {expedition.spots && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                        className="inline-block mb-4"
-                      >
-                        <span className="px-4 py-1.5 bg-[#F7931A] text-black text-sm font-semibold rounded-md">
-                          Осталось мест: {expedition.spots}
-                        </span>
-                      </motion.div>
-                    )}
-
-                    {/* 🔸 Даты экспедиции (формат: 16.10.2026 - 22.10.2026) */}
-                    {expedition.dates && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                        className="mb-6"
-                      >
-                        <span className="text-[29.28px] font-bold text-white tracking-wide">
-                          {formatDates(expedition.dates)}
-                        </span>
-                      </motion.div>
-                    )}
-
-                    {/* 🔸 Заголовок */}
-                    <AnimatePresence mode="wait">
-                      <motion.h1
-                        key={`h1-${index}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
-                      >
-                        <span className="hidden md:block whitespace-nowrap">
-                          {expedition.title}
-                        </span>
-                        <span className="block md:hidden whitespace-nowrap">
-                          {expedition.title.split(' ')[0]}
-                        </span>
-                        <span className="block md:hidden mt-2">
-                          {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
-                        </span>
-                        <span className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-normal mt-2">
-                          <span>с</span>
-                          <Image
-                            src="/images/forbes-logo-white.svg"
-                            alt="Forbes"
-                            width={110}
-                            height={26}
-                            className="h-6 lg:h-7 w-auto"
-                          />
-                        </span>
-                      </motion.h1>
-                    </AnimatePresence>
-
-                    {/* 🔸 Тезисы */}
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`p-${index}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs md:text-sm font-medium text-white/90 mb-8 max-w-3xl mx-auto"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                        <span>погружение в культуру</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                        <span>эксклюзивный нетворкинг</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                        <span>лучшие бизнес-практики</span>
-                      </motion.div>
-                    </AnimatePresence>
-
-                    {/* 🔸 Кнопки */}
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`cta-${index}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-wrap gap-4 justify-center mb-12"
-                      >
-                        <button
-                          onClick={() => setIsRequestModalOpen(true)}
-                          className="group cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
-                        >
-                          <FlipText className="flex items-center justify-center">СТАТЬ УЧАСТНИКОМ</FlipText>
-                        </button>
-
-                        <Link
-                          href={`/expeditions/${expedition.slug}`}
-                          className="group px-8 py-2.5 rounded-full font-medium bg-transparent text-white/90 border-2 border-white/30 hover:bg-white/10 hover:text-white hover:border-[#F7931A] hover:scale-[1.02] transition-all duration-300"
-                        >
-                          <FlipText className="flex items-center justify-center">ПОДРОБНЕЕ</FlipText>
-                        </Link>
-                      </motion.div>
-                    </AnimatePresence>
-
-                    {/* 🔸 Cookies блок */}
-                    <AnimatePresence>
-                      {!cookiesAccepted && (
+                      {/* 🔸 Оранжевая плашка с количеством мест */}
+                      {expedition.spots && (
                         <motion.div
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20, transition: { duration: 0.3 } }}
-                          transition={{ delay: 0.8, duration: 0.4 }}
-                          className="flex flex-nowrap items-center justify-between gap-2 md:gap-3 bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full text-white/80 text-[10px] md:text-xs max-w-2xl mx-auto"
+                          transition={{ duration: 0.4, delay: 0.1 }}
+                          className="inline-block mb-4"
                         >
-                          <span className="text-white/60 text-center sm:text-left flex-1">
-                            Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей{' '}
-                            <Link 
-                              href="/privacy" 
-                              className="text-[#F7931A] hover:text-[#FFA733] underline hover:no-underline font-medium"
-                            >
-                              политикой конфиденциальности.
-                            </Link>
+                          <span className="px-4 py-1.5 bg-[#F7931A] text-black text-sm font-semibold rounded-md">
+                            Осталось мест: {expedition.spots}
                           </span>
-                          <button 
-                            onClick={handleAcceptCookies}
-                            className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#F39200]/30 hover:scale-[1.02] transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 shadow-lg"
-                          >
-                            OK
-                          </button>
                         </motion.div>
                       )}
-                    </AnimatePresence>
+
+                      {/* 🔸 Даты экспедиции (формат: 16.10.2026 - 22.10.2026) */}
+                      {expedition.dates && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.2 }}
+                          className="mb-6"
+                        >
+                          <span className="text-[29.28px] font-bold text-white tracking-wide">
+                            {formatDates(expedition.dates)}
+                          </span>
+                        </motion.div>
+                      )}
+
+                      {/* 🔸 Заголовок */}
+                      <AnimatePresence mode="wait">
+                        <motion.h1
+                          key={`h1-${index}`}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                          className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif font-bold text-white leading-tight mb-10"
+                        >
+                          <span className="hidden md:block whitespace-nowrap">
+                            {expedition.title}
+                          </span>
+                          <span className="block md:hidden whitespace-nowrap">
+                            {expedition.title.split(' ')[0]}
+                          </span>
+                          <span className="block md:hidden mt-2">
+                            {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
+                          </span>
+                          <span className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-normal mt-2">
+                            <span>с</span>
+                            <Image
+                              src="/images/forbes-logo-white.svg"
+                              alt="Forbes"
+                              width={110}
+                              height={26}
+                              className="h-6 lg:h-7 w-auto"
+                            />
+                          </span>
+                        </motion.h1>
+                      </AnimatePresence>
+
+                      {/* 🔸 Тезисы */}
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`p-${index}`}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                          className="flex flex-wrap items-center justify-center gap-3 mb-8 max-w-3xl mx-auto"
+                        >
+                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                            погружение в культуру
+                          </span>
+                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                            эксклюзивный нетворкинг
+                          </span>
+                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                            лучшие бизнес-практики
+                          </span>
+                        </motion.div>
+                      </AnimatePresence>
+                    <div className="translate-y-14 md:translate-y-24">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`cta-${index}`}
+                          initial={{ opacity: 0, y: 30 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                          className="flex flex-wrap gap-4 justify-center mb-12"
+                        >
+                          <button
+                            onClick={() => setIsRequestModalOpen(true)}
+                            className="group cursor-pointer px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20"
+                          >
+                            <FlipText className="flex items-center justify-center">СТАТЬ УЧАСТНИКОМ</FlipText>
+                          </button>
+
+                          <Link
+                            href={`/expeditions/${expedition.slug}`}
+                            className="group px-8 py-2.5 rounded-full font-medium bg-transparent text-white/90 border-2 border-white/30 hover:bg-white/10 hover:text-white hover:border-[#F7931A] hover:scale-[1.02] transition-all duration-300"
+                          >
+                            <FlipText className="flex items-center justify-center">ПОДРОБНЕЕ</FlipText>
+                          </Link>
+                        </motion.div>
+                      </AnimatePresence>
+
+                      {/* 🔸 Cookies блок */}
+                      <AnimatePresence>
+                        {!cookiesAccepted && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20, transition: { duration: 0.3 } }}
+                            transition={{ delay: 0.8, duration: 0.4 }}
+                            className="flex flex-nowrap items-center justify-between gap-2 md:gap-3 bg-black/60 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full text-white/80 text-[10px] md:text-xs max-w-2xl mx-auto"
+                          >
+                            <span className="text-white/60 text-center sm:text-left flex-1">
+                              Мы используем <span className="text-[#F7931A] font-medium">cookies</span>. Продолжая работу с сайтом, вы соглашаетесь с нашей{' '}
+                              <Link 
+                                href="/privacy" 
+                                className="text-[#F7931A] hover:text-[#FFA733] underline hover:no-underline font-medium"
+                              >
+                                политикой конфиденциальности.
+                              </Link>
+                            </span>
+                            <button 
+                              onClick={handleAcceptCookies}
+                              className="bg-[#F39200] text-white px-4 py-1.5 rounded-full hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#F39200]/30 hover:scale-[1.02] transition-all duration-300 font-medium whitespace-nowrap flex-shrink-0 shadow-lg"
+                            >
+                              OK
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
 
                   </div>
                 </div>

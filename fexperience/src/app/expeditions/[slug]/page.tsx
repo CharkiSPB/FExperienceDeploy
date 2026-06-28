@@ -127,10 +127,19 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {/*  FULL-WIDTH HERO */}
       {/* ========================================== */}
       <style>{`
-        @media (max-height: 640px) {
+        @media (max-height: 820px) {
           .expedition-hero-content {
-            padding-bottom: 3rem;
+            padding-bottom: 2rem;
           }
+          .ehc-titlewrap > :last-child {
+            margin-top: 0.5rem;
+          }
+          .ehc-upcoming-gap {
+            gap: 1.5rem;
+          }
+        }
+
+        @media (max-height: 640px) {
           .ehc-spotswrap {
             margin-bottom: 0.25rem;
           }
@@ -172,7 +181,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
           }
         }
       `}</style>
-      <div className={`relative ${isUpcoming ? 'h-screen' : 'h-[85vh]'} bg-[#1A1A1A]`}>
+      <div className={`relative ${isUpcoming ? 'h-screen' : 'h-[90vh]'} bg-[#1A1A1A]`}>
         <HeroImageSwitch
           dayImage={expedition.image}
           eveningImage={expedition.imageEvening}
@@ -182,7 +191,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
         />
         <div className="absolute inset-0 bg-black/30" />
         
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-12 md:pb-24 expedition-hero-content">
+        <div className={`absolute inset-0 z-20 flex flex-col justify-end pb-12 ${isUpcoming ? 'md:pb-20' : 'md:pb-52'} expedition-hero-content`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {expedition.spots && expedition.spots > 0 && (
               <div className="flex justify-center mb-3 md:mb-6 ehc-spotswrap">
@@ -192,10 +201,10 @@ export default async function ExpeditionDetailPage({ params }: Props) {
               </div>
             )}
 
-            <div className="text-center mb-4 md:mb-8 ehc-titlewrap">
-              <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4">{expedition.dates}</div>
-              <h1 className="text-xl md:text-3xl xxl:text-5xl font-serif font-bold text-white leading-tight mb-2 md:mb-4">
-                {expedition.title}<br /><span className="inline-flex items-center justify-center gap-1.5 text-base md:text-2xl xxl:text-3xl">
+            <div className="text-center mb-4 md:mb-8 xxl:mb-12 ehc-titlewrap">
+              <div className="text-base md:text-lg xxl:text-xl text-white/90 mb-2 md:mb-4 xxl:mb-6">{expedition.dates}</div>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl xxl:text-6xl font-serif font-bold text-white leading-tight mb-8 md:mb-10 xxl:mb-14">
+                {expedition.title}<br /><span className="inline-flex items-center justify-center gap-1.5 text-base md:text-2xl lg:text-2xl xl:text-3xl">
                 <span>с</span>
                 <Image
                   src="/images/forbes-logo-white.svg"
@@ -206,33 +215,22 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                 />
               </span>
               </h1>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs md:text-sm xxl:text-base font-medium text-white/80 max-w-3xl mx-auto leading-relaxed mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                <span>погружение в культуру</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                <span>эксклюзивный нетворкинг</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#F7931A] flex-shrink-0" />
-                <span>лучшие бизнес-практики</span>
-              </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 xxl:gap-6 max-w-4xl mx-auto mb-6 md:mb-8 xxl:mb-10 ehc-gridwrap">
+                <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                  <p className="text-white text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">погружение</p>
+                  <p className="text-[#FF8800] text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">в культуру</p>
+                </div>
+                <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                  <p className="text-white text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">эксклюзивный</p>
+                  <p className="text-[#FF8800] text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">нетворкинг</p>
+                </div>
+                <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
+                  <p className="text-white text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">лучшие</p>
+                  <p className="text-[#FF8800] text-sm md:text-base xxl:text-lg font-medium leading-tight uppercase">бизнес-практики</p>
+                </div>
+              </div>
               {isUpcoming && <UpcomingCta expeditionSlug={slug} />}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto mb-16 md:mb-8 ehc-gridwrap">
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
-                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Продолжительность</p>
-                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.duration || '5'} дней</p>
-              </div>
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
-                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Кол-во участников</p>
-                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">{expedition.participantsCount || '15-30'} человек</p>
-              </div>
-              <div className="bg-black/40 backdrop-blur-md border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 xxl:p-6 text-center">
-                <p className="text-[10px] md:text-xs xxl:text-sm text-white/90 mb-0.5 md:mb-1 uppercase tracking-wide">Статус</p>
-                <p className="text-base md:text-2xl xxl:text-3xl font-serif font-bold uppercase text-[#FF8800]">
-                  {expedition.status === 'active' ? 'Сбор заявок' : expedition.status === 'completed' ? 'Завершена' : 'Скоро'}
-                </p>
-              </div>
             </div>
 
             <div className="hidden md:flex justify-center md:justify-end ehc-ctawrap">
