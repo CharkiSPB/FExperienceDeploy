@@ -87,7 +87,7 @@ export function Hero() {
               <div className="relative z-10 h-full flex items-center">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center                     justify-center pt-8 md:pt-10 pb-8 font-bold font-serif">
                   
-                  <div className="max-w-4xl text-center w-full">
+                  <div className="max-w-4xl text-center flex flex-col items-center w-full">
                       {/* 🔸 Оранжевая плашка с количеством мест */}
                       {expedition.spots && (
                         <motion.div
@@ -124,7 +124,7 @@ export function Hero() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                          className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif font-bold text-white leading-tight mb-10"
+                          className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif font-medium text-white leading-tight mb-10"
                         >
                           <span className="hidden md:block whitespace-nowrap">
                             {expedition.title}
@@ -142,7 +142,7 @@ export function Hero() {
                               alt="Forbes"
                               width={110}
                               height={26}
-                              className="h-6 lg:h-7 w-auto"
+                              className="h-6 lg:h-7 w-auto translate-y-[-1px]"
                             />
                           </span>
                         </motion.h1>

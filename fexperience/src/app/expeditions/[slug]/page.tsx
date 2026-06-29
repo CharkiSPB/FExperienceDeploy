@@ -211,7 +211,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
                   alt="Forbes"
                   width={110}
                   height={26}
-                  className="h-5 md:h-7 xxl:h-8 w-auto"
+                  className="h-5 md:h-7 xxl:h-8 w-auto translate-y-[-3px]"
                 />
               </span>
               </h1>

@@ -90,13 +90,13 @@ export function Header() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center relative">
         {/* 🔹 ЛЕВАЯ ЧАСТЬ: Навигация */}
         <nav className="hidden xl:flex items-center gap-6 ml-32 xl:ml-16">
-          <Link href="/about" className="group flex items-center text-sm text-white/80 whitespace-nowrap">
+          <Link href="/about" className="group flex items-center text-sm text-white/90 whitespace-nowrap">
             <FlipText>О нас</FlipText>
           </Link>
           
           <Dropdown
             trigger={
-              <button className="group cursor-pointer flex items-center gap-1 text-sm text-white/80 hover:text-white transition-colors focus:outline-none whitespace-nowrap">
+              <button className="group cursor-pointer flex items-center gap-1 text-sm text-white/90 hover:text-white transition-colors focus:outline-none whitespace-nowrap">
                 <FlipText>Экспедиции</FlipText> <ChevronDown className="w-3 h-3" />
               </button>
             }
@@ -143,7 +143,7 @@ export function Header() {
             ]}
           />
           
-          <a href="/#why" onClick={(e) => scrollToHash(e, '#why')} className="group flex items-center text-sm text-white/80 whitespace-nowrap hover:text-white transition-colors cursor-pointer">
+          <a href="/#why" onClick={(e) => scrollToHash(e, '#why')} className="group flex items-center text-sm text-white/90 whitespace-nowrap hover:text-white transition-colors cursor-pointer">
             <FlipText>Почему FExperience</FlipText>
           </a>
         </nav>
@@ -162,9 +162,9 @@ export function Header() {
 
         {/* 🔹 ПРАВАЯ ЧАСТЬ: Навигация + Telegram + Кнопка */}
         <div className="hidden xl:flex items-center gap-6 xl:gap-4 ml-auto">
-          <Link href="/articles" className="group flex items-center text-sm text-white/80 whitespace-nowrap"><FlipText>Статьи</FlipText></Link>
-          <a href="/#reviews" onClick={(e) => scrollToHash(e, '#reviews')} className="group flex items-center text-sm text-white/80 whitespace-nowrap hover:text-white transition-colors cursor-pointer"><FlipText>Отзывы</FlipText></a>
-          <a href="/#contacts" onClick={(e) => scrollToHash(e, '#contacts')} className="group flex items-center text-sm text-white/80 hover:text-white transition-colors cursor-pointer"><FlipText>Контакты</FlipText></a>
+          <Link href="/articles" className="group flex items-center text-sm text-white/90 whitespace-nowrap"><FlipText>Статьи</FlipText></Link>
+          <a href="/#reviews" onClick={(e) => scrollToHash(e, '#reviews')} className="group flex items-center text-sm text-white/90 whitespace-nowrap hover:text-white transition-colors cursor-pointer"><FlipText>Отзывы</FlipText></a>
+          <a href="/#contacts" onClick={(e) => scrollToHash(e, '#contacts')} className="group flex items-center text-sm text-white/90 hover:text-white transition-colors cursor-pointer"><FlipText>Контакты</FlipText></a>
 
           <span className="w-px h-5 bg-white/10" />
 
@@ -172,7 +172,7 @@ export function Header() {
             href="https://t.me/Milena_Amor" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-[#A0A0A0] hover:text-white transition-colors"
+            className="text-[#FFFFFF] hover:text-[#FF8800] transition-colors"
           >
             <Send className="w-5 h-5" />
           </Link>

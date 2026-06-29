@@ -38,7 +38,7 @@ export const expeditions: Expedition[] = [
     slug: 'vietnam',
     title: 'Бизнес-экспедиция во Вьетнам',
     country: 'Вьетнам',
-    dates: 'февраль 2026',
+    dates: '14-20 марта 2027',
     status: 'active',
     description: '',
     image: '/images/expeditions/vietnam.webp',
@@ -63,7 +63,7 @@ export const expeditions: Expedition[] = [
     // additionalInfo: 'Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов. Вы занимаетесь бизнесом и нетворкингом - обо всём остальном позаботится команда FExperience.',
     showDatesInMenu: true,
     timer: {
-    enabled: true,
+    enabled: false,
     targetDate: '2026-10-11T00:00:00Z', // ISO-формат даты начала
     label: 'До старта экспедиции во Вьетнам',
   },
