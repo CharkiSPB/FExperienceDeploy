@@ -47,7 +47,7 @@ function TimerUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-export function CountdownTimer({ expeditionSlug = 'vietnam' }: CountdownTimerProps) {
+export function CountdownTimer({ expeditionSlug = 'south-africa' }: CountdownTimerProps) {
   //  Находим экспедицию по slug (или берем Вьетнам по умолчанию)
   const expedition = useMemo(
     () => expeditions.find(e => e.slug === expeditionSlug),
