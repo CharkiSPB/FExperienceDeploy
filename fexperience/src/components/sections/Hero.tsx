@@ -142,7 +142,7 @@ export function Hero() {
                               alt="Forbes"
                               width={110}
                               height={26}
-                              className="h-6 lg:h-7 w-auto translate-y-[-1.5px]"
+                              className="h-6 lg:h-7 w-auto"
                             />
                           </span>
                         </motion.h1>

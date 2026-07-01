@@ -6,10 +6,10 @@ import { YandexMetrika } from '@/components/shared/YandexMetrika';
 
 const helveticaSans = localFont({
   src: [
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Roman.otf', weight: '400', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.otf', weight: '500', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.otf', weight: '700', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Light.otf', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Roman.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Light.woff2', weight: '300', style: 'normal' },
   ],
   variable: '--font-sans',
   display: 'swap',
@@ -17,14 +17,15 @@ const helveticaSans = localFont({
 
 const helveticaSerif = localFont({
   src: [
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Roman.otf', weight: '400', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.otf', weight: '500', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.otf', weight: '700', style: 'normal' },
-    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Light.otf', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Roman.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/HelveticaNeue/HelveticaNeueCyr-Light.woff2', weight: '300', style: 'normal' },
   ],
   variable: '--font-serif',
   display: 'swap',
 });
+
 
 export const metadata: Metadata = {
   title: { template: '%s | FExperience', default: 'Бизнес-экспедиции с Forbes | FExperience' },
