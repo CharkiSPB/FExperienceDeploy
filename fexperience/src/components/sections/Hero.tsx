@@ -126,48 +126,101 @@ export function Hero() {
                           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                           className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif font-medium text-white leading-tight mb-10"
                         >
-                          <span className="hidden md:block whitespace-nowrap">
-                            {expedition.title}
-                          </span>
-                          <span className="block md:hidden whitespace-nowrap">
-                            {expedition.title.split(' ')[0]}
-                          </span>
-                          <span className="block md:hidden mt-2">
-                            {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
-                          </span>
-                          <span className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-normal mt-2">
-                            <span>с</span>
-                            <Image
-                              src="/images/forbes-logo-white.svg"
-                              alt="Forbes"
-                              width={110}
-                              height={26}
-                              className="h-6 lg:h-7 w-auto"
-                            />
-                          </span>
+                          {expedition.slug === 'new-delhi' ? (
+                            <>
+                              {/* New Delhi: Forbes logo within title text */}
+                              <span className="hidden md:block whitespace-nowrap">
+                                <span>Деловой ужин </span>
+                                <Image
+                                  src="/images/forbes-logo-white.svg"
+                                  alt="Forbes"
+                                  width={160}
+                                  height={38}
+                                  className="inline-block h-[0.8em] w-auto align-middle relative -top-[0.1em]"
+                                />
+                                <span> в Индии</span>
+                              </span>
+                              <span className="block md:hidden">
+                                <span>Деловой </span>
+                                <Image
+                                  src="/images/forbes-logo-white.svg"
+                                  alt="Forbes"
+                                  width={120}
+                                  height={28}
+                                  className="inline-block h-[0.8em] w-auto align-middle relative -top-[0.1em]"
+                                />
+                              </span>
+                              <span className="block md:hidden mt-2">
+                                <span>ужин </span>
+                                <Image
+                                  src="/images/forbes-logo-white.svg"
+                                  alt="Forbes"
+                                  width={120}
+                                  height={28}
+                                  className="inline-block h-[0.8em] w-auto align-middle relative -top-[0.1em]"
+                                />
+                                <span> в Индии</span>
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="hidden md:block whitespace-nowrap">
+                                {expedition.title}
+                              </span>
+                              <span className="block md:hidden whitespace-nowrap">
+                                {expedition.title.split(' ')[0]}
+                              </span>
+                              <span className="block md:hidden mt-2">
+                                {expedition.title.substring(expedition.title.indexOf(' ') + 1)}
+                              </span>
+                              <span className="flex items-center justify-center gap-1.5 text-2xl lg:text-3xl font-normal mt-2">
+                                <span>с</span>
+                                <Image
+                                  src="/images/forbes-logo-white.svg"
+                                  alt="Forbes"
+                                  width={110}
+                                  height={26}
+                                  className="h-6 lg:h-7 w-auto"
+                                />
+                              </span>
+                            </>
+                          )}
                         </motion.h1>
                       </AnimatePresence>
 
-                      {/* 🔸 Тезисы */}
+                      {/* 🔸 Тезисы / подзаголовок */}
                       <AnimatePresence mode="wait">
-                        <motion.div
-                          key={`p-${index}`}
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -20 }}
-                          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                          className="flex flex-wrap items-center justify-center gap-3 mb-8 max-w-3xl mx-auto"
-                        >
-                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
-                            погружение в культуру
-                          </span>
-                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
-                            эксклюзивный нетворкинг
-                          </span>
-                          <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
-                            лучшие бизнес-практики
-                          </span>
-                        </motion.div>
+                        {expedition.description ? (
+                          <motion.p
+                            key={`p-${index}`}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl mx-auto mb-8"
+                          >
+                            {expedition.description}
+                          </motion.p>
+                        ) : (
+                          <motion.div
+                            key={`p-${index}`}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            className="flex flex-wrap items-center justify-center gap-3 mb-8 max-w-3xl mx-auto"
+                          >
+                            <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                              погружение в культуру
+                            </span>
+                            <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                              эксклюзивный нетворкинг
+                            </span>
+                            <span className="px-4 py-2 rounded-xl bg-white/5 backdrop-blur-xl border border-white/30 text-xs md:text-sm font-medium text-white uppercase tracking-wide">
+                              лучшие бизнес-практики
+                            </span>
+                          </motion.div>
+                        )}
                       </AnimatePresence>
                     <div className="translate-y-14 md:translate-y-24">
                       <AnimatePresence mode="wait">

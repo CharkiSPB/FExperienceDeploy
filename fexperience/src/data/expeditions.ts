@@ -2,6 +2,21 @@ import { Expedition } from '@/types/expedition';
 
 export const expeditions: Expedition[] = [
   {
+    slug: 'new-delhi',
+    title: 'Деловой ужин Forbes в Индии',
+    country: 'Индия',
+    dates: '10 сентября 2026, Нью-Дели',
+    status: 'active',
+    description: 'За кулисами успешных кейсов: то, о чем молчат цифры',
+    image: '/images/newDeli/newDeli-bg.jpg',
+    showDatesInMenu: false,
+    includes: [
+      'ВИП-билет участника|выставки',
+      'Деловой ужин|Forbes',
+      'Медийное|сопровождение',
+    ],
+  },
+  {
     slug: 'south-africa',
     title: 'Бизнес-экспедиция в ЮАР ',
     country: 'ЮАР',
