@@ -142,13 +142,13 @@ export function Hero() {
                               </span>
                               <span className="block md:hidden">
                                 <span>Деловой </span>
-                                <Image
+                                {/* <Image
                                   src="/images/forbes-logo-white.svg"
                                   alt="Forbes"
                                   width={120}
                                   height={28}
                                   className="inline-block h-[0.8em] w-auto align-middle relative -top-[0.1em]"
-                                />
+                                /> */}
                               </span>
                               <span className="block md:hidden mt-2">
                                 <span>ужин </span>
