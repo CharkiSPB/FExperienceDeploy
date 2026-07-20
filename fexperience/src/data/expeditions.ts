@@ -23,7 +23,7 @@ export const expeditions: Expedition[] = [
     dates: '15-21 ноября 2026',
     status: 'active',
     description: '',
-    image: '/images/expeditions/south-africaD.webp',
+    image: '/images/expeditions/south-africaC.webp',
     videoUrl: 'https://www.youtube.com/watch?v=example2',
     // speakersCount: 12,
     programSlug: 'sa-program',
