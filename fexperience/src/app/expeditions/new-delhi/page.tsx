@@ -120,6 +120,125 @@ export default function NewDelhiExpeditionPage() {
 
       <NewDelhiMap />
 
+      {/* Experience блок */}
+      <section className="relative h-[526px] w-[100%] overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/newDeli/newDeliExperience2.webp"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Top gradient: smooth transition from map (dark top → transparent) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000004] to-transparent" />
+
+        {/* Bottom gradient: smooth transition to next section (dark bottom → transparent) */}
+        <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-[#000004] to-transparent" />
+
+        {/* Content */}
+        <div className="relative z-10 h-full flex">
+          {/* Left — image, прижат к левому краю экрана */}
+          <div className="w-[45%] relative overflow-hidden">
+            <Image
+              src="/images/newDeli/newDeliExperience1.webp"
+              alt=""
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#000004] to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#000004]/40" />
+            <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-[#000004] to-transparent" />
+          </div>
+
+          {/* Right — text */}
+          <div className="flex-1 flex items-start pt-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-lg">
+              <h2 className="uppercase font-bold text-[61px] leading-none">
+                <span className="text-[#FF6F00]">Только</span>
+                <br />
+                <span className="text-white">experience</span>
+              </h2>
+              <p className="text-white font-roman text-[21px] leading-relaxed mt-6">
+                С нами у вас есть уникальная возможность не просто посетить главную промышленную выставку года, а стать частью эксклюзивной программы Forbes, где крупнейшие российские компании поделятся своим опытом ведения бизнеса на одном из самых сложных рынков мира.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Градиентная линия */}
+      <div className="h-2 w-full bg-gradient-to-r from-[#C95A00] to-[#C97500] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.9)]" />
+
+      {/* Деловой ужин блок */}
+      <section className="relative h-screen w-full overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/newDeli/newDeliUzin.webp"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        {/* Top gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000004] to-transparent" />
+
+        {/* Bottom gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#000004] to-transparent" />
+
+        {/* Content */}
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-full items-center">
+            <div className="w-full lg:w-1/2">
+              {/* Forbes logo */}
+              <Image
+                src="/images/forbes-logo-white.svg"
+                alt="Forbes"
+                width={285}
+                height={73}
+              />
+
+              {/* Title */}
+              <h2 className="text-[#FF6F00] font-roman text-[64.12px] leading-tight mt-4">
+                деловой ужин
+              </h2>
+
+              {/* Description */}
+              <p className="text-white font-roman text-[21px] mt-6 leading-relaxed max-w-xl">
+                Закрытое мероприятие. Мы собираем за одним столом тех, кто определяет экономическую повестку в регионе:
+              </p>
+
+              {/* Digital blocks with vertical divider */}
+              <div className="flex items-stretch mt-8">
+                {/* Left block — 80% */}
+                <div>
+                  <div className="text-white text-[48px] font-bold leading-none">80%</div>
+                  <div className="text-[#FF6F00] text-[24.45px] font-bold uppercase mt-1">бизнес</div>
+                  <div className="text-white font-roman text-[21px] mt-2 leading-tight">
+                    российские корпорации;<br />
+                    крупнейшие индийские<br />
+                    предприниматели
+                  </div>
+                </div>
+
+                {/* Vertical divider */}
+                <div className="w-[2px] bg-white self-stretch mx-[49px]" />
+
+                {/* Right block — 20% */}
+                <div>
+                  <div className="text-white text-[48px] font-bold leading-none">20%</div>
+                  <div className="text-[#FF6F00] text-[24.45px] font-bold uppercase mt-1">государство</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Форма заявки перед подвалом */}
       <section id="form" className="py-20 px-4">
         <div className="max-w-2xl mx-auto">
