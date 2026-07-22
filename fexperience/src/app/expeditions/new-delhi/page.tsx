@@ -104,13 +104,13 @@ export default function NewDelhiExpeditionPage() {
                   height={39.16}
                   className="h-8 w-auto object-contain"
                 />
-                <Image
+                {/* <Image
                   src="/images/newDeli/logoInoprom.svg"
                   alt="Иннопром"
                   width={144}
                   height={41}
                   className="h-8 w-auto object-contain"
-                />
+                /> */}
               </div>
 
             </div>
