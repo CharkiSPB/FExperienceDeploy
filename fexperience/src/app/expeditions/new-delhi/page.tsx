@@ -90,9 +90,8 @@ export default function NewDelhiExpeditionPage() {
               </div>
 
               {/* Текст под кнопкой */}
-              <p className="text-white text-sm md:text-base mb-4 uppercase tracking-wide font-bold">
-                Закрытое мероприятие Forbes.{' '}
-                <span className="text-[#FF6F00]">Количество мест ограничено.</span>
+              <p className="text-[#FF6F00] text-sm md:text-base mb-4 uppercase tracking-wide font-bold">
+                Количество мест ограничено
               </p>
 
               {/* Логотипы */}
@@ -156,12 +155,12 @@ export default function NewDelhiExpeditionPage() {
           {/* Right — text */}
           <div className="flex-1 flex items-start pt-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-lg">
-              <h2 className="uppercase font-bold text-[61px] leading-none">
+              <h2 className="uppercase font-bold text-3xl lg:text-[61px] leading-none">
                 <span className="text-[#FF6F00]">Только</span>
                 <br />
                 <span className="text-white">experience</span>
               </h2>
-              <p className="text-white font-roman text-[21px] leading-relaxed mt-6">
+              <p className="text-white font-roman text-sm lg:text-[21px] leading-relaxed mt-6">
                 С нами у вас есть уникальная возможность не просто посетить главную промышленную выставку года, а стать частью эксклюзивной программы Forbes, где крупнейшие российские компании поделятся своим опытом ведения бизнеса на одном из самых сложных рынков мира.
               </p>
             </div>
@@ -171,6 +170,89 @@ export default function NewDelhiExpeditionPage() {
 
       {/* Градиентная линия */}
       <div className="h-2 w-full bg-gradient-to-r from-[#C95A00] to-[#C97500] shadow-[0_4px_6px_-2px_rgba(0,0,0,0.9)]" />
+
+      {/* Плавающий блок карточек — на стыке Experience и Деловой ужин */}
+      <div className="hidden lg:block relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-0">
+        <div className="absolute w-[804px] h-[204px] -top-[102px] right-12 rounded-[14px] overflow-hidden">
+          {/* Layer 0 — подложка 1sloi.webp */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/newDeli/1sloi.webp"
+              alt=""
+              fill
+              className="object-cover"
+            />
+          </div>
+          {/* Layer 1 — фон keis.webp */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/newDeli/keis.webp"
+              alt=""
+              fill
+              className="object-cover opacity-[0.36]"
+            />
+          </div>
+          {/* Layer 2 — затемнение #151D00 */}
+          <div className="absolute inset-0 bg-[#151D00]/67" />
+          {/* Top gradient — затемнение сверху 76px */}
+          <div className="absolute top-0 left-0 right-0 h-[76px] bg-gradient-to-b from-[#000004]/80 to-transparent" />
+          
+          {/* Layer 3 — карточки */}
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-[14px] gap-[10px]">
+            {/* Card 1 */}
+            <div className="relative w-[253px] h-[176px] rounded-[14px] overflow-hidden">
+              <Image
+                src="/images/newDeli/keis1.webp"
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0" />
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
+                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">за кулисами</span>
+                <span className="text-white text-[24.45px] font-bold leading-tight">успешных</span>
+                <span className="text-white text-[24.45px] font-bold leading-tight">кейсов</span>
+                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight mt-4">то, о чем молчат</span>
+                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight">цифры</span>
+              </div>
+            </div>
+            {/* Card 2 */}
+            <div className="relative w-[253px] h-[176px] rounded-[14px] overflow-hidden">
+              <Image
+                src="/images/newDeli/keis2.webp"
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0" />
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
+                <span className="text-white text-[24.45px] font-bold leading-tight">комфортный</span>
+                <span className="text-white text-[24.45px] font-bold leading-tight">экспертный</span>
+                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">нетворкинг</span>
+                <span className="text-white text-[18px] font-roman leading-tight mt-4.5">на уровне решений,</span>
+                <span className="text-white text-[18px] font-roman leading-tight">а не визиток</span>
+              </div>
+            </div>
+            {/* Card 3 */}
+            <div className="relative w-[253px] h-[176px] rounded-[14px] overflow-hidden">
+              <Image
+                src="/images/newDeli/keis3.webp"
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0" />
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
+                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">вход</span>
+                <span className="text-white text-[24.45px] font-bold leading-tight">на рынок</span>
+                <span className="text-white text-[24.45px] font-bold leading-tight">индии</span>
+                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight mt-4">через доверие</span>
+                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight">и личные контакты</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Деловой ужин блок */}
       <section className="relative h-screen w-full overflow-hidden">
@@ -200,29 +282,30 @@ export default function NewDelhiExpeditionPage() {
                 alt="Forbes"
                 width={285}
                 height={73}
+                className="w-40 lg:w-[285px] h-auto"
               />
 
               {/* Title */}
-              <h2 className="text-[#FF6F00] font-roman text-[64.12px] leading-tight mt-4">
+              <h2 className="text-[#FF6F00] font-roman text-3xl lg:text-[64.12px] leading-tight mt-4">
                 деловой ужин
               </h2>
 
               {/* Description */}
-              <p className="text-white font-roman text-[21px] mt-6 leading-relaxed max-w-xl">
-                Закрытое мероприятие. Мы собираем за одним столом тех, кто определяет экономическую повестку в регионе:
+              <p className="text-white font-roman text-sm lg:text-[21px] mt-6 leading-relaxed max-w-xl">
+                Мы собираем за одним столом тех, кто определяет экономическую повестку в регионе:
               </p>
 
               {/* Digital blocks with vertical divider */}
               <div className="flex items-stretch mt-8">
                 {/* Left block — 80% */}
                 <div>
-                  <div className="text-white text-[48px] font-bold leading-none">80%</div>
-                  <div className="text-[#FF6F00] text-[24.45px] font-bold uppercase mt-1">бизнес</div>
-                  <div className="text-white font-roman text-[21px] mt-2 leading-tight">
+                  <div className="text-white text-3xl lg:text-[48px] font-bold leading-none">80%</div>
+                  <div className="text-[#FF6F00] text-lg lg:text-[24.45px] font-bold uppercase mt-1">бизнес</div>
+                  {/* <div className="text-white font-roman text-[21px] mt-2 leading-tight">
                     российские корпорации;<br />
                     крупнейшие индийские<br />
                     предприниматели
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Vertical divider */}
@@ -230,8 +313,8 @@ export default function NewDelhiExpeditionPage() {
 
                 {/* Right block — 20% */}
                 <div>
-                  <div className="text-white text-[48px] font-bold leading-none">20%</div>
-                  <div className="text-[#FF6F00] text-[24.45px] font-bold uppercase mt-1">государство</div>
+                  <div className="text-white text-3xl lg:text-[48px] font-bold leading-none">20%</div>
+                  <div className="text-[#FF6F00] text-lg lg:text-[24.45px] font-bold uppercase mt-1">государство</div>
                 </div>
               </div>
             </div>
