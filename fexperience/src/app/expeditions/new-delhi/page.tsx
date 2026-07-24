@@ -322,18 +322,151 @@ export default function NewDelhiExpeditionPage() {
         </div>
       </section>
 
-      {/* Форма заявки перед подвалом */}
-      <section id="form" className="py-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            Оставьте заявку
-          </h2>
-          <p className="text-white/60 text-center mb-10">
-            Заполните форму, и мы свяжемся с вами для подтверждения участия
-          </p>
-          <ExpeditionForm />
+      {/* Стоимость + форма — общий фон до футера */}
+      <div className="relative">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/newDeli/bgStoimostDeli.webp"
+            alt=""
+            fill
+            className="object-cover"
+          />
+          <div className="absolute top-0 left-0 right-0 h-[123px] bg-gradient-to-b from-[#000004] to-transparent mix-blend-multiply" />
         </div>
-      </section>
+
+        <div className="relative z-10">
+          {/* Стоимость */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+            <div className="flex flex-col lg:flex-row lg:justify-between items-start gap-6 lg:gap-8">
+              <h2 className="text-white text-[32px] lg:text-[48px] font-bold shrink-0 mt-2 uppercase">стоимость</h2>
+
+              <div className="flex flex-col lg:flex-row gap-[16px] lg:gap-[45px] w-full lg:w-auto">
+                <div className="relative w-full lg:w-[346px] h-[140px] lg:h-[187px] rounded-[14px] overflow-hidden">
+                  <Image
+                    src="/images/newDeli/stoimostCart1.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-center p-4 lg:p-5">
+                    <p className="text-[20px] lg:text-[24px] font-bold uppercase">
+                      <span className="text-white">до </span>
+                      <span className="text-[#FF6F00]">13 августа</span>
+                    </p>
+                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">400 000 Р</p>
+                    <p className="text-[#898989] text-[14px] lg:text-[18px] font-light">(вкл. НДС)</p>
+                  </div>
+                </div>
+
+                <div className="relative w-full lg:w-[346px] h-[140px] lg:h-[187px] rounded-[14px] overflow-hidden">
+                  <Image
+                    src="/images/newDeli/stoimostCart1.webp"
+                    alt=""
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-center p-4 lg:p-5">
+                    <p className="text-[20px] lg:text-[24px] font-bold uppercase">
+                      <span className="text-white">после </span>
+                      <span className="text-[#FF6F00]">13 августа</span>
+                    </p>
+                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">500 000 Р</p>
+                    <p className="text-[#898989] text-[14px] lg:text-[18px] font-light">(вкл. НДС)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Что включено */}
+            <div className="mt-[120px] lg:mt-[186px] pb-16">
+              <div className="relative w-full min-h-[250px] lg:min-h-[550px] rounded-[14px] overflow-hidden">
+                <div className="absolute inset-0 bg-[#000004]/59 backdrop-blur-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+                <div className="relative z-10 px-4 lg:px-0 pb-6 lg:pb-0">
+                  <div className="text-center mt-6 lg:mt-8 uppercase">
+                    <span className="text-[#FF6F00] text-[24px] lg:text-[31.86px] font-bold">что </span>
+                    <span className="text-white text-[24px] lg:text-[31.86px] font-bold">включено</span>
+                  </div>
+
+                  <div className="lg:pl-8 mt-6 lg:mt-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-[363px_363px] gap-[16px] lg:gap-[21px] justify-items-center lg:justify-items-start">
+                      <div className="relative w-full max-w-[363px] lg:w-[363px] h-[140px] lg:h-[173px] rounded-[14px] overflow-hidden bg-[#000004]/59 backdrop-blur-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+                        <div className="relative z-10 h-full flex flex-col justify-between p-3 lg:p-4">
+                          <div>
+                            <span className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold">ВИП</span>
+                            <span className="text-white text-[20px] lg:text-[24px] font-bold">-БИЛЕТ</span>
+                          </div>
+                          <div>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">ВИП-билет участника</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">выставка «Иннопром. Индия»</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative w-full max-w-[363px] lg:w-[363px] h-[140px] lg:h-[173px] rounded-[14px] overflow-hidden bg-[#000004]/59 backdrop-blur-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+                        <div className="relative z-10 h-full flex flex-col justify-between p-3 lg:p-4">
+                          <div>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">МЕДИЙНОЕ</p>
+                            <p className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold leading-tight">СОПРОВОЖДЕНИЕ</p>
+                          </div>
+                          <div>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Материал на сайте и в</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">журнале Forbes.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative w-full max-w-[363px] lg:w-[363px] h-[180px] lg:h-[232px] rounded-[14px] overflow-hidden bg-[#000004]/59 backdrop-blur-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+                        <div className="relative z-10 h-full flex flex-col justify-between p-3 lg:p-4">
+                          <div>
+                            <p className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold leading-tight">ПРИГЛАШЕНИЕ</p>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">НА ЗАКРЫТЫЙ ДЕЛОВОЙ</p>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">УЖИН FORBES</p>
+                          </div>
+                          <div>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Эксклюзивный вечер с лидерами рынка.</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Честный разговор о реальных</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">стратегиях работы в Индии.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative w-full max-w-[363px] lg:w-[363px] h-[180px] lg:h-[232px] rounded-[14px] overflow-hidden bg-[#000004]/59 backdrop-blur-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+                        <div className="relative z-10 h-full flex flex-col justify-between p-3 lg:p-4">
+                          <div>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">ПОДТВЕРЖДЕННЫЙ</p>
+                            <p className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold leading-tight">СТАТУС ЭКСПЕРТА</p>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">FORBES</p>
+                          </div>
+                          <div>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Доступ к закрытому сообществу</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">лидеров и партнеров Forbes</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">FExperience.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Форма заявки перед подвалом */}
+          <section id="form" className="py-20 px-4">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+                Оставьте заявку
+              </h2>
+              <p className="text-white/60 text-center mb-10">
+                Заполните форму, и мы свяжемся с вами для подтверждения участия
+              </p>
+              <ExpeditionForm />
+            </div>
+          </section>
+        </div>
+      </div>
     </article>
   );
 }

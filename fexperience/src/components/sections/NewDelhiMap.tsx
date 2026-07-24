@@ -275,11 +275,17 @@ export function NewDelhiMap() {
 
       {/* 📱 Мобильная адаптация */}
       <div className="md:hidden w-full px-4 flex flex-col gap-6 py-8">
-        <div className="w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5">
-          <p className="text-white/70 text-sm leading-relaxed font-light">
-            Эксклюзивные программы бизнес-экспедиций FExperience разрабатываются с учетом специфики каждого региона.
-            <br /><br />
-            Благодаря участию в деловых мероприятиях, встречам с органами власти и местными предпринимателями, вы сможете оценить не только потенциал развития бизнеса, но и скрытые угрозы нового рынка.
+        <div className="w-full bg-black/5 backdrop-blur-xl border border-white/20 rounded-2xl p-5">
+          <h3 className="font-roman leading-none mb-1">
+            <span className="block text-white" style={{ fontSize: '28px' }}>
+              Индия — новый
+            </span>
+            <span className="block text-[#FF6F00]" style={{ fontSize: '28px' }}>
+              драйвер роста
+            </span>
+          </h3>
+          <p className="text-white/90 text-sm leading-relaxed font-light mt-4">
+            Сегодня Индия — одна из самых горячих точек на инвестиционной карте мира. Экономика региона развивается быстрее прогнозов, создавая колоссальный спрос на инфраструктурные проекты, цифровые платформы и долгосрочные вложения.
           </p>
         </div>
 
