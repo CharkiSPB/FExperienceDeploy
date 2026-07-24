@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { config } from '@/data/config';
 import { NewDelhiMap } from '@/components/sections/NewDelhiMap';
 import { NewDelhiHeroCta } from '@/components/sections/NewDelhiHeroCta';
 import { ExpeditionForm } from '@/components/shared/ExpeditionForm';
+import { FlipText } from '@/components/ui/FlipText';
 
 export const metadata: Metadata = {
   title: `Эксклюзивный деловой ужин Forbes в Индии | FExperience`,
@@ -273,8 +275,8 @@ export default function NewDelhiExpeditionPage() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#000004] to-transparent" />
 
         {/* Content */}
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-full items-center">
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+          <div className="flex-1 flex items-center">
             <div className="w-full lg:w-1/2">
               {/* Forbes logo */}
               <Image
@@ -301,11 +303,6 @@ export default function NewDelhiExpeditionPage() {
                 <div>
                   <div className="text-white text-3xl lg:text-[48px] font-bold leading-none">80%</div>
                   <div className="text-[#FF6F00] text-lg lg:text-[24.45px] font-bold uppercase mt-1">бизнес</div>
-                  {/* <div className="text-white font-roman text-[21px] mt-2 leading-tight">
-                    российские корпорации;<br />
-                    крупнейшие индийские<br />
-                    предприниматели
-                  </div> */}
                 </div>
 
                 {/* Vertical divider */}
@@ -318,6 +315,16 @@ export default function NewDelhiExpeditionPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Кнопка внизу блока */}
+          <div className="pb-12 md:pb-16 flex">
+            <Link
+              href="/expeditions/new-delhi#form"
+              className="group px-8 py-2.5 rounded-full font-medium bg-[#F39200] text-white border border-transparent hover:bg-[#FFA733] hover:scale-[1.02] hover:shadow-xl hover:shadow-[#F7931A]/30 transition-all duration-300 shadow-lg shadow-[#F7931A]/20 inline-flex"
+            >
+              <FlipText className="flex items-center justify-center">СТАТЬ УЧАСТНИКОМ</FlipText>
+            </Link>
           </div>
         </div>
       </section>
@@ -378,10 +385,21 @@ export default function NewDelhiExpeditionPage() {
             </div>
 
             {/* Что включено */}
-            <div className="mt-[120px] lg:mt-[186px] pb-16">
+            <div className="relative mt-[120px] lg:mt-[186px] pb-40">
+              {/* Декоративное изображение снаружи overflow-hidden — может выходить за края */}
+              <div className="hidden lg:block absolute -right-20 -top-52 z-20 w-[871px] h-[820px] pointer-events-none">
+                <Image
+                  src="/images/newDeli/GroupStoimost.webp"
+                  alt=""
+                  fill
+                  className="object-contain object-right-top"
+                />
+              </div>
+
               <div className="relative w-full min-h-[250px] lg:min-h-[550px] rounded-[14px] overflow-hidden">
-                <div className="absolute inset-0 bg-[#000004]/59 backdrop-blur-2xl" />
+            <div className="absolute inset-0 bg-[#000004]/59 backdrop-blur-2xl"/>
                 <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
+
                 <div className="relative z-10 px-4 lg:px-0 pb-6 lg:pb-0">
                   <div className="text-center mt-6 lg:mt-8 uppercase">
                     <span className="text-[#FF6F00] text-[24px] lg:text-[31.86px] font-bold">что </span>
@@ -453,9 +471,24 @@ export default function NewDelhiExpeditionPage() {
             </div>
           </div>
 
+          {/* Текст перед формой */}
+          <div className="text-center px-4 mb-8">
+            <p className="text-white text-[14px] md:text-[22px] font-bold uppercase leading-tight">
+              Для участия в программе оставьте заявку до 10 августа 2026,
+            </p>
+            <p className="text-white text-[14px] md:text-[22px] font-bold uppercase leading-tight">
+              и мы свяжемся с вами для обсуждения деталей.
+            </p>
+          </div>
+
           {/* Форма заявки перед подвалом */}
-          <section id="form" className="py-20 px-4">
-            <div className="max-w-2xl mx-auto">
+          <section id="form" className="relative pt-28 pb-20 px-4 overflow-hidden">
+            {/* Glass overlay: тёмное тонированное стекло */}
+            <div className="absolute inset-0 bg-[#000004]/15 backdrop-blur-lg" />
+            <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.03] to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
                 Оставьте заявку
               </h2>
