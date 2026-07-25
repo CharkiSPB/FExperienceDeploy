@@ -23,7 +23,7 @@ export function Footer() {
             onClick={() => setIsParticipantModalOpen(true)}
             className="bg-[#FF8800] text-white rounded-full py-3 px-8 flex flex-col items-center shadow-lg hover:bg-[#FFA733] hover:shadow-xl hover:shadow-[#FF8800]/30 transition-all duration-300 group w-fit cursor-pointer"
           >
-            <span className="text-sm md:text-base font-bold tracking-wide uppercase leading-none mb-1.5">
+            <span className="text-sm md:text-sm font-bold tracking-wide uppercase leading-none mb-1.5">
               <FlipText>УЗНАЙТЕ ПЕРВЫМИ</FlipText>
             </span>
             <span className="text-[10px] md:text-xs text-white/90 font-medium leading-none">
