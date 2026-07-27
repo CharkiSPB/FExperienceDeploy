@@ -115,7 +115,7 @@ export const programs: Record<string, ProgramDay[]> = {
       day: 5,
       title: '',
       description: 'День в Babylonstoren — исторической усадьбе, ставшей международным бизнесом премиального уровня. Экскурсия по винодельне, встреча с управляющим. А затем — «Говорят местные»: живой разговор с представителями локального бизнеса о стратегиях выхода, барьерах и реальных кейсах без прикрас.',
-      image: '/images/program/UarDay5.webp',
+      image: '/images/program/south-africa-day2.1.webp',
       schedule: [
         { time: '09:00', event: 'Завтрак' },
         { time: '10:00', event: 'Сессия: "План действий после экспедиции"' },

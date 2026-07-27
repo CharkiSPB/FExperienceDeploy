@@ -68,8 +68,9 @@ export default function NewDelhiExpeditionPage() {
             <div className="text-center">
 
               {/* Title — две строки */}
-              <h1 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl xxl:text-6xl font-serif font-roman text-white leading-tight mb-8 md:mb-10">
-                <div>Деловой ужин с{' '}
+              <h1 className="font-serif font-roman text-white leading-tight mb-8 md:mb-10">
+                <div className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl xxl:text-6xl">
+                  Деловой ужин с{' '}
                   <Image
                     src="/images/forbes-logo-white.svg"
                     alt="Forbes"
@@ -78,12 +79,14 @@ export default function NewDelhiExpeditionPage() {
                     className="inline-block h-[0.8em] w-auto align-middle relative -top-[0.1em]"
                   />
                 </div>
-                <div>Точка принятия решений</div>
+                <div className="text-xl md:text-xl lg:text-3xl xl:text-3xl xxl:text-4xl mt-2 uppercase">
+                  Точка принятия решений
+                </div>
               </h1>
 
               {/* Subtitle — uppercase, на шаг больше */}
               <p className="text-base md:text-2xl xxl:text-2xl text-white max-w-3xl mx-auto mb-16 md:mb-18 font-bold uppercase tracking-wide">
-                Уникальная возможность посетить выставку иннопром в Нью-Дели и попасть на закрытый деловой ужин с лидерами рынка индии
+                Уникальная возможность посетить выставку «Иннопром» в Нью-Дели и попасть на закрытый деловой ужин с лидерами рынка индии
               </p>
 
               {/* Кнопка — открывает модалку */}
@@ -105,13 +108,13 @@ export default function NewDelhiExpeditionPage() {
                   height={39.16}
                   className="h-8 w-auto object-contain"
                 />
-                {/* <Image
+                <Image
                   src="/images/newDeli/logoInoprom.svg"
                   alt="Иннопром"
                   width={144}
                   height={41}
                   className="h-8 w-auto object-contain"
-                /> */}
+                />
               </div>
 
             </div>
@@ -360,7 +363,7 @@ export default function NewDelhiExpeditionPage() {
                       <span className="text-white">до </span>
                       <span className="text-[#FF6F00]">13 августа</span>
                     </p>
-                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">400 000 Р</p>
+                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">400 000 ₽</p>
                     <p className="text-[#898989] text-[14px] lg:text-[18px] font-light">(вкл. НДС)</p>
                   </div>
                 </div>
@@ -377,7 +380,7 @@ export default function NewDelhiExpeditionPage() {
                       <span className="text-white">после </span>
                       <span className="text-[#FF6F00]">13 августа</span>
                     </p>
-                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">500 000 Р</p>
+                    <p className="text-white text-[36px] lg:text-[48px] font-roman mt-1 lg:mt-2 leading-none">500 000 ₽</p>
                     <p className="text-[#898989] text-[14px] lg:text-[18px] font-light">(вкл. НДС)</p>
                   </div>
                 </div>
@@ -417,7 +420,7 @@ export default function NewDelhiExpeditionPage() {
                           </div>
                           <div>
                             <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">ВИП-билет участника</p>
-                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">выставка «Иннопром. Индия»</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">выставки «Иннопром. Индия»</p>
                           </div>
                         </div>
                       </div>
@@ -438,9 +441,9 @@ export default function NewDelhiExpeditionPage() {
                         <div className="absolute inset-0 bg-gradient-to-tl from-white/[0.06] to-transparent" />
                         <div className="relative z-10 h-full flex flex-col justify-between p-3 lg:p-4">
                           <div>
-                            <p className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold leading-tight">ПРИГЛАШЕНИЕ</p>
-                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">НА ЗАКРЫТЫЙ ДЕЛОВОЙ</p>
-                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">УЖИН FORBES</p>
+                            <p className="text-[#FF6F00] text-[20px] lg:text-[24px] font-bold leading-tight">УЧАСТИЕ</p>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">В ЗАКРЫТОМ ДЕЛОВОМ</p>
+                            <p className="text-white text-[20px] lg:text-[24px] font-bold leading-tight">УЖИНЕ FORBES</p>
                           </div>
                           <div>
                             <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Эксклюзивный вечер с лидерами рынка.</p>

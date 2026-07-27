@@ -5,7 +5,7 @@ export const expeditions: Expedition[] = [
     slug: 'new-delhi',
     title: 'Деловой ужин Forbes в Индии',
     country: 'Индия',
-    dates: '10 сентября 2026, Нью-Дели',
+    dates: 'сентябрь 2026, Нью-Дели',
     status: 'active',
     description: 'За кулисами успешных кейсов: то, о чем молчат цифры',
     image: '/images/newDeli/newDeli-bg.jpg',
