@@ -213,12 +213,12 @@ export default function NewDelhiExpeditionPage() {
                 className="object-cover"
               />
               <div className="absolute inset-0" />
-              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
-                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">за кулисами</span>
-                <span className="text-white text-[24.45px] font-bold leading-tight">успешных</span>
-                <span className="text-white text-[24.45px] font-bold leading-tight">кейсов</span>
-                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight mt-4">то, о чем молчат</span>
-                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight">цифры</span>
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left uppercase">
+                <span className="text-[#FF6F00] text-[20.45px] font-bold leading-tight">за кулисами</span>
+                <span className="text-white text-[20.45px] font-bold leading-tight">успешных</span>
+                <span className="text-white text-[20.45px] font-bold leading-tight">кейсов</span>
+                <span className="text-[#FF6F00] text-[17px] font-roman leading-tight mt-4">то, о чем молчат</span>
+                <span className="text-[#FF6F00] text-[17px] font-roman leading-tight">цифры</span>
               </div>
             </div>
             {/* Card 2 */}
@@ -230,12 +230,12 @@ export default function NewDelhiExpeditionPage() {
                 className="object-cover"
               />
               <div className="absolute inset-0" />
-              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
-                <span className="text-white text-[24.45px] font-bold leading-tight">комфортный</span>
-                <span className="text-white text-[24.45px] font-bold leading-tight">экспертный</span>
-                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">нетворкинг</span>
-                <span className="text-white text-[18px] font-roman leading-tight mt-4.5">на уровне решений,</span>
-                <span className="text-white text-[18px] font-roman leading-tight">а не визиток</span>
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left uppercase">
+                <span className="text-white text-[20.45px] font-bold leading-tight">комфортный</span>
+                <span className="text-white text-[20.45px] font-bold leading-tight">экспертный</span>
+                <span className="text-[#FF6F00] text-[20.45px] font-bold leading-tight">нетворкинг</span>
+                <span className="text-white text-[17px] font-roman leading-tight mt-4.5">на уровне решений,</span>
+                <span className="text-white text-[17px] font-roman leading-tight">а не визиток</span>
               </div>
             </div>
             {/* Card 3 */}
@@ -247,12 +247,12 @@ export default function NewDelhiExpeditionPage() {
                 className="object-cover"
               />
               <div className="absolute inset-0" />
-              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left">
-                <span className="text-[#FF6F00] text-[24.45px] font-bold leading-tight">вход</span>
-                <span className="text-white text-[24.45px] font-bold leading-tight">на рынок</span>
-                <span className="text-white text-[24.45px] font-bold leading-tight">индии</span>
-                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight mt-4">через доверие</span>
-                <span className="text-[#FF6F00] text-[18px] font-roman leading-tight">и личные контакты</span>
+              <div className="absolute inset-0 flex flex-col items-left justify-center px-6 text-left uppercase">
+                <span className="text-[#FF6F00] text-[20.45px] font-bold leading-tight">вход</span>
+                <span className="text-white text-[20.45px] font-bold leading-tight">на рынок</span>
+                <span className="text-white text-[20.45px] font-bold leading-tight">индии</span>
+                <span className="text-[#FF6F00] text-[17px] font-roman leading-tight mt-4">через доверие</span>
+                <span className="text-[#FF6F00] text-[17px] font-roman leading-tight">и личные контакты</span>
               </div>
             </div>
           </div>
@@ -420,7 +420,7 @@ export default function NewDelhiExpeditionPage() {
                           </div>
                           <div>
                             <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">ВИП-билет участника</p>
-                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">выставки «Иннопром. Индия»</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">выставки «Иннопром. Индия».</p>
                           </div>
                         </div>
                       </div>
@@ -462,8 +462,8 @@ export default function NewDelhiExpeditionPage() {
                           </div>
                           <div>
                             <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Доступ к закрытому сообществу</p>
-                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">лидеров и партнеров Forbes</p>
-                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">FExperience.</p>
+                            <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">Forbes FExperience.</p>
+                            {/* <p className="text-white/90 font-roman text-[14px] lg:text-[17.12px] leading-tight">FExperience.</p> */}
                           </div>
                         </div>
                       </div>
