@@ -101,20 +101,24 @@ export default function NewDelhiExpeditionPage() {
 
               {/* Логотипы */}
               <div className="flex items-center justify-center gap-6">
-                <Image
-                  src="/images/newDeli/logoForbes.svg"
-                  alt="Forbes"
-                  width={152.68}
-                  height={39.16}
-                  className="h-8 w-auto object-contain"
-                />
-                <Image
-                  src="/images/newDeli/logoInoprom.svg"
-                  alt="Иннопром"
-                  width={144}
-                  height={41}
-                  className="h-8 w-auto object-contain"
-                />
+                <a href="https://www.forbes.ru" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
+                  <Image
+                    src="/images/newDeli/logoForbes.svg"
+                    alt="Forbes"
+                    width={152.68}
+                    height={39.16}
+                    className="h-8 w-auto object-contain"
+                  />
+                </a>
+                <a href="https://india.biwexpo.com/?utm_source=forbs&utm_medium=businessmissionweb&utm_campaign=india26" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">
+                  <Image
+                    src="/images/newDeli/logoInoprom.svg"
+                    alt="Иннопром"
+                    width={144}
+                    height={41}
+                    className="h-8 w-auto object-contain"
+                  />
+                </a>
               </div>
 
             </div>
@@ -262,13 +266,14 @@ export default function NewDelhiExpeditionPage() {
       {/* Деловой ужин блок */}
       <section className="relative h-screen w-full overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#1A1A1A]">
           <Image
-            src="/images/newDeli/newDeliUzin.webp"
+            src="/images/newDeli/newDeliUzin.jpg"
             alt=""
             fill
             className="object-cover"
           />
+          <div className="absolute inset-0 bg-black/45" />
         </div>
 
         {/* Top gradient */}

@@ -8,7 +8,7 @@ import ArticlesGrid from './ArticlesGrid';
 const REGIONS = [
   { slug: 'all', label: 'Все регионы' },
   // { slug: 'south-africa', label: 'ЮАР' },
-  { slug: 'марокко', label: 'Марокко' },
+  // { slug: 'марокко', label: 'Марокко' },
   { slug: 'африка', label: 'Африка' },
   // { slug: 'вьетнам', label: 'Вьетнам' },
   // { slug: 'индия', label: 'Индия' },

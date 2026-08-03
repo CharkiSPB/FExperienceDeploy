@@ -247,7 +247,7 @@ export function Numbers() {
               className="embla__slide flex-[0_0_100%] min-w-0 h-full relative overflow-hidden rounded-[28px]"
               style={{ backfaceVisibility: 'hidden' }}
             >
-              <div className="absolute inset-0 bg-cover bg-center opacity-90" style={{ backgroundImage: `url(/images/sliderNumbers/slider-${card.id}.jpg)` }} />
+              <div className="absolute inset-0 bg-cover bg-center opacity-90" style={{ backgroundImage: `url(/images/sliderNumbers/slider-${card.id}.webp)` }} />
               {/* <div className="absolute inset-0 bg-white/90" /> */}
               <div className="relative z-10 h-full flex items-center">
                 <SlideCard 
