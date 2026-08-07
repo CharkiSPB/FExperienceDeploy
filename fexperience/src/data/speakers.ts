@@ -100,4 +100,9 @@ export const speakers: Speaker[] = [
     bio: '', isTop: true, topic: '', achievement: '',
     expeditionSlugs: ['vietnam']
   },
+  {
+    id: 14, name: 'Иван Щербаков', role: 'Инвестор. Серийный предприниматель. Co-founder премиального консьерж-сервиса Beyond.', company: '', photo: '/images/speakers/sherbakovI.jpg', photoAlt: 'Иван Щербаков — Инвестор. Серийный предприниматель',
+    bio: '', isTop: true, topic: '', achievement: '',
+    expeditionSlugs: ['south-africa'], category: 'africa'
+  },
 ] as const;
