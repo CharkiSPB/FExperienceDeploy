@@ -5,24 +5,15 @@ export function MediaCoverage() {
   return (
     <section className="bg-surface px-6 py-20 md:px-16 md:py-32">
       <div className="mx-auto max-w-[1280px]">
-        <div className="grid grid-cols-1 items-center gap-y-8 md:grid-cols-[45%_55%] md:gap-16">
-          {/* Фото-блок: ноутбук с сайтом Forbes + журнал Forbes */}
+        <div className="grid grid-cols-1 items-center gap-y-8 md:grid-cols-[50%_50%] md:gap-16">
+          {/* Фото-блок: медийное сопровождение Forbes — один кадр */}
           <div className="media-photos">
-            <div className="media-photo-main">
+            <div className="media-photo-single">
               <Image
-                src="/images/media/nout.webp"
-                alt="Forbes media"
+                src="/images/media/mediaForbes1.webp"
+                alt="Медийное сопровождение Forbes на экспедиции"
                 fill
-                sizes="(min-width: 768px) 38vw, 85vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="media-photo-mag">
-              <Image
-                src="/images/media/zhyrnal1.webp"
-                alt="FExperience Forbes Magazine"
-                fill
-                sizes="(min-width: 768px) 21vw, 55vw"
+                sizes="(min-width: 768px) 42vw, 85vw"
                 className="object-cover"
               />
             </div>

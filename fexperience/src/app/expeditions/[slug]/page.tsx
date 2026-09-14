@@ -38,7 +38,6 @@ function formatHeroDate(expedition: (typeof expeditions)[number]): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === 'new-delhi') notFound();
   const expedition = expeditions.find(e => e.slug === slug);
 
   if (!expedition) {
@@ -60,7 +59,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ExpeditionDetailPage({ params }: Props) {
   const { slug } = await params;
-  if (slug === 'new-delhi') notFound();
   const expedition = expeditions.find(e => e.slug === slug);
   const program = programs[expedition?.programSlug || ''] || [];
 

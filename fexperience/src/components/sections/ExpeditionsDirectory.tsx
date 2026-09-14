@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { expeditions } from '@/data/expeditions';
@@ -92,9 +93,23 @@ function formatRange(expedition: Expedition): string {
   return `${start.getDate()} ${MONTHS_GEN[start.getMonth()]} – ${end.getDate()} ${MONTHS_GEN[end.getMonth()]} ${end.getFullYear()}`;
 }
 
+const REGION_IDS: RegionFilter[] = ['all', 'africa', 'asia', 'latam', 'russia'];
+
+function parseRegionParam(value: string | null): RegionFilter {
+  return REGION_IDS.includes(value as RegionFilter) ? (value as RegionFilter) : 'all';
+}
+
 export function ExpeditionsDirectory() {
   useScrollReveal();
-  const [regionFilter, setRegionFilter] = useState<RegionFilter>('all');
+  const searchParams = useSearchParams();
+  const [regionFilter, setRegionFilter] = useState<RegionFilter>(() =>
+    parseRegionParam(searchParams.get('region')),
+  );
+
+  // Синхронизация с ?region= (переходы с карточек регионов, кнопки назад/вперёд)
+  useEffect(() => {
+    setRegionFilter(parseRegionParam(searchParams.get('region')));
+  }, [searchParams]);
 
   // Донаблюдение карточек после каждой смены фильтра: перерисованные
   // узлы обязаны попасть под IntersectionObserver заново
@@ -130,11 +145,8 @@ export function ExpeditionsDirectory() {
     .sort((a, b) => (a.startDate ?? '').localeCompare(b.startDate ?? ''));
   const upcoming = filtered.filter((e) => e.status === 'upcoming');
   const cards = [...active, ...upcoming];
-  // Задел архива: завершённые, кроме делового ужина в Дели
-  // (кейс не состоялся — записи как бы не было)
-  const completed = filtered.filter(
-    (e) => e.status === 'completed' && e.slug !== 'new-delhi',
-  );
+  // Задел архива: все завершённые (с учётом фильтра региона)
+  const completed = filtered.filter((e) => e.status === 'completed');
 
   return (
     <div className="directory">

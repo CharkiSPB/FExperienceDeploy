@@ -100,9 +100,8 @@ export function Hero() {
       <div className="hero-slider__viewport h-full" ref={emblaRef}>
         <div className="hero-slider__container">
           {HERO_EXPEDITIONS.map((expedition) => {
-            let titleLine1 = `${expedition.heroTitlePrimary} ${expedition.heroTitleOpen}`.replace(/\s+/g, ' ').trim().replace(/Бизнес\s*[—-]\s*/, 'Бизнес-');
-            if (!titleLine1.includes('Forbes')) titleLine1 = `${titleLine1} с Forbes`;
-            const titleLine2 = expedition.heroTitleCountry;
+            const titleLine1 = `${expedition.heroTitlePrimary} ${expedition.heroTitleOpen}`.replace(/\s+/g, ' ').trim().replace(/Бизнес\s*[—-]\s*/, 'Бизнес-').replace(/\s+с Forbes$/i, '');
+            const titleCountry = `${expedition.heroTitleCountry}`.replace(/\s+/g, ' ').trim();
             return (
               <article key={expedition.slug} className="hero-slider__slide">
                 <div className="hero-slide">
@@ -137,9 +136,9 @@ export function Hero() {
 
                   {/* Компактный контент внутри левого стекла (по spec: pills → заголовок → CTA) */}
                   <div className="hero-compact">
-                    {/* Три тезиса */}
+                    {/* Четыре тезиса */}
                     <div className="hero-compact__pills" aria-label="Ключевые особенности экспедиции">
-                      {expedition.heroPills?.slice(0, 3).map((pill, index) => (
+                      {expedition.heroPills?.slice(0, 4).map((pill, index) => (
                         <span key={pill} className="hero-compact__pill">
                           {pill}
                         </span>
@@ -148,7 +147,9 @@ export function Hero() {
 
                     <h1 className="hero-compact__title">
                       <span className="hero-compact__line1">{titleLine1}</span>
-                      <span className="hero-compact__line2">{titleLine2}</span>
+                      <span className="hero-compact__line2">
+                        с Forbes <span className="hero-compact__line2-country">{titleCountry}</span>
+                      </span>
                       <time className="hero-compact__date">
                         {formatExpeditionDate(expedition.startDate, expedition.endDate)}
                       </time>

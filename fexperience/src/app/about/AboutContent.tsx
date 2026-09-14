@@ -204,40 +204,6 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Тёмная полоса: ключевое отличие FExperience */}
-      <section className="about-diff" aria-label="Ключевое отличие FExperience">
-        <div className="about-diff__head fade-up">
-          <span className="eyebrow-dash" aria-hidden="true" />
-          <p className="about-diff__eyebrow">Нас выбирают за</p>
-          <h2 className="about-diff__title">
-            Ключевое отличие <span className="accent">F</span>Experience
-          </h2>
-        </div>
-        <div className="about-diff__grid">
-          {diffColumns.map((col, index) => (
-            <div
-              key={col.title}
-              className={`about-diff__col fade-up delay-${(index % 6) + 1}`}
-            >
-              {col.iconSrc ? (
-                <Image
-                  src={col.iconSrc}
-                  alt=""
-                  width={41}
-                  height={41}
-                  className="diff-icon diff-icon--img"
-                  aria-hidden="true"
-                />
-              ) : (
-                <span className="diff-icon diff-icon--empty" aria-hidden="true" />
-              )}
-              <h3 className="diff-title">{col.title}</h3>
-              <p className="diff-desc">{col.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Наша методология: тезис → checklist → фото */}
       <section className="about-method" aria-labelledby="about-method-title">
         <div className="about-method__grid">
@@ -273,6 +239,39 @@ export function AboutContent() {
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Тёмная полоса: ключевое отличие FExperience */}
+      <section className="about-diff" aria-label="Ключевое отличие FExperience">
+        <div className="about-diff__head fade-up">
+          <span className="eyebrow-dash" aria-hidden="true" />
+          <h2 className="about-diff__title">
+            Ключевое отличие <span className="accent">F</span>Experience
+          </h2>
+        </div>
+        <div className="about-diff__grid">
+          {diffColumns.map((col, index) => (
+            <div
+              key={col.title}
+              className={`about-diff__col fade-up delay-${(index % 6) + 1}`}
+            >
+              {col.iconSrc ? (
+                <Image
+                  src={col.iconSrc}
+                  alt=""
+                  width={41}
+                  height={41}
+                  className="diff-icon diff-icon--img"
+                  aria-hidden="true"
+                />
+              ) : (
+                <span className="diff-icon diff-icon--empty" aria-hidden="true" />
+              )}
+              <h3 className="diff-title">{col.title}</h3>
+              <p className="diff-desc">{col.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 

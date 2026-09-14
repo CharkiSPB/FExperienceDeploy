@@ -57,7 +57,7 @@ export function FeaturedMarkets() {
         <span className="eyebrow-dash" aria-hidden="true" />
         <span className="program-block__eyebrow">Ближайшие экспедиции</span>
         <h2 className="program-block__title">
-          Бизнес начинается там, где заканчивается знакомое.
+          Горизонт новых возможностей открывается там, где начинается неизведанное.
         </h2>
         {/* <p className="program-block__paragraph">{paragraph}</p> */}
         <p className="program-block__paragraph">Благодаря участию в деловых мероприятиях, встречам с органами власти и местными предпринимателями, вы сможете оценить не только потенциал развития бизнеса, но и скрытые угрозы нового рынка - в России и зарубежом.</p>

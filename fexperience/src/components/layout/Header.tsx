@@ -32,7 +32,8 @@ export function Header() {
 
   const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  // Плавный скролл к якорю (Lenis + отступ под фикс-шапку)
+  // Плавный скролл к якорю (Lenis + отступ под фикс-шапку).
+  // Хеш в URL не пишем, чтобы рефреш не утягивал обратно к секции.
   const scrollToHash = useCallback((e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     const target = document.querySelector(hash);
     if (!target) {
@@ -41,7 +42,6 @@ export function Header() {
       return;
     }
     e.preventDefault();
-    window.history.pushState(null, '', hash);
     if (lenis?.scrollTo) {
       lenis.scrollTo(target as HTMLElement, { offset: -88 });
     } else {
@@ -114,7 +114,7 @@ export function Header() {
         <div className="header-bar__glass" aria-hidden="true" />
         <div className="header-bar__inner mx-auto flex h-16 md:h-20 max-w-[1600px] items-center justify-between px-6 lg:px-16">
           {/* Логотип — слева, тёмная версия без подложек и ореолов */}
-          <Link href="/" aria-label="FExperience — на главную" className="header-bar__logo">
+          <Link href="/" aria-label="FExperience — на главную" className="header-bar__logo -translate-y-[5px]">
             <Image
               src="/images/logo/logoFExperience2_black.svg"
               alt="FExperience"
@@ -126,7 +126,7 @@ export function Header() {
           </Link>
 
           {/* Навигация — desktop */}
-          <nav className="hidden xl:flex items-center gap-8 ml-24">
+          <nav className="hidden xl:flex items-center gap-6 ml-auto">
             {NAV_ITEMS.map((item) => {
               const active = isActive(item.href);
               const underline = active
@@ -158,7 +158,7 @@ export function Header() {
           </nav>
 
           {/* CTA — desktop */}
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3 ml-8">
             {isExpeditionDetail && (
               <button onClick={() => setIsPartnerModalOpen(true)} className="btn-outline btn-outline--sm">
                 Стать партнёром

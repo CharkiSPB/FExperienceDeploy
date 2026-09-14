@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import type { ProgramDay } from '@/types/program';
@@ -10,12 +10,81 @@ type ExpeditionProgramProps = {
   status: string;
 };
 
-function splitDayDescription(description: string): { lead: string; bullets: string[] } {
+type DayBlock = { type: 'bullet' | 'after' | 'heading'; text: string };
+
+/* Порядок сегментов сохраняется: `~` в начале сегмента — обычный абзац,
+   `#` — белый мини-заголовок, остальные после первого — буллеты */
+function splitDayDescription(description: string): {
+  lead: string;
+  blocks: DayBlock[];
+} {
   const parts = description
     .split('|')
     .map((part) => part.trim())
     .filter(Boolean);
-  return { lead: parts[0] ?? '', bullets: parts.slice(1) };
+  let lead = '';
+  let leadSet = false;
+  const blocks: DayBlock[] = [];
+  for (const part of parts) {
+    if (part.startsWith('~')) {
+      const text = part.slice(1).trim();
+      if (text) blocks.push({ type: 'after', text });
+    } else if (part.startsWith('#')) {
+      const text = part.slice(1).trim();
+      if (text) blocks.push({ type: 'heading', text });
+    } else if (!leadSet) {
+      lead = part;
+      leadSet = true;
+    } else {
+      blocks.push({ type: 'bullet', text: part });
+    }
+  }
+  return { lead, blocks };
+}
+
+/* Группирует подряд идущие буллеты в один <ul>, `~`-абзацы — между ними */
+function renderDayBlocks(blocks: DayBlock[]): ReactNode {
+  const nodes: ReactNode[] = [];
+  let currentBullets: string[] = [];
+  const flushBullets = () => {
+    if (currentBullets.length === 0) return;
+    const items = currentBullets;
+    currentBullets = [];
+    nodes.push(
+      <ul key={`ul-${nodes.length}`} className="program-detail__list">
+        {items.map((bullet) => (
+          <li key={bullet}>{bullet}</li>
+        ))}
+      </ul>,
+    );
+  };
+  blocks.forEach((block) => {
+    if (block.type === 'bullet') {
+      currentBullets.push(block.text);
+    } else if (block.type === 'heading') {
+      flushBullets();
+      nodes.push(
+        <p
+          key={`h-${nodes.length}`}
+          className="program-detail__subhead"
+        >
+          {block.text}
+        </p>,
+      );
+    } else {
+      flushBullets();
+      nodes.push(
+        <p
+          key={`p-${nodes.length}`}
+          className="program-detail__text program-detail__text--after"
+        >
+          {block.text}
+        </p>,
+      );
+    }
+  });
+  flushBullets();
+  return nodes;
 }
 
 export function ExpeditionProgram({ program, status }: ExpeditionProgramProps) {
@@ -27,7 +96,7 @@ export function ExpeditionProgram({ program, status }: ExpeditionProgramProps) {
   const days = [...program].sort((a, b) => a.day - b.day);
   const current = days.find((d) => d.day === activeDay) ?? days[0];
 
-  const { lead, bullets } = splitDayDescription(current.description || '');
+  const { lead, blocks } = splitDayDescription(current.description || '');
   const dayNumber = String(current.day).padStart(2, '0');
   const dayTitle = current.title || `День ${current.day}`;
 
@@ -64,13 +133,7 @@ export function ExpeditionProgram({ program, status }: ExpeditionProgramProps) {
             </h3>
           )}
           {lead && <p className="program-detail__text">{lead}</p>}
-          {bullets.length > 0 && (
-            <ul className="program-detail__list">
-              {bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
-          )}
+          {renderDayBlocks(blocks)}
         </div>
         <div className="program-detail__photo">
           {current.image && (

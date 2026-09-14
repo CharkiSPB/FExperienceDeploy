@@ -955,8 +955,9 @@ body::before {
 }
 
 .hero-compact__pills {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
   gap: 8px;
   max-width: 100%;
 }
@@ -964,15 +965,16 @@ body::before {
 .hero-compact__pill {
   display: inline-flex;
   align-items: center;
-  padding: 16px 12px;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
   border-radius: 999px;
-  font: 600 10px/1 var(--font-sans), sans-serif;
+  font: 600 10px/1.3 var(--font-sans), sans-serif;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
   background: rgba(255, 255, 255, .62);
   border: 1px solid rgba(26, 26, 26, .08);
-  white-space: nowrap;
 }
 
 .hero-compact__title {
@@ -985,7 +987,7 @@ body::before {
 
 .hero-compact__line1 {
   display: block;
-  font: 700 clamp(42px, 4.2vw, 62px)/0.92 var(--font-display), serif;
+  font: 700 clamp(46px, 4.6vw, 68px)/0.92 var(--font-display), serif;
   letter-spacing: -.02em;
   color: var(--color-text-primary);
   line-height: 1.2;
@@ -993,8 +995,12 @@ body::before {
 
 .hero-compact__line2 {
   display: block;
-  font: 700 clamp(42px, 4.2vw, 62px)/0.92 var(--font-display), serif;
+  font: 700 clamp(46px, 4.6vw, 68px)/0.92 var(--font-display), serif;
   letter-spacing: -.02em;
+  color: var(--color-text-primary);
+}
+
+.hero-compact__line2-country {
   color: var(--color-brand-600);
 }
 
@@ -1157,12 +1163,6 @@ body::before {
    меняете margin-left только в нужном блоке */
 .hero-slide__title-country--south-africa {
   margin-left: calc(35vw + 4em);
-  white-space: nowrap;
-  max-width: none;
-}
-
-.hero-slide__title-country--new-delhi {
-  margin-left: calc(35vw + 2em);
   white-space: nowrap;
   max-width: none;
 }
@@ -1352,13 +1352,12 @@ body::before {
 @media (max-width: 1024px) {
   .hero-slide { --hero-panel-w: 45%; }
   .hero-compact { padding: 90px 22px 90px 28px; }
-  .hero-compact__line1, .hero-compact__line2 { font-size: clamp(38px, 4.2vw, 52px); }
+  .hero-compact__line1, .hero-compact__line2 { font-size: clamp(42px, 4.6vw, 58px); }
   .hero-seal { width: 160px; height: 160px; }
   .hero-slide__title { left: 6%; --hero-title-size: clamp(76px, 8.5vw, 120px); }
   .hero-slide__title-open { margin-left: 38vw; max-width: calc(100vw - 40vw); }
   .hero-slide__title-country { margin-left: calc(38vw + 4em); max-width: calc(100vw - 42vw); }
   .hero-slide__title-country--south-africa,
-  .hero-slide__title-country--new-delhi,
   .hero-slide__title-country--vietnam { max-width: none; white-space: nowrap; margin-left: calc(38vw + 4em); }
   .hero-slide__join,
   .hero-slide__details { bottom: 88px; }
@@ -1376,7 +1375,7 @@ body::before {
   .hero-compact { padding: 80px 16px 96px 20px; gap: 14px; justify-content: flex-start; padding-top: 28%; }
   .hero-compact__pills { gap: 6px; }
   .hero-compact__pill { padding: 5px 9px; font-size: 9px; }
-  .hero-compact__line1, .hero-compact__line2 { font-size: clamp(34px, 8.6vw, 44px); }
+  .hero-compact__line1, .hero-compact__line2 { font-size: clamp(38px, 9vw, 50px); }
   .hero-compact__date { font-size: 12px; margin-top: 8px; }
   .hero-compact__cta { gap: 8px; }
   .hero-compact__cta .btn-liquid { padding: 12px 18px; font-size: 14px; }
@@ -1391,8 +1390,7 @@ body::before {
   }
   .hero-slide__title-open { margin-left: 24vw; margin-top: -.2em; max-width: calc(100vw - 30vw); }
   .hero-slide__title-country { margin-left: calc(24vw + 4em); margin-top: 10px; white-space: normal; max-width: calc(100vw - 28vw); }
-  .hero-slide__title-country--south-africa,
-  .hero-slide__title-country--new-delhi { font-size: .8em; white-space: nowrap; max-width: none; }
+  .hero-slide__title-country--south-africa { font-size: .8em; white-space: nowrap; max-width: none; }
   .hero-slide__title-country--vietnam { font-size: .55em; white-space: nowrap; max-width: none; }
   .hero-slide__join,
   .hero-slide__details {
@@ -1569,25 +1567,11 @@ body::before {
   position: relative;
   height: 390px;
 }
-.media-photo-main {
+.media-photo-single {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 78%;
-  aspect-ratio: 3 / 2;
-  border-radius: var(--radius-md);
+  inset: 0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: var(--shadow-hover);
-}
-.media-photo-mag {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 3px solid var(--color-elevated);
   box-shadow: var(--shadow-hover);
 }
 /* Горизонтальный ряд: три колонки с вертикальными разделителями */
@@ -1669,6 +1653,8 @@ body::before {
 .testimonial-card {
   flex: 0 0 min(720px, 78vw);
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 40px;
   background: rgba(255, 255, 255, .34);
   border: 1px solid rgba(255, 255, 255, .74);
@@ -1703,13 +1689,14 @@ body::before {
   font: 500 clamp(13.5px, 1.25vw, 16px)/1.6 var(--font-display), serif;
   letter-spacing: -.01em;
   color: var(--color-text-primary);
+  padding-bottom: 36px;
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 36px;
+  margin-top: auto;
   padding-top: 24px;
   border-top: 1px solid var(--border-hairline);
 }
@@ -1751,8 +1738,8 @@ body::before {
 }
 
 .faq-emblem {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -2141,6 +2128,7 @@ body::before {
   margin: 6px auto 0;
   font: 400 13.5px/1.55 HelveticaNeueCyr, var(--font-sans), sans-serif;
   color: var(--text-secondary);
+  text-wrap: balance;
 }
 
 @media (max-width: 1024px) {
@@ -2241,13 +2229,13 @@ body::before {
   color: var(--text-primary);
 }
 
-/* Акцентная фраза — italic + тонкая оранжевая линия */
-.project-statement-accent {
-  font-style: italic;
-  text-decoration-line: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
-  text-decoration-color: var(--orange-600);
+/* Вторая часть стейтмента — тем же serif, на шаг меньше */
+.project-statement-sub {
+  margin: 24px 0 0;
+  max-width: 640px;
+  font: 600 clamp(24px, 3vw, 38px)/1.15 var(--font-display), Georgia, serif;
+  letter-spacing: -.02em;
+  color: var(--text-primary);
 }
 
 .project-subtext {
@@ -2404,65 +2392,9 @@ body::before {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   2.5 FEATURED MARKETS — cinematic expedition portfolio
-   (Master Lock: крупная фотография + локальное стекло, ниже editorial-полоса)
+   2.5 FEATURED MARKETS — остаток: только glass-панель (переиспользуется
+   в program-block). Секция, шапка и secondary-полоса удалены.
    ════════════════════════════════════════════════════════════════ */
-.featured-markets {
-  padding: 120px 0;
-  background:
-    radial-gradient(800px 380px at 50% 0%, rgba(255, 119, 34, .055), transparent 72%),
-    var(--bg-canvas);
-}
-
-.featured-markets .container {
-  width: min(1280px, calc(100% - 80px));
-  margin: 0 auto;
-}
-
-.featured-markets-header {
-  max-width: 760px;
-  margin-bottom: 48px;
-}
-
-.featured-markets-header .eyebrow {
-  font: 600 12px/1 var(--font-sans), sans-serif;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--orange-600);
-}
-
-.featured-markets-header h2 {
-  margin-top: 14px;
-  font: 600 clamp(36px, 4vw, 54px)/1.08 var(--font-display), Georgia, serif;
-  letter-spacing: -.025em;
-}
-
-.featured-expedition {
-  position: relative;
-  min-height: 590px;
-  overflow: hidden;
-  border-radius: 28px;
-  isolation: isolate;
-}
-
-.featured-expedition-image {
-  object-fit: cover;
-  z-index: 0;
-  transition: transform 800ms var(--ease);
-}
-
-.featured-expedition::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(90deg, rgba(20, 16, 12, .02), rgba(20, 16, 12, .18));
-  pointer-events: none;
-}
-
-.featured-expedition:hover .featured-expedition-image {
-  transform: scale(1.018);
-}
 
 /* Локальная liquid-glass панель только вокруг информации */
 .featured-expedition-panel {
@@ -2485,6 +2417,12 @@ body::before {
 .featured-expedition-status {
   display: inline-block;
   margin-bottom: 18px;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(26, 26, 26, .45);
+  border: 1px solid rgba(255, 255, 255, .25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--orange-600);
   font: 600 11px/1 var(--font-sans), sans-serif;
   letter-spacing: .10em;
@@ -2509,119 +2447,8 @@ body::before {
   color: var(--text-secondary);
 }
 
-/* Вторичные направления — editorial-полоса, не карточки SaaS */
-.secondary-expeditions {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  margin-top: 28px;
-  border-top: 1px solid var(--border-hairline);
-}
-
-.secondary-expedition {
-  display: grid;
-  grid-template-columns: 170px 1fr auto;
-  align-items: center;
-  gap: 24px;
-  min-height: 150px;
-  padding: 20px 24px 20px 0;
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-hairline);
-}
-
-.secondary-expedition + .secondary-expedition {
-  padding-left: 24px;
-  border-left: 1px solid var(--border-hairline);
-}
-
-.secondary-expedition-image {
-  position: relative;
-  width: 170px;
-  height: 108px;
-  overflow: hidden;
-  border-radius: 14px;
-}
-
-.secondary-expedition-image img {
-  object-fit: cover;
-  transition: transform 500ms var(--ease);
-}
-
-.secondary-expedition:hover img {
-  transform: scale(1.03);
-}
-
-.secondary-expedition-content > span {
-  font: 600 10px/1 var(--font-sans), sans-serif;
-  color: var(--orange-600);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.secondary-expedition-content h3 {
-  margin-top: 8px;
-  font: 600 28px/1 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.secondary-expedition-content p {
-  margin-top: 8px;
-  font: 400 13px/1.4 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-.secondary-expedition-arrow {
-  color: var(--orange-600);
-  font-size: 22px;
-  transition: transform 300ms var(--ease);
-}
-
-.secondary-expedition:hover .secondary-expedition-arrow {
-  transform: translate(3px, -3px);
-}
-
-@media (max-width: 900px) {
-  .featured-markets {
-    padding: 88px 0;
-  }
-
-  .featured-markets .container {
-    width: min(1280px, calc(100% - 48px));
-  }
-}
-
-@media (max-width: 760px) {
-  .featured-markets {
-    padding: 80px 0;
-  }
-
-  .featured-expedition {
-    min-height: 520px;
-  }
-
-  .featured-expedition-panel {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    width: auto;
-    padding: 24px;
-  }
-
-  .secondary-expeditions {
-    grid-template-columns: 1fr;
-  }
-
-  .secondary-expedition,
-  .secondary-expedition + .secondary-expedition {
-    padding: 18px 0;
-    border-left: 0;
-  }
-
-  .secondary-expedition-image {
-    width: 120px;
-    height: 90px;
-  }
-}
+/* (secondary-полоса и responsive секции featured-markets удалены;
+   панель .featured-expedition-panel живёт ниже, в program-block) */
 
 /* ════════════════════════════════════════════════════════════════
    2.5B БЛИЖАЙШАЯ ЭКСПЕДИЦИЯ — ОДИН full-bleed элемент (программа)
@@ -2809,7 +2636,7 @@ body::before {
   position: relative;
   overflow: hidden;
   background: var(--bg-canvas);
-  padding: 120px 0 130px;
+  padding: 90px 0 100px;
 }
 
 .position-section__inner {
@@ -3216,15 +3043,8 @@ body::before {
   margin: 0 auto 48px;
   padding-inline: 48px;
 }
-.about-diff__eyebrow {
-  margin: 0;
-  font: 600 12px var(--font-sans), sans-serif;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--color-brand-600);
-}
 .about-diff__title {
-  margin: 27px 0 0;
+  margin: 14px 0 0;
   font: 600 clamp(28px, 2.6vw, 40px)/1.2 var(--font-display), serif;
   color: #FFF6EE;
 }
@@ -3881,20 +3701,7 @@ body::before {
   padding: 32px 0 0;
 }
 
-.dir-outro__link {
-  display: inline-block;
-  margin-top: 32px;
-  font: 500 14px/1 var(--font-sans), sans-serif;
-  color: var(--text-primary);
-  border-bottom: 1px solid rgba(26, 26, 26, .25);
-  text-decoration: none;
-  transition: color .25s ease, border-color .25s ease;
-}
-
-.dir-outro__link:hover {
-  color: var(--orange-600);
-  border-bottom-color: var(--orange-600);
-}
+/* (.dir-outro__link удалён вместе со ссылкой «Все экспедиции») */
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
@@ -3989,810 +3796,6 @@ body::before {
 .expedition-detail .container {
   width: min(1280px, calc(100% - 80px));
   margin: 0 auto;
-}
-
-/* ── 5.1 HERO ── */
-.detail-hero {
-  position: relative;
-  height: 70vh;
-  min-height: 560px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-}
-
-.detail-hero__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.detail-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(26, 26, 26, .15) 0%, rgba(26, 26, 26, .55) 100%);
-}
-
-.detail-hero__content {
-  position: relative;
-  z-index: 2;
-  padding: 48px 0;
-  width: min(1280px, calc(100% - 80px));
-}
-
-.detail-hero__dates {
-  margin: 0 0 16px;
-  font: 500 14px/1 var(--font-sans), sans-serif;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .75);
-}
-
-.detail-hero__title {
-  margin: 0 0 32px;
-  max-width: 900px;
-  font: 700 clamp(32px, 5vw, 52px)/1.1 var(--font-display), Georgia, serif;
-  letter-spacing: -.01em;
-  color: #fff;
-}
-
-.detail-hero__pitch {
-  margin: -20px 0 28px;
-  max-width: 560px;
-  font: 400 16px/1.5 var(--font-sans), sans-serif;
-  color: rgba(255, 255, 255, .8);
-}
-
-/* ── 5.1 / 14.5 Теги-пилюли (каскад) ── */
-.detail-hero__tags {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 36px;
-}
-
-.detail-hero__tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, .16);
-  border: 1px solid rgba(255, 255, 255, .28);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, .18),
-    0 8px 24px rgba(0, 0, 0, .1);
-  font: 500 13px/1 var(--font-sans), sans-serif;
-  color: rgba(255, 255, 255, .95);
-  letter-spacing: .02em;
-  transition: background .25s, transform .25s;
-}
-
-.detail-hero__tag:hover {
-  background: rgba(255, 255, 255, .26);
-  transform: translateX(-4px);
-}
-
-.detail-hero__tag-icon {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  stroke: #fff;
-  fill: none;
-}
-
-.detail-hero__tag:nth-child(1) { transform: translateX(0); }
-.detail-hero__tag:nth-child(2) { transform: translateX(20px); }
-.detail-hero__tag:nth-child(3) { transform: translateX(40px); }
-
-.detail-hero__cta {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.detail-hero__spots {
-  font: 600 14px/1 var(--font-sans), sans-serif;
-  color: rgba(255, 255, 255, .8);
-}
-
-.detail-hero__btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 31px;
-  border: 1px solid rgba(255, 255, 255, .7);
-  border-radius: var(--radius-pill);
-  font: 600 15px/1 var(--font-sans), sans-serif;
-  color: #fff;
-  transition: background .25s, color .25s, border-color .25s;
-}
-
-.detail-hero__btn-outline:hover {
-  background: #fff;
-  color: var(--text-primary);
-  border-color: #fff;
-}
-
-/* ── 5.2 КАРТА «СВОЙ КОНТИНЕНТ» ── */
-.detail-map {
-  padding: 96px 0;
-  background: var(--bg-canvas);
-}
-
-.map-continent {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.map-continent__map {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  opacity: .5;
-  filter: drop-shadow(0 0 6px rgba(255, 107, 44, .12)) drop-shadow(0 0 24px rgba(255, 107, 44, .08));
-  pointer-events: none;
-}
-
-.map-continent__layer {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Линия перелёта из Москвы */
-.map-continent__flight {
-  stroke: var(--orange-600);
-  stroke-width: 0.55;
-  stroke-dasharray: 0.9 0.8;
-  fill: none;
-  opacity: 0.6;
-}
-
-/* Маршрут по городам программы */
-.map-continent__route {
-  stroke: var(--orange-400);
-  stroke-width: 0.4;
-  stroke-dasharray: 0.5 1;
-  fill: none;
-  opacity: 0.5;
-}
-
-.map-continent__city-dot {
-  fill: var(--orange-300);
-  stroke: #fff;
-  stroke-width: 0.15;
-}
-
-.map-continent__city-label {
-  font: 400 1.05px var(--font-sans), sans-serif;
-  fill: var(--text-secondary);
-  opacity: .7;
-  letter-spacing: .02em;
-}
-
-.map-continent__neighbor {
-  fill: none;
-  stroke: rgba(160, 160, 160, .4);
-  stroke-width: 0.16;
-}
-
-/* Активная точка — pulse */
-.map-continent__dot {
-  fill: var(--orange-600);
-  filter: url(#map-point-glow);
-}
-
-.map-continent__dot-ring {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 0.22;
-}
-
-.map-continent__dot--done {
-  fill: rgba(255, 107, 44, .1);
-  stroke: rgba(255, 107, 44, .3);
-  stroke-width: 0.16;
-}
-
-.map-continent__pulse {
-  fill: rgba(255, 107, 44, .18);
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-.map-continent__pulse--outer {
-  animation: map-pulse-ring 2.4s ease-out infinite;
-}
-
-.map-continent__pulse--inner {
-  animation: map-pulse-ring 2.4s ease-out .8s infinite;
-}
-
-@keyframes map-pulse-ring {
-  0%   { transform: scale(.5); opacity: .7; }
-  70%  { transform: scale(1.9); opacity: 0; }
-  100% { transform: scale(1.9); opacity: 0; }
-}
-
-/* Плашка-подпись — стекло */
-.map-continent__plaque {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  z-index: 2;
-  padding: 12px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.map-continent__plaque-title {
-  font: 600 18px/1.2 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.map-continent__plaque-sub {
-  font: 400 12px/1 var(--font-sans), sans-serif;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-
-/* ── 5.3 ЧТО ВКЛЮЧЕНО ── */
-.included-section {
-  padding: 96px 0;
-  background: var(--gradient-editorial-warm);
-}
-
-.included-section__head {
-  margin-bottom: 48px;
-}
-
-.included-section__title {
-  margin: 0;
-  font: 700 clamp(30px, 4vw, 44px)/1.1 var(--font-display), Georgia, serif;
-  letter-spacing: -.02em;
-  color: var(--text-primary);
-}
-
-.included-stage {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
-}
-
-.included-card {
-  position: relative;
-  min-height: 300px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.included-card__bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
-}
-
-.included-card--1 { grid-column: span 7; min-height: 460px; }
-.included-card--2 { grid-column: span 5; min-height: 380px; }
-.included-card--3 { grid-column: span 4; min-height: 320px; }
-.included-card--4 { grid-column: span 4; min-height: 320px; }
-.included-card--5 { grid-column: span 4; min-height: 320px; }
-.included-card--6 { grid-column: span 12; min-height: 340px; }
-
-.included-card__glass {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  max-width: min(78%, 420px);
-  padding: 18px 22px;
-  background: rgba(255, 255, 255, .46);
-  backdrop-filter: blur(24px) saturate(125%);
-  -webkit-backdrop-filter: blur(24px) saturate(125%);
-  border: 1px solid rgba(255, 255, 255, .74);
-  border-radius: 20px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 18px 60px rgba(40, 25, 15, .12);
-  font: 600 20px/1.3 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.included-card__glass--sm {
-  padding: 12px 16px;
-  font-size: 16px;
-}
-
-.included-card__glass--caption {
-  font: 500 16px/1.4 var(--font-sans), sans-serif;
-  color: var(--text-primary);
-}
-
-.included-card__type {
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  font: 600 22px/1.2 var(--font-display), Georgia, serif;
-  color: #fff;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, .35);
-}
-
-.included-card__num {
-  position: absolute;
-  right: 20px;
-  bottom: 16px;
-  font: 400 14px/1 var(--font-sans), sans-serif;
-  letter-spacing: .12em;
-  color: rgba(255, 255, 255, .7);
-}
-
-/* ── 5.4 ПРОГРАММА — editorial timeline ── */
-.program-divider {
-  background: #1A1A1A;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.program-divider__text {
-  font: 600 13px/1 var(--font-sans), sans-serif;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .5);
-}
-
-.program-divider__text::before {
-  content: '';
-  display: inline-block;
-  width: 32px;
-  height: 1px;
-  background: var(--orange-600);
-  margin-right: 16px;
-  vertical-align: middle;
-}
-
-.program-section {
-  padding: 96px 0;
-  background: var(--bg-surface);
-}
-
-.program-timeline {
-  display: flex;
-  gap: 40px;
-}
-
-.program-timeline__left {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-  width: 96px;
-  flex-shrink: 0;
-}
-
-.program-timeline__left::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  background: var(--border-hairline);
-  z-index: 0;
-}
-
-.program-timeline__daynum {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--gradient-signature);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 700 22px/1 var(--font-display), Georgia, serif;
-  color: #fff;
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-}
-
-.program-timeline__daynum + .program-timeline__daynum {
-  margin-top: 56px;
-}
-
-.program-timeline__rows {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.program-timeline__card {
-  border-top: 1px solid var(--border-hairline);
-  padding: 28px 0;
-}
-
-.program-timeline__title {
-  margin: 0 0 12px;
-  font: 600 20px/1.3 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.program-timeline__text {
-  margin: 0 0 20px;
-  font: 400 15px/1.7 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-  max-width: 720px;
-}
-
-.program-timeline__photo {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-/* ── 5.5 ЭКСПЕРТЫ ── */
-.experts-section {
-  padding: 96px 0;
-  background: var(--bg-canvas);
-}
-
-.experts-section__head {
-  margin-bottom: 48px;
-}
-
-.experts-section__title {
-  margin: 0;
-  font: 700 clamp(30px, 4vw, 44px)/1.1 var(--font-display), Georgia, serif;
-  letter-spacing: -.02em;
-  color: var(--text-primary);
-}
-
-.expert-card {
-  display: grid;
-  grid-template-columns: 72px minmax(220px, 1fr) auto;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
-  border-top: 1px solid var(--border-hairline);
-}
-
-.expert-photo {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  border: 2px solid var(--orange-200);
-}
-
-.expert-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .4s var(--ease);
-}
-
-.expert-card:hover .expert-photo img {
-  transform: scale(1.06);
-}
-
-.expert-name {
-  margin: 0 0 4px;
-  font: 600 15px/1.3 var(--font-sans), sans-serif;
-  color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.expert-role {
-  margin: 0;
-  font: 400 13px/1.4 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-.expert-tag {
-  padding: 5px 12px;
-  background: transparent;
-  color: var(--orange-700);
-  font: 600 11px/1 var(--font-sans), sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  border-bottom: 1px solid var(--orange-200);
-  white-space: nowrap;
-}
-
-.experts-divider {
-  height: 1px;
-  background: var(--border-hairline);
-  margin: 40px 0;
-  position: relative;
-}
-
-.experts-divider::before {
-  content: 'Команда проекта';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--bg-canvas);
-  padding: 0 16px;
-  font: 500 12px/1 var(--font-sans), sans-serif;
-  color: var(--text-tertiary);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  white-space: nowrap;
-}
-
-.forbes-block {
-  padding-top: 8px;
-}
-
-.forbes-block__title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 24px;
-  font: 700 24px/1.2 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.forbes-block__logo {
-  height: 16px;
-  width: auto;
-}
-
-.forbes-block__badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  background: #1A1A1A;
-  border-radius: var(--radius-pill);
-}
-
-.forbes-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.forbes-expert-card {
-  display: grid;
-  grid-template-columns: 88px 1fr;
-  align-items: center;
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--border-hairline);
-  text-align: left;
-}
-
-.forbes-expert-photo {
-  width: 88px;
-  height: 88px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-}
-
-.forbes-expert-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .4s var(--ease);
-}
-
-.forbes-expert-card:hover .forbes-expert-photo img {
-  transform: scale(1.05);
-}
-
-.forbes-expert-info {
-  min-width: 0;
-}
-
-
-
-.forbes-expert-name {
-  margin: 0 0 6px;
-  font: 600 16px/1.3 var(--font-sans), sans-serif;
-  color: var(--text-primary);
-}
-
-.forbes-expert-role {
-  margin: 0;
-  font: 400 13px/1.45 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-/* ── 5.6 ФОРМА — стекло на фото (14.11) ── */
-.form-section {
-  position: relative;
-  padding: 128px 0;
-  overflow: hidden;
-}
-
-.form-section__bg {
-  position: absolute;
-  inset: 0;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.form-section__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 26, 26, .50);
-  z-index: 1;
-}
-
-.form-section__inner {
-  position: relative;
-  z-index: 2;
-}
-
-.form-panel {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 48px;
-  background: rgba(255, 255, 255, .65);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(255, 255, 255, .9);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, .2);
-}
-
-.form-panel__title {
-  margin: 0 0 8px;
-  font: 600 28px/1.2 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.form-panel__subtitle {
-  margin: 0 0 28px;
-  font: 400 14px/1.5 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-.detail-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.detail-form__field {
-  margin-bottom: 12px;
-}
-
-.detail-form__label {
-  display: block;
-  margin-bottom: 6px;
-  font: 500 13px/1 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-.detail-form__input {
-  width: 100%;
-  height: 52px;
-  border: 1px solid rgba(26, 26, 26, .15);
-  border-radius: var(--radius-sm);
-  padding: 0 16px;
-  font: 400 15px/1 var(--font-sans), sans-serif;
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, .8);
-  transition: border-color .2s, background .2s;
-}
-
-.detail-form__input:focus {
-  border-color: var(--orange-600);
-  background: #fff;
-  outline: none;
-  box-shadow: 0 0 0 3px var(--orange-100);
-}
-
-.detail-form__input::placeholder {
-  color: var(--text-tertiary);
-}
-
-.detail-form__checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 4px 0 20px;
-  font: 400 13px/1.5 var(--font-sans), sans-serif;
-  color: var(--text-tertiary);
-}
-
-.detail-form__checkbox-row a {
-  color: var(--orange-600);
-}
-
-.detail-form__checkbox {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  accent-color: var(--orange-600);
-  margin-top: 2px;
-}
-
-.detail-form__consent {
-  cursor: pointer;
-}
-
-.detail-form__submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.detail-form__error {
-  margin: 4px 0 0;
-  font: 400 12px/1.4 var(--font-sans), sans-serif;
-  color: #d64545;
-}
-
-.detail-form__error--center {
-  text-align: center;
-  margin-top: 12px;
-}
-
-.detail-form-success {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 16px 0;
-}
-
-.detail-form-success__icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #2f9e5f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.detail-form-success__title {
-  margin: 0 0 6px;
-  font: 600 22px/1.2 var(--font-display), Georgia, serif;
-  color: var(--text-primary);
-}
-
-.detail-form-success__text {
-  margin: 0 0 16px;
-  font: 400 14px/1.5 var(--font-sans), sans-serif;
-  color: var(--text-secondary);
-}
-
-.detail-form-success__again {
-  border: 0;
-  background: none;
-  padding: 0;
-  font: 400 13px/1 var(--font-sans), sans-serif;
-  color: var(--orange-600);
-  cursor: pointer;
 }
 
 /* ── 5.6 «Скоро» — lead-секция ── */
@@ -4969,91 +3972,9 @@ body::before {
   margin-top: 40px;
 }
 
-/* ── Адаптив ── */
-@media (max-width: 1024px) {
-  .expert-card {
-    grid-template-columns: 72px 1fr;
-  }
-
-  .expert-tag {
-    grid-column: 2;
-    justify-self: start;
-  }
-}
-
 @media (max-width: 768px) {
   .expedition-detail .container {
     width: min(100% - 40px, 1280px);
-  }
-
-  .detail-hero {
-    height: 60vh;
-    min-height: 480px;
-  }
-
-  .detail-hero__content {
-    padding: 24px 0;
-  }
-
-  .detail-hero__title {
-    font-size: 32px;
-  }
-
-  .detail-hero__tags {
-    gap: 8px;
-  }
-
-  .detail-hero__tag:nth-child(2) { transform: translateX(12px); }
-  .detail-hero__tag:nth-child(3) { transform: translateX(24px); }
-
-  .included-stage {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .included-card,
-  .included-card--1,
-  .included-card--2,
-  .included-card--3,
-  .included-card--4,
-  .included-card--5,
-  .included-card--6 {
-    grid-column: 1;
-    min-height: 260px;
-  }
-
-  .program-timeline {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .program-timeline__left {
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 12px;
-  }
-
-  .program-timeline__left::before {
-    display: none;
-  }
-
-  .program-timeline__daynum {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
-  }
-
-  .program-timeline__daynum + .program-timeline__daynum {
-    margin-top: 0;
-  }
-
-  .forbes-expert-card {
-    grid-template-columns: 1fr;
-  }
-
-  .form-panel {
-    padding: 32px 24px;
   }
 
   .related-grid {
@@ -5341,125 +4262,6 @@ body::before {
   }
 }
 
-/* ── СТЕКЛЯННЫЙ КОНТИНЕНТ (expedition-map) ── */
-.expedition-map {
-  position: relative;
-  width: min(44vw, 640px);
-  margin-right: -8vw;
-  flex-shrink: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-.expedition-map__svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.expedition-map__glass {
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-  filter: drop-shadow(0 18px 44px rgba(0, 0, 0, .35));
-}
-
-.expedition-map__outline {
-  fill: none;
-  stroke: rgba(255, 255, 255, .55);
-  stroke-width: .5;
-  stroke-linejoin: round;
-}
-
-.expedition-map__outline--glow {
-  fill: none;
-  stroke: rgba(255, 255, 255, .22);
-  stroke-width: 2.6;
-  filter: blur(3px);
-  opacity: .5;
-}
-
-.expedition-map__route {
-  fill: none;
-  stroke: rgba(255, 107, 44, .85);
-  stroke-width: .55;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 3px rgba(255, 107, 44, .45));
-}
-
-.expedition-map__stop {
-  fill: var(--orange-500);
-  filter: drop-shadow(0 0 3px rgba(255, 107, 44, .5));
-}
-
-.expedition-map__neighbor {
-  fill: rgba(255, 255, 255, .2);
-}
-
-.expedition-map__pulse {
-  fill: none;
-  stroke: rgba(255, 107, 44, .55);
-  stroke-width: .35;
-  animation: glass-pulse 2.6s var(--ease) infinite;
-  transform-origin: center;
-}
-
-@keyframes glass-pulse {
-  0%   { opacity: .7; transform: scale(.6); }
-  70%  { opacity: 0;  transform: scale(1.9); }
-  100% { opacity: 0;  transform: scale(1.9); }
-}
-
-.expedition-map__dot {
-  fill: var(--orange-500);
-}
-
-.expedition-map__dot-ring {
-  fill: none;
-  stroke: rgba(255, 255, 255, .9);
-  stroke-width: .28;
-}
-
-.expedition-map__labels {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.expedition-map__label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-}
-
-.expedition-map__label-name {
-  font: 500 11px/1 var(--font-sans), sans-serif;
-  letter-spacing: .02em;
-  color: rgba(255, 255, 255, .92);
-  background: rgba(22, 17, 12, .5);
-  border: 1px solid rgba(255, 255, 255, .12);
-  padding: 5px 10px;
-  border-radius: 999px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  white-space: nowrap;
-}
-
-.expedition-map__continent {
-  position: absolute;
-  right: 4px;
-  bottom: 0;
-  font: 500 9px/1 var(--font-sans), sans-serif;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .32);
-  pointer-events: none;
-}
-
 /* ── КОНТЕКСТ РЫНКА ── */
 /* ── ПРОГРАММА — тёмный блок впритык к Hero (во всю ширину экрана) ── */
 .expedition-program {
@@ -5544,6 +4346,16 @@ body::before {
   max-width: 460px;
   font: 400 14.5px/1.65 var(--font-sans), sans-serif;
   color: rgba(255, 246, 238, .65);
+  white-space: pre-line;
+}
+.program-detail__text--after {
+  margin-top: 20px;
+}
+/* Белый мини-заголовок перед группой буллетов */
+.program-detail__subhead {
+  margin: 22px 0 2px;
+  font: 600 15px/1.4 var(--font-sans), sans-serif;
+  color: #FFF6EE;
 }
 .program-detail__list {
   margin: 24px 0 0;
@@ -5830,37 +4642,7 @@ body::before {
   }
 }
 
-/* ── Адаптив редизайна ── */
-@media (max-width: 1024px) {
-  .exp-program__chapter {
-    gap: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .exp-program__chapter,
-  .exp-program__chapter--1,
-  .exp-program__chapter--3 {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 44px 0;
-  }
-
-  .exp-program__chapter--1 .exp-program__photo,
-  .exp-program__chapter--3 .exp-program__photo {
-    order: 0;
-  }
-
-  .exp-program__chapter--2 .exp-program__photo {
-    aspect-ratio: 16 / 10;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .expedition-map__pulse {
-    animation: none !important;
-  }
-}
+/* (адаптив старого exp-program и expedition-map удалён вместе с блоками) */
 
 
 /* ============================================================

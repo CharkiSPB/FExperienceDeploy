@@ -38,8 +38,8 @@ const columns: StatColumn[] = [
     iconAlt: 'Невостребованный продукт',
     end: 40,
     sign: { prefix: '> ', suffix: '%' },
-    label: 'стартапов терпят провал',
-    description: 'из-за невостребованности продукта',
+    label: 'стартапов',
+    description: 'терпят провал из-за невостребованности продукта',
     delay: 'delay-3',
   },
 ];
