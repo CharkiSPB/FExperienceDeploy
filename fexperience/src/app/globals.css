@@ -4010,7 +4010,7 @@ body::before {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 28%;
+  left: 0;
   z-index: 0;
 }
 .expedition-hero__sketch {
@@ -4018,9 +4018,10 @@ body::before {
   object-position: 70% center;
   user-select: none;
   pointer-events: none;
-  /* Переход спрятан под текстовой колонкой: длинный и плавный */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32%);
-  mask-image: linear-gradient(to right, transparent 0, #000 32%);
+  /* Маска в координатах всего hero: 0–36% чистый канвас без тумана,
+     36–53% короткий плавный переход, 53–100% полное фото */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 36%, #000 53%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 36%, #000 53%);
 }
 .expedition-hero__grid {
   position: relative;
@@ -4157,7 +4158,7 @@ body::before {
 .expedition-seal {
   position: absolute;
   top: 56%;
-  left: 13%;
+  left: 37%;
   transform: translateY(-50%);
   z-index: 2;
   width: 128px;
