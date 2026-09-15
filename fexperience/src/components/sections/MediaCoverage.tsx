@@ -3,7 +3,7 @@ import { mediaLayer } from '@/data/mediaLayer';
 
 export function MediaCoverage() {
   return (
-    <section className="bg-surface px-6 py-20 md:px-16 md:py-32">
+    <section className="bg-surface px-6 py-20 md:px-16 md:pt-20 md:pb-32">
       <div className="mx-auto max-w-[1280px]">
         <div className="grid grid-cols-1 items-center gap-y-8 md:grid-cols-[50%_50%] md:gap-16">
           {/* Фото-блок: медийное сопровождение Forbes — один кадр */}

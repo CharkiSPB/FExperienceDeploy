@@ -66,7 +66,7 @@ export function PlatformStatement() {
           </div>
 
           <h2 className="project-statement">
-            FExperience — специальный проект команды Forbes
+            <span className="accent">F</span>Experience — специальный проект команды Forbes
           </h2>
           <p className="project-statement-sub">
             {(() => {

@@ -6,7 +6,7 @@ const ITEMS = new Map(whyUsItems.map((item) => [item.id, item]));
 
 export function WhyFExperience() {
   return (
-    <section id="why" className="why-section px-6 py-20 md:px-16 md:py-32">
+    <section id="why" className="why-section px-6 py-20 md:px-16 md:pt-32 md:pb-20">
       <div className="mx-auto max-w-[1280px]">
         <header className="mb-12 md:mb-16">
           <span className="eyebrow-dash" aria-hidden="true" />
