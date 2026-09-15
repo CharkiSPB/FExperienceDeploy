@@ -1726,6 +1726,15 @@ body::before {
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(26, 26, 26, .10);
 }
+/* next/image отдаёт img 96×96 в боксе 48×48 — без cover виден только
+   левый верхний угол кадра (отсюда белая обрезка). Растягиваем на бокс. */
+.testimonial-author-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
 
 @media (max-width: 639px) {
   .testimonial-card {
@@ -4528,13 +4537,41 @@ body::before {
 }
 .included-point {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
 }
 .included-point__num {
   font: 700 16px/1.2 var(--font-sans), sans-serif;
   letter-spacing: .04em;
   color: var(--color-brand-600);
+  white-space: nowrap;
+}
+.included-point__name {
+  position: relative;
+  display: inline-block;
+}
+/* Точка-маркер — якорь на словах (не на пункте), поэтому строго
+   по центру текста. Мишень: оранжевая сердцевина, зазор фона,
+   оранжевое кольцо. */
+.included-point__name::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Центр точки = top + 13/2. Линия в 20px → top = 13.5px */
+  top: calc(100% + 13px);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--color-brand-600);
+  box-shadow: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-brand-600);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Нижняя тройка: линейка в 28px → top = 21.5px */
+.included-points--bottom .included-point__name::after {
+  top: calc(100% + 21px);
 }
 .included-point__name {
   font: 600 15px/1.5 var(--font-sans), sans-serif;
@@ -4602,6 +4639,10 @@ body::before {
     grid-template-columns: 1fr;
     gap: 24px;
     margin-top: 40px;
+  }
+  /* В одну колонку точки-маркеры прячем — им не на что садиться */
+  .included-point__name::after {
+    display: none;
   }
   .included-rule {
     margin-top: 16px;
