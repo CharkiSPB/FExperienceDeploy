@@ -6,7 +6,7 @@ export const expeditions: Expedition[] = [
     title: 'Бизнес-экспедиция с Forbes в ЮАР',
     country: 'ЮАР',
     region: 'africa',
-    city: 'Кейптаун, Стелленбос',
+    city: 'Кейптаун, Стелленбош',
     industries: ['Энергетика и ресурсы', 'Агропром'],
     dates: '15-21 ноября 2026',
     status: 'active',

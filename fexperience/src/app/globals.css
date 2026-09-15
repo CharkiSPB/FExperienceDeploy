@@ -309,6 +309,18 @@ body::before {
   padding: 12px 24px;
   font-size: 14px;
 }
+/* Фирменный оранжевый бордер для «Стать партнёром» */
+.btn-outline--brand {
+  border-color: var(--color-brand-600);
+}
+.btn-outline--brand:hover {
+  border-color: var(--color-brand-500);
+  background: rgba(255, 107, 44, .10);
+}
+/* Белый текст — только поверх тёмного hero (шапка без скролла) */
+.btn-outline--on-dark {
+  color: #fff;
+}
 
 /* ── Glass Level 01 — базовая стеклянная карточка (раздел 14.2) ── */
 .glass-01 {
@@ -4010,18 +4022,17 @@ body::before {
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
+  left: 32%;
   z-index: 0;
 }
 .expedition-hero__sketch {
   object-fit: cover;
-  object-position: 62% center;
+  object-position: 70% center;
   user-select: none;
   pointer-events: none;
-  /* Широкое фото видно почти целиком: 0–30% чистый канвас под текстом,
-     30–56% длинный S-фейд без границы, 56–100% плотное фото */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 30%, rgba(0,0,0,.16) 38%, rgba(0,0,0,.42) 44%, rgba(0,0,0,.72) 50%, #000 56%);
-  mask-image: linear-gradient(to right, transparent 0%, transparent 30%, rgba(0,0,0,.16) 38%, rgba(0,0,0,.42) 44%, rgba(0,0,0,.72) 50%, #000 56%);
+  /* Eased-маска одним слоем: середина ужата влево, посадка мягкая той же длины */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.10) 6%, rgba(0,0,0,.40) 11%, rgba(0,0,0,.70) 16%, rgba(0,0,0,.88) 21%, #000 28%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.10) 6%, rgba(0,0,0,.40) 11%, rgba(0,0,0,.70) 16%, rgba(0,0,0,.88) 21%, #000 28%);
 }
 .expedition-hero__grid {
   position: relative;
@@ -4157,8 +4168,8 @@ body::before {
 /* Печать — на зоне перехода маски (перекрывает стык фона и скетча) */
 .expedition-seal {
   position: absolute;
-  top: 56%;
-  left: 36%;
+  top: 60%;
+  left: 6%;
   transform: translateY(-50%);
   z-index: 2;
   width: 128px;
@@ -4494,6 +4505,55 @@ body::before {
   font: 600 15px/1.45 var(--font-sans), sans-serif;
   color: var(--color-text-primary);
 }
+/* Схема 2026-09-14: тройка пунктов → линейка → картинка → тройка пунктов */
+.included-points {
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+.included-point {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.included-point__num {
+  font: 700 16px/1.2 var(--font-sans), sans-serif;
+  letter-spacing: .04em;
+  color: var(--color-brand-600);
+}
+.included-point__name {
+  font: 600 15px/1.5 var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  color: var(--color-text-primary);
+}
+/* Длинные оранжевые линейки — на всю ширину экрана, вне контейнера */
+.included-rule {
+  margin-top: 40px;
+  height: 1px;
+  background: var(--color-brand-600);
+}
+.included-rule--bottom {
+  margin-top: 56px;
+}
+/* Картинка между тройками — на всю ширину экрана, высота зафиксирована (кроп сверху/снизу по центру) */
+.included-media {
+  margin: 56px 0;
+}
+.included-image {
+  display: block;
+  width: 100%;
+  height: 512px;
+  object-fit: cover;
+  object-position: center;
+}
+/* Нижняя тройка идёт сразу за картинкой — верхний отступ уже даёт media */
+.included-points--bottom {
+  margin-top: 0;
+}
 
 @media (max-width: 1024px) {
   .expedition-included__container {
@@ -4516,6 +4576,23 @@ body::before {
   }
   .expedition-included__container {
     padding-inline: 24px;
+  }
+  .included-media {
+    margin: 40px 0;
+  }
+  .included-image {
+    height: 300px;
+  }
+  .included-rule--bottom {
+    margin-top: 40px;
+  }
+  .included-points {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .included-rule {
+    margin-top: 32px;
   }
   .included-items {
     grid-template-columns: 1fr 1fr;

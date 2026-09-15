@@ -160,7 +160,7 @@ export function Header() {
           {/* CTA — desktop */}
           <div className="hidden xl:flex items-center gap-3 ml-8">
             {isExpeditionDetail && (
-              <button onClick={() => setIsPartnerModalOpen(true)} className="btn-outline btn-outline--sm">
+              <button onClick={() => setIsPartnerModalOpen(true)} className={`btn-outline btn-outline--sm btn-outline--brand ${overDarkHero ? 'btn-outline--on-dark' : ''}`}>
                 Стать партнёром
               </button>
             )}
@@ -268,7 +268,7 @@ export function Header() {
               {isExpeditionDetail && (
                 <motion.button
                   onClick={() => { setIsPartnerModalOpen(true); closeMenu(); }}
-                  className="btn-outline w-full"
+                  className="btn-outline btn-outline--brand w-full"
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}

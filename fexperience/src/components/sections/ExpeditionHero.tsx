@@ -128,7 +128,10 @@ export function ExpeditionHero({ expedition, heroDate }: ExpeditionHeroProps) {
             )}
           </div>
 
-          {(expedition.heroTheses ?? DEFAULT_HERO_THESES).length > 0 ? (
+          {/* ВРЕМЕННО СКРЫТО 2026-09-14: три тезиса hero («Погружение / Эксклюзивный / Лучшие»).
+              КАК ВЕРНУТЬ: удали строку-открывашку перед скобкой с expedition.heroTheses
+              и строку-закрывашку после неё — блок ниже снова заработает. */}
+          {/* {(expedition.heroTheses ?? DEFAULT_HERO_THESES).length > 0 ? (
             <ul className="expedition-hero__theses fade-up delay-2" aria-label="Ключевые преимущества экспедиции">
               {(expedition.heroTheses ?? DEFAULT_HERO_THESES).map((thesis) => (
                 <li key={thesis.title} className="expedition-hero__thesis">
@@ -143,7 +146,7 @@ export function ExpeditionHero({ expedition, heroDate }: ExpeditionHeroProps) {
                 {expedition.shortDescription}
               </p>
             )
-          )}
+          )} */}
 
           {isUpcoming && (
             <p className="expedition-hero__lead fade-up delay-2">
