@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { expeditions } from '@/data/expeditions';
 import { useExpedition } from '@/components/providers/ExpeditionContext';
+import { RequestModal } from '@/components/shared/RequestModal';
 
 const MONTHS_GEN = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 const MONTHS_NOM = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
@@ -37,7 +38,8 @@ const HERO_EXPEDITIONS = expeditions
       new Date(b.startDate ?? '1970-01-01').getTime()
   );
 
-function HeroSeal() {
+function HeroSeal({ slug }: { slug: string }) {
+  const circleId = `hero-seal-circle-${slug}`;
   return (
     <div className="hero-seal" aria-hidden="true">
       <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="hero-seal__svg">
@@ -46,25 +48,23 @@ function HeroSeal() {
         {/* Внутренняя тонкая окружность — лёгкая вторая линия */}
         <circle cx="100" cy="100" r="88" stroke="rgba(26,26,26,0.07)" strokeWidth="0.6" fill="none" />
         <defs>
-          <path id="hero-seal-circle" d="M 100,100 m -76,0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" />
+          <path id={circleId} d="M 100,100 m -76,0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" />
         </defs>
         <text fill="rgba(26,26,26,0.6)" fontSize="9.8" letterSpacing="3.2">
-          <textPath href="#hero-seal-circle" startOffset="0%">
+          <textPath href={`#${circleId}`} startOffset="0%">
             FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
           </textPath>
         </text>
-        {/* Центральная F — фирменная orange */}
-        <text
-          x="100"
-          y="120"
-          textAnchor="middle"
-          fontSize="68"
-          fontWeight="700"
-          fill="var(--color-brand-600)"
-          style={{ fontFamily: 'var(--font-display), serif' }}
-        >
-          F
-        </text>
+        {/* Центр — буква F из фирменного логотипа (кроп viewBox по зоне F) */}
+        <svg x="68" y="66" width="64" height="68" viewBox="0 0 320 344">
+          <image
+            href="/images/logo/F_logo.svg"
+            x="0"
+            y="0"
+            width="1971"
+            height="344"
+          />
+        </svg>
       </svg>
     </div>
   );
@@ -72,6 +72,7 @@ function HeroSeal() {
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setActiveExpeditionSlug } = useExpedition();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -99,9 +100,8 @@ export function Hero() {
       <div className="hero-slider__viewport h-full" ref={emblaRef}>
         <div className="hero-slider__container">
           {HERO_EXPEDITIONS.map((expedition) => {
-            let titleLine1 = `${expedition.heroTitlePrimary} ${expedition.heroTitleOpen}`.replace(/\s+/g, ' ').trim().replace(/Бизнес\s*[—-]\s*/, 'Бизнес-');
-            if (!titleLine1.includes('Forbes')) titleLine1 = `${titleLine1} с Forbes`;
-            const titleLine2 = expedition.heroTitleCountry;
+            const titleLine1 = `${expedition.heroTitlePrimary} ${expedition.heroTitleOpen}`.replace(/\s+/g, ' ').trim().replace(/Бизнес\s*[—-]\s*/, 'Бизнес-').replace(/\s+с Forbes$/i, '');
+            const titleCountry = `${expedition.heroTitleCountry}`.replace(/\s+/g, ' ').trim();
             return (
               <article key={expedition.slug} className="hero-slider__slide">
                 <div className="hero-slide">
@@ -136,9 +136,9 @@ export function Hero() {
 
                   {/* Компактный контент внутри левого стекла (по spec: pills → заголовок → CTA) */}
                   <div className="hero-compact">
-                    {/* Три тезиса */}
+                    {/* Четыре тезиса */}
                     <div className="hero-compact__pills" aria-label="Ключевые особенности экспедиции">
-                      {expedition.heroPills?.slice(0, 3).map((pill, index) => (
+                      {expedition.heroPills?.slice(0, 4).map((pill, index) => (
                         <span key={pill} className="hero-compact__pill">
                           {pill}
                         </span>
@@ -147,16 +147,25 @@ export function Hero() {
 
                     <h1 className="hero-compact__title">
                       <span className="hero-compact__line1">{titleLine1}</span>
-                      <span className="hero-compact__line2">{titleLine2}</span>
+                      <span className="hero-compact__line2">
+                        с Forbes <span className="hero-compact__line2-country">{titleCountry}</span>
+                      </span>
                       <time className="hero-compact__date">
                         {formatExpeditionDate(expedition.startDate, expedition.endDate)}
                       </time>
                     </h1>
 
                     <div className="hero-compact__cta">
-                      <Link className="hero-slide__join btn-liquid btn-liquid--on-light" href={`/expeditions/${expedition.slug}#form`}>
+                      <button
+                        type="button"
+                        className="hero-slide__join btn-liquid btn-liquid--on-light cursor-pointer"
+                        onClick={() => {
+                          setActiveExpeditionSlug(expedition.slug);
+                          setIsModalOpen(true);
+                        }}
+                      >
                         <span className="btn-liquid-text">Стать участником</span>
-                      </Link>
+                      </button>
                       <Link className="hero-slide__details btn-outline" href={`/expeditions/${expedition.slug}`}>
                         <span>Подробнее</span>
                       </Link>
@@ -164,13 +173,19 @@ export function Hero() {
                   </div>
 
                   {/* Круглая печать на границе стекло | видео */}
-                  <HeroSeal />
+                  <HeroSeal slug={expedition.slug} />
                 </div>
               </article>
             );
           })}
         </div>
       </div>
+
+      <RequestModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        defaultExpeditionSlug={HERO_EXPEDITIONS[activeIndex]?.slug}
+      />
 
       {HERO_EXPEDITIONS.length > 1 && (
         <>

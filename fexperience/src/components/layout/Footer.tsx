@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MapPin } from 'lucide-react';
+import { MapPin, Send } from 'lucide-react';
 import { contacts } from '@/data/contacts';
 import { regions } from '@/data/regions';
 
@@ -56,7 +56,7 @@ function ContinentalNav() {
       {regions.map((region) => (
         <Link
           key={region.id}
-          href="/expeditions"
+          href={`/expeditions?region=${region.id}`}
           className="font-sans text-[14px] font-medium leading-none text-text-primary transition-colors hover:text-brand-600"
         >
           {region.label}
@@ -73,8 +73,8 @@ function FooterColumns() {
     {
       title: 'Разделы',
       links: [
-        { label: 'Рынки', href: '/#markets' },
         { label: 'Экспедиции', href: '/expeditions' },
+        { label: 'Отзывы', href: '/#reviews' },
         { label: 'Статьи', href: '/articles' },
         { label: 'О нас', href: '/about' },
       ],
@@ -84,7 +84,7 @@ function FooterColumns() {
       links: [
         { label: 'Вьетнам', href: '/expeditions/vietnam' },
         { label: 'ЮАР', href: '/expeditions/south-africa' },
-        { label: 'Марокко', href: '/expeditions/morocco' },
+        { label: 'Бразилия', href: '/expeditions/brazil' },
         { label: 'Сахалин', href: '/expeditions/sakhalin' },
       ],
     },
@@ -116,14 +116,26 @@ function FooterColumns() {
             {column.links.map((link) => (
               <li key={link.label}>
                 {link.href ? (
-                  <Link
-                    href={link.href}
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="text-text-secondary transition-colors hover:text-brand-600"
-                  >
-                    {link.label}
-                  </Link>
+                  link.href === contacts.telegram ? (
+                    <Link
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Telegram: @Milena_Amor"
+                      className="inline-grid h-9 w-9 place-items-center rounded-full border border-border text-text-secondary transition-colors hover:border-brand-600 hover:text-brand-600"
+                    >
+                      <Send className="h-4 w-4" strokeWidth={1.5} />
+                    </Link>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="text-text-secondary transition-colors hover:text-brand-600"
+                    >
+                      {link.label}
+                    </Link>
+                  )
                 ) : (
                   <span className="text-text-secondary">{link.label}</span>
                 )}
@@ -138,7 +150,7 @@ function FooterColumns() {
 
 export function Footer() {
   return (
-    <footer className="bg-footer border-t border-brand-600/15 px-6 pb-10 pt-16 md:px-16 md:pt-20">
+    <footer id="contacts" className="bg-footer border-t border-brand-600/15 px-6 pb-10 pt-16 md:px-16 md:pt-20 scroll-mt-24">
       <div className="mx-auto max-w-[1280px]">
         <Newsletter />
 

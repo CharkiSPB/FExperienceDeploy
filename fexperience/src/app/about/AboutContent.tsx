@@ -3,15 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Shield,
-  TrendingUp,
-  FileText,
-  Truck,
-  Search,
-  MessageSquare,
-  DollarSign,
-  Wifi,
-  Calculator,
   CircleCheckBig,
 } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -51,17 +42,16 @@ function AboutSeal() {
           FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
         </textPath>
       </text>
-      <text
-        x="100"
-        y="122"
-        textAnchor="middle"
-        fontSize="64"
-        fontWeight="700"
-        fill="var(--color-brand-600)"
-        style={{ fontFamily: 'var(--font-display), serif' }}
-      >
-        F
-      </text>
+      {/* Центр — буква F из фирменного логотипа (кроп viewBox по зоне F) */}
+      <svg x="68" y="66" width="64" height="68" viewBox="0 0 320 344">
+        <image
+          href="/images/logo/F_logo.svg"
+          x="0"
+          y="0"
+          width="1971"
+          height="344"
+        />
+      </svg>
     </svg>
   );
 }
@@ -118,24 +108,38 @@ const methodChecklist = [
 ];
 
 /* Тёмная полоса «Ключевое отличие»: 9 пунктов, тексты — посимвольно из спеки */
-const diffColumns = [
-  { icon: Shield, title: 'Безопасность в стране', desc: 'Проверенные партнёры и сопровождение на всех этапах.' },
-  { icon: TrendingUp, title: 'Деловой климат', desc: 'Доступ к ключевым игрокам и понимание локальной повестки.' },
-  { icon: FileText, title: 'Регуляторная среда', desc: 'Актуальная информация о правилах и особенностях ведения бизнеса.' },
-  { icon: Truck, title: 'Особенности логистики', desc: 'Продуманная логистика и комфорт в каждой детали поездки.' },
-  { icon: Search, title: 'Реальный запрос бизнеса', desc: 'Программа формируется под ваши цели и задачи.' },
-  { icon: MessageSquare, title: 'Культурные барьеры', desc: 'Понимание культурного контекста и тонкостей делового диалога.' },
-  { icon: DollarSign, title: 'Финансовая инфраструктура', desc: 'Навигация по финансовой системе и возможностям для бизнеса.' },
-  { icon: Wifi, title: 'Цифровизация экономики', desc: 'Анализируем цифровые тренды и точки роста в регионе.' },
-  { icon: Calculator, title: 'Стоимость выхода на рынок', desc: 'Прозрачный расчёт затрат на вход в новый рынок.' },
+const ICONS_ABOUT = '/images/icons/about';
+const diffColumns: { iconSrc: string | null; title: string; desc: string }[] = [
+  { iconSrc: `${ICONS_ABOUT}/01_Security_in_the_country.svg`, title: 'Безопасность в стране', desc: 'Проверенные партнёры и сопровождение на всех этапах.' },
+  { iconSrc: `${ICONS_ABOUT}/02_Business_climate.svg`, title: 'Деловой климат', desc: 'Доступ к ключевым игрокам и понимание локальной повестки.' },
+  { iconSrc: `${ICONS_ABOUT}/03_Regulatory_environment.svg`, title: 'Регуляторная среда', desc: 'Актуальная информация о правилах и особенностях ведения бизнеса.' },
+  { iconSrc: `${ICONS_ABOUT}/04_Logistics_specifics.svg`, title: 'Особенности логистики', desc: 'Продуманная логистика и комфорт в каждой детали поездки.' },
+  { iconSrc: `${ICONS_ABOUT}/05_A_real_business_need.svg`, title: 'Реальный запрос бизнеса', desc: 'Программа формируется под ваши цели и задачи.' },
+  { iconSrc: `${ICONS_ABOUT}/06_Cultural_barriers.svg`, title: 'Культурные барьеры', desc: 'Понимание культурного контекста и тонкостей делового диалога.' },
+  { iconSrc: `${ICONS_ABOUT}/07_Financial_infrastructure.svg`, title: 'Финансовая инфраструктура', desc: 'Навигация по финансовой системе и возможностям для бизнеса.' },
+  { iconSrc: `${ICONS_ABOUT}/08_Digitalization_of_the_economy.svg`, title: 'Цифровизация экономики', desc: 'Анализируем цифровые тренды и точки роста в регионе.' },
+  { iconSrc: `${ICONS_ABOUT}/09_Market_entry_cost.svg`, title: 'Стоимость выхода на рынок', desc: 'Прозрачный расчёт затрат на вход в новый рынок.' },
 ];
 
-/* Заглушка иконки: пунктирный квадрат 28×28 — замени на свой SVG */
+const MISSION_ICONS: Record<string, { src: string; alt: string }> = {
+  mission: { src: '/images/icons/about/01_Our_mission.svg', alt: 'Наша миссия' },
+  audience: { src: '/images/icons/about/02_For_whom.svg', alt: 'Для кого' },
+  approach: { src: '/images/icons/about/03_Our_approach.svg', alt: 'Наш подход' },
+  values: { src: '/images/icons/about/04_Our_values.svg', alt: 'Наши ценности' },
+};
+
 function MissionIconPlaceholder({ slot }: { slot: string }) {
+  const icon = MISSION_ICONS[slot];
+  if (!icon) return <span className="mission-icon" data-slot={slot} aria-hidden="true" />;
   return (
-    <span className="mission-icon" data-slot={slot} aria-hidden="true">
-      {/* ═══ ВСТАВЬ SVG СЮДА (slot: {slot}) ═══ */}
-    </span>
+    <Image
+      src={icon.src}
+      alt=""
+      width={40}
+      height={40}
+      className={`mission-icon mission-icon--img mission-icon--${slot}`}
+      aria-hidden="true"
+    />
   );
 }
 
@@ -200,29 +204,6 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Тёмная полоса: ключевое отличие FExperience */}
-      <section className="about-diff" aria-label="Ключевое отличие FExperience">
-        <div className="about-diff__head fade-up">
-          <span className="eyebrow-dash" aria-hidden="true" />
-          <p className="about-diff__eyebrow">Нас выбирают за</p>
-          <h2 className="about-diff__title">
-            Ключевое отличие <span className="accent">F</span>Experience
-          </h2>
-        </div>
-        <div className="about-diff__grid">
-          {diffColumns.map((col, index) => (
-            <div
-              key={col.title}
-              className={`about-diff__col fade-up delay-${(index % 6) + 1}`}
-            >
-              <col.icon size={28} strokeWidth={1.25} aria-hidden="true" className="diff-icon" />
-              <h3 className="diff-title">{col.title}</h3>
-              <p className="diff-desc">{col.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Наша методология: тезис → checklist → фото */}
       <section className="about-method" aria-labelledby="about-method-title">
         <div className="about-method__grid">
@@ -258,6 +239,39 @@ export function AboutContent() {
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Тёмная полоса: ключевое отличие FExperience */}
+      <section className="about-diff" aria-label="Ключевое отличие FExperience">
+        <div className="about-diff__head fade-up">
+          <span className="eyebrow-dash" aria-hidden="true" />
+          <h2 className="about-diff__title">
+            Ключевое отличие <span className="accent">F</span>Experience
+          </h2>
+        </div>
+        <div className="about-diff__grid">
+          {diffColumns.map((col, index) => (
+            <div
+              key={col.title}
+              className={`about-diff__col fade-up delay-${(index % 6) + 1}`}
+            >
+              {col.iconSrc ? (
+                <Image
+                  src={col.iconSrc}
+                  alt=""
+                  width={41}
+                  height={41}
+                  className="diff-icon diff-icon--img"
+                  aria-hidden="true"
+                />
+              ) : (
+                <span className="diff-icon diff-icon--empty" aria-hidden="true" />
+              )}
+              <h3 className="diff-title">{col.title}</h3>
+              <p className="diff-desc">{col.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -17,7 +17,7 @@ export const whyComposition: WhyCompositionItem[] = [
   {
     id: 1,
     variant: 'featured',
-    image: '/images/why/why-01-networking.webp',
+    image: '/images/why/why-01-networking1.webp',
     alt: 'Деловой нетворкинг на экспедиции FExperience',
   },
   {
@@ -45,7 +45,7 @@ export const whyComposition: WhyCompositionItem[] = [
   {
     id: 6,
     variant: 'signature',
-    image: '/images/why/why-06-culture.webp',
+    image: '/images/why/why-06-culture2.webp',
     alt: 'Культурное погружение в локальную среду',
     full: true,
   },

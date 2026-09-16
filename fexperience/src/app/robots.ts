@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://fexperience.ru/sitemap.xml',
+    sitemap: 'https://fexperience.forbes.ru/sitemap.xml',
   };
 }

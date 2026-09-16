@@ -3,7 +3,7 @@ import { SiteConfig } from '@/types/config';
 export const config: SiteConfig = {
   site: {
     name: 'FExperience',
-    url: 'https://fexperience.ru',
+    url: 'https://fexperience.forbes.ru',
     description: 'Бизнес-экспедиции с Forbes',
   },
   partnerBlock: {

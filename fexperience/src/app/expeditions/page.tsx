@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { ExpeditionsDirectory } from '@/components/sections/ExpeditionsDirectory';
 import { config } from '@/data/config';
 
@@ -18,5 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function ExpeditionsPage() {
-  return <ExpeditionsDirectory />;
+  return (
+    <Suspense>
+      <ExpeditionsDirectory />
+    </Suspense>
+  );
 }

@@ -39,18 +39,16 @@ function ProjectSeal() {
           FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
         </textPath>
       </text>
-      {/* Центр — только F, фирменный оранжевый */}
-      <text
-        x="100"
-        y="122"
-        textAnchor="middle"
-        fontSize="64"
-        fontWeight="700"
-        fill="var(--color-brand-600)"
-        style={{ fontFamily: 'var(--font-display), serif' }}
-      >
-        F
-      </text>
+      {/* Центр — буква F из фирменного логотипа (кроп viewBox по зоне F) */}
+      <svg x="68" y="66" width="64" height="68" viewBox="0 0 320 344">
+        <image
+          href="/images/logo/F_logo.svg"
+          x="0"
+          y="0"
+          width="1971"
+          height="344"
+        />
+      </svg>
     </svg>
   );
 }
@@ -68,19 +66,17 @@ export function PlatformStatement() {
           </div>
 
           <h2 className="project-statement">
-            {(() => {
-              const phrase = 'готовность вашего бизнеса к масштабированию';
-              const parts = platformStatement.statement.split(phrase);
-              if (parts.length < 2) return platformStatement.statement;
-              return (
-                <>
-                  {parts[0]}
-                  <em className="project-statement-accent">{phrase}</em>
-                  {parts[1]}
-                </>
-              );
-            })()}
+            FExperience — специальный проект команды Forbes
           </h2>
+          <p className="project-statement-sub">
+            {(() => {
+              const prefix = 'FExperience — специальный проект команды Forbes,';
+              const rest = platformStatement.statement.startsWith(prefix)
+                ? platformStatement.statement.slice(prefix.length).trim()
+                : platformStatement.statement;
+              return rest.charAt(0).toUpperCase() + rest.slice(1);
+            })()}
+          </p>
 
           <p className="project-subtext">{platformStatement.subText}</p>
 
@@ -97,7 +93,7 @@ export function PlatformStatement() {
         <div className="project-media fade-up delay-2">
           <span className="project-media__frame" aria-hidden="true" />
           <Image
-            src="/images/why/02FExperience-bg.webp"
+            src="/images/why/02_FExperience.webp"
             alt="Деловая встреча у окна с видом на город"
             width={720}
             height={900}

@@ -45,12 +45,14 @@ export type Expedition = {
   ogImage?: string;
 
   // ── Hero-поля для главной (раздел 10.2) ──
+  heroSketch?: string; // скетч ТОЛЬКО для Hero детальной страницы
   startDate?: string;
   endDate?: string;
   heroTitlePrimary?: string;
   heroTitleOpen?: string;
   heroTitleCountry?: string;
   heroPills?: string[];
+  heroTheses?: { title: string; sub: string }[];
   pullQuote?: {
     text: string;
     author: string;

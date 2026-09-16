@@ -3,7 +3,7 @@ import { expeditions } from '@/data/expeditions';
 import { articles } from '@/data/articles/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://fexperience.ru';
+  const baseUrl = 'https://fexperience.forbes.ru';
 
   // Статические страницы
   const staticPages: MetadataRoute.Sitemap = [
