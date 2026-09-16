@@ -474,12 +474,12 @@ body::before {
   padding: 28px 32px;
   background: linear-gradient(
     180deg,
-    rgba(255, 248, 240, .58) 0%,
-    rgba(248, 232, 215, .46) 55%,
-    rgba(244, 221, 198, .38) 100%
+    rgba(255, 248, 240, .72) 0%,
+    rgba(248, 232, 215, .62) 55%,
+    rgba(244, 221, 198, .55) 100%
   );
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(22px) saturate(115%);
+  -webkit-backdrop-filter: blur(22px) saturate(115%);
   border: 1px solid rgba(255, 138, 84, .48);
   border-radius: 22px;
   box-shadow:
@@ -518,7 +518,7 @@ body::before {
 
 .why-card-text {
   font: 400 16px/1.55 'HelveticaNeueCyr', sans-serif;
-  color: rgba(23, 20, 17, .70);
+  color: rgba(23, 20, 17, .86);
 }
 
 .why-card-pill {
@@ -543,15 +543,15 @@ body::before {
   max-width: calc(100% - 40px);
   padding: 18px 22px;
   background:
-    linear-gradient(180deg, rgba(255, 248, 240, .38) 0%, rgba(255, 248, 240, .30) 100%),
+    linear-gradient(180deg, rgba(255, 248, 240, .55) 0%, rgba(255, 248, 240, .48) 100%),
     linear-gradient(
       180deg,
-      rgba(255, 248, 240, .44) 0%,
-      rgba(248, 232, 215, .34) 55%,
-      rgba(244, 221, 198, .26) 100%
+      rgba(255, 248, 240, .60) 0%,
+      rgba(248, 232, 215, .50) 55%,
+      rgba(244, 221, 198, .42) 100%
     );
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(22px) saturate(115%);
+  -webkit-backdrop-filter: blur(22px) saturate(115%);
   border: 1px solid rgba(255, 138, 84, .48);
   border-radius: 16px;
   box-shadow:
@@ -585,15 +585,15 @@ body::before {
   justify-content: flex-end;
   padding: 28px 30px;
   background:
-    linear-gradient(180deg, rgba(255, 248, 240, .44) 0%, rgba(255, 248, 240, .36) 100%),
+    linear-gradient(180deg, rgba(255, 248, 240, .62) 0%, rgba(255, 248, 240, .55) 100%),
     linear-gradient(
       180deg,
-      rgba(255, 248, 240, .44) 0%,
-      rgba(248, 232, 215, .34) 55%,
-      rgba(244, 221, 198, .26) 100%
+      rgba(255, 248, 240, .60) 0%,
+      rgba(248, 232, 215, .50) 55%,
+      rgba(244, 221, 198, .42) 100%
     );
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(22px) saturate(115%);
+  -webkit-backdrop-filter: blur(22px) saturate(115%);
   border: 1px solid rgba(255, 138, 84, .48);
   border-radius: var(--radius-lg);
   box-shadow:
@@ -615,15 +615,15 @@ body::before {
 .why-card-signature.glass-signature {
   position: absolute;
   background:
-    linear-gradient(180deg, rgba(255, 248, 240, .38) 0%, rgba(255, 248, 240, .30) 100%),
+    linear-gradient(180deg, rgba(255, 248, 240, .55) 0%, rgba(255, 248, 240, .48) 100%),
     linear-gradient(
       180deg,
-      rgba(255, 248, 240, .44) 0%,
-      rgba(248, 232, 215, .34) 55%,
-      rgba(244, 221, 198, .26) 100%
+      rgba(255, 248, 240, .60) 0%,
+      rgba(248, 232, 215, .50) 55%,
+      rgba(244, 221, 198, .42) 100%
     );
-  backdrop-filter: blur(18px) saturate(115%);
-  -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(22px) saturate(115%);
+  -webkit-backdrop-filter: blur(22px) saturate(115%);
   border: 1px solid rgba(255, 138, 84, .48);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .5),
@@ -1659,11 +1659,16 @@ body::before {
 
 .testimonials-track {
   display: flex;
-  gap: 18px;
+  /* Без gap: Embla считает позиции слайдов без учёта gap,
+     из-за этого на ~1366px карточки слипались границами.
+     Отступ живёт на самой карточке. */
+  gap: 0;
 }
 
 .testimonial-card {
   flex: 0 0 min(720px, 78vw);
+  min-width: 0;
+  margin-right: 18px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1720,6 +1725,15 @@ body::before {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(26, 26, 26, .10);
+}
+/* next/image отдаёт img 96×96 в боксе 48×48 — без cover виден только
+   левый верхний угол кадра (отсюда белая обрезка). Растягиваем на бокс. */
+.testimonial-author-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 @media (max-width: 639px) {
@@ -2239,6 +2253,9 @@ body::before {
   font: 600 clamp(30px, 3.6vw, 46px)/1.12 var(--font-display), Georgia, serif;
   letter-spacing: -.025em;
   color: var(--text-primary);
+}
+.project-statement .accent {
+  color: var(--color-brand-600);
 }
 
 /* Вторая часть стейтмента — тем же serif, на шаг меньше */
@@ -3018,6 +3035,10 @@ body::before {
   .about-hero__sketch {
     -webkit-mask-image: none;
     mask-image: none;
+  }
+  /* На мобильных текст лежит поверх фото — серый не читается, даём чёрный */
+  .about-hero__text {
+    color: var(--color-text-primary);
   }
   .about-hero__seal {
     width: 96px;
@@ -4516,13 +4537,41 @@ body::before {
 }
 .included-point {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
 }
 .included-point__num {
   font: 700 16px/1.2 var(--font-sans), sans-serif;
   letter-spacing: .04em;
   color: var(--color-brand-600);
+  white-space: nowrap;
+}
+.included-point__name {
+  position: relative;
+  display: inline-block;
+}
+/* Точка-маркер — якорь на словах (не на пункте), поэтому строго
+   по центру текста. Мишень: оранжевая сердцевина, зазор фона,
+   оранжевое кольцо. */
+.included-point__name::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Центр точки = top + 13/2. Линия в 20px → top = 13.5px */
+  top: calc(100% + 13px);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--color-brand-600);
+  box-shadow: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-brand-600);
+  z-index: 1;
+  pointer-events: none;
+}
+/* Нижняя тройка: линейка в 28px → top = 21.5px */
+.included-points--bottom .included-point__name::after {
+  top: calc(100% + 21px);
 }
 .included-point__name {
   font: 600 15px/1.5 var(--font-sans), sans-serif;
@@ -4532,16 +4581,16 @@ body::before {
 }
 /* Длинные оранжевые линейки — на всю ширину экрана, вне контейнера */
 .included-rule {
-  margin-top: 40px;
+  margin-top: 20px;
   height: 1px;
   background: var(--color-brand-600);
 }
 .included-rule--bottom {
-  margin-top: 56px;
+  margin-top: 28px;
 }
 /* Картинка между тройками — на всю ширину экрана, высота зафиксирована (кроп сверху/снизу по центру) */
 .included-media {
-  margin: 56px 0;
+  margin: 28px 0;
 }
 .included-image {
   display: block;
@@ -4578,21 +4627,25 @@ body::before {
     padding-inline: 24px;
   }
   .included-media {
-    margin: 40px 0;
+    margin: 20px 0;
   }
   .included-image {
     height: 300px;
   }
   .included-rule--bottom {
-    margin-top: 40px;
+    margin-top: 20px;
   }
   .included-points {
     grid-template-columns: 1fr;
     gap: 24px;
     margin-top: 40px;
   }
+  /* В одну колонку точки-маркеры прячем — им не на что садиться */
+  .included-point__name::after {
+    display: none;
+  }
   .included-rule {
-    margin-top: 32px;
+    margin-top: 16px;
   }
   .included-items {
     grid-template-columns: 1fr 1fr;
