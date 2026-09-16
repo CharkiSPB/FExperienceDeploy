@@ -19,11 +19,11 @@ function formatMonthYear(dateStr: string): string {
 
 // Схема — без изменений
 const formSchema = z.object({
-  expedition: z.string().min(1, 'Выберите экспедицию'),
-  fullName: z.string().min(2, 'Минимум 2 символа'),
-  position: z.string().min(2, 'Укажите должность'),
-  company: z.string().min(2, 'Укажите компанию'),
-  phone: z.string().min(10, 'Введите корректный телефон'),
+  expedition: z.string().min(1, 'Выберите экспедицию').max(200),
+  fullName: z.string().min(2, 'Минимум 2 символа').max(150),
+  position: z.string().min(2, 'Укажите должность').max(200),
+  company: z.string().min(2, 'Укажите компанию').max(200),
+  phone: z.string().min(10, 'Введите корректный телефон').max(30),
   consent: z.boolean().refine((val) => val === true, {
     message: 'Необходимо согласие на обработку персональных данных',
   }),
@@ -206,6 +206,7 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                       <div>
                         <input
                           id="partner-fullname"
+                          maxLength={150}
                           {...register('fullName')}
                           placeholder="Иванов Иван Иванович"
                           autoComplete="name"
@@ -223,6 +224,7 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                       <div>
                         <input
                           id="partner-position"
+                          maxLength={200}
                           {...register('position')}
                           placeholder="Генеральный директор"
                           autoComplete="organization-title"
@@ -240,6 +242,7 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                       <div>
                         <input
                           id="partner-company"
+                          maxLength={200}
                           {...register('company')}
                           placeholder="ООО «Компания»"
                           autoComplete="organization"
@@ -258,6 +261,7 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                         <input
                           id="partner-phone"
                           type="tel"
+                          maxLength={30}
                           placeholder="+7 (___) ___ __ __"
                           {...register('phone')}
                           autoComplete="tel"

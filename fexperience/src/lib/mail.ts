@@ -1,10 +1,10 @@
 import nodemailer from 'nodemailer';
 
 type LeadData = {
-  formType: 'partner' | 'participant';
-  expedition: string;
-  phone: string;
-  consent: boolean;
+  formType: 'partner' | 'participant' | 'subscribe';
+  expedition?: string;
+  phone?: string;
+  consent?: boolean;
   fullName?: string;
   name?: string;
   position?: string;
@@ -12,36 +12,62 @@ type LeadData = {
   email?: string;
 };
 
+// Чистим переводы строк (защита от header injection в subject) + trim
+function clean(v?: string): string {
+  return (v ?? '').replace(/[\r\n]+/g, ' ').trim();
+}
+
+// Экранируем HTML в теле письма (защита от HTML-инъекций в ящике получателя)
+function esc(v?: string): string {
+  return clean(v)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function buildSubject(data: LeadData): string {
-  if (data.formType === 'partner') {
-    return `Новая заявка партнёра: ${data.fullName}`;
+  if (data.formType === 'subscribe') {
+    return `Новая подписка: ${clean(data.email)}`;
   }
-  return `Новая заявка участника: ${data.name}`;
+  if (data.formType === 'partner') {
+    return `Новая заявка партнёра: ${clean(data.fullName)}`;
+  }
+  return `Новая заявка участника: ${clean(data.name)}`;
 }
 
 function buildHtml(data: LeadData): string {
   const rows: string[] = [];
 
-  if (data.formType === 'partner') {
+  if (data.formType === 'subscribe') {
+    rows.push(
+      '<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Тип</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">Подписка</td></tr>',
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Email</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">${esc(data.email)}</td></tr>`,
+      '<tr><td style="padding:8px 12px;color:#666;">Комментарий</td><td style="padding:8px 12px;color:#22c55e;font-weight:600;">Участник подписался (форма в подвале сайта)</td></tr>',
+    );
+  } else if (data.formType === 'partner') {
     rows.push(
       '<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Тип</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">Партнёр</td></tr>',
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">ФИО</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">${data.fullName}</td></tr>`,
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Должность</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.position}</td></tr>`,
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Компания</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.company}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">ФИО</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">${esc(data.fullName)}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Должность</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${esc(data.position)}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Компания</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${esc(data.company)}</td></tr>`,
     );
   } else {
     rows.push(
       '<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Тип</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">Участник</td></tr>',
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Имя</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">${data.name}</td></tr>`,
-      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Email</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.email}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Имя</td><td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600;">${esc(data.name)}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Email</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.email ? esc(data.email) : '—'}</td></tr>`,
     );
   }
 
-  rows.push(
-    `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Телефон</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.phone}</td></tr>`,
-    `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Экспедиция</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${data.expedition}</td></tr>`,
-    '<tr><td style="padding:8px 12px;color:#666;">Согласие 152-ФЗ</td><td style="padding:8px 12px;color:#22c55e;font-weight:600;">Получено</td></tr>',
-  );
+  // У подписки нет телефона/экспедиции/согласия — эти строки только для заявок
+  if (data.formType !== 'subscribe') {
+    rows.push(
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Телефон</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${esc(data.phone)}</td></tr>`,
+      `<tr><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#666;">Экспедиция</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${esc(data.expedition)}</td></tr>`,
+      '<tr><td style="padding:8px 12px;color:#666;">Согласие 152-ФЗ</td><td style="padding:8px 12px;color:#22c55e;font-weight:600;">Получено</td></tr>',
+    );
+  }
 
   return `
     <div style="font-family: Arial, sans-serif; max-width:600px; margin:0 auto;">
@@ -84,8 +110,10 @@ export async function sendLeadEmail(data: LeadData): Promise<void> {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
+    // Строгая проверка сертификата (защита от MITM). Если хостинг режет TLS —
+    // отправка упадёт в warn ниже, сайт при этом не ляжет.
     tls: {
-      rejectUnauthorized: false,
+      rejectUnauthorized: true,
     },
   });
 

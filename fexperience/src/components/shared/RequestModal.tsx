@@ -17,9 +17,9 @@ import { useExpedition } from '@/components/providers/ExpeditionContext';
 
 // Схема — без изменений
 const formSchema = z.object({
-  name: z.string().min(2, 'Имя слишком короткое'),
-  phone: z.string().min(5, 'Введите корректный телефон'),
-  email: z.string().email('Некорректный email').optional().or(z.literal('')),
+  name: z.string().min(2, 'Имя слишком короткое').max(150),
+  phone: z.string().min(10, 'Введите корректный телефон').max(30),
+  email: z.string().email('Некорректный email').max(254).optional().or(z.literal('')),
   expedition: z.string().optional(),
   consent: z.boolean().refine((val) => val === true, {
     message: 'Необходимо согласие на обработку персональных данных',
@@ -118,21 +118,27 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
     setIsSubmitting(true);
     setSubmitError(null);
     try {
-      // Отключена реальная отправка для демо - данные не отправляются
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Реальная отправка на API закомментирована:
-      // const response = await fetch('/api/lead', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
-      // if (!response.ok) throw new Error('Ошибка отправки');
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'participant',
+          expedition: data.expedition || preselect || '',
+          name: data.name,
+          phone: data.phone,
+          email: data.email || '',
+          consent: data.consent,
+        }),
+      });
+      if (!response.ok) {
+        const err = await response.json().catch(() => null);
+        throw new Error(err?.error || 'Ошибка отправки');
+      }
 
       setIsSuccess(true);
       reset();
-    } catch {
-      setSubmitError('Не удалось отправить заявку. Попробуйте ещё раз.');
+    } catch (e) {
+      setSubmitError(e instanceof Error ? e.message : 'Не удалось отправить заявку. Попробуйте ещё раз.');
     } finally {
       setIsSubmitting(false);
     }
@@ -232,6 +238,7 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
                       <div>
                         <input
                           id="request-name"
+                          maxLength={150}
                           {...register('name')}
                           placeholder="Иван Иванов"
                           autoComplete="name"
@@ -249,6 +256,7 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
                       <div>
                         <input
                           id="request-phone"
+                          maxLength={30}
                           {...register('phone')}
                           placeholder="+7 (___) ___ __ __"
                           autoComplete="tel"
@@ -267,6 +275,7 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
                       <div>
                         <input
                           id="request-email"
+                          maxLength={254}
                           {...register('email')}
                           placeholder="example@mail.ru"
                           autoComplete="email"

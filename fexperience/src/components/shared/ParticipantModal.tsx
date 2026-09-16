@@ -18,10 +18,10 @@ function formatMonthYear(dateStr: string): string {
 }
 
 const formSchema = z.object({
-  expedition: z.string().min(1, 'Выберите экспедицию'),
-  name: z.string().min(2, 'Минимум 2 символа'),
-  phone: z.string().min(10, 'Введите корректный телефон'),
-  email: z.string().email('Некорректный email'),
+  expedition: z.string().min(1, 'Выберите экспедицию').max(200),
+  name: z.string().min(2, 'Минимум 2 символа').max(150),
+  phone: z.string().min(10, 'Введите корректный телефон').max(30),
+  email: z.string().email('Некорректный email').max(254),
   consent: z.boolean().refine((val) => val === true, {
     message: 'Необходимо согласие на обработку персональных данных',
   }),
@@ -210,7 +210,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                         Ваше имя
                       </label>
                       <div className="flex-1 min-w-0">
-                        <input {...register('name')} placeholder="Иван Иванов" className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm placeholder-[#666666] focus:outline-none focus:border-[#FF8800] transition-colors" />
+                        <input {...register('name')} maxLength={150} placeholder="Иван Иванов" className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm placeholder-[#666666] focus:outline-none focus:border-[#FF8800] transition-colors" />
                         {errors.name && <p className="text-red-500 text-xs mt-0.5">{errors.name.message}</p>}
                       </div>
                     </div>
@@ -224,6 +224,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                       <div className="flex-1 min-w-0">
                         <input
                           type="tel"
+                          maxLength={30}
                           placeholder="+7 (___) ___ __ __"
                           {...register('phone')}
                           className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm placeholder-[#666666] focus:outline-none focus:border-[#FF8800] transition-colors"
@@ -241,6 +242,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                       <div className="flex-1 min-w-0">
                         <input
                           type="email"
+                          maxLength={254}
                           placeholder="example@mail.ru"
                           {...register('email')}
                           className="w-full bg-[#1A1A1A]/80 border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm placeholder-[#666666] focus:outline-none focus:border-[#FF8800] transition-colors"
@@ -254,7 +256,7 @@ export function ParticipantModal({ isOpen, onClose, defaultExpeditionSlug }: Par
                     <div className="flex items-start gap-2 pt-2">
                       <input id="participant-consent" type="checkbox" {...register('consent')} className="mt-1 w-4 h-4 accent-[#FF8800] rounded border-[#2A2A2A] bg-[#1A1A1A] cursor-pointer flex-shrink-0" />
                       <label htmlFor="participant-consent" className="text-xs text-[#A0A0A0] leading-tight cursor-pointer">
-                        Я согласен с политикой <a href="/privacy" target="_blank" className="text-[#FF8800] hover:underline">обработки персональных данных</a>
+                        Я согласен с политикой <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[#FF8800] hover:underline">обработки персональных данных</a>
                       </label>
                     </div>
                     {errors.consent && <p className="text-red-500 text-xs mt-1">{errors.consent.message}</p>}

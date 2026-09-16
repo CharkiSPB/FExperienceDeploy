@@ -10,12 +10,27 @@ import { regions } from '@/data/regions';
 function Newsletter() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (subscribed) return;
-    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (subscribed || isSending) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+    setIsSending(true);
+    setSendError(null);
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'subscribe', email }),
+      });
+      if (!response.ok) throw new Error('Ошибка отправки');
       setSubscribed(true);
+    } catch {
+      setSendError('Не удалось подписаться. Попробуйте ещё раз.');
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -26,7 +41,7 @@ function Newsletter() {
       </h3>
 
       {subscribed ? (
-        <p className="font-sans text-[15px] text-brand-700">Спасибо! Вы подписаны. До новых рынков.</p>
+        <p className="font-sans text-[15px] text-brand-700">Спасибо! Вы подписаны. До новых экспедиций.</p>
       ) : (
         <form
           onSubmit={handleSubmit}
@@ -35,16 +50,22 @@ function Newsletter() {
           <input
             type="email"
             required
+            maxLength={254}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Ваш e-mail"
             aria-label="Ваш e-mail"
             className="h-12 flex-1 rounded-full border border-border bg-white px-5 font-sans text-[15px] text-text-primary outline-none transition-colors placeholder:text-text-tertiary focus:border-brand-600"
           />
-          <button type="submit" className="btn-liquid btn-liquid--sm shrink-0">
-            <span className="btn-liquid-text">Подписаться</span>
+          <button type="submit" disabled={isSending} className="btn-liquid btn-liquid--sm shrink-0">
+            <span className="btn-liquid-text">{isSending ? 'Отправляем…' : 'Подписаться'}</span>
           </button>
         </form>
+      )}
+      {sendError && (
+        <p role="alert" className="font-sans text-[13px] text-brand-700">
+          {sendError}
+        </p>
       )}
     </div>
   );

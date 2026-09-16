@@ -12,6 +12,13 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
+  async redirects() {
+    return [
+      // Legacy static page removed on prod (indiaDelit) — dynamic route is /expeditions/india
+      { source: '/expeditions/new-delhi', destination: '/expeditions/india', permanent: true },
+      { source: '/expeditions/new-delhi/:path*', destination: '/expeditions/india', permanent: true },
+    ];
+  },
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   
   webpack(config) {

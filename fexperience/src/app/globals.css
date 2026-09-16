@@ -4438,6 +4438,9 @@ body::before {
     flex-wrap: nowrap;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    /* Фейд-подсказка справа: табы не влезают — можно листать */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent 100%);
   }
   .program-detail-tab {
     scroll-snap-align: start;

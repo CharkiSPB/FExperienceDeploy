@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { expeditions } from '@/data/expeditions';
-import { articles } from '@/data/articles/articles';
+import { getArticles } from '@/lib/mdx';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://fexperience.forbes.ru';
 
   // Статические страницы
@@ -36,8 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  // Статьи
-  const articlePages: MetadataRoute.Sitemap = articles.map(article => ({
+  // Статьи — реальные слаги из .mdx (а не устаревший хардкод),
+  // иначе в sitemap попадают URL несуществующих страниц
+  const mdxArticles = await getArticles();
+  const articlePages: MetadataRoute.Sitemap = mdxArticles.map(article => ({
     url: `${baseUrl}/articles/${article.slug}`,
     lastModified: new Date(article.date),
     changeFrequency: 'monthly' as const,
