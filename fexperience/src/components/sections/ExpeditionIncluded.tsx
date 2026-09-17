@@ -24,10 +24,10 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
           </p>
         </div>
 
-        {/* Схема 2026-09-14: 3 пункта → оранжевая линейка → картинка → остальные пункты.
-            Нумерация сквозная 01–06, цифры+слеш оранжевые, текст чёрный капсом. */}
+        {/* Схема 2026-09-16: все пункты в один ряд над коллажем (каждый над своей
+            панелью) → одна оранжевая линейка с точками → картинка-коллаж на ширину экрана. */}
         <ul className="included-points">
-          {includes.slice(0, 3).map((item, i) => (
+          {includes.map((item, i) => (
             <li key={`${item}-${i}`} className={`included-point fade-up delay-${Math.min(i + 1, 6)}`}>
               <span className="included-point__num" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}/
@@ -43,29 +43,14 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
 
       <div className="included-media fade-up delay-1">
         <Image
-          src="/images/expeditions/whatsIncluded2.webp"
+          src="/images/expeditions/whatsIncluded3.webp"
           alt="Что включено в бизнес-экспедицию"
-          width={1774}
-          height={887}
+          width={2103}
+          height={748}
           sizes="100vw"
           className="included-image"
         />
       </div>
-
-      <div className="expedition-included__container">
-        <ul className="included-points included-points--bottom">
-          {includes.slice(3).map((item, i) => (
-            <li key={`${item}-${i + 3}`} className={`included-point fade-up delay-${Math.min(i + 1, 6)}`}>
-              <span className="included-point__num" aria-hidden="true">
-                {String(i + 4).padStart(2, '0')}/
-              </span>
-              <span className="included-point__name">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="included-rule included-rule--bottom fade-up" aria-hidden="true" />
     </section>
   );
 }

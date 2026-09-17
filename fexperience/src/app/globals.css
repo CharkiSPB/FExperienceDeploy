@@ -4535,17 +4535,19 @@ body::before {
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px 24px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 32px 16px;
 }
+/* Пункт — колонка по центру: каждый над своей панелью коллажа */
 .included-point {
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
 }
 .included-point__num {
-  font: 700 16px/1.2 var(--font-sans), sans-serif;
+  font: 700 13px/1.2 var(--font-sans), sans-serif;
   letter-spacing: .04em;
   color: var(--color-brand-600);
   white-space: nowrap;
@@ -4572,24 +4574,17 @@ body::before {
   z-index: 1;
   pointer-events: none;
 }
-/* Нижняя тройка: линейка в 28px → top = 21.5px */
-.included-points--bottom .included-point__name::after {
-  top: calc(100% + 21px);
-}
 .included-point__name {
-  font: 600 15px/1.5 var(--font-sans), sans-serif;
+  font: 600 12.5px/1.45 var(--font-sans), sans-serif;
   text-transform: uppercase;
   letter-spacing: .02em;
   color: var(--color-text-primary);
 }
-/* Длинные оранжевые линейки — на всю ширину экрана, вне контейнера */
+/* Одна оранжевая линейка на всю ширину экрана, вне контейнера */
 .included-rule {
   margin-top: 20px;
   height: 1px;
   background: var(--color-brand-600);
-}
-.included-rule--bottom {
-  margin-top: 28px;
 }
 /* Картинка между тройками — на всю ширину экрана, высота зафиксирована (кроп сверху/снизу по центру) */
 .included-media {
@@ -4602,10 +4597,7 @@ body::before {
   object-fit: cover;
   object-position: center;
 }
-/* Нижняя тройка идёт сразу за картинкой — верхний отступ уже даёт media */
-.included-points--bottom {
-  margin-top: 0;
-}
+
 
 @media (max-width: 1024px) {
   .expedition-included__container {
@@ -4621,6 +4613,14 @@ body::before {
   .included-item:nth-child(3n+1)::before {
     display: none;
   }
+  /* Шесть пунктов не влезают — 3×2; точки-маркеры прячем, им не на что садиться */
+  .included-points {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 48px;
+  }
+  .included-point__name::after {
+    display: none;
+  }
 }
 @media (max-width: 640px) {
   .expedition-included {
@@ -4634,9 +4634,6 @@ body::before {
   }
   .included-image {
     height: 300px;
-  }
-  .included-rule--bottom {
-    margin-top: 20px;
   }
   .included-points {
     grid-template-columns: 1fr;
