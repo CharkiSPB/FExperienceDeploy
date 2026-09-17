@@ -7,6 +7,21 @@ type ExpeditionIncludedProps = {
   includes: string[];
 };
 
+// Делит название ровно на 2 строки по середине (вторая строка — остаток).
+// «МЕДИЙНОЕ СОПРОВОЖДЕНИЕ» → «МЕДИЙНОЕ» / «СОПРОВОЖДЕНИЕ»,
+// «ТРАНСФЕРЫ ВИП-КЛАССА» → «ТРАНСФЕРЫ» / «ВИП-КЛАССА».
+function splitTwoLines(name: string): [string, string | null] {
+  const words = name.split(' ');
+  if (words.length < 2) return [name, null];
+  const half = name.length / 2;
+  let acc = '';
+  for (let i = 0; i < words.length - 1; i++) {
+    acc = acc ? `${acc} ${words[i]}` : words[i];
+    if (acc.length >= half) return [acc, words.slice(i + 1).join(' ')];
+  }
+  return [words.slice(0, -1).join(' '), words[words.length - 1]];
+}
+
 export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
   useScrollReveal();
 
@@ -24,20 +39,31 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
           </p>
         </div>
 
-        {/* Схема 2026-09-16: все пункты в один ряд над коллажем (каждый над своей
-            панелью) → одна оранжевая линейка с точками → картинка-коллаж на ширину экрана. */}
-        <ul className="included-points">
-          {includes.map((item, i) => (
+      </div>
+
+      {/* Ряд пунктов — на всю ширину экрана (вне контейнера), колонки повторяют
+          ширины панелей коллажа, поэтому каждая точка строго над своей панелью. */}
+      <ul className="included-points">
+        {includes.map((item, i) => {
+          const [line1, line2] = splitTwoLines(item);
+          return (
             <li key={`${item}-${i}`} className={`included-point fade-up delay-${Math.min(i + 1, 6)}`}>
               <span className="included-point__num" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}/
               </span>
-              <span className="included-point__name">{item}</span>
+              <span className="included-point__name">
+                {line1}
+                {line2 ? (
+                  <>
+                    <br />
+                    {line2}
+                  </>
+                ) : null}
+              </span>
             </li>
-          ))}
-        </ul>
-
-      </div>
+          );
+        })}
+      </ul>
 
       <div className="included-rule fade-up" aria-hidden="true" />
 

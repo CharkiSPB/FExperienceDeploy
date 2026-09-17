@@ -4530,13 +4530,16 @@ body::before {
   color: var(--color-text-primary);
 }
 /* Схема 2026-09-14: тройка пунктов → линейка → картинка → тройка пунктов */
+/* Ряд на всю ширину экрана (вне контейнера): колонки повторяют ширины
+   панелей коллажа (замер по белым разделителям, верхняя кромка фото),
+   gap строго 0 — иначе центры колонок уйдут с центров панелей */
 .included-points {
   margin: 56px 0 0;
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 32px 16px;
+  grid-template-columns: 25.5% 18.3% 13.5% 14.5% 17.8% 10.4%;
+  gap: 0;
 }
 /* Пункт — колонка по центру: каждый над своей панелью коллажа */
 .included-point {
@@ -4558,8 +4561,7 @@ body::before {
   text-transform: uppercase;
   letter-spacing: .02em;
   color: var(--color-text-primary);
-  /* Форсированные переносы: ПРОЖИВАНИЕ / В ОТЕЛЕ 5*, ТРАНСФЕРЫ / ВИП-КЛАССА */
-  max-width: 12ch;
+  /* Переносы ставит splitTwoLines в компоненте (ровно 2 строки) — CSS не рвёт */
 }
 /* Точка-маркер — якорь на пункте (не на словах), поэтому строго
    по центру колонки = по центру панели коллажа. Все li одной высоты
@@ -4617,6 +4619,7 @@ body::before {
   .included-points {
     grid-template-columns: repeat(3, 1fr);
     margin-top: 48px;
+    padding-inline: 32px;
   }
   .included-point::after {
     display: none;
@@ -4639,7 +4642,7 @@ body::before {
   .included-points {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-top: 32px;
+    margin: 32px 24px 0;
     border-left: 1px solid var(--color-brand-600);
   }
   .included-point {
