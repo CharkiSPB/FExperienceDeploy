@@ -4540,6 +4540,7 @@ body::before {
 }
 /* Пункт — колонка по центру: каждый над своей панелью коллажа */
 .included-point {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -4553,13 +4554,18 @@ body::before {
   white-space: nowrap;
 }
 .included-point__name {
-  position: relative;
-  display: inline-block;
+  font: 600 12.5px/1.45 var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  color: var(--color-text-primary);
+  /* Форсированные переносы: ПРОЖИВАНИЕ / В ОТЕЛЕ 5*, ТРАНСФЕРЫ / ВИП-КЛАССА */
+  max-width: 12ch;
 }
-/* Точка-маркер — якорь на словах (не на пункте), поэтому строго
-   по центру текста. Мишень: оранжевая сердцевина, зазор фона,
-   оранжевое кольцо. */
-.included-point__name::after {
+/* Точка-маркер — якорь на пункте (не на словах), поэтому строго
+   по центру колонки = по центру панели коллажа. Все li одной высоты
+   (grid stretch) — точки на одной линии. Мишень: оранжевая сердцевина,
+   зазор фона, оранжевое кольцо. */
+.included-point::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -4573,12 +4579,6 @@ body::before {
   box-shadow: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-brand-600);
   z-index: 1;
   pointer-events: none;
-}
-.included-point__name {
-  font: 600 12.5px/1.45 var(--font-sans), sans-serif;
-  text-transform: uppercase;
-  letter-spacing: .02em;
-  color: var(--color-text-primary);
 }
 /* Одна оранжевая линейка на всю ширину экрана, вне контейнера */
 .included-rule {
@@ -4618,7 +4618,7 @@ body::before {
     grid-template-columns: repeat(3, 1fr);
     margin-top: 48px;
   }
-  .included-point__name::after {
+  .included-point::after {
     display: none;
   }
 }
@@ -4629,23 +4629,35 @@ body::before {
   .expedition-included__container {
     padding-inline: 24px;
   }
+  /* Мобильный: картинку прячем, бордер с точками — вертикальный таймлайн слева */
   .included-media {
-    margin: 20px 0;
-  }
-  .included-image {
-    height: 300px;
-  }
-  .included-points {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 40px;
-  }
-  /* В одну колонку точки-маркеры прячем — им не на что садиться */
-  .included-point__name::after {
     display: none;
   }
   .included-rule {
-    margin-top: 16px;
+    display: none;
+  }
+  .included-points {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 32px;
+    border-left: 1px solid var(--color-brand-600);
+  }
+  .included-point {
+    flex-direction: row;
+    align-items: baseline;
+    text-align: left;
+    gap: 8px;
+    padding: 12px 0 12px 20px;
+  }
+  .included-point__name {
+    max-width: none;
+  }
+  .included-point::after {
+    display: block;
+    left: -7px;
+    right: auto;
+    top: 18px;
+    transform: none;
   }
   .included-items {
     grid-template-columns: 1fr 1fr;
