@@ -51,7 +51,7 @@ function HeroSeal({ slug }: { slug: string }) {
           <path id={circleId} d="M 100,100 m -76,0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" />
         </defs>
         <text fill="rgba(26,26,26,0.6)" fontSize="9.8" letterSpacing="3.2">
-          <textPath href={`#${circleId}`} startOffset="0%">
+          <textPath href={`#${circleId}`} startOffset="0%" textLength={478} lengthAdjust="spacing">
             FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
           </textPath>
         </text>

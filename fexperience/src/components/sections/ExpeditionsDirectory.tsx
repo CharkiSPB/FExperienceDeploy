@@ -47,7 +47,7 @@ function DirectorySeal() {
         letterSpacing="1.8"
         style={{ fontFamily: 'var(--font-sans), sans-serif' }}
       >
-        <textPath href="#directory-seal-circle" startOffset="0%">
+          <textPath href="#directory-seal-circle" startOffset="0%" textLength={465} lengthAdjust="spacing">
           FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
         </textPath>
       </text>

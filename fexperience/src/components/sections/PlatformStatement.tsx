@@ -35,7 +35,7 @@ function ProjectSeal() {
         letterSpacing="1.8"
         style={{ fontFamily: 'var(--font-sans), sans-serif' }}
       >
-        <textPath href="#project-seal-circle" startOffset="0%">
+          <textPath href="#project-seal-circle" startOffset="0%" textLength={465} lengthAdjust="spacing">
           FORBES FEXPERIENCE · FORBES FEXPERIENCE · FORBES FEXPERIENCE ·
         </textPath>
       </text>
