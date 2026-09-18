@@ -984,7 +984,7 @@ body::before {
   border: 0;
   border-radius: 0;
   background: none;
-  font: 500 13px/1.4 var(--font-sans), sans-serif;
+  font: 500 16px/1.4 var(--font-sans), sans-serif;
   letter-spacing: .02em;
   text-transform: lowercase;
   color: var(--color-text-primary);
@@ -1392,7 +1392,7 @@ body::before {
   .hero-slide__poster { display: block; }
   .hero-compact { padding: 80px 16px 96px 20px; gap: 14px; justify-content: flex-start; padding-top: 28%; }
   .hero-compact__pills { gap: 6px; }
-  .hero-compact__pill { padding: 0; font-size: 12px; }
+  .hero-compact__pill { padding: 0; font-size: 14px; }
   .hero-compact__line1, .hero-compact__line2 { font-size: clamp(38px, 9vw, 50px); }
   .hero-compact__date { font-size: 12px; margin-top: 8px; }
   .hero-compact__cta { gap: 8px; }
@@ -2300,7 +2300,7 @@ body::before {
   border-radius: 0;
   background: none;
   color: var(--color-text-primary);
-  font: 500 13px/1.5 var(--font-sans), sans-serif;
+  font: 500 15px/1.5 var(--font-sans), sans-serif;
   text-transform: lowercase;
 }
 
@@ -2678,13 +2678,12 @@ body::before {
   position: relative;
   overflow: hidden;
   background: var(--bg-canvas);
-  padding: 90px 0 100px;
+  padding: 88px 0 80px;
 }
 
 .position-section__inner {
   position: relative;
   width: min(1320px, calc(100% - 120px));
-  min-height: 520px;
   margin: 0 auto;
 }
 
@@ -2735,20 +2734,21 @@ body::before {
 }
 
 .position-section__footer {
-  margin-top: 48px;
+  margin-top: 32px;
   font-family: var(--font-sans), sans-serif;
   font-size: 13px;
   line-height: 1.4;
   color: rgba(29, 27, 25, .58);
 }
 
-/* Почти призрачный редакционный набросок — фоновый объект во всю высоту секции */
+/* Почти призрачный редакционный набросок — масштабируется пропорционально,
+   без обрезки (height auto вместо cover-бокса) */
 .position-section__illustration {
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: auto;
   width: min(1000px, 68%);
   height: auto;
   opacity: .3;
@@ -2766,14 +2766,12 @@ body::before {
 .position-section__illustration img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center;
+  height: auto;
 }
 
 @media (max-width: 900px) {
   .position-section {
-    padding: 90px 0 100px;
+    padding: 64px 0 48px;
   }
 
   .position-section__inner {
