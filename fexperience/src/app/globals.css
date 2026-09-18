@@ -3187,9 +3187,9 @@ body::before {
   margin: 0 auto;
   padding-inline: 56px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1.1fr;
-  gap: 56px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
 }
 .method-eyebrow {
   margin: 0;
@@ -3207,53 +3207,22 @@ body::before {
   color: var(--color-brand-600);
 }
 .method-text {
-  max-width: 380px;
+  max-width: 560px;
   margin-top: 20px;
   font: 400 14.5px/1.65 var(--font-sans), sans-serif;
   color: var(--color-text-secondary);
 }
-.method-checklist {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.method-checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-.method-checklist svg {
-  width: 20px;
-  height: 20px;
-  stroke-width: 1.5;
-  fill: none;
-  color: var(--color-brand-600);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.method-checklist p {
-  margin: 0;
-  font: 400 14.5px/1.45 var(--font-sans), sans-serif;
-  color: var(--color-text-primary);
-}
+/* Одна широкая картинка на всю ширину контейнера */
 .method-photo img {
   width: 100%;
-  height: 320px;
-  object-fit: cover;
+  height: auto;
   border-radius: 21px;
 }
 
 @media (max-width: 1024px) {
   .about-method__grid {
-    grid-template-columns: 1fr 1fr;
     padding-inline: 32px;
-    gap: 40px;
-  }
-  .method-photo {
-    grid-column: 1 / -1;
+    gap: 32px;
   }
 }
 @media (max-width: 640px) {

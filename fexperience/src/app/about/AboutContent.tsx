@@ -2,9 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  CircleCheckBig,
-} from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { speakers } from '@/data/speakers';
 
@@ -97,15 +94,6 @@ function LinkedInIcon() {
   );
 }
 
-/* Checklist методологии: 6 пунктов, тексты — посимвольно из спеки */
-const methodChecklist = [
-  'Правовая и регуляторная проверка',
-  'Анализ рыночной и отраслевой среды',
-  'Финансовый и налоговый анализ',
-  'Оценка операционных и логистических рисков',
-  'Проверка партнёров и ключевых контрагентов',
-  'Культурные и репутационные факторы',
-];
 
 /* Тёмная полоса «Ключевое отличие»: 9 пунктов, тексты — посимвольно из спеки */
 const ICONS_ABOUT = '/images/icons/about';
@@ -204,7 +192,7 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Наша методология: тезис → checklist → фото */}
+      {/* Наша методология: заголовок с подзаголовком → одна широкая картинка */}
       <section className="about-method" aria-labelledby="about-method-title">
         <div className="about-method__grid">
           <div className="fade-up">
@@ -220,23 +208,14 @@ export function AboutContent() {
             </p>
           </div>
 
-          <ul className="method-checklist fade-up delay-2">
-            {methodChecklist.map((item) => (
-              <li key={item}>
-                <CircleCheckBig size={20} strokeWidth={1.5} aria-hidden="true" />
-                <p>{item}</p>
-              </li>
-            ))}
-          </ul>
-
-          <div className="method-photo fade-up delay-3">
+          <div className="method-photo fade-up delay-1">
             <Image
-              src="/images/about/duiDiligensFoto.webp"
+              src="/images/about/duiDiligensFoto1.webp"
               alt="Due diligence FExperience — аналитическая сессия"
-              width={880}
-              height={660}
+              width={1735}
+              height={906}
               loading="lazy"
-              sizes="(max-width: 1024px) 100vw, 33vw"
+              sizes="(max-width: 1024px) 100vw, 90vw"
             />
           </div>
         </div>
