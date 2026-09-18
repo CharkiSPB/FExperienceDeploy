@@ -3182,14 +3182,16 @@ body::before {
   padding: 60px 0;
   border-bottom: 1px solid var(--color-border);
 }
+/* Слева заголовок с подзаголовком, справа одно изображение
+   на месте бывших колонок чеклиста и фото */
 .about-method__grid {
   max-width: 1600px;
   margin: 0 auto;
   padding-inline: 56px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: 1fr 2fr;
+  gap: 56px;
+  align-items: center;
 }
 .method-eyebrow {
   margin: 0;
@@ -3221,6 +3223,7 @@ body::before {
 
 @media (max-width: 1024px) {
   .about-method__grid {
+    grid-template-columns: 1fr;
     padding-inline: 32px;
     gap: 32px;
   }

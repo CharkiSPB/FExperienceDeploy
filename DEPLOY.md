@@ -22,10 +22,16 @@
 cd C:\Users\Charki\Desktop\FinalFexperienceRediz
 git checkout redesign
 git status --short          # посмотреть, что поменялось
-git add -A
+git add fexperience DEPLOY.md
 git commit -m "понятное описание изменения"
 git push deploy redesign    # → пересоберётся ПРЕВЬЮ, прод не тронется
 ```
+
+> Важно: на ветке `redesign` НЕ использовать `git add -A` — рядом лежит
+> untracked `files3/` (спеки), и `-A` затянет его в индекс, а оттуда он
+> уедет в публичный деплой-репо. Добавляем точечно: `git add fexperience ...`.
+> Проверка перед пушем: `git status` не должен показывать `files3/`
+> в индексе (в `?? files3/` — можно, это «лежит на диске, в пуш не идёт»).
 
 Проверить превью-URL в панели `relaxdev.ru/projects/fexperiencedeploy`.
 Всё ок → переключение прода (см. «Переключение прода»).
