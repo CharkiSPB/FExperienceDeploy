@@ -83,6 +83,7 @@ export function PlatformStatement() {
           <ul className="platform-pills">
             {platformStatement.principles.map((principle) => (
               <li key={principle.number} className="platform-pill">
+                <span className="platform-pill-hash" aria-hidden="true">#</span>
                 <span>{principle.name}</span>
                 <span className="platform-pill-sub">{principle.sub}</span>
               </li>
