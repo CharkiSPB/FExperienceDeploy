@@ -3312,6 +3312,8 @@ body::before {
   /* Пропорция портрета вместо фикс-высоты — cover почти нечего резать */
   aspect-ratio: 3 / 4;
   min-height: 0;
+  /* Обрезаем персональный зум строго боксом фото, чтобы не лез на текст */
+  overflow: hidden;
 }
 .about-expert-card__photo img {
   position: absolute;
