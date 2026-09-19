@@ -1391,8 +1391,21 @@ body::before {
   .hero-slide__video { display: none; }
   .hero-slide__poster { display: block; }
   .hero-compact { padding: 80px 16px 96px 20px; gap: 14px; justify-content: flex-start; padding-top: 28%; }
-  .hero-compact__pills { gap: 6px; }
-  .hero-compact__pill { padding: 0; font-size: 14px; }
+  /* Тезисы — вертикально справа поверх фото, вне потока текста */
+  .hero-compact__pills {
+    position: absolute;
+    top: 104px;
+    left: calc(100% + 10px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 36vw;
+  }
+  .hero-compact__pill {
+    padding: 0;
+    font-size: 12px;
+    text-shadow: 0 1px 10px rgba(255, 248, 243, .7);
+  }
   .hero-compact__line1, .hero-compact__line2 { font-size: clamp(38px, 9vw, 50px); }
   .hero-compact__date { font-size: 12px; margin-top: 8px; }
   .hero-compact__cta { gap: 8px; }
