@@ -138,12 +138,23 @@ export function Hero() {
                   <div className="hero-compact">
                     {/* Четыре тезиса */}
                     <div className="hero-compact__pills" aria-label="Ключевые особенности экспедиции">
-                      {expedition.heroPills?.slice(0, 4).map((pill) => (
-                        <span key={pill} className="hero-compact__pill">
-                          <span className="hero-compact__pill-hash" aria-hidden="true">#</span>
-                          {pill}
-                        </span>
-                      ))}
+                      {expedition.heroPills?.slice(0, 4).map((pill) => {
+                        const [first, ...rest] = pill.split(' ');
+                        return (
+                          <span key={pill} className="hero-compact__pill">
+                            <span className="hero-compact__pill-hash" aria-hidden="true">#</span>
+                            <span>
+                              {first}
+                              {rest.length > 0 ? (
+                                <>
+                                  <br />
+                                  {rest.join(' ')}
+                                </>
+                              ) : null}
+                            </span>
+                          </span>
+                        );
+                      })}
                     </div>
 
                     <h1 className="hero-compact__title">
