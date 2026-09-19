@@ -85,7 +85,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 11, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD1.webp', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
+    id: 11, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD1_1.webp', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
     isForbes: true,
     forbesBadge: 'Forbes',

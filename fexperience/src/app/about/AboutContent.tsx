@@ -275,6 +275,7 @@ export function AboutContent() {
                     alt={expert.photoAlt || expert.name}
                     fill
                     loading="lazy"
+                    quality={90}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   {expert.forbesBadge && (
