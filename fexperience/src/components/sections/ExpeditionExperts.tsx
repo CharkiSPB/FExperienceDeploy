@@ -31,6 +31,7 @@ function ExpertCard({ expert }: { expert: Speaker }) {
           fill
           loading="lazy"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          style={expert.photoScale ? ({ '--photo-zoom': expert.photoScale } as React.CSSProperties) : undefined}
         />
         {expert.forbesBadge && (
           <span className="about-forbes-badge">{expert.forbesBadge}</span>

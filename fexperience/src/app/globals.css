@@ -3321,10 +3321,12 @@ body::before {
   object-fit: cover;
   /* Якорь вверх: лица не режем, лишку забираем снизу */
   object-position: center top;
+  /* Персональный зум из данных (photoScale) — выравнивает крупность портретов */
+  transform: scale(var(--photo-zoom, 1));
   transition: transform .4s var(--ease);
 }
 .about-expert-card:hover .about-expert-card__photo img {
-  transform: scale(1.03);
+  transform: scale(calc(var(--photo-zoom, 1) * 1.03));
 }
 .about-forbes-badge {
   position: absolute;

@@ -13,6 +13,7 @@ export type Speaker = {
   forbesBadge?: string; // текст бейджа Forbes на фото (если не указан — не показывается)
   forbesLabel?: string; // текст подписи Forbes в карточке (если не указан — не показывается)
   isForbes?: boolean; // команда Forbes Russia — блок «Наши эксперты» на /about
+  photoScale?: number; // персональный зум фото (1 = без изменений), чтобы выровнять крупность портретов
   linkedin?: string; // ссылка LinkedIn (иконка только при наличии)
   expeditionSlugs?: string[]; // slug экспедиций (спикер может быть на нескольких)
   category?: 'business' | 'investment' | 'government' | 'africa' | 'other' | 'pravo';
@@ -77,7 +78,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 10, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM.jpeg', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
+    id: 10, name: 'Марина Матыцина', role: 'Генеральный директор Forbes Russia.', company: 'Forbes Russia', photo: '/images/speakers/MaticinaM1_1.webp', photoAlt: 'Марина Матыцина — Генеральный директор Forbes Russia.',
     bio: '', isTop: true, topic: '', achievement: '',
     isForbes: true,
     forbesBadge: 'Forbes',
@@ -85,7 +86,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 11, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD1_1.webp', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia',
+    id: 11, name: 'Денис Кошкин', role: 'Исполнительный директор Forbes Russia', company: 'Forbes Russia', photo: '/images/speakers/koshkinD1_1.webp', photoAlt: 'Денис Кошкин — Исполнительный директор Forbes Russia', photoScale: 1.15,
     bio: '', isTop: true, topic: '', achievement: '',
     isForbes: true,
     forbesBadge: 'Forbes',
@@ -93,7 +94,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 12, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA.jpg', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
+    id: 12, name: 'Анастасия Никитина', role: 'Директор по устойчивому развитию и международным проектам Forbes Russia', company: 'Forbes', photo: '/images/speakers/nicitinaA1_1.webp', photoAlt: 'Анастасия Никитина — Директор по устойчивому развитию и международным проектам Forbes Russia',
     bio: '', isTop: true, topic: '', achievement: '',
     isForbes: true,
     forbesBadge: 'Forbes',

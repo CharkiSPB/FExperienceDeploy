@@ -277,6 +277,7 @@ export function AboutContent() {
                     loading="lazy"
                     quality={90}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    style={expert.photoScale ? ({ '--photo-zoom': expert.photoScale } as React.CSSProperties) : undefined}
                   />
                   {expert.forbesBadge && (
                     <span className="about-forbes-badge">{expert.forbesBadge}</span>
