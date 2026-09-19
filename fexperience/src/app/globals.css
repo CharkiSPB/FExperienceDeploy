@@ -282,6 +282,10 @@ body::before {
 }
 .btn-liquid--sm .btn-liquid-text { font-size: 14px; }
 
+/* Поле подписки в подвале: высота строго как у кнопки .btn-liquid--sm
+   (паддинги 12+12 + текст 14px = 38px). Отдельный класс, а не Tailwind-утилита. */
+.newsletter-input { height: 38px; }
+
 /* Крупный вариант — 2.10 Final CTA (padding 20px 48px, font-size 17px) */
 .btn-liquid--lg {
   padding: 20px 48px;
@@ -2298,7 +2302,7 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 10px 18px;
-  margin: 40px 0 0;
+  margin: 40px 0 16px;
   padding: 0;
   list-style: none;
 }

@@ -55,7 +55,7 @@ function Newsletter() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Ваш e-mail"
             aria-label="Ваш e-mail"
-            className="h-12 flex-1 rounded-full border border-border bg-white px-5 font-sans text-[15px] text-text-primary outline-none transition-colors placeholder:text-text-tertiary focus:border-brand-600"
+            className="newsletter-input w-full flex-none sm:flex-1 rounded-full border border-border bg-white px-5 font-sans text-base text-text-primary outline-none transition-colors placeholder:text-text-tertiary focus:border-brand-600"
           />
           <button type="submit" disabled={isSending} className="btn-liquid btn-liquid--sm shrink-0">
             <span className="btn-liquid-text">{isSending ? 'Отправляем…' : 'Подписаться'}</span>
