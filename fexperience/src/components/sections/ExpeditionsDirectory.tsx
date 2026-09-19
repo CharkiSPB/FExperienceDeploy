@@ -168,7 +168,7 @@ export function ExpeditionsDirectory() {
             <nav className="directory-breadcrumbs fade-up" aria-label="Хлебные крошки">
               <Link href="/">Главная</Link>
               {' / '}
-              <span aria-current="page">Директория экспедиций</span>
+              <span aria-current="page">Экспедиции</span>
             </nav>
             <span className="eyebrow-dash fade-up" aria-hidden="true" />
             <p className="directory-eyebrow fade-up delay-1">Направления</p>

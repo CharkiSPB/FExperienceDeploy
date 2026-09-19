@@ -31,7 +31,7 @@ export function Reviews() {
   const progress = ((selectedIndex + 1) / total) * 100;
 
   return (
-    <section id="reviews" className="reviews-section px-6 py-20 md:px-16 md:py-32">
+    <section id="reviews" className="reviews-section px-6 py-10 md:px-16 md:py-16">
       <div className="mx-auto max-w-[1280px]">
         <header className="mb-12 flex items-center justify-between gap-6">
           <div>

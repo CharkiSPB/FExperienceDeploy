@@ -31,8 +31,7 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
     <section className="expedition-included" aria-label="Что включено">
       <div className="expedition-included__container">
         <div className="included-head fade-up">
-          <span className="eyebrow-dash" aria-hidden="true" />
-          <p className="included-label">Что включено</p>
+          <h2 className="included-title">Что включено</h2>
           <p className="included-subtitle">
             Мы полностью берём на себя организацию экспедиции и решение всех операционных вопросов.
             Вы занимаетесь бизнесом и нетворкингом — обо всём остальном позаботится команда FExperience.
@@ -49,7 +48,7 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
           return (
             <li key={`${item}-${i}`} className={`included-point fade-up delay-${Math.min(i + 1, 6)}`}>
               <span className="included-point__num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}/
+                {String(i + 1).padStart(2, '0')}
               </span>
               <span className="included-point__name">
                 {line1}
