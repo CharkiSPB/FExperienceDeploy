@@ -101,12 +101,12 @@ const diffColumns: { iconSrc: string | null; title: string; desc: string }[] = [
   { iconSrc: `${ICONS_ABOUT}/01_Security_in_the_country.svg`, title: 'Безопасность в стране', desc: 'Проверенные партнёры и сопровождение на всех этапах.' },
   { iconSrc: `${ICONS_ABOUT}/02_Business_climate.svg`, title: 'Деловой климат', desc: 'Доступ к ключевым игрокам и понимание локальной повестки.' },
   { iconSrc: `${ICONS_ABOUT}/03_Regulatory_environment.svg`, title: 'Регуляторная среда', desc: 'Актуальная информация о правилах и особенностях ведения бизнеса.' },
-  { iconSrc: `${ICONS_ABOUT}/04_Logistics_specifics.svg`, title: 'Особенности логистики', desc: 'Продуманная логистика и комфорт в каждой детали поездки.' },
-  { iconSrc: `${ICONS_ABOUT}/05_A_real_business_need.svg`, title: 'Реальный запрос бизнеса', desc: 'Программа формируется под ваши цели и задачи.' },
+  { iconSrc: `${ICONS_ABOUT}/04_Logistics_specifics.svg`, title: 'Особенности логистики', desc: 'Специфика внутренних и международных логистических операций.' },
+  { iconSrc: `${ICONS_ABOUT}/05_A_real_business_need.svg`, title: 'Инвестиционная привлекательность', desc: 'Реальный запрос бизнеса и анализ самых перспективных ниш.' },
   { iconSrc: `${ICONS_ABOUT}/06_Cultural_barriers.svg`, title: 'Культурные барьеры', desc: 'Понимание культурного контекста и тонкостей делового диалога.' },
-  { iconSrc: `${ICONS_ABOUT}/07_Financial_infrastructure.svg`, title: 'Финансовая инфраструктура', desc: 'Навигация по финансовой системе и возможностям для бизнеса.' },
-  { iconSrc: `${ICONS_ABOUT}/08_Digitalization_of_the_economy.svg`, title: 'Цифровизация экономики', desc: 'Анализируем цифровые тренды и точки роста в регионе.' },
-  { iconSrc: `${ICONS_ABOUT}/09_Market_entry_cost.svg`, title: 'Стоимость выхода на рынок', desc: 'Прозрачный расчёт затрат на вход в новый рынок.' },
+  { iconSrc: `${ICONS_ABOUT}/07_Financial_infrastructure.svg`, title: 'Финансовая инфраструктура', desc: 'Банковский сектор, доступность капитала и платежных систем региона.' },
+  { iconSrc: `${ICONS_ABOUT}/08_Digitalization_of_the_economy.svg`, title: 'Цифровизация экономики', desc: 'Уровень цифровой зрелости, технологического прогресса, тренды и точки роста.' },
+  { iconSrc: `${ICONS_ABOUT}/09_Market_entry_cost.svg`, title: 'Стоимость выхода на рынок', desc: 'Экспертная оценка затрат на запуск проекта в регионе.' },
 ];
 
 const MISSION_ICONS: Record<string, { src: string; alt: string }> = {
@@ -197,14 +197,14 @@ export function AboutContent() {
         <div className="about-method__grid">
           <div className="fade-up">
             <span className="eyebrow-dash" aria-hidden="true" />
-            <p className="method-eyebrow">Наша методология</p>
+            <p className="method-eyebrow">ключевое отличие FExperience</p>
             <h2 className="method-title" id="about-method-title">
-              Независимый <span className="accent">due diligence</span> — основа
-              наших решений
+              Статус <span className="accent">эксперта Forbes</span> — через участие в мероприятиях FExperience
+              
             </h2>
             <p className="method-text">
-              Собственный комплексный due diligence позволяет нам обеспечивать
-              объективную оценку рисков и возможностей в каждом регионе.
+              Мы рассказываем о вас на наших ресурсах, 
+              формируя устойчивую репутацию и доверие к вашему бизнесу.
             </p>
           </div>
 
@@ -225,8 +225,9 @@ export function AboutContent() {
       <section className="about-diff" aria-label="Ключевое отличие FExperience">
         <div className="about-diff__head fade-up">
           <span className="eyebrow-dash" aria-hidden="true" />
+          <p className="method-eyebrow">Наша методология</p>
           <h2 className="about-diff__title">
-            Ключевое отличие <span className="accent">F</span>Experience
+            Независимая экспертная оценка каждого региона:
           </h2>
         </div>
         <div className="about-diff__grid">
