@@ -42,7 +42,7 @@ const HERO_EXPEDITIONS = expeditions
 // Вернуть видео — раскомментировать <video>, удалить запись и <Image --desktop />.
 const HERO_STILLS: Record<string, string> = {
   'south-africa': '/images/expeditions/south-africaC.webp',
-  vietnam: '/videos/VietnamMen2.webp',
+  vietnam: '/videos/VietnamMen.webp',
 };
 
 function HeroSeal({ slug }: { slug: string }) {
@@ -134,7 +134,7 @@ export function Hero() {
                       fill
                       priority
                       sizes="100vw"
-                      className={`hero-slide__poster hero-slide__poster--desktop${expedition.slug === 'vietnam' ? ' hero-slide__poster--tall' : ''}`}
+                      className={`hero-slide__poster hero-slide__poster--desktop${expedition.slug === 'vietnam' ? ' hero-slide__poster--top' : ''}`}
                     />
                     <Image
                       src={expedition.heroPoster ?? expedition.image}

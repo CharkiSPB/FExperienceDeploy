@@ -921,9 +921,9 @@ body::before {
   display: block;
 }
 /* Вертикальный still (Вьетнам): contain вместо cover — человек целиком */
-.hero-slide__poster--tall {
-  object-fit: contain;
-  background-color: transparent;
+.hero-slide__poster--top {
+  object-position: top;
+
 }
 
 .hero-slide__overlay {
