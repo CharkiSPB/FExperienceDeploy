@@ -915,6 +915,12 @@ body::before {
   display: none;
 }
 
+/* Временный still вместо видео на desktop (видео закомментировано).
+   На mobile скрыт — там свой постер. Вернуть видео — удалить этот класс. */
+.hero-slide__poster--desktop {
+  display: block;
+}
+
 .hero-slide__overlay {
   position: absolute;
   inset: 0 0 0 var(--hero-panel-w);
@@ -1394,6 +1400,7 @@ body::before {
   .hero-slide { height: 90vh; min-height: 640px; }
   .hero-slide__video { display: none; }
   .hero-slide__poster { display: block; }
+  .hero-slide__poster--desktop { display: none; }
   .hero-compact { padding: 80px 16px 96px 20px; gap: 14px; justify-content: flex-start; padding-top: 28%; }
   /* Тезисы — вертикально справа поверх фото, вне потока текста */
   .hero-compact__pills {

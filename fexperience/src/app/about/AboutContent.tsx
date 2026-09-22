@@ -210,10 +210,10 @@ export function AboutContent() {
 
           <div className="method-photo fade-up delay-1">
             <Image
-              src="/images/about/duiDiligensFoto1.webp"
+              src="/images/about/MediaAbout.webp"
               alt="Due diligence FExperience — аналитическая сессия"
-              width={1735}
-              height={906}
+              width={1942}
+              height={809}
               loading="lazy"
               sizes="(max-width: 1024px) 100vw, 90vw"
             />

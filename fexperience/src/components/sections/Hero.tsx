@@ -38,6 +38,13 @@ const HERO_EXPEDITIONS = expeditions
       new Date(b.startDate ?? '1970-01-01').getTime()
   );
 
+// ВРЕМЕННЫЕ still-кадры вместо видеофона (видео закомментировано в разметке ниже).
+// Вернуть видео — раскомментировать <video>, удалить запись и <Image --desktop />.
+const HERO_STILLS: Record<string, string> = {
+  'south-africa': '/images/expeditions/south-africaC.webp',
+  vietnam: '/videos/VietnamMen.webp',
+};
+
 function HeroSeal({ slug }: { slug: string }) {
   const circleId = `hero-seal-circle-${slug}`;
   return (
@@ -107,7 +114,9 @@ export function Hero() {
                 <div className="hero-slide">
                   {/* Медиа: видео (desktop) / постер (mobile) */}
                   <div className="hero-slide__media">
-                    <video
+                    {/* ВРЕМЕННО ОТКЛЮЧЕНО: видефон. Вернуть — раскомментировать блок <video> ниже
+                        и удалить <Image hero-slide__poster--desktop />. */}
+                    {/* <video
                       className="hero-slide__video"
                       autoPlay
                       muted
@@ -118,7 +127,15 @@ export function Hero() {
                       aria-hidden="true"
                     >
                       <source src={expedition.heroVideo} type="video/webm" />
-                    </video>
+                    </video> */}
+                    <Image
+                      src={HERO_STILLS[expedition.slug] ?? expedition.heroPoster ?? expedition.image}
+                      alt={expedition.title}
+                      fill
+                      priority
+                      sizes="100vw"
+                      className="hero-slide__poster hero-slide__poster--desktop"
+                    />
                     <Image
                       src={expedition.heroPoster ?? expedition.image}
                       alt={expedition.title}
