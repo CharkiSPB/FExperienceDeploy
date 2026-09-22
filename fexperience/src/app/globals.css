@@ -920,6 +920,12 @@ body::before {
 .hero-slide__poster--desktop {
   display: block;
 }
+/* Вертикальный still (Вьетнам): contain вместо cover — человек целиком,
+   боковые поля тёмные, в тон оверлея */
+.hero-slide__poster--tall {
+  object-fit: contain;
+  background-color: #0e1113;
+}
 
 .hero-slide__overlay {
   position: absolute;
