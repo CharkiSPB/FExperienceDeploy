@@ -42,7 +42,7 @@ const HERO_EXPEDITIONS = expeditions
 // Вернуть видео — раскомментировать <video>, удалить запись и <Image --desktop />.
 const HERO_STILLS: Record<string, string> = {
   'south-africa': '/images/expeditions/south-africaC.webp',
-  vietnam: '/videos/VietnamMen1.webp',
+  vietnam: '/videos/VietnamMen.webp',
 };
 
 function HeroSeal({ slug }: { slug: string }) {
@@ -113,7 +113,10 @@ export function Hero() {
               <article key={expedition.slug} className="hero-slider__slide">
                 <div className="hero-slide">
                   {/* Медиа: видео (desktop) / постер (mobile) */}
-                  <div className="hero-slide__media">
+                  <div
+                    className="hero-slide__media"
+                    style={{ '--hero-still': `url(${HERO_STILLS[expedition.slug] ?? expedition.heroPoster ?? expedition.image})` } as React.CSSProperties}
+                  >
                     {/* ВРЕМЕННО ОТКЛЮЧЕНО: видефон. Вернуть — раскомментировать блок <video> ниже
                         и удалить <Image hero-slide__poster--desktop />. */}
                     {/* <video

@@ -920,11 +920,20 @@ body::before {
 .hero-slide__poster--desktop {
   display: block;
 }
-/* Вертикальный still (Вьетнам): contain вместо cover — человек целиком,
-   боковые поля тёмные, в тон оверлея */
+/* Вертикальный still (Вьетнам): contain вместо cover — человек целиком.
+   Поля закрывает размытая копия того же кадра (ambient-подложка), а не плашка. */
+.hero-slide__media::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background-image: var(--hero-still);
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(.72);
+}
 .hero-slide__poster--tall {
   object-fit: contain;
-  background-color: #0e1113;
+  background-color: transparent;
 }
 
 .hero-slide__overlay {
