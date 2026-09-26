@@ -146,7 +146,7 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
       {/* ══════════════ ЧТО ВКЛЮЧЕНО — светлый блок после программы ══════════════ */}
       {expedition.includes && expedition.includes.length > 0 && (
-        <ExpeditionIncluded includes={[...expedition.includes]} />
+        <ExpeditionIncluded includes={[...expedition.includes]} image={expedition.includedImage} />
       )}
 
       {/* ══════════════ ЭКСПЕРТЫ — слайдер + команда Forbes ══════════════ */}

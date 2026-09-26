@@ -22,7 +22,7 @@ export type Speaker = {
 
 export const speakers: Speaker[] = [
   {
-    id: 1, name: 'Тимоти ван Маасдайк', role: 'Логистический стратег по направлениям Африка-Россия', company: 'DAS GLOBAL LOGISTIK Africa', photo: '/images/speakers/timotyVan.jpg', photoAlt: 'Тимоти ван Маасдайк',
+    id: 1, name: 'Тимоти ван Маасдайк', role: 'Логистический стратег по направлениям Африка-Россия', company: 'DAS GLOBAL LOGISTIK Africa', photo: '/images/speakers/timotyVan1.webp', photoAlt: 'Тимоти ван Маасдайк',
     bio: '', isTop: true, topic: '', achievement: 'DAS GLOBAL LOGISTIK Africa - business Partner, Alpha Shipping Services LLC - Founder, Clarion Shipping Services (Pty) Ltd - Founder',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
@@ -37,7 +37,7 @@ export const speakers: Speaker[] = [
   //   expeditionSlugs: ['south-africa'], category: 'business'
   // },
   {
-    id: 2, name: 'Денис Косьяненко', role: 'Руководитель отдела развития международного бизнеса с 2014 года.', company: 'DAS GLOBAL LOGISTIK', photo: '/images/speakers/kosianenkoD.jpg', photoAlt: 'Денис Косьяненко — Руководитель отдела развития международного бизнеса',
+    id: 2, name: 'Денис Косьяненко', role: 'Руководитель отдела развития международного бизнеса с 2014 года.', company: 'DAS GLOBAL LOGISTIK', photo: '/images/speakers/denisKosianenko.webp', photoAlt: 'Денис Косьяненко — Руководитель отдела развития международного бизнеса',
     bio: '', isTop: true, topic: '', achievement: 'Более 15 лет опыта работы в международных экспедиторских компаниях. За последние 10 лет работы только ТОП позиции. Руководитель отдела международных операций и проектной логистики. Успешный запуск региональных офисов и расширение филиальной сети в России. Развитие глобальной сети в более 108 стран по всему миру.',
     expeditionSlugs: ['south-africa'], category: 'africa'
   },
@@ -102,12 +102,12 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa', 'vietnam']
   },
   {
-    id: 13, name: 'Фам Динь Юинь', role: 'Бизнес-консультант, предприниматель', company: '', photo: '/images/speakers/FamDin.jpg', photoAlt: 'Фам Динь Юинь — Бизнес-консультант, предприниматель',
+    id: 13, name: 'Фам Динь Юинь', role: 'Бизнес-консультант, предприниматель', company: '', photo: '/images/speakers/FamDin1.webp', photoAlt: 'Фам Динь Юинь — Бизнес-консультант, предприниматель',
     bio: '', isTop: true, topic: '', achievement: '',
     expeditionSlugs: ['vietnam']
   },
   {
-    id: 14, name: 'Иван Щербаков', role: 'Инвестор. Серийный предприниматель. Co-founder премиального консьерж-сервиса Beyond.', company: '', photo: '/images/speakers/sherbakovI.jpg', photoAlt: 'Иван Щербаков — Инвестор. Серийный предприниматель',
+    id: 14, name: 'Иван Щербаков', role: 'Инвестор. Серийный предприниматель. Co-founder премиального консьерж-сервиса Beyond.', company: '', photo: '/images/speakers/sherbakovI1.webp', photoAlt: 'Иван Щербаков — Инвестор. Серийный предприниматель',
     bio: '', isTop: true, topic: '', achievement: '',
     expeditionSlugs: ['south-africa'], category: 'africa'
   },

@@ -3,8 +3,11 @@
 import Image from 'next/image';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
+const DEFAULT_INCLUDED_IMAGE = '/images/expeditions/whatsIncluded3.webp';
+
 type ExpeditionIncludedProps = {
   includes: string[];
+  image?: string;
 };
 
 // Делит название ровно на 2 строки по середине (вторая строка — остаток).
@@ -22,7 +25,7 @@ function splitTwoLines(name: string): [string, string | null] {
   return [words.slice(0, -1).join(' '), words[words.length - 1]];
 }
 
-export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
+export function ExpeditionIncluded({ includes, image = DEFAULT_INCLUDED_IMAGE }: ExpeditionIncludedProps) {
   useScrollReveal();
 
   if (includes.length === 0) return null;
@@ -68,7 +71,7 @@ export function ExpeditionIncluded({ includes }: ExpeditionIncludedProps) {
 
       <div className="included-media fade-up delay-1">
         <Image
-          src="/images/expeditions/whatsIncluded3.webp"
+          src={image}
           alt="Что включено в бизнес-экспедицию"
           width={2103}
           height={748}

@@ -44,6 +44,9 @@ export type Expedition = {
   heroPoster?: string;
   ogImage?: string;
 
+  // Картинка-коллаж блока «Что включено» (своя для каждой экспедиции)
+  includedImage?: string;
+
   // ── Hero-поля для главной (раздел 10.2) ──
   heroSketch?: string; // скетч ТОЛЬКО для Hero детальной страницы
   startDate?: string;
