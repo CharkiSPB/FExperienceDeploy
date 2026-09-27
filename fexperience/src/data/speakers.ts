@@ -42,17 +42,17 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'africa'
   },
   {
-    id: 3, name: 'Питер Магнер', role: 'Директор Iridium', company: 'Iridium', photo: '/images/speakers/magnerP.jpg', photoAlt: 'Питер Магнер — Директор Iridium',
+    id: 3, name: 'Питер Магнер', role: 'Директор Iridium', company: 'Iridium', photo: '/images/speakers/magnerP.webp', photoAlt: 'Питер Магнер — Директор Iridium',
     bio: '', isTop: false, topic: '', achievement: 'Директор Iridium. Практические опыт ведения бухгалтерии и налоговогой отчетности в ЮАР',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 4, name: 'Эйтан Стерн', role: 'CEO Legaleze', company: 'Legaleze', photo: '/images/speakers/sternI.jpg', photoAlt: 'Эйтан Стерн — CEO Legaleze',
+    id: 4, name: 'Эйтан Стерн', role: 'CEO Legaleze', company: 'Legaleze', photo: '/images/speakers/eitanStern.webp', photoAlt: 'Эйтан Стерн — CEO Legaleze',
     bio: '', isTop: true, topic: '', achievement: 'Право в ЮАР: корпоративные вопросы, юридическое сопровождение',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 5, name: 'Григорий Ханбекян', role: 'CEO Fordewind', company: 'Fordewind', photo: '/images/speakers/hanbekyanG.jpg', photoAlt: 'Григорий Ханбекян — CEO Fordewind',
+    id: 5, name: 'Григорий Ханбекян', role: 'CEO Fordewind', company: 'Fordewind', photo: '/images/speakers/grigoryHanabekyan.webp', photoAlt: 'Григорий Ханбекян — CEO Fordewind',
     bio: '', isTop: false, topic: '', achievement: 'Запуск и сопровождение бизнеса в ЮАР: структурирование, лицензирование, локальное развитие.',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
