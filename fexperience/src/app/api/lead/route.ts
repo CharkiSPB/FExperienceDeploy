@@ -1,7 +1,31 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import dns from 'node:dns/promises';
 import { sendLeadEmail } from '@/lib/mail';
 import { expeditions } from '@/data/expeditions';
+
+/**
+ * MX-проверка домена email (fail-open): режем ТОЛЬКО заведомо выдуманные
+ * домены — нет ни MX-, ни A-записей. Таймаут/сбой DNS/пустой email —
+ * пропускаем дальше, легитимная отправка не должна страдать никогда.
+ */
+async function domainCanReceiveMail(email: string | undefined): Promise<boolean> {
+  const domain = email?.split('@')[1]?.trim().toLowerCase();
+  if (!domain) return true;
+
+  const check = (async () => {
+    const mx: unknown[] = await dns.resolveMx(domain).catch(() => []);
+    const a: unknown[] = await dns.resolve(domain).catch(() => []);
+    return mx.length > 0 || a.length > 0;
+  })();
+
+  const timeout = new Promise<boolean>((resolve) => {
+    const timer = setTimeout(() => resolve(true), 3000);
+    timer.unref();
+  });
+
+  return Promise.race([check, timeout]);
+}
 
 const partnerSchema = z.object({
   formType: z.literal('partner'),
@@ -131,6 +155,15 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const data = leadSchema.parse(body);
+
+    // Email есть не у всех типов (у партнёра нет). Пустой — пропускаем без проверки.
+    const emailToCheck = data.formType === 'subscribe' ? data.email : data.formType === 'participant' ? data.email : undefined;
+    if (emailToCheck && !(await domainCanReceiveMail(emailToCheck))) {
+      return NextResponse.json(
+        { error: 'Похоже, в адресе опечатка: такой почтовый домен не принимает письма. Проверьте email.' },
+        { status: 400 }
+      );
+    }
 
     // Преобразуем slug (vietnam, sakhalin) в читаемое название страны (Вьетнам, Сахалин)
     // У подписки поля expedition нет — пропускаем
