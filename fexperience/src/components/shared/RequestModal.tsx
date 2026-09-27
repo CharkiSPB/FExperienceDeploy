@@ -45,12 +45,22 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
   const { activeExpeditionSlug } = useExpedition();
   const activeExpeditions = expeditions.filter((e) => e.status === 'active');
   const nearest = getNearestExpedition(expeditions);
+  // Экспедиция страницы — даже со статусом upcoming (иначе upcoming-страницы
+  // получали бы чужой preselect и чужое фото)
+  const pageExpedition = defaultExpeditionSlug
+    ? expeditions.find((e) => e.slug === defaultExpeditionSlug)
+    : undefined;
   const preselect =
-    (defaultExpeditionSlug && activeExpeditions.some((e) => e.slug === defaultExpeditionSlug))
-      ? defaultExpeditionSlug
+    pageExpedition
+      ? pageExpedition.slug
       : activeExpeditions.some((e) => e.slug === activeExpeditionSlug)
         ? activeExpeditionSlug
         : (nearest?.slug ?? '');
+  // В селекте — активные + экспедиция текущей страницы (если она upcoming)
+  const selectOptions =
+    pageExpedition && !activeExpeditions.some((e) => e.slug === pageExpedition.slug)
+      ? [pageExpedition, ...activeExpeditions]
+      : activeExpeditions;
 
   const {
     register,
@@ -68,7 +78,12 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
     activeExpeditions.find((e) => e.slug === selectedSlug) ??
     activeExpeditions.find((e) => e.slug === preselect) ??
     nearest;
-  const photo = selected?.image;
+  // Фото — по слагу из ВСЕХ экспедиций (а не только active):
+  // на upcoming-страницах иначе показывалось фото ЮАР
+  const photo =
+    expeditions.find((e) => e.slug === selectedSlug)?.image ??
+    expeditions.find((e) => e.slug === preselect)?.image ??
+    selected?.image;
 
   // Сброс состояний при открытии + преселект текущей/ближайшей
   useEffect(() => {
@@ -221,9 +236,9 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
                           disabled={isSubmitting}
                         >
                           <option value="">Выберите экспедицию</option>
-                          {activeExpeditions.map((exp) => (
+                          {selectOptions.map((exp) => (
                             <option key={exp.slug} value={exp.slug}>
-                              {exp.country} — {exp.dates}
+                              {exp.country}{exp.dates ? ` — ${exp.dates}` : ''}
                             </option>
                           ))}
                         </select>
