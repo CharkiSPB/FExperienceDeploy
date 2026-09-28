@@ -57,7 +57,7 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'business'
   },
   {
-    id: 6, name: 'Стэйси Батлер', role: 'Executive Head: Transactional Sales and Solutions', company: 'Standard Bank', photo: '/images/speakers/batlerS.jpg', photoAlt: 'Стэйси Батлер — Executive Head: Transactional Sales and Solutions',
+    id: 6, name: 'Стэйси Батлер', role: 'Executive Head: Transactional Sales and Solutions', company: 'Standard Bank', photo: '/images/speakers/steisyBatler.webp', photoAlt: 'Стэйси Батлер — Executive Head: Transactional Sales and Solutions',
     bio: '', isTop: true, topic: '', achievement: 'Крупнейший коммерческий банк ЮАР с более чем 160-летней историей.',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
@@ -67,13 +67,13 @@ export const speakers: Speaker[] = [
     expeditionSlugs: ['south-africa'], category: 'investment'
   },
   {
-    id: 8, name: 'Деон ван Зейл', role: 'Chairman, WCPDF', company: '', photo: '/images/speakers/zeilD.jpg', photoAlt: 'Деон ван Зейл — Chairman, WCPDF',
+    id: 8, name: 'Деон ван Зейл', role: 'Chairman, WCPDF', company: '', photo: '/images/speakers/deonVanZeil.webp', photoAlt: 'Деон ван Зейл — Chairman, WCPDF',
     bio: '', isTop: true, topic: '', achievement: 'Девелопмент, недвижимость и инвестиционные проекты.',
     expeditionSlugs: ['south-africa'], category: 'investment'
   },
   
   {
-    id: 9, name: 'Дэн Плато', role: 'Бывший мэр Кейптауна, имеет прочные связи в сообществе', company: '', photo: '/images/speakers/platoD.jpg', photoAlt: 'Дэн Плато — Бывший мэр Кейптауна, имеет прочные связи в сообществе',
+    id: 9, name: 'Дэн Плато', role: 'Бывший мэр Кейптауна, имеет прочные связи в сообществе', company: '', photo: '/images/speakers/denPlato.webp', photoAlt: 'Дэн Плато — Бывший мэр Кейптауна, имеет прочные связи в сообществе',
     bio: '', isTop: false, topic: '', achievement: '',
     expeditionSlugs: ['south-africa'], category: 'business'
   },
