@@ -58,7 +58,7 @@ export const expeditions: Expedition[] = [
     status: 'active',
     description: '',
     image: '/images/expeditions/vietnam.webp',
-    heroSketch: '/images/expeditions/Hoshomin-bgExpeditions.webp',
+    heroSketch: '/images/expeditions/Hoshomin-bgExpeditions1.webp',
     includedImage: '/images/expeditions/whatsIncludedVietnam.webp',
     startDate: '2027-03-14',
     endDate: '2027-03-20',
