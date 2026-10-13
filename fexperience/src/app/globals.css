@@ -5163,6 +5163,13 @@ body::before {
     margin-left: -40px;
   }
 }
+/* Шире 1600px шапка центрируется (max-w-1600), а фото во всю ширину —
+   компенсируем отступ центрирования, чтобы логотип не уезжал вправо */
+@media (min-width: 1600px) {
+  .header-bar--form .header-bar__logo {
+    margin-left: calc(-40px - (100vw - 1600px) / 2);
+  }
+}
 /* Только /form: контент панели ниже фиксированной шапки */
 .form-page .request-modal__content {
   padding-top: 104px;
