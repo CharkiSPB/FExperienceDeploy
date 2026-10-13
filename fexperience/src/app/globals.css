@@ -5127,18 +5127,45 @@ body::before {
   to { opacity: 1; transform: none; }
 }
 /* Отдельная страница заявки (/form) — только для QR-ссылки.
-   Переиспользует классы формы модалки, но живёт в светлом канвасе. */
+   Тот же двухколоночный расклад, что у попапа: слева фото+преимущества,
+   справа форма. Переиспользует классы модалки. */
 .form-page {
   background: var(--color-canvas);
-  padding: 120px 24px 80px;
+  padding: 0;
+}
+.form-page__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--color-paper-dark);
+}
+.form-page__panel {
+  position: relative;
+  background: var(--color-paper-dark);
+  padding: 140px 8vw 80px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-.form-page__card {
-  width: min(720px, 100%);
-  background: var(--color-paper-dark);
-  border-radius: 20px;
-  padding: 56px 64px 48px;
+/* Только /form: белый логотип сайда скрыт, подпись-eyebrow скрыта */
+.form-page .request-modal__logo {
+  display: none;
+}
+.form-page .request-modal__eyebrow {
+  display: none;
+}
+/* Только /form: чёрный логотип шапки левее — вровень с контентом панели (24px).
+   Действует только на desktop, где у шапки широкий отступ. */
+@media (min-width: 1024px) {
+  .header-bar--form .header-bar__logo {
+    margin-left: -40px;
+  }
+}
+/* Только /form: контент панели ниже фиксированной шапки */
+.form-page .request-modal__content {
+  padding-top: 104px;
 }
 .request-privacy-note {
   display: flex;
@@ -5211,13 +5238,17 @@ body::before {
   .request-modal__title {
     display: none;
   }
-  /* На отдельной странице заголовок нужен и на мобильных */
+  /* На отдельной странице заголовок скрыт на всех ширинах (см. правило выше) */
   .form-page {
-    padding: 100px 16px 56px;
+    padding: 0;
   }
-  .form-page__card {
-    padding: 32px 24px;
+  .form-page__grid {
+    grid-template-columns: 1fr;
   }
+  .form-page__panel {
+    padding: 110px 24px 56px;
+  }
+  /* На отдельной странице заголовок виден и на мобильных */
   .form-page .request-modal__title {
     display: block;
   }

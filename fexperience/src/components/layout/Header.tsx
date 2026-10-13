@@ -52,10 +52,12 @@ export function Header() {
   // Детальная страница экспедиции (/expeditions/[slug])
   const isExpeditionDetail = /^\/expeditions\/[^/]+$/.test(pathname ?? '');
   const expeditionSlug = pathname?.match(/^\/expeditions\/([^/]+)/)?.[1];
+  // Отдельная страница заявки: точечные правки шапки ТОЛЬКО здесь через header-bar--form
+  const isFormPage = pathname === '/form';
 
   // На главной hero — видео/фото (тёмный) → наверху страницы светлый текст и логотип
   // На детальной странице экспедиции hero тоже тёмный (100svh фото) — светлый текст.
-  const overDarkHero = (pathname === '/' || isExpeditionDetail) && !isScrolled;
+  const overDarkHero = (pathname === '/' || pathname === '/form' || isExpeditionDetail) && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,7 +112,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`header-bar fixed top-0 left-0 right-0 z-50 ${isScrolled ? 'is-scrolled' : ''}`}>
+      <header className={`header-bar fixed top-0 left-0 right-0 z-50 ${isScrolled ? 'is-scrolled' : ''} ${isFormPage ? 'header-bar--form' : ''}`}>
         <div className="header-bar__glass" aria-hidden="true" />
         <div className="header-bar__inner mx-auto flex h-16 md:h-20 max-w-[1600px] items-center justify-between px-6 lg:px-16">
           {/* Логотип — слева, тёмная версия без подложек и ореолов */}
