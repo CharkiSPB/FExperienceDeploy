@@ -5126,6 +5126,20 @@ body::before {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
+/* Отдельная страница заявки (/form) — только для QR-ссылки.
+   Переиспользует классы формы модалки, но живёт в светлом канвасе. */
+.form-page {
+  background: var(--color-canvas);
+  padding: 120px 24px 80px;
+  display: flex;
+  justify-content: center;
+}
+.form-page__card {
+  width: min(720px, 100%);
+  background: var(--color-paper-dark);
+  border-radius: 20px;
+  padding: 56px 64px 48px;
+}
 .request-privacy-note {
   display: flex;
   align-items: flex-start;
@@ -5196,6 +5210,16 @@ body::before {
   }
   .request-modal__title {
     display: none;
+  }
+  /* На отдельной странице заголовок нужен и на мобильных */
+  .form-page {
+    padding: 100px 16px 56px;
+  }
+  .form-page__card {
+    padding: 32px 24px;
+  }
+  .form-page .request-modal__title {
+    display: block;
   }
   .request-modal__mobile-head {
     display: flex;
