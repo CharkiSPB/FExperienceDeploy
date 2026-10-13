@@ -5170,6 +5170,12 @@ body::before {
     margin-left: calc(-40px - (100vw - 1600px) / 2);
   }
 }
+/* Только /form на мобильных: логотипу чуть больше отступа от края */
+@media (max-width: 1023px) {
+  .header-bar--form .header-bar__logo {
+    margin-left: 10px;
+  }
+}
 /* Только /form: контент панели ниже фиксированной шапки */
 .form-page .request-modal__content {
   padding-top: 104px;
