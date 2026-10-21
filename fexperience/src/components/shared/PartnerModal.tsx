@@ -184,13 +184,15 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
                       </span>
                       <div>
                         <CustomSelect
-                          options={expeditions.map((exp) => ({
-                            value: exp.slug,
-                            label:
-                              exp.status === 'active' && formatMonthYear(exp.dates)
-                                ? `${exp.country} | ${formatMonthYear(exp.dates)}`
-                                : exp.country,
-                          }))}
+                          options={expeditions
+                            .filter((exp) => exp.status !== 'completed')
+                            .map((exp) => ({
+                              value: exp.slug,
+                              label:
+                                exp.status === 'active' && formatMonthYear(exp.dates)
+                                  ? `${exp.country} | ${formatMonthYear(exp.dates)}`
+                                  : exp.country,
+                            }))}
                           value={watch('expedition') || ''}
                           onChange={(val) => setValue('expedition', val, { shouldValidate: true })}
                           placeholder="Выберите экспедицию"

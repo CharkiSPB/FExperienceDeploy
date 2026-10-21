@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { expeditions } from '@/data/expeditions';
 import { programs } from '@/data/program';
+import { reviews } from '@/data/reviews';
 import { config } from '@/data/config';
 import { speakers } from '@/data/speakers';
 import { expeditionEditorial } from '@/config/expeditionEditorial';
@@ -12,6 +13,7 @@ import { ExpeditionHero } from '@/components/sections/ExpeditionHero';
 import { ExpeditionProgram } from '@/components/sections/ExpeditionProgram';
 import { ExpeditionIncluded } from '@/components/sections/ExpeditionIncluded';
 import { ExpeditionExperts } from '@/components/sections/ExpeditionExperts';
+import { ExpeditionRecapMedia } from '@/components/sections/ExpeditionRecapMedia';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -71,9 +73,17 @@ export default async function ExpeditionDetailPage({ params }: Props) {
   const isActive = expedition.status === 'active';
   const editorial = expeditionEditorial[slug];
 
-  const expeditionSpeakers = speakers.filter(s =>
-    s.expeditionSlugs?.includes(slug) || s.category === 'other'
-  );
+  // Задел: на завершённых экспертов можно скрыть (showSpeakers: false)
+  // или переиспользовать состав другой экспедиции (speakersSourceSlug).
+  const speakersSlug =
+    expedition.showSpeakers === false
+      ? null
+      : expedition.speakersSourceSlug ?? slug;
+  const expeditionSpeakers = speakersSlug
+    ? speakers.filter(s =>
+        s.expeditionSlugs?.includes(speakersSlug) || s.category === 'other'
+      )
+    : [];
   const forbesTeam = expeditionSpeakers.filter(s => s.forbesBadge);
   const externalExperts = expeditionSpeakers.filter(s => !s.forbesBadge);
 
@@ -89,8 +99,15 @@ export default async function ExpeditionDetailPage({ params }: Props) {
 
   // Отзывы для шаблона «Завершена»
   const completedReviews = isCompleted
-    ? (await import('@/data/reviews')).reviews.filter(r => r.expeditionLabel.includes('Марокко'))
+    ? reviews.filter(r =>
+        r.expeditionSlug
+          ? r.expeditionSlug === slug
+          : r.expeditionLabel.toLowerCase().includes(expedition.country.toLowerCase())
+      )
     : [];
+
+  const recapDays = Number.parseInt(expedition.duration ?? '', 10) || 5;
+  const recapTitle = expedition.recapTitle ?? `Экспедиция в ${expedition.country} 2025`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -194,26 +211,32 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {isCompleted && (
         <section className="recap-section">
           <div className="container">
-            <div className="recap-stats">
+            <div className={`recap-stats${!expedition.speakersCount || !expedition.completedStats?.participantsCount ? ' recap-stats--few' : ''}`}>
+              {expedition.speakersCount ? (
+                <div className="recap-stat">
+                  <span className="recap-stat__num">{expedition.speakersCount}</span>
+                  <span className="recap-stat__label">спикеров</span>
+                </div>
+              ) : null}
+              {expedition.completedStats?.participantsCount ? (
+                <div className="recap-stat">
+                  <span className="recap-stat__num">{expedition.completedStats.participantsCount}</span>
+                  <span className="recap-stat__label">участников</span>
+                </div>
+              ) : null}
               <div className="recap-stat">
-                <span className="recap-stat__num">{expedition.speakersCount ?? 0}</span>
-                <span className="recap-stat__label">спикеров</span>
-              </div>
-              <div className="recap-stat">
-                <span className="recap-stat__num">{expedition.completedStats?.participantsCount ?? '—'}</span>
-                <span className="recap-stat__label">участников</span>
-              </div>
-              <div className="recap-stat">
-                <span className="recap-stat__num">5</span>
+                <span className="recap-stat__num">{recapDays}</span>
                 <span className="recap-stat__label">дней программы</span>
               </div>
             </div>
+
+            <ExpeditionRecapMedia media={expedition.recapMedia} title={recapTitle} />
 
             {completedReviews.length > 0 && (
               <div className="recap-reviews">
                 <span className="eyebrow-dash" aria-hidden="true" />
                 <p className="dir-label">Отзывы участников</p>
-                <h3 className="recap-reviews__title">Экспедиция в Марокко 2025</h3>
+                <h3 className="recap-reviews__title">{recapTitle}</h3>
                 {completedReviews.slice(0, 3).map(review => (
                   <blockquote key={review.id} className="recap-review">
                     <p className="recap-review__text">&ldquo;{review.text}&rdquo;</p>

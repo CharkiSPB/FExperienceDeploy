@@ -1,5 +1,20 @@
 export type ExpeditionRegion = 'africa' | 'asia' | 'latam' | 'russia';
 
+export type ExpeditionRecapVideo = {
+  /** Ссылка для iframe-плеера VK (video_ext.php). */
+  embedUrl: string;
+  /** Обычная страница ролика — фолбэк, если встраивание недоступно. */
+  pageUrl: string;
+  poster?: string;
+  title?: string;
+};
+
+export type ExpeditionRecapMedia = {
+  video?: ExpeditionRecapVideo;
+  /** Простой пул фото: без подписей и раскладок, показываются в перемешанном виде. */
+  photos?: string[];
+};
+
 export type Expedition = {
   slug: string;
   title: string;
@@ -73,4 +88,12 @@ export type Expedition = {
     speakersCount: number;
     participantsCount: number;
   };
+
+  // ── Архив завершённой экспедиции ──
+  recapTitle?: string;
+  recapMedia?: ExpeditionRecapMedia;
+  /** Скрыть экспертов на странице (по умолчанию показываются). */
+  showSpeakers?: boolean;
+  /** Переиспользовать состав экспертов другой экспедиции. */
+  speakersSourceSlug?: string;
 };

@@ -126,7 +126,65 @@ export const expeditions: Expedition[] = [
       'Медийное сопровождение',
     ],
     showDatesInMenu: false,
-    
+    // Эксперты на завершённых пока скрыты; вернуть — убрать флаг
+    // или указать speakersSourceSlug (например, 'south-africa').
+    showSpeakers: false,
+    recapTitle: 'Экспедиция в Марокко 2025',
+    recapMedia: {
+      video: {
+        embedUrl: 'https://vkvideo.ru/video_ext.php?oid=-11982368&id=456247728&hd=4',
+        pageUrl: 'https://vk.com/video-11982368_456247728',
+        poster: '/images/expeditions/morocco.jpg',
+        title: 'Как прошла экспедиция в Марокко 2025',
+      },
+      photos: [
+        '/images/expeditions/morocco.jpg',
+        '/images/articles/marocco2.webp',
+      ],
+    },
+  },
+  {
+    slug: 'south-africa-2025',
+    title: 'Бизнес-экспедиция с Forbes в ЮАР 2025',
+    country: 'ЮАР',
+    region: 'africa',
+    city: 'Кейптаун, Стелленбош',
+    industries: ['Энергетика и ресурсы', 'Агропром'],
+    dates: 'Октябрь 2025',
+    status: 'completed',
+    description: 'Завершённая экспедиция в ЮАР: деловые встречи, посещение производств, нетворкинг и погружение в экономику Кейптауна и Стелленбоша.',
+    image: '/images/program/UarDay4.webp',
+    heroSketch: '/images/expeditions/UAR-bgExpeditions.webp',
+    includedImage: '/images/expeditions/whatsIncluded3.webp',
+    duration: '6',
+    fullDescription: 'Экспедиция прошла в октябре 2025 года. Участники познакомились с бизнес-климатом ЮАР изнутри: встречи с предпринимателями и представителями торговых палат, посещение производств, обсуждение выхода на рынок и нетворкинг с локальным деловым сообществом.',
+    includes: [
+      'Медийное сопровождение',
+      'Бизнес-сессии, нетворкинг',
+      'Культурные мероприятия',
+      'Проживание в отеле 5*',
+      'Трансферы вип-класса',
+      'Питание',
+    ],
+    showDatesInMenu: false,
+    showSpeakers: false,
+    recapTitle: 'Экспедиция в ЮАР 2025',
+    recapMedia: {
+      video: {
+        embedUrl: 'https://vkvideo.ru/video_ext.php?oid=-11982368&id=456248133&hd=4',
+        pageUrl: 'https://vk.com/video-11982368_456248133',
+        poster: '/images/program/UarDay1.webp',
+        title: 'Как прошла экспедиция в ЮАР 2025',
+      },
+      photos: [
+        '/images/program/UarDay2.webp',
+        '/images/program/UarDay3.webp',
+        '/images/program/UarDay4.webp',
+        '/images/program/UarDay5.1.webp',
+        '/images/program/UarDay6.webp',
+        '/images/program/south-africa-day1.webp',
+      ],
+    },
   },
   // {
   //   slug: 'uae',
