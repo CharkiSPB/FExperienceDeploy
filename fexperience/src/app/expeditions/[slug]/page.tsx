@@ -106,7 +106,11 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       )
     : [];
 
-  const recapDays = Number.parseInt(expedition.duration ?? '', 10) || 5;
+  const recapDays = Number.parseInt(expedition.duration ?? '', 10) || null;
+  const recapStatCount =
+    (expedition.speakersCount ? 1 : 0) +
+    (expedition.completedStats?.participantsCount ? 1 : 0) +
+    (recapDays ? 1 : 0);
   const recapTitle = expedition.recapTitle ?? `Экспедиция в ${expedition.country} 2025`;
 
   const jsonLd = {
@@ -211,24 +215,28 @@ export default async function ExpeditionDetailPage({ params }: Props) {
       {isCompleted && (
         <section className="recap-section">
           <div className="container">
-            <div className={`recap-stats${!expedition.speakersCount || !expedition.completedStats?.participantsCount ? ' recap-stats--few' : ''}`}>
-              {expedition.speakersCount ? (
-                <div className="recap-stat">
-                  <span className="recap-stat__num">{expedition.speakersCount}</span>
-                  <span className="recap-stat__label">спикеров</span>
-                </div>
-              ) : null}
-              {expedition.completedStats?.participantsCount ? (
-                <div className="recap-stat">
-                  <span className="recap-stat__num">{expedition.completedStats.participantsCount}</span>
-                  <span className="recap-stat__label">участников</span>
-                </div>
-              ) : null}
-              <div className="recap-stat">
-                <span className="recap-stat__num">{recapDays}</span>
-                <span className="recap-stat__label">дней программы</span>
+            {recapStatCount > 0 && (
+              <div className={`recap-stats${recapStatCount < 3 ? ' recap-stats--few' : ''}`}>
+                {expedition.speakersCount ? (
+                  <div className="recap-stat">
+                    <span className="recap-stat__num">{expedition.speakersCount}</span>
+                    <span className="recap-stat__label">спикеров</span>
+                  </div>
+                ) : null}
+                {expedition.completedStats?.participantsCount ? (
+                  <div className="recap-stat">
+                    <span className="recap-stat__num">{expedition.completedStats.participantsCount}</span>
+                    <span className="recap-stat__label">участников</span>
+                  </div>
+                ) : null}
+                {recapDays ? (
+                  <div className="recap-stat">
+                    <span className="recap-stat__num">{recapDays}</span>
+                    <span className="recap-stat__label">дней программы</span>
+                  </div>
+                ) : null}
               </div>
-            </div>
+            )}
 
             <ExpeditionRecapMedia media={expedition.recapMedia} title={recapTitle} />
 
