@@ -47,6 +47,12 @@ export const expeditions: Expedition[] = [
     targetDate: '2026-11-15T00:00:00Z', // ISO-формат даты начала
     label: 'До старта экспедиции в ЮАР',
   },
+    generalPartner: {
+      name: 'Уралхим',
+      logo: '/images/logo/logo_group_rus_rgb.svg',
+      logoOnDark: '/images/logo/logo_group_rus_white.svg',
+      website: 'https://uralchemgroup.ru',
+    },
   },
   {
     slug: 'vietnam',
@@ -98,6 +104,7 @@ export const expeditions: Expedition[] = [
   //  generalPartner: {
   //   name: 'Название партнёра',
   //   logo: '/images/partners/partner-logo.svg', // путь к картинке
+  //   logoOnDark: '/images/partners/partner-logo-white.svg', // белая версия для тёмного hero
   //   website: 'https://partner-site.ru', // логотип станет кликабельным
   // },
 
