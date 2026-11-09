@@ -26,11 +26,9 @@ type ExpeditionPartner = NonNullable<Expedition['generalPartner']>;
 
 function PartnerMark({
   partner,
-  onDark,
   onClick,
 }: {
   partner: ExpeditionPartner;
-  onDark?: boolean;
   onClick?: () => void;
 }) {
   const logo = (
@@ -71,9 +69,6 @@ function PartnerMark({
       ) : (
         logo
       )}
-      <span className={`header-partner__label${onDark ? ' header-partner__label--on-dark' : ''}`}>
-        Генеральный партнёр
-      </span>
     </>
   );
 }
@@ -226,7 +221,7 @@ export function Header() {
             {isExpeditionDetail && (
               generalPartner ? (
                 <div className={`header-partner${overDarkHero ? ' header-partner--on-dark' : ''}`}>
-                  <PartnerMark partner={generalPartner} onDark={overDarkHero} />
+                  <PartnerMark partner={generalPartner} />
                 </div>
               ) : (
                 <button onClick={() => setIsPartnerModalOpen(true)} className={`btn-outline btn-outline--sm btn-outline--brand ${overDarkHero ? 'btn-outline--on-dark' : ''}`}>

@@ -801,23 +801,7 @@ body::before {
 /* ── Партнёр экспедиции — логотип вместо кнопки «Стать партнёром» ── */
 .header-partner {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 3px;
-  min-height: 40px;
-}
-
-.header-partner__label {
-  font: 500 9px/1.2 var(--font-sans), sans-serif;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  white-space: nowrap;
-  transition: color .3s ease;
-}
-
-.header-partner__label--on-dark {
-  color: rgba(255, 255, 255, .72);
+  align-items: center;
 }
 
 .header-partner__logo {
@@ -874,12 +858,7 @@ body::before {
 
 .header-partner--mobile {
   align-items: flex-start;
-  gap: 8px;
   padding: 2px 0;
-}
-
-.header-partner--mobile .header-partner__label {
-  color: var(--text-tertiary);
 }
 
 .header-partner--mobile .header-partner__logo {
