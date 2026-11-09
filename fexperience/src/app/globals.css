@@ -2303,6 +2303,66 @@ body::before {
 }
 
 /* ════════════════════════════════════════════════════════════════
+   2.2A HOME PARTNER BANNER — партнёрская полоса между статистикой
+   и блоком «ПРОЕКТ / FEXPERIENCE»
+   ════════════════════════════════════════════════════════════════ */
+.home-partner-banner {
+  position: relative;
+  background: var(--bg-canvas);
+}
+
+.home-partner-banner__link {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+}
+
+.home-partner-banner__link:focus-visible {
+  outline: 2px solid var(--orange-600);
+  outline-offset: -3px;
+}
+
+.home-partner-banner__media {
+  display: block;
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--partner-banner-aspect, 1440 / 250);
+  overflow: hidden;
+  background: #1a2414;
+}
+
+.home-partner-banner__image {
+  object-fit: cover;
+  object-position: center;
+  transition: filter .35s ease;
+}
+
+.home-partner-banner__link:hover .home-partner-banner__image {
+  filter: brightness(1.04);
+}
+
+@media (max-width: 640px) {
+  .home-partner-banner__media {
+    aspect-ratio: 4 / 1;
+  }
+
+  .home-partner-banner__image {
+    object-position: left center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-partner-banner__image {
+    transition: none;
+  }
+
+  .home-partner-banner__link:hover .home-partner-banner__image {
+    filter: none;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
    2.3 PLATFORM STATEMENT / О ПРОЕКТЕ (02 / FEXPERIENCE)
    — двухколонный editorial-разворот: слева манифест, справа фото
    в терракотовом паспарту с круглой печатью.

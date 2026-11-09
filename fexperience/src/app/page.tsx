@@ -1,4 +1,5 @@
 import { Hero } from '@/components/sections/Hero';
+import { PartnerBanner } from '@/components/sections/PartnerBanner';
 import { CountdownTimer } from '@/components/shared/CountdownTimer';
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 import { getNearestExpedition } from '@/data/expeditions';
@@ -56,6 +57,9 @@ export default function HomePage() {
 
       {/* 2.2 Market Reality — editorial data field (бесшовно под Hero) */}
       <MarketReality />
+
+      {/* 2.2A Partner banner — между «Экспансией» и «ПРОЕКТ / FEXPERIENCE» */}
+      <PartnerBanner />
 
       {/* 2.3 Platform Statement */}
       <PlatformStatement />
