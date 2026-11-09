@@ -798,6 +798,95 @@ body::before {
   pointer-events: auto;
 }
 
+/* ── Партнёр экспедиции — логотип вместо кнопки «Стать партнёром» ── */
+.header-partner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  min-height: 40px;
+}
+
+.header-partner__label {
+  font: 500 9px/1.2 var(--font-sans), sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: color .3s ease;
+}
+
+.header-partner__label--on-dark {
+  color: rgba(255, 255, 255, .72);
+}
+
+.header-partner__logo {
+  position: relative;
+  display: block;
+  width: 160px;
+  height: 28px;
+}
+
+.header-partner__link {
+  display: inline-flex;
+  border-radius: 8px;
+  transition: opacity .2s ease;
+}
+
+.header-partner__link:hover {
+  opacity: .86;
+}
+
+.header-partner__link:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 3px;
+}
+
+.header-partner__logo-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity .3s ease;
+}
+
+.header-partner__logo-img--light {
+  opacity: 1;
+}
+
+.header-partner__logo-img--dark {
+  opacity: 0;
+}
+
+.header-partner--on-dark .header-partner__logo-img--light:not(.is-single) {
+  opacity: 0;
+}
+
+.header-partner--on-dark .header-partner__logo-img--dark {
+  opacity: 1;
+}
+
+.header-partner__logo-img.is-single {
+  opacity: 1;
+}
+
+.header-partner--mobile {
+  align-items: flex-start;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.header-partner--mobile .header-partner__label {
+  color: var(--text-tertiary);
+}
+
+.header-partner--mobile .header-partner__logo {
+  width: 180px;
+  height: 32px;
+}
+
 /* ── Мобильное меню — навигационные ссылки (раздел 11.9) ── */
 .mobile-nav-link {
   font-family: var(--font-display), serif;

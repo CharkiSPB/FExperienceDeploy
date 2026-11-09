@@ -6,6 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Send } from 'lucide-react';
 import { RequestModal } from '@/components/shared/RequestModal';
 import { PartnerModal } from '@/components/shared/PartnerModal';
+import { expeditions } from '@/data/expeditions';
+import type { Expedition } from '@/types/expedition';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useLenis } from '@/components/providers/LenisProvider';
@@ -19,6 +21,62 @@ const NAV_ITEMS = [
   { label: 'О нас', href: '/about' },
   { label: 'Контакты', href: '#contacts', hash: '#contacts' },
 ] as const;
+
+type ExpeditionPartner = NonNullable<Expedition['generalPartner']>;
+
+function PartnerMark({
+  partner,
+  onDark,
+  onClick,
+}: {
+  partner: ExpeditionPartner;
+  onDark?: boolean;
+  onClick?: () => void;
+}) {
+  const logo = (
+    <span className="header-partner__logo">
+      <Image
+        src={partner.logo}
+        alt={partner.name}
+        width={160}
+        height={28}
+        className={`header-partner__logo-img header-partner__logo-img--light${partner.logoOnDark ? '' : ' is-single'}`}
+      />
+      {partner.logoOnDark && (
+        <Image
+          src={partner.logoOnDark}
+          alt=""
+          aria-hidden="true"
+          width={160}
+          height={28}
+          className="header-partner__logo-img header-partner__logo-img--dark"
+        />
+      )}
+    </span>
+  );
+
+  return (
+    <>
+      {partner.website ? (
+        <a
+          href={partner.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="header-partner__link"
+          aria-label={`${partner.name} — открыть сайт партнёра`}
+          onClick={onClick}
+        >
+          {logo}
+        </a>
+      ) : (
+        logo
+      )}
+      <span className={`header-partner__label${onDark ? ' header-partner__label--on-dark' : ''}`}>
+        Генеральный партнёр
+      </span>
+    </>
+  );
+}
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +110,10 @@ export function Header() {
   // Детальная страница экспедиции (/expeditions/[slug])
   const isExpeditionDetail = /^\/expeditions\/[^/]+$/.test(pathname ?? '');
   const expeditionSlug = pathname?.match(/^\/expeditions\/([^/]+)/)?.[1];
+  const currentExpedition = isExpeditionDetail
+    ? expeditions.find((expedition) => expedition.slug === expeditionSlug)
+    : undefined;
+  const generalPartner = currentExpedition?.generalPartner;
   // Отдельная страница заявки: точечные правки шапки ТОЛЬКО здесь через header-bar--form
   const isFormPage = pathname === '/form';
 
@@ -162,9 +224,15 @@ export function Header() {
           {/* CTA — desktop */}
           <div className="hidden xl:flex items-center gap-3 ml-8">
             {isExpeditionDetail && (
-              <button onClick={() => setIsPartnerModalOpen(true)} className={`btn-outline btn-outline--sm btn-outline--brand ${overDarkHero ? 'btn-outline--on-dark' : ''}`}>
-                Стать партнёром
-              </button>
+              generalPartner ? (
+                <div className={`header-partner${overDarkHero ? ' header-partner--on-dark' : ''}`}>
+                  <PartnerMark partner={generalPartner} onDark={overDarkHero} />
+                </div>
+              ) : (
+                <button onClick={() => setIsPartnerModalOpen(true)} className={`btn-outline btn-outline--sm btn-outline--brand ${overDarkHero ? 'btn-outline--on-dark' : ''}`}>
+                  Стать партнёром
+                </button>
+              )
             )}
             <div className={`header-bar__join ${showJoin ? 'is-visible' : ''}`}>
             <button onClick={() => setIsParticipantModalOpen(true)} className="btn-liquid btn-liquid--sm">
@@ -268,15 +336,26 @@ export function Header() {
                 <span className="btn-liquid-text">Стать участником</span>
               </motion.button>
               {isExpeditionDetail && (
-                <motion.button
-                  onClick={() => { setIsPartnerModalOpen(true); closeMenu(); }}
-                  className="btn-outline btn-outline--brand w-full"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  Стать партнёром
-                </motion.button>
+                generalPartner ? (
+                  <motion.div
+                    className="header-partner header-partner--mobile w-full"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <PartnerMark partner={generalPartner} onClick={closeMenu} />
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    onClick={() => { setIsPartnerModalOpen(true); closeMenu(); }}
+                    className="btn-outline btn-outline--brand w-full"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    Стать партнёром
+                  </motion.button>
+                )
               )}
             </div>
 

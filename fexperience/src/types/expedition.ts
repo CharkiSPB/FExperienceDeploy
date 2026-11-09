@@ -47,6 +47,10 @@ export type Expedition = {
   generalPartner?: {
     name: string;
     logo: string;
+    /** Белая версия логотипа для тёмного hero в шапке. */
+    logoOnDark?: string;
+    /** Сайт партнёра — если указан, логотип в шапке становится кликабельным. */
+    website?: string;
     description?: string;
   };
 

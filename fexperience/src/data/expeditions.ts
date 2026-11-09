@@ -98,6 +98,7 @@ export const expeditions: Expedition[] = [
   //  generalPartner: {
   //   name: 'Название партнёра',
   //   logo: '/images/partners/partner-logo.svg', // путь к картинке
+  //   website: 'https://partner-site.ru', // логотип станет кликабельным
   // },
 
   },
