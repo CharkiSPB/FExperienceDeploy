@@ -34,7 +34,11 @@ export function ExpeditionContactPanel({
   mode,
   onClose,
 }: ExpeditionContactPanelProps) {
-  const { title, text } = COPY[mode];
+  const { text } = COPY[mode];
+  const title =
+    mode === 'started' && expedition
+      ? `Мы уже в ${expedition.country}`
+      : COPY[mode].title;
   const subtitle = expedition
     ? `${expedition.country}${expedition.dates ? ` · ${expedition.dates.replace(/-/g, '—')}` : ''}`
     : null;
