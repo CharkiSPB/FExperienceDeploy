@@ -111,7 +111,8 @@ export default async function ExpeditionDetailPage({ params }: Props) {
     (expedition.speakersCount ? 1 : 0) +
     (expedition.completedStats?.participantsCount ? 1 : 0) +
     (recapDays ? 1 : 0);
-  const recapTitle = expedition.recapTitle ?? `Экспедиция в ${expedition.country} 2025`;
+  const recapYear = expedition.startDate?.match(/^(\d{4})/)?.[1] ?? '2025';
+  const recapTitle = expedition.recapTitle ?? `Экспедиция в ${expedition.country} ${recapYear}`;
 
   const jsonLd = {
     '@context': 'https://schema.org',

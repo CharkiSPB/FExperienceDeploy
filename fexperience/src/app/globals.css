@@ -5615,6 +5615,64 @@ body::before {
   border-color: var(--color-brand-500);
 }
 
+/* Контактный режим — экспедиция уже началась или завершилась */
+.request-modal__contact {
+  margin-top: 28px;
+}
+.request-modal__contact-expedition {
+  margin: 0;
+  font: 600 12px/1.4 var(--font-sans), sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-brand-500);
+}
+.request-modal__contact-text {
+  margin: 14px 0 24px;
+  max-width: 420px;
+  font: 400 16px/1.6 var(--font-sans), sans-serif;
+  color: rgba(255, 246, 238, .78);
+}
+.request-modal__contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.request-modal__contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 246, 238, .18);
+  border-radius: 12px;
+  color: #FFF6EE;
+  font: 500 16px/1.2 var(--font-sans), sans-serif;
+  text-decoration: none;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.request-modal__contact-link:hover {
+  color: var(--color-brand-500);
+  border-color: var(--color-brand-500);
+  background: rgba(255, 255, 255, .04);
+}
+.request-modal__contact-link:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 3px;
+}
+.request-modal__contact-link svg {
+  flex: none;
+  opacity: .8;
+}
+.request-modal__contact-all {
+  margin-top: 24px;
+  color: #FFF6EE;
+  border-color: rgba(255, 246, 238, .35);
+}
+.request-modal__contact-all:hover {
+  color: var(--color-brand-500);
+  border-color: var(--color-brand-500);
+}
+
 @media (max-width: 767px) {
   .request-modal {
     padding: 16px;
@@ -5666,6 +5724,9 @@ body::before {
   .request-field {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+  .request-modal__contact-link {
+    width: 100%;
   }
 }
 

@@ -19,6 +19,11 @@ export const config: SiteConfig = {
   },
   faqPreview: { showCount: 5 },
   map: { activeExpedition: 'vietnam' },
+  expeditionContact: {
+    phone: '+7 (920) 194-90-03',
+    phoneHref: 'tel:+79201949003',
+    email: 'fexperience@forbes.ru',
+  },
   hero: {
     teamProject: {
       enabled: true,

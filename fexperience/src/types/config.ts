@@ -13,6 +13,12 @@ export type SiteConfig = {
   };
   faqPreview: { showCount: number };
   map: { activeExpedition: string };
+  /** Контакты для режима «Экспедиция началась». */
+  expeditionContact: {
+    phone: string;
+    phoneHref: string;
+    email: string;
+  };
   hero: {
     teamProject: { enabled: boolean; label: string; logo: string; website?: string };
   };

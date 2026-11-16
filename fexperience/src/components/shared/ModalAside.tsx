@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import type { ReactNode } from 'react';
 import { Globe, Users, Compass, TrendingUp } from 'lucide-react';
 
 export const MODAL_BENEFITS = [
@@ -64,10 +65,12 @@ export function ModalSeal({ size = 132 }: { size?: number }) {
 type ModalAsideProps = {
   photo?: string;
   eyebrow: string;
+  heading?: ReactNode;
+  sub?: string;
 };
 
 /* Левая половина модалки: фото + лого + заголовок + печать + преимущества */
-export function ModalAside({ photo, eyebrow }: ModalAsideProps) {
+export function ModalAside({ photo, eyebrow, heading, sub }: ModalAsideProps) {
   return (
     <>
       <div className="request-modal__media" aria-hidden="true">
@@ -95,10 +98,15 @@ export function ModalAside({ photo, eyebrow }: ModalAsideProps) {
         />
         <p className="request-modal__eyebrow">{eyebrow}</p>
         <h2 className="request-modal__heading">
-          Присоединяйтесь к бизнес-экспедициям <span>FExperience</span>
+          {heading ?? (
+            <>
+              Присоединяйтесь к бизнес-экспедициям <span>FExperience</span>
+            </>
+          )}
         </h2>
         <p className="request-modal__sub">
-          Оставьте заявку — мы свяжемся с вами и подберем экспедицию под ваши цели.
+          {sub ??
+            'Оставьте заявку — мы свяжемся с вами и подберем экспедицию под ваши цели.'}
         </p>
 
         <div className="request-modal__seal">

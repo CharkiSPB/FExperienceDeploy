@@ -9,10 +9,15 @@ import {
   Check,
 } from 'lucide-react';
 import { ModalAside, ModalSeal } from '@/components/shared/ModalAside';
+import {
+  ExpeditionContactPanel,
+  type ExpeditionContactMode,
+} from '@/components/shared/ExpeditionContactPanel';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { expeditions, getNearestExpedition } from '@/data/expeditions';
+import { expeditions } from '@/data/expeditions';
+import { getOpenExpeditions, getParticipationState } from '@/lib/expeditionStatus';
 import { useExpedition } from '@/components/providers/ExpeditionContext';
 
 // Схема — без изменений
@@ -40,27 +45,24 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [forcedContactSlug, setForcedContactSlug] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
+  const now = new Date();
   const { activeExpeditionSlug } = useExpedition();
-  const activeExpeditions = expeditions.filter((e) => e.status === 'active');
-  const nearest = getNearestExpedition(expeditions);
-  // Экспедиция страницы — даже со статусом upcoming (иначе upcoming-страницы
-  // получали бы чужой preselect и чужое фото)
+  const openExpeditions = getOpenExpeditions(expeditions, now);
+  // Экспедиция страницы — даже со статусом upcoming/completed: от неё зависит
+  // преселект и фото, а состояние участия решает, форму или контакты показывать.
   const pageExpedition = defaultExpeditionSlug
     ? expeditions.find((e) => e.slug === defaultExpeditionSlug)
     : undefined;
-  const preselect =
-    pageExpedition
-      ? pageExpedition.slug
-      : activeExpeditions.some((e) => e.slug === activeExpeditionSlug)
-        ? activeExpeditionSlug
-        : (nearest?.slug ?? '');
-  // В селекте — активные + экспедиция текущей страницы (если она upcoming)
-  const selectOptions =
-    pageExpedition && !activeExpeditions.some((e) => e.slug === pageExpedition.slug)
-      ? [pageExpedition, ...activeExpeditions]
-      : activeExpeditions;
+  const preselect = pageExpedition
+    ? pageExpedition.slug
+    : openExpeditions.some((e) => e.slug === activeExpeditionSlug)
+      ? activeExpeditionSlug ?? ''
+      : (openExpeditions[0]?.slug ?? '');
+  // В селекте — только открытые для заявки экспедиции.
+  const selectOptions = openExpeditions;
 
   const {
     register,
@@ -74,22 +76,52 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
   });
 
   const selectedSlug = watch('expedition');
-  const selected =
-    activeExpeditions.find((e) => e.slug === selectedSlug) ??
-    activeExpeditions.find((e) => e.slug === preselect) ??
-    nearest;
-  // Фото — по слагу из ВСЕХ экспедиций (а не только active):
-  // на upcoming-страницах иначе показывалось фото ЮАР
-  const photo =
-    expeditions.find((e) => e.slug === selectedSlug)?.image ??
-    expeditions.find((e) => e.slug === preselect)?.image ??
-    selected?.image;
+  const effectiveSlug = forcedContactSlug ?? selectedSlug;
+  const selectedExpedition =
+    expeditions.find((e) => e.slug === effectiveSlug) ??
+    pageExpedition ??
+    openExpeditions.find((e) => e.slug === preselect) ??
+    openExpeditions[0];
+  const participationState = selectedExpedition
+    ? getParticipationState(selectedExpedition, now)
+    : 'open';
+  const isContactMode =
+    defaultLeadType === 'expedition' &&
+    (!selectedExpedition || participationState !== 'open');
+  const contactMode: ExpeditionContactMode = !selectedExpedition
+    ? 'unavailable'
+    : participationState === 'finished'
+      ? 'finished'
+      : 'started';
+  const contactTitle =
+    contactMode === 'started'
+      ? 'Экспедиция началась'
+      : contactMode === 'finished'
+        ? 'Экспедиция завершена'
+        : 'Свяжитесь с нами';
+  const photo = selectedExpedition?.image;
+  const asideEyebrow = isContactMode
+    ? contactMode === 'started'
+      ? 'Текущая экспедиция'
+      : contactMode === 'finished'
+        ? 'Завершённая экспедиция'
+        : 'Стать участником'
+    : 'Стать участником';
+  const asideHeading = isContactMode ? contactTitle : undefined;
+  const asideSub = isContactMode
+    ? contactMode === 'started'
+      ? 'Свяжитесь с нами, чтобы обсудить возможное участие.'
+      : contactMode === 'finished'
+        ? 'Если у вас остались вопросы, свяжитесь с нами.'
+        : 'Сейчас нет открытых экспедиций для заявки.'
+    : undefined;
 
   // Сброс состояний при открытии + преселект текущей/ближайшей
   useEffect(() => {
     if (!isOpen) return;
     setIsSuccess(false);
     setSubmitError(null);
+    setForcedContactSlug(null);
     reset({ consent: false, leadType: defaultLeadType, expedition: preselect });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
@@ -130,6 +162,16 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
   }, [isOpen, onClose]);
 
   const onSubmit = async (data: FormValues) => {
+    const targetSlug = data.expedition || preselect;
+    const target = expeditions.find((e) => e.slug === targetSlug);
+    if (target && getParticipationState(target, new Date()) !== 'open') {
+      // Участие закрылось, пока модалка была открыта: форма не отправляется,
+      // правая панель переключается на контакты.
+      setForcedContactSlug(target.slug);
+      setSubmitError(null);
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
     try {
@@ -171,7 +213,7 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
           onClick={onClose}
           role="dialog"
           aria-modal="true"
-          aria-label="Форма заявки"
+          aria-label={isContactMode ? contactTitle : 'Форма заявки'}
         >
           <motion.div
             ref={panelRef}
@@ -182,20 +224,31 @@ export function RequestModal({ isOpen, onClose, defaultLeadType = 'expedition', 
             onClick={(e) => e.stopPropagation()}
             className="request-modal__grid"
           >
-            <ModalAside photo={photo} eyebrow="Стать участником" />
+            <ModalAside
+              photo={photo}
+              eyebrow={asideEyebrow}
+              heading={asideHeading}
+              sub={asideSub}
+            />
 
-            {/* Правая панель — форма */}
+            {/* Правая панель — форма или контакты */}
             <div className="request-modal__form-panel">
               <button
                 type="button"
                 onClick={onClose}
                 className="request-modal__close"
-                aria-label="Закрыть форму"
+                aria-label={isContactMode ? 'Закрыть' : 'Закрыть форму'}
               >
                 <X className="w-5 h-5" />
               </button>
 
-              {isSuccess ? (
+              {isContactMode ? (
+                <ExpeditionContactPanel
+                  expedition={selectedExpedition}
+                  mode={contactMode}
+                  onClose={onClose}
+                />
+              ) : isSuccess ? (
                 <div className="request-modal__success">
                   <span className="request-modal__success-check" aria-hidden="true">
                     <Check className="w-6 h-6" />

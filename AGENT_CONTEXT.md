@@ -12,6 +12,12 @@
   там только `fexperience/`). Синк машин — `FExperienceRediz`.
 - Весь визуал — `src/app/globals.css` (~5200 строк). Данные — `src/data/*` (SoT).
   Заявки: модалки → `POST /api/lead` → AmoCRM (если задан) → SMTP на `MAIL_TO`.
+- Партнёры: в шапке экспедиции — `generalPartner` (логотип вместо CTA), на главной —
+  `PartnerBanner` между «Экспансией» и «ПРОЕКТ / FEXPERIENCE» (см. §2.9).
+- Начавшаяся экспедиция: контактная модалка и клиентское переключение «Ближайших»
+  реализованы 16.11.2026. План и чек-лист — `EXPEDITION_STARTED_PLAN.md`;
+  остаётся ручное обновление данных 22.11.2026 в 10:00 МСК (ЮАР → `completed`,
+  `recapTitle`, таймер Вьетнама).
 - Проверки: `npx tsc --noEmit`, `npm run build`, скриншоты Playwright через dev-сервер.
 - Git: точечный `add`, никаких `add -A` на `redesign` (рядом untracked `files3/`),
   после мержа грепать `<<<<<<<` по `src` И `public`.
@@ -21,7 +27,7 @@
 ```
 fexperience/src/
   app/
-    page.tsx              главная: Hero + 10 секций (половина через dynamic)
+    page.tsx              главная: Hero + секции (включая PartnerBanner; часть через dynamic)
     layout.tsx            шрифты (Philosopher/Helvetica/GoodVibes), metadataBase, YandexMetrika
     globals.css           ВСЯ дизайн-система (~5200 строк, диапазоны ниже)
     about/AboutContent.tsx + page.tsx   страница «О нас» (hero, методология, diff, эксперты)
@@ -39,16 +45,22 @@ fexperience/src/
     sections/ExpeditionsDirectory.tsx  каталог (своя печать directory-seal)
     sections/{MarketReality,PlatformStatement,FeaturedMarkets,PositionManifesto,
       WhyFExperience,MediaCoverage,Reviews,FAQ,FinalCTA}.tsx
-    layout/Header.tsx (2 модалки + бургер; CTA showJoin зависит от .hero-slider/.final-cta в DOM)
+    sections/PartnerBanner.tsx      партнёрский баннер на главной (данные — data/partnerBanner.ts)
+    layout/Header.tsx (2 модалки + бургер; CTA showJoin зависит от .hero-slider/.final-cta в DOM;
+                       generalPartner заменяет CTA логотипом на деталке)
     layout/Footer.tsx (Newsletter шлёт subscribe в /api/lead) + RootClientLayout.tsx
     shared/RequestModal.tsx (участник, 50/50 с ModalAside) — ОТПРАВКА ВКЛЮЧЕНА (была демо-заглушка!)
-    shared/PartnerModal.tsx (партнёр) + ParticipantModal.tsx (z-60, другой стек!) + ModalAside.tsx
+    shared/ExpeditionContactPanel.tsx (контакты, когда участие закрыто) + ModalAside.tsx
+    shared/PartnerModal.tsx (партнёр) + ParticipantModal.tsx (z-60, другой стек!)
     shared/CountdownTimer.tsx (variant только 'homepage') + CookieBanner + Preloader
     maps/{Africa,Asia,Latam,Russia}Map.tsx
   data/expeditions.ts  (slug/country/status/даты/heroVideo/heroPoster/heroPills/includes/
-                        timer/includedImage + DEFAULT_HERO_THESES + getNearestExpedition)
+                        timer/includedImage/generalPartner/participationClosesAt/
+                        homepageSpotlightUntil/recapTitle + DEFAULT_HERO_THESES + getNearestExpedition)
+  data/partnerBanner.ts (enabled/name/image/imageWidth/imageHeight/website/alt — баннер главной)
   data/speakers.ts     (photo/photoScale/isForbes/forbesBadge/expeditionSlugs; есть дубль id:2!)
   data/{regions,program,contacts,faq,reviews,config,articles/articles/index}.ts
+  lib/expeditionStatus.ts (participation state, open expeditions, homepage spotlight)
   lib/mail.ts          (clean/esc, buildSubject/buildHtml, SMTP Yandex 465, TLS strict)
   lib/mdx.ts           (getArticles/getArticleBySlug/getAllArticleSlugs — fs, только build/server)
   hooks/useScrollReveal.ts (докласс .visible) + useCountUp.ts
@@ -58,6 +70,7 @@ fexperience/src/
 Диапазоны `globals.css`: токены 1–138 → кнопки 171–312 → glass 314–392 →
 header 734–808 → hero 843–1422 → countdown 1841–2026 → directory 3415–3785 →
 detail 3998–4643 (hero 3998–, included ~4530–, experts ~4680–) → модалки 4653–конец.
+Партнёрские стили: `.header-partner*` ~801–867; `.home-partner-banner*` ~2305–2364.
 
 ## 2. Критические механики (как устроено, с константами)
 
@@ -145,6 +158,60 @@ width 36vw`, column) + `text-shadow` для читаемости.
 - Фото спикеров меняет пользователь напрямую — после каждой замены проверять
   `git ls-files` + размеры PIL + скрин; текущие файлы см. `SESSION_SUMMARY.md` §9.
 
+### 2.9. Партнёрские баннеры (Уралхим)
+
+#### Шапка экспедиции
+- Поле `Expedition.generalPartner` (`name`, `logo`, `logoOnDark?`, `website?`) —
+  единственный источник логотипа в шапке. Активная `south-africa` = Уралхим
+  (`logo_group_rus_rgb.svg` + `logo_group_rus_white.svg`, `https://uralchemgroup.ru`).
+- Если `generalPartner` есть — вместо кнопки «Стать партнёром» рендерится логотип;
+  если нет — кнопка остаётся. Подпись «Генеральный партнёр» не выводится.
+- Переключение white/RGB: `overDarkHero` (`!isScrolled`, скролл >40px) + класс
+  `.header-partner--on-dark`; логотипы лежат слоями, кроссфейд по opacity.
+  В мобильном меню всегда RGB (фон светлый). Размеры: 160×28 desktop, 180×32 mobile.
+- Ссылка — новая вкладка, `rel="noopener noreferrer"`, `focus-visible`.
+- Завершённые экспедиции (`south-africa-2025`) не получают партнёра автоматически.
+
+#### Баннер на главной
+- `PartnerBanner` (`src/components/sections/PartnerBanner.tsx`) вставлен в `page.tsx`
+  между `MarketReality` и `PlatformStatement` обычным sibling-блоком, без
+  `absolute`/отрицательных margin — страница просто становится выше на его высоту.
+- Данные — `src/data/partnerBanner.ts`: `enabled`, `name`, `image`, `imageWidth`,
+  `imageHeight`, `website`, `alt`. `enabled: false` → `null`, страница возвращается
+  к прежней высоте.
+- Картинка `public/images/partners/bannerUralchim.webp` (1440×250), full-bleed,
+  `<a>` на `https://uralchemgroup.ru` (new tab). `next/image` `fill` + контейнер
+  `aspect-ratio` из данных; `sizes="100vw"`. `imageWidth/imageHeight` обязаны
+  совпадать с реальными — иначе кроп/сплющивание.
+- Мобильный ≤640px: контейнер 4:1, `object-position: left center` — сохраняет
+  логотип/подпись, правый трактор частично уходит в кроп. Десктоп — полный кадр.
+- CSS `.home-partner-banner*` (~2305–2364): hover brightness, `focus-visible`,
+  `prefers-reduced-motion`. Высота не фиксируется в px — следует за шириной.
+- Старый `PartnerBlock`/`data/partner.ts` — legacy placeholder, не использовать
+  для новых баннеров; новый компонент не зависит от `config.partnerBlock`.
+- Деплой: `ea1ce41` в `deploy/redesign` и `deploy/main`; проверено на
+  1920/1440/768/390/360, `tsc` + `build`.
+
+### 2.10. Начавшаяся экспедиция (реализовано 16.11.2026)
+
+Подробный план и чек-лист — `EXPEDITION_STARTED_PLAN.md` в корне.
+- Кнопка «Стать участником» остаётся; в модалке при начавшейся/завершённой
+  экспедиции заголовок «Экспедиция началась»/«Экспедиция завершена», вместо полей —
+  телефон `+7 (920) 194-90-03` и `fexperience@forbes.ru`, без consent и без кнопки
+  «Оставить заявку». Форма не отправляется.
+- Логика — `src/lib/expeditionStatus.ts`: `getParticipationState`,
+  `getOpenExpeditions`, `getHomepageSpotlightExpedition`.
+- Участие в ЮАР закрывается `2026-11-16T10:00:00+03:00` (`participationClosesAt`).
+- Главная: `FeaturedMarkets` — клиентский компонент с отдельным селектором и
+  детерминированным fallback. До 22.11 10:00 слева ЮАР, после — Вьетнам; справа
+  3 upcoming без дубля. `getNearestExpedition` глобально не меняли.
+- Завершённая страница: в шапке нет «Стать участником», логотип партнёра остаётся.
+  `/form` не трогали; после завершения ЮАР она предвыберет Вьетнам.
+- 22.11.2026 10:00 МСК вручную: `south-africa.status = 'completed'`,
+  `recapTitle: 'Экспедиция в ЮАР 2026'`, включить таймер Вьетнама. `recapTitle` уже
+  добавлен в данные, статус и таймер пока НЕ менялись.
+- Баннер Уралхима — ручной `enabled: false`, код не меняли.
+
 ## 3. Диагностика (команды, проверено в бою)
 
 - Маркеры после мержа: `Get-ChildItem src,public -Recurse | Select-String '^<<<<<<< '`
@@ -181,3 +248,6 @@ width 36vw`, column) + `text-shadow` для читаемости.
   сейчас = «Принять» (пишет `accepted=true`); капчи нет (троттлинга хватает пока);
   CSP не вводим (убьёт инлайн Метрики); при переезде статей на CMS включить
   `rehype-sanitize` (пакет уже в зависимостях!); в `speakers.ts` дубль `id: 2`.
+- Начавшаяся экспедиция: код готов и проверен. Остаётся ручное обновление данных
+  22.11.2026 в 10:00 МСК: ЮАР → `completed`, включить таймер Вьетнама
+  (см. `EXPEDITION_STARTED_PLAN.md`).

@@ -70,6 +70,10 @@ export type Expedition = {
   heroSketch?: string; // скетч ТОЛЬКО для Hero детальной страницы
   startDate?: string;
   endDate?: string;
+  /** ISO-дата с часовым поясом, когда закрывается приём заявок. */
+  participationClosesAt?: string;
+  /** До какого момента экспедиция остаётся в левой части блока «Ближайшие». */
+  homepageSpotlightUntil?: string;
   heroTitlePrimary?: string;
   heroTitleOpen?: string;
   heroTitleCountry?: string;

@@ -1,6 +1,10 @@
+'use client';
+
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getNearestExpedition, expeditions } from '@/data/expeditions';
+import { expeditions } from '@/data/expeditions';
+import { getHomepageSpotlightExpedition } from '@/lib/expeditionStatus';
 import type { Expedition } from '@/types/expedition';
 
 const statusLabels: Record<Expedition['status'], string> = {
@@ -13,38 +17,96 @@ function formatDates(dates: string) {
   return dates.replace(/-/g, '—');
 }
 
-export function FeaturedMarkets() {
-  const nearest = getNearestExpedition(expeditions);
-  if (!nearest) return null;
+/**
+ * Детерминированный fallback для SSR и первого клиентского рендера:
+ * без Date.now(), чтобы сервер и клиент совпали при гидратации.
+ */
+function getFallbackSpotlight(): Expedition | undefined {
+  const active = expeditions
+    .filter((expedition) => expedition.status === 'active')
+    .sort((a, b) =>
+      (a.startDate ?? '9999-12-31').localeCompare(b.startDate ?? '9999-12-31'),
+    );
 
-  // Три карточки тёмной панели: первая — Вьетнам, дальше — две со статусом «скоро»
-  const vietnam = expeditions.find((e) => e.slug === 'vietnam');
-  const soon = expeditions
-    .filter((e) => e.status === 'upcoming' && e.slug !== vietnam?.slug)
-    .slice(0, 2);
-  const cards = [vietnam, ...soon].filter((e): e is Expedition => Boolean(e)).slice(0, 3);
+  return (
+    active[0] ??
+    expeditions.find((expedition) => expedition.status === 'upcoming') ??
+    expeditions[0]
+  );
+}
+
+export function FeaturedMarkets() {
+  const [spotlight, setSpotlight] = useState<Expedition | undefined>(
+    getFallbackSpotlight,
+  );
+
+  // Главная статическая: пересчитываем по текущей дате уже на клиенте.
+  useEffect(() => {
+    const update = () => {
+      const next =
+        getHomepageSpotlightExpedition(expeditions, new Date()) ??
+        getFallbackSpotlight();
+      setSpotlight((current) =>
+        current?.slug === next?.slug ? current : next,
+      );
+    };
+
+    update();
+    const intervalId = window.setInterval(update, 60_000);
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') update();
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      window.clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
+  }, []);
+
+  // Три карточки тёмной панели: Вьетнам + upcoming, без дубля левой экспедиции.
+  const cards = useMemo(() => {
+    const vietnam = expeditions.find((expedition) => expedition.slug === 'vietnam');
+    const upcoming = expeditions.filter(
+      (expedition) => expedition.status === 'upcoming',
+    );
+    const seen = new Set<string>();
+
+    return [vietnam, ...upcoming]
+      .filter((expedition): expedition is Expedition => Boolean(expedition))
+      .filter((expedition) => {
+        if (expedition.slug === spotlight?.slug || seen.has(expedition.slug)) {
+          return false;
+        }
+        seen.add(expedition.slug);
+        return true;
+      })
+      .slice(0, 3);
+  }, [spotlight?.slug]);
+
+  if (!spotlight) return null;
 
   return (
     <section className="program-block">
       {/* Левая половина — full-bleed фото + существующая glass-card */}
       <div className="program-block__media">
         <Image
-          src={nearest.image}
-          alt={`Бизнес-экспедиция в ${nearest.country}`}
+          key={spotlight.slug}
+          src={spotlight.image}
+          alt={`Бизнес-экспедиция в ${spotlight.country}`}
           fill
-          priority
           sizes="(min-width: 1025px) 48vw, 100vw"
         />
 
         <div className="featured-expedition-panel">
           <span className="featured-expedition-status">
-            {statusLabels[nearest.status]}
+            {statusLabels[spotlight.status]}
           </span>
-          <h3>{nearest.country}</h3>
+          <h3>{spotlight.country}</h3>
           <p className="featured-expedition-type">Бизнес-экспедиция</p>
-          <p className="featured-expedition-date">{formatDates(nearest.dates)}</p>
+          <p className="featured-expedition-date">{formatDates(spotlight.dates)}</p>
           <Link
-            href={`/expeditions/${nearest.slug}`}
+            href={`/expeditions/${spotlight.slug}`}
             className="btn-liquid btn-liquid--sm"
           >
             <span className="btn-liquid-text">Подробнее →</span>

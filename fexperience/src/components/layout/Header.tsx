@@ -109,6 +109,8 @@ export function Header() {
     ? expeditions.find((expedition) => expedition.slug === expeditionSlug)
     : undefined;
   const generalPartner = currentExpedition?.generalPartner;
+  // На завершённой экспедиции не предлагаем участие: форма уже не актуальна.
+  const isCompletedExpedition = currentExpedition?.status === 'completed';
   // Отдельная страница заявки: точечные правки шапки ТОЛЬКО здесь через header-bar--form
   const isFormPage = pathname === '/form';
 
@@ -229,12 +231,14 @@ export function Header() {
                 </button>
               )
             )}
-            <div className={`header-bar__join ${showJoin ? 'is-visible' : ''}`}>
-            <button onClick={() => setIsParticipantModalOpen(true)} className="btn-liquid btn-liquid--sm">
-              <span className="btn-liquid-text">Стать участником</span>
-            </button>
+            {!isCompletedExpedition && (
+              <div className={`header-bar__join ${showJoin ? 'is-visible' : ''}`}>
+                <button onClick={() => setIsParticipantModalOpen(true)} className="btn-liquid btn-liquid--sm">
+                  <span className="btn-liquid-text">Стать участником</span>
+                </button>
+              </div>
+            )}
           </div>
-        </div>
 
           {/* Бургер — mobile */}
           <button onClick={() => setIsOpen(true)} className={`xl:hidden p-2 ${overDarkHero ? 'text-white' : 'text-text-primary'}`} aria-label="Открыть меню">
@@ -321,15 +325,17 @@ export function Header() {
 
             {/* CTA — full-width кнопки */}
             <div className="px-6 flex flex-col gap-3">
-              <motion.button
-                onClick={() => { setIsParticipantModalOpen(true); closeMenu(); }}
-                className="btn-liquid w-full"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="btn-liquid-text">Стать участником</span>
-              </motion.button>
+              {!isCompletedExpedition && (
+                <motion.button
+                  onClick={() => { setIsParticipantModalOpen(true); closeMenu(); }}
+                  className="btn-liquid w-full"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="btn-liquid-text">Стать участником</span>
+                </motion.button>
+              )}
               {isExpeditionDetail && (
                 generalPartner ? (
                   <motion.div
