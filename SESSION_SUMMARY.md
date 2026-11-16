@@ -271,3 +271,89 @@ height (flex-basis: 0% + min-content). Фикс: `flex-none sm:flex-1` + plain-�
 ### Осталось вручную
 - 22.11.2026 10:00 МСК: `south-africa.status = 'completed'` и включить таймер
   Вьетнама. Раньше времени не делать — иначе главная переключится заранее.
+
+---
+
+## Ручное переключение 22.11.2026: ЮАР → архив, Вьетнам → главная
+
+> Делать строго **22.11.2026 в 10:00 МСК**, не раньше.
+> До этого момента главная уже сама показывает ЮАР до 10:00, затем Вьетнам;
+> статус ЮАР и таймер Вьетнама остаются как есть.
+
+### 1. Перевести ЮАР в завершённые
+
+Файл: `fexperience/src/data/expeditions.ts`, объект `slug: 'south-africa'`.
+
+Было:
+```ts
+status: 'active',
+```
+
+Стало:
+```ts
+status: 'completed',
+```
+
+`participationClosesAt`, `homepageSpotlightUntil` и `recapTitle` не удалять.
+`recapTitle` должен остаться:
+
+```ts
+recapTitle: 'Экспедиция в ЮАР 2026',
+```
+
+### 2. Включить таймер Вьетнама
+
+Тот же файл, объект `slug: 'vietnam'`.
+
+Было:
+```ts
+timer: {
+  enabled: false,
+  targetDate: '2027-03-14T00:00:00Z',
+  label: 'До старта экспедиции во Вьетнам',
+},
+```
+
+Стало:
+```ts
+timer: {
+  enabled: true,
+  targetDate: '2027-03-14T00:00:00Z',
+  label: 'До старта экспедиции во Вьетнам',
+},
+```
+
+`targetDate` уже правильный — не менять.
+
+### 3. Проверить перед деплоем
+
+```powershell
+cd fexperience
+npx tsc --noEmit
+npm run build
+```
+
+Глазами:
+- `/expeditions/south-africa` — в шапке нет «Стать участником», логотип Уралхима есть;
+- `/expeditions/south-africa` — recap с заголовком «Экспедиция в ЮАР 2026»;
+- `/` — слева Вьетнам, справа 3 upcoming без дубля Вьетнама;
+- `/expeditions/vietnam` — таймер идёт;
+- `/form` — предвыбирает Вьетнам.
+
+### 4. Задеплоить
+
+```powershell
+cd C:\Users\Charki\Desktop\FinalFexperienceRediz
+git add fexperience/src/data/expeditions.ts
+git commit -m "content(expeditions): close South Africa and start Vietnam countdown"
+git push deploy redesign
+git push deploy redesign:main --force
+```
+
+После деплоя — `Ctrl+F5`. Если прод не обновился сразу, подождать 3–7 минут.
+
+### Важно
+- Не делать это заранее: до 10:00 22.11 главная должна показывать ЮАР.
+- Если сделать позже, главная уже переключится на Вьетнам в 10:00, но ЮАР останется
+  `active`, а таймер Вьетнама будет выключен до ручной правки.
+- `files3/` и `VietnamMen1/2.webp` не добавлять в коммит.
